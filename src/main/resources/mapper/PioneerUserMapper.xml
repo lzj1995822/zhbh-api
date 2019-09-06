@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.PioneerUserMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerUser">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="user_number" property="userNumber" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="identity_number" property="identityNumber"
+			jdbcType="VARCHAR" />
+		<result column="user_sex" property="userSex" jdbcType="CHAR" />
+		<result column="user_nation" property="userNation" jdbcType="VARCHAR" />
+		<result column="birth_date" property="birthDate" jdbcType="TIMESTAMP" />
+		<result column="academic_qualification" property="academicQualification"
+			jdbcType="VARCHAR" />
+		<result column="user_class" property="userClass" jdbcType="VARCHAR" />
+		<result column="party_org" property="partyOrg" jdbcType="VARCHAR" />
+		<result column="join_party_time" property="joinPartyTime"
+			jdbcType="TIMESTAMP" />
+		<result column="full_member_time" property="fullMemberTime"
+			jdbcType="TIMESTAMP" />
+		<result column="user_job" property="userJob" jdbcType="VARCHAR" />
+		<result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+		<result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+		<result column="fixed_telephone" property="fixedTelephone"
+			jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_number, user_name, identity_number, user_sex,
+		user_nation,
+		birth_date, academic_qualification,
+		user_class, party_org,
+		join_party_time, full_member_time, user_job, user_address,
+		phone_number, fixed_telephone, yhzh, create_time, delflag, create_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from pioneer_user
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		pioneer_user
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.PioneerUser">
+		insert into pioneer_user (id,
+		user_number, user_name,
+		identity_number, user_sex, user_nation,
+		birth_date, academic_qualification, user_class,
+		party_org,
+		join_party_time, full_member_time,
+		user_job, user_address,
+		phone_number,
+		fixed_telephone, yhzh, create_time,
+		delflag, create_id)
+		values
+		(#{id,jdbcType=BIGINT}, #{userNumber,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR},
+		#{identityNumber,jdbcType=VARCHAR},
+		#{userSex,jdbcType=CHAR}, #{userNation,jdbcType=VARCHAR},
+		#{birthDate,jdbcType=TIMESTAMP},
+		#{academicQualification,jdbcType=VARCHAR},
+		#{userClass,jdbcType=VARCHAR},
+		#{partyOrg,jdbcType=VARCHAR},
+		#{joinPartyTime,jdbcType=TIMESTAMP},
+		#{fullMemberTime,jdbcType=TIMESTAMP},
+		#{userJob,jdbcType=VARCHAR},
+		#{userAddress,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR},
+		#{fixedTelephone,jdbcType=VARCHAR}, #{yhzh,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=CHAR},#{createId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.PioneerUser">
+		insert into pioneer_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userNumber != null">
+				user_number,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="identityNumber != null">
+				identity_number,
+			</if>
+			<if test="userSex != null">
+				user_sex,
+			</if>
+			<if test="userNation != null">
+				user_nation,
+			</if>
+			<if test="birthDate != null">
+				birth_date,
+			</if>
+			<if test="academicQualification != null">
+				academic_qualification,
+			</if>
+			<if test="userClass != null">
+				user_class,
+			</if>
+			<if test="partyOrg != null">
+				party_org,
+			</if>
+			<if test="joinPartyTime != null">
+				join_party_time,
+			</if>
+			<if test="fullMemberTime != null">
+				full_member_time,
+			</if>
+			<if test="userJob != null">
+				user_job,
+			</if>
+			<if test="userAddress != null">
+				user_address,
+			</if>
+			<if test="phoneNumber != null">
+				phone_number,
+			</if>
+			<if test="fixedTelephone != null">
+				fixed_telephone,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="userNumber != null">
+				#{userNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="identityNumber != null">
+				#{identityNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="userSex != null">
+				#{userSex,jdbcType=CHAR},
+			</if>
+			<if test="userNation != null">
+				#{userNation,jdbcType=VARCHAR},
+			</if>
+			<if test="birthDate != null">
+				#{birthDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="academicQualification != null">
+				#{academicQualification,jdbcType=VARCHAR},
+			</if>
+			<if test="userClass != null">
+				#{userClass,jdbcType=VARCHAR},
+			</if>
+			<if test="partyOrg != null">
+				#{partyOrg,jdbcType=VARCHAR},
+			</if>
+			<if test="joinPartyTime != null">
+				#{joinPartyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fullMemberTime != null">
+				#{fullMemberTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userJob != null">
+				#{userJob,jdbcType=VARCHAR},
+			</if>
+			<if test="userAddress != null">
+				#{userAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneNumber != null">
+				#{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="fixedTelephone != null">
+				#{fixedTelephone,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerUser">
+		update pioneer_user
+		<set>
+			<if test="userNumber != null">
+				user_number = #{userNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="identityNumber != null">
+				identity_number = #{identityNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="userSex != null">
+				user_sex = #{userSex,jdbcType=CHAR},
+			</if>
+			<if test="userNation != null">
+				user_nation = #{userNation,jdbcType=VARCHAR},
+			</if>
+			<if test="birthDate != null">
+				birth_date = #{birthDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="academicQualification != null">
+				academic_qualification =
+				#{academicQualification,jdbcType=VARCHAR},
+			</if>
+			<if test="userClass != null">
+				user_class = #{userClass,jdbcType=VARCHAR},
+			</if>
+			<if test="partyOrg != null">
+				party_org = #{partyOrg,jdbcType=VARCHAR},
+			</if>
+			<if test="joinPartyTime != null">
+				join_party_time = #{joinPartyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fullMemberTime != null">
+				full_member_time = #{fullMemberTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userJob != null">
+				user_job = #{userJob,jdbcType=VARCHAR},
+			</if>
+			<if test="userAddress != null">
+				user_address = #{userAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneNumber != null">
+				phone_number = #{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="fixedTelephone != null">
+				fixed_telephone = #{fixedTelephone,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				yhzh = #{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerUser">
+		update
+		pioneer_user
+		set user_number = #{userNumber,jdbcType=VARCHAR},
+		user_name = #{userName,jdbcType=VARCHAR},
+		identity_number =
+		#{identityNumber,jdbcType=VARCHAR},
+		user_sex =
+		#{userSex,jdbcType=CHAR},
+		user_nation = #{userNation,jdbcType=VARCHAR},
+		birth_date = #{birthDate,jdbcType=TIMESTAMP},
+		academic_qualification =
+		#{academicQualification,jdbcType=VARCHAR},
+		user_class =
+		#{userClass,jdbcType=VARCHAR},
+		party_org =
+		#{partyOrg,jdbcType=VARCHAR},
+		join_party_time =
+		#{joinPartyTime,jdbcType=TIMESTAMP},
+		full_member_time =
+		#{fullMemberTime,jdbcType=TIMESTAMP},
+		user_job =
+		#{userJob,jdbcType=VARCHAR},
+		user_address =
+		#{userAddress,jdbcType=VARCHAR},
+		phone_number =
+		#{phoneNumber,jdbcType=VARCHAR},
+		fixed_telephone =
+		#{fixedTelephone,jdbcType=VARCHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		delflag =
+		#{delflag,jdbcType=CHAR},
+		create_id = #{createId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectTotal" parameterType="com.jtzh.pojo.PioneerUserPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from pioneer_user
+		where delflag != 'D'
+		<if test="page.keyword != null and page.keyword != ''">
+			and (user_name like concat('%', #{page.keyword},'%') or party_org like concat('%', #{page.keyword},
+			'%'))
+		</if>
+		<if test="page.partyOrg != null and page.partyOrg != ''">
+			and party_org like concat('%', #{page.partyOrg},'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and birth_date &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and birth_date &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.PioneerUserPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pioneer_user
+		where delflag != 'D'
+		<if test="page.keyword != null and page.keyword != ''">
+			and (user_name like concat('%', #{page.keyword},'%') or party_org like concat('%', #{page.keyword},
+			'%'))
+		</if>
+
+		<if test="page.partyOrg != null and page.partyOrg != ''">
+			and party_org like concat('%', #{page.partyOrg},'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and birth_date &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and birth_date &lt; #{page.endTime}
+		</if>
+		order by create_time DESC
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectUser" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pioneer_user
+		where id = #{id}
+	</select>
+	<update id="deleteUser">
+		update pioneer_user
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="countNumber" resultType="com.jtzh.pojo.CountParty">
+		select party_org as partyOrg,count(id) as count from 
+		pioneer_user group by party_org
+	</select>
+	<select id="getUserList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pioneer_user
+		where delflag != 'D'
+		order by create_time asc
+	</select>
+</mapper>

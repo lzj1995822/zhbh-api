@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.CountrysideMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.CountrysideBuild">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="people" property="people" jdbcType="VARCHAR" />
+		<result column="countryside" property="countryside" jdbcType="INTEGER" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="registered_residence" property="registeredResidence" jdbcType="VARCHAR" />
+		<result column="scale" property="scale" jdbcType="VARCHAR" />
+		<result column="reason" property="reason" jdbcType="VARCHAR" />
+		<result column="publicity" property="publicity" jdbcType="VARCHAR" />
+		<result column="village_committee" property="villageCommittee" jdbcType="VARCHAR" />
+		<result column="homeland_view" property="homelandView" jdbcType="VARCHAR" />
+		<result column="supervise_view" property="superviseView" jdbcType="VARCHAR" />
+		<result column="law_view" property="lawView" jdbcType="VARCHAR" />
+		<result column="government_view" property="governmentView" jdbcType="VARCHAR" />
+		<result column="attachment_source" property="attachmentSource" jdbcType="CHAR" />
+		<result column="card" property="card" jdbcType="VARCHAR" />
+		<result column="residence_booklet" property="residenceBooklet" jdbcType="VARCHAR" />
+		<result column="doorplate" property="doorplate" jdbcType="VARCHAR" />
+		<result column="canton" property="canton" jdbcType="VARCHAR" />
+		<result column="bulidDate" property="bulidDate" jdbcType="DATE" />
+		<result column="landAcreage" property="landAcreage" jdbcType="VARCHAR" />
+		<result column="bulidAcreage" property="bulidAcreage" jdbcType="VARCHAR" />
+		<result column="structure" property="structure" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="endState" property="endState" jdbcType="VARCHAR" />
+		<result column="commit" property="commit" jdbcType="VARCHAR" />
+		<result column="x" property="x" jdbcType="VARCHAR" />
+		<result column="y" property="y" jdbcType="VARCHAR" />
+		<result column="inspect_explain" property="inspectExplain" jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="createId" property="createId" jdbcType="VARCHAR" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    	<result column="delflag" jdbcType="VARCHAR" property="delflag" />
+    	<result column="examineView" jdbcType="VARCHAR" property="examineView" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, people, countryside, phone, address, registered_residence,
+		scale, reason, publicity, village_committee, homeland_view, 
+		supervise_view, law_view, government_view, attachment_source, 
+		card, residence_booklet, doorplate, canton, bulidDate, landAcreage, 
+		bulidAcreage, structure, type, state, endState, commit, x, y, inspect_explain, yhzh, 
+		createId, createTime, delflag, examineView
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_build
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<insert id="insert" parameterType="com.jtzh.entity.CountrysideBuild">
+		insert into
+		countryside_build (
+		id, people, countryside, phone, address, registered_residence,
+		scale, reason, publicity, village_committee, homeland_view, 
+		supervise_view, law_view, government_view, attachment_source, 
+		card, residence_booklet, doorplate, canton, bulidDate, landAcreage, 
+		bulidAcreage, structure, type, state, endState, commit, x, y, inspect_explain, yhzh, 
+		createId, createTime, delflag, examineView)
+		values (#{id,jdbcType=INTEGER},
+		#{people,jdbcType=VARCHAR},
+		#{countryside,jdbcType=INTEGER},
+		#{phone,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{registeredResidence,jdbcType=VARCHAR},
+		#{scale,jdbcType=VARCHAR},
+		#{reason,jdbcType=VARCHAR},
+		#{publicity,jdbcType=VARCHAR},
+		#{villageCommittee,jdbcType=VARCHAR},
+		#{homelandView,jdbcType=VARCHAR},
+		#{superviseView,jdbcType=VARCHAR},
+		#{lawView,jdbcType=VARCHAR},
+		#{governmentView,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR},
+		#{card,jdbcType=VARCHAR},
+		#{residenceBooklet,jdbcType=VARCHAR},
+		#{doorplate,jdbcType=VARCHAR},
+		#{canton,jdbcType=VARCHAR},
+		#{bulidDate,jdbcType=DATE},
+		#{landAcreage,jdbcType=VARCHAR},
+		#{bulidAcreage,jdbcType=VARCHAR},
+		#{structure,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR},
+		#{state,jdbcType=VARCHAR},
+		#{endState,jdbcType=VARCHAR},
+		#{commit,jdbcType=VARCHAR},
+		#{x,jdbcType=VARCHAR},
+		#{y,jdbcType=VARCHAR},
+		#{inspectExplain,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=VARCHAR},
+		#{examineView,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.CountrysideBuild">
+		insert into countryside_build
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="people != null">
+				people,
+			</if>
+			<if test="countryside != null">
+				countryside,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="registeredResidence != null">
+				registered_residence,
+			</if>
+			<if test="scale != null">
+				scale,
+			</if>
+			<if test="reason != null">
+				reason,
+			</if>
+			<if test="publicity != null">
+				publicity,
+			</if>
+			<if test="villageCommittee != null">
+				village_committee,
+			</if>
+			<if test="homelandView != null">
+				homeland_view,
+			</if>
+			<if test="superviseView != null">
+				supervise_view,
+			</if>
+			<if test="lawView != null">
+				law_view,
+			</if>
+			<if test="governmentView != null">
+				government_view,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="card != null">
+				card,
+			</if>
+			<if test="residenceBooklet != null">
+				residence_booklet,
+			</if>
+			<if test="doorplate != null">
+				doorplate,
+			</if>
+			<if test="canton != null">
+				canton,
+			</if>
+			<if test="bulidDate != null">
+				bulidDate,
+			</if>
+			<if test="landAcreage != null">
+				landAcreage,
+			</if>
+			<if test="bulidAcreage != null">
+				bulidAcreage,
+			</if>
+			<if test="structure != null">
+				structure,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="endState != null">
+				endState,
+			</if>
+			<if test="commit != null">
+				commit,
+			</if>
+			<if test="x != null">
+				x,
+			</if>
+			<if test="y != null">
+				y,
+			</if>
+			<if test="inspectExplain != null">
+				inspect_explain,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="createId != null">
+				createId,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="examineView != null">
+				examineView,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="people != null">
+				#{people,jdbcType=VARCHAR},
+			</if>
+			<if test="countryside != null">
+				#{countryside,jdbcType=INTEGER},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="registeredResidence != null">
+				#{registeredResidence,jdbcType=VARCHAR},
+			</if>
+			<if test="scale != null">
+				#{scale,jdbcType=VARCHAR},
+			</if>
+			<if test="reason != null">
+				#{reason,jdbcType=VARCHAR},
+			</if>
+			<if test="publicity != null">
+				#{publicity,jdbcType=VARCHAR},
+			</if>
+			<if test="villageCommittee != null">
+				#{villageCommittee,jdbcType=VARCHAR},
+			</if>
+			<if test="homelandView != null">
+				#{homelandView,jdbcType=VARCHAR},
+			</if>
+			<if test="superviseView != null">
+				#{superviseView,jdbcType=VARCHAR},
+			</if>
+			<if test="lawView != null">
+				#{lawView,jdbcType=VARCHAR},
+			</if>
+			<if test="governmentView != null">
+				#{governmentView,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="card != null">
+				#{card,jdbcType=VARCHAR},
+			</if>
+			<if test="residenceBooklet != null">
+				#{residenceBooklet,jdbcType=VARCHAR},
+			</if>
+			<if test="doorplate != null">
+				#{doorplate,jdbcType=VARCHAR},
+			</if>
+			<if test="canton != null">
+				#{canton,jdbcType=VARCHAR},
+			</if>
+			<if test="bulidDate != null">
+				#{bulidDate,jdbcType=DATE},
+			</if>
+			<if test="landAcreage != null">
+				#{landAcreage,jdbcType=VARCHAR},
+			</if>
+			<if test="bulidAcreage != null">
+				#{bulidAcreage,jdbcType=VARCHAR},
+			</if>
+			<if test="structure != null">
+				#{structure,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="endState != null">
+				#{endState,jdbcType=VARCHAR},
+			</if>
+			<if test="commit != null">
+				#{commit,jdbcType=VARCHAR},
+			</if>
+			<if test="x != null">
+				#{x,jdbcType=VARCHAR},
+			</if>
+			<if test="y != null">
+				#{y,jdbcType=VARCHAR},
+			</if>
+			<if test="inspectExplain != null">
+				#{inspectExplain,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=VARCHAR},
+			</if>
+			<if test="examineView != null">
+				#{examineView,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="selectCouTotal" parameterType="com.jtzh.pojo.CountrysideParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from countryside_build
+		where delflag = 'A' and state != '02' 
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (people like concat('%', #{page.key},
+			'%') or countryside like concat('%', #{page.key},
+			'%') or scale like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and endState like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.type != null and page.type != ''">
+			and commit like concat('%', #{page.type},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.CountrysideParam"
+		resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from countryside_build
+		where delflag = 'A' and state != '02' 
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (people like concat('%', #{page.key},
+			'%') or countryside like concat('%', #{page.key},
+			'%') or scale like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and endState like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.type != null and page.type != ''">
+			and commit like concat('%', #{page.type},
+			'%')
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="getCountrysideInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_build
+		where id = #{id}
+	</select>
+	<update id="deleteCountryside">
+		update countryside_build
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateCountryside" parameterType="com.jtzh.entity.CountrysideBuild">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    update countryside_build
+    set 
+		people = #{people,jdbcType=VARCHAR},
+		countryside = #{countryside,jdbcType=INTEGER},
+		phone = #{phone,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		registered_residence = #{registeredResidence,jdbcType=VARCHAR},
+		scale = #{scale,jdbcType=VARCHAR},
+		reason = #{reason,jdbcType=VARCHAR},
+		publicity = #{publicity,jdbcType=VARCHAR},
+		village_committee = #{villageCommittee,jdbcType=VARCHAR},
+		homeland_view = #{homelandView,jdbcType=VARCHAR},
+		supervise_view = #{superviseView,jdbcType=VARCHAR},
+		law_view = #{lawView,jdbcType=VARCHAR},
+		government_view = #{governmentView,jdbcType=VARCHAR},
+		doorplate = #{doorplate,jdbcType=VARCHAR},
+		canton = #{canton,jdbcType=VARCHAR},
+		bulidDate = #{bulidDate,jdbcType=VARCHAR},
+		landAcreage = #{landAcreage,jdbcType=VARCHAR},
+		bulidAcreage = #{bulidAcreage,jdbcType=VARCHAR},
+		structure = #{structure,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		card = #{card,jdbcType=VARCHAR},
+		x = #{x,jdbcType=VARCHAR},
+		y = #{y,jdbcType=VARCHAR},
+		residence_booklet = #{residenceBooklet,jdbcType=VARCHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR},
+		examineView = #{examineView,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertCountryside" parameterType="com.jtzh.entity.CountrysideBuild">
+  <selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    insert into 
+    countryside_build (people, countryside, phone, address, registered_residence,
+		scale, reason, publicity, village_committee, homeland_view, 
+		supervise_view, law_view, government_view, attachment_source, 
+		card, residence_booklet, doorplate, canton, bulidDate, landAcreage, 
+		bulidAcreage, structure, type, state, endState, commit, x, y, yhzh, 
+		createId, createTime, delflag, examineView)
+    values (#{people,jdbcType=VARCHAR},
+		#{countryside,jdbcType=INTEGER},
+		#{phone,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{registeredResidence,jdbcType=VARCHAR},
+		#{scale,jdbcType=VARCHAR},
+		#{reason,jdbcType=VARCHAR},
+		#{publicity,jdbcType=VARCHAR},
+		#{villageCommittee,jdbcType=VARCHAR},
+		#{homelandView,jdbcType=VARCHAR},
+		#{superviseView,jdbcType=VARCHAR},
+		#{lawView,jdbcType=VARCHAR},
+		#{governmentView,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR},
+		#{card,jdbcType=VARCHAR},
+		#{residenceBooklet,jdbcType=VARCHAR},
+		#{doorplate,jdbcType=VARCHAR},
+		#{canton,jdbcType=VARCHAR},
+		#{bulidDate,jdbcType=DATE},
+		#{landAcreage,jdbcType=VARCHAR},
+		#{bulidAcreage,jdbcType=VARCHAR},
+		#{structure,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR},
+		#{state,jdbcType=VARCHAR},
+		#{endState,jdbcType=VARCHAR},
+		#{commit,jdbcType=VARCHAR},
+		#{x,jdbcType=VARCHAR},
+		#{y,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=VARCHAR},
+		#{examineView,jdbcType=VARCHAR})
+  </insert>
+  <update id="testCountryside" parameterType="com.jtzh.entity.CountrysideBuild">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    update countryside_build
+    set 
+    	examineView = #{examineView,jdbcType=VARCHAR},
+    	state = #{state,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectInfoAllxy" parameterType="com.jtzh.pojo.CountrysideParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_build
+		where delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and state like concat('%', #{page.state},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (people like concat('%', #{page.key},
+			'%') or countryside like concat('%', #{page.key},
+			'%') or scale like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and state like concat('%', #{page.state},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and endState like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.type != null and page.type != ''">
+			and commit like concat('%', #{page.type},
+			'%')
+		</if>
+		limit
+		#{page.start},999999
+	</select>
+	<update id="commitCountryside" parameterType="com.jtzh.entity.CountrysideBuild">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    update countryside_build
+    set 
+    	commit = #{commit,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="shenheCountryside" parameterType="com.jtzh.entity.CountrysideBuild">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    update countryside_build
+    set 
+    	endState = #{endState,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectCouTotal1" parameterType="com.jtzh.pojo.CountrysideParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from countryside_build
+		where delflag = 'A' and state = '02' 
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (people like concat('%', #{page.key},
+			'%') or countryside like concat('%', #{page.key},
+			'%') or scale like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and endState like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.type != null and page.type != ''">
+			and commit like concat('%', #{page.type},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo1" parameterType="com.jtzh.pojo.CountrysideParam"
+		resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from countryside_build
+		where delflag = 'A' and state = '02' 
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (people like concat('%', #{page.key},
+			'%') or countryside like concat('%', #{page.key},
+			'%') or scale like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and endState like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.type != null and page.type != ''">
+			and commit like concat('%', #{page.type},
+			'%')
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="getCountList1" resultType="long">
+    	select
+    	count(id)
+    	from countryside_build
+    	where state = #{state,jdbcType=VARCHAR} and delflag = 'A'
+    </select>
+    <select id="getCountList2" resultType="long">
+    	select
+    	count(id)
+    	from countryside_build
+    	where commit = #{commit,jdbcType=VARCHAR} and delflag = 'A'
+    </select>
+    <select id="getCountList3" resultType="long">
+    	select
+    	count(id)
+    	from countryside_build
+    	where endState = #{endState,jdbcType=VARCHAR} and delflag = 'A'
+    </select>
+    <select id="getapplyList" resultType="com.jtzh.pojo.CountrysideBuildCount">
+    	select a.id as countrysideId,a.countryside_name as countryside,ifnull(b.count,0)
+		as count from countrysideList a left join(select countryside,count(id) as count from countryside_build where delflag = 'A' group
+		by countryside) as b
+		on b.countryside = a.id
+    </select>
+    <select id="getexamineList" resultType="com.jtzh.pojo.CountrysideBuildCount">
+    	<!-- select countryside as countryside, count(1) as count from countryside_build where delflag = 'A' and state = '02' group by countryside -->
+    	select a.id as countrysideId,a.countryside_name as countryside,ifnull(b.count,0)
+		as count from countrysideList a left join(select countryside,count(id) as count from countryside_build where delflag = 'A' and state != '01' group
+		by countryside) as b
+		on b.countryside = a.id
+    </select>
+</mapper>

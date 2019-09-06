@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.PioneerSjxmHbMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerSjxmHb">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="sjxm_id" jdbcType="BIGINT" property="sjxmId" />
+    <result column="hbr" jdbcType="VARCHAR" property="hbr" />
+    <result column="zw" jdbcType="VARCHAR" property="zw" />
+    <result column="xmssjzqk" jdbcType="VARCHAR" property="xmssjzqk" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="delflag" jdbcType="CHAR" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sjxm_id, hbr, zw, xmssjzqk, create_time, delflag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_sjxm_hb
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pioneer_sjxm_hb
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.PioneerSjxmHb">
+    insert into pioneer_sjxm_hb (id, sjxm_id, hbr, 
+      zw, xmssjzqk, create_time, 
+      delflag)
+    values (#{id,jdbcType=BIGINT}, #{sjxmId,jdbcType=BIGINT}, #{hbr,jdbcType=VARCHAR}, 
+      #{zw,jdbcType=VARCHAR}, #{xmssjzqk,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{delflag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.PioneerSjxmHb">
+    insert into pioneer_sjxm_hb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sjxmId != null">
+        sjxm_id,
+      </if>
+      <if test="hbr != null">
+        hbr,
+      </if>
+      <if test="zw != null">
+        zw,
+      </if>
+      <if test="xmssjzqk != null">
+        xmssjzqk,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sjxmId != null">
+        #{sjxmId,jdbcType=BIGINT},
+      </if>
+      <if test="hbr != null">
+        #{hbr,jdbcType=VARCHAR},
+      </if>
+      <if test="zw != null">
+        #{zw,jdbcType=VARCHAR},
+      </if>
+      <if test="xmssjzqk != null">
+        #{xmssjzqk,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerSjxmHb">
+    update pioneer_sjxm_hb
+    <set>
+      <if test="sjxmId != null">
+        sjxm_id = #{sjxmId,jdbcType=BIGINT},
+      </if>
+      <if test="hbr != null">
+        hbr = #{hbr,jdbcType=VARCHAR},
+      </if>
+      <if test="zw != null">
+        zw = #{zw,jdbcType=VARCHAR},
+      </if>
+      <if test="xmssjzqk != null">
+        xmssjzqk = #{xmssjzqk,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerSjxmHb">
+    update pioneer_sjxm_hb
+    set sjxm_id = #{sjxmId,jdbcType=BIGINT},
+      hbr = #{hbr,jdbcType=VARCHAR},
+      zw = #{zw,jdbcType=VARCHAR},
+      xmssjzqk = #{xmssjzqk,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      delflag = #{delflag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.TbCameraMapper" >
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.TbCamera" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cameraUuid" property="camerauuid" jdbcType="VARCHAR" />
+    <result column="cameraName" property="cameraname" jdbcType="VARCHAR" />
+    <result column="cameraType" property="cameratype" jdbcType="VARCHAR" />
+    <result column="cameraChannelNum" property="camerachannelnum" jdbcType="VARCHAR" />
+    <result column="smartType" property="smarttype" jdbcType="VARCHAR" />
+    <result column="smartSupport" property="smartsupport" jdbcType="VARCHAR" />
+    <result column="onlineStatus" property="onlinestatus" jdbcType="VARCHAR" />
+    <result column="keyBoardCode" property="keyboardcode" jdbcType="VARCHAR" />
+    <result column="orderNum" property="ordernum" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="unitUuid" property="unituuid" jdbcType="VARCHAR" />
+    <result column="regionUuid" property="regionuuid" jdbcType="VARCHAR" />
+    <result column="encoderUuid" property="encoderuuid" jdbcType="VARCHAR" />
+    <result column="resAuths" property="resauths" jdbcType="VARCHAR" />
+    <result column="xLoc" property="xloc" jdbcType="VARCHAR" />
+    <result column="yLoc" property="yloc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cameraUuid, cameraName, cameraType, cameraChannelNum, smartType, smartSupport, 
+    onlineStatus, keyBoardCode, orderNum, updateTime, unitUuid, regionUuid, encoderUuid, 
+    resAuths, xLoc, yLoc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_camera
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_camera
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.TbCamera" >
+    insert into tb_camera (id, cameraUuid, cameraName, 
+      cameraType, cameraChannelNum, smartType, 
+      smartSupport, onlineStatus, keyBoardCode, 
+      orderNum, updateTime, unitUuid, 
+      regionUuid, encoderUuid, resAuths, 
+      xLoc, yLoc)
+    values (#{id,jdbcType=INTEGER}, #{camerauuid,jdbcType=VARCHAR}, #{cameraname,jdbcType=VARCHAR}, 
+      #{cameratype,jdbcType=VARCHAR}, #{camerachannelnum,jdbcType=VARCHAR}, #{smarttype,jdbcType=VARCHAR}, 
+      #{smartsupport,jdbcType=VARCHAR}, #{onlinestatus,jdbcType=VARCHAR}, #{keyboardcode,jdbcType=VARCHAR}, 
+      #{ordernum,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{unituuid,jdbcType=VARCHAR}, 
+      #{regionuuid,jdbcType=VARCHAR}, #{encoderuuid,jdbcType=VARCHAR}, #{resauths,jdbcType=VARCHAR}, 
+      #{xloc,jdbcType=VARCHAR}, #{yloc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.TbCamera" >
+    insert into tb_camera
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="camerauuid != null" >
+        cameraUuid,
+      </if>
+      <if test="cameraname != null" >
+        cameraName,
+      </if>
+      <if test="cameratype != null" >
+        cameraType,
+      </if>
+      <if test="camerachannelnum != null" >
+        cameraChannelNum,
+      </if>
+      <if test="smarttype != null" >
+        smartType,
+      </if>
+      <if test="smartsupport != null" >
+        smartSupport,
+      </if>
+      <if test="onlinestatus != null" >
+        onlineStatus,
+      </if>
+      <if test="keyboardcode != null" >
+        keyBoardCode,
+      </if>
+      <if test="ordernum != null" >
+        orderNum,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="unituuid != null" >
+        unitUuid,
+      </if>
+      <if test="regionuuid != null" >
+        regionUuid,
+      </if>
+      <if test="encoderuuid != null" >
+        encoderUuid,
+      </if>
+      <if test="resauths != null" >
+        resAuths,
+      </if>
+      <if test="xloc != null" >
+        xLoc,
+      </if>
+      <if test="yloc != null" >
+        yLoc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="camerauuid != null" >
+        #{camerauuid,jdbcType=VARCHAR},
+      </if>
+      <if test="cameraname != null" >
+        #{cameraname,jdbcType=VARCHAR},
+      </if>
+      <if test="cameratype != null" >
+        #{cameratype,jdbcType=VARCHAR},
+      </if>
+      <if test="camerachannelnum != null" >
+        #{camerachannelnum,jdbcType=VARCHAR},
+      </if>
+      <if test="smarttype != null" >
+        #{smarttype,jdbcType=VARCHAR},
+      </if>
+      <if test="smartsupport != null" >
+        #{smartsupport,jdbcType=VARCHAR},
+      </if>
+      <if test="onlinestatus != null" >
+        #{onlinestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="keyboardcode != null" >
+        #{keyboardcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernum != null" >
+        #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unituuid != null" >
+        #{unituuid,jdbcType=VARCHAR},
+      </if>
+      <if test="regionuuid != null" >
+        #{regionuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="encoderuuid != null" >
+        #{encoderuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="resauths != null" >
+        #{resauths,jdbcType=VARCHAR},
+      </if>
+      <if test="xloc != null" >
+        #{xloc,jdbcType=VARCHAR},
+      </if>
+      <if test="yloc != null" >
+        #{yloc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.TbCamera" >
+    update tb_camera
+    <set >
+      <if test="camerauuid != null" >
+        cameraUuid = #{camerauuid,jdbcType=VARCHAR},
+      </if>
+      <if test="cameraname != null" >
+        cameraName = #{cameraname,jdbcType=VARCHAR},
+      </if>
+      <if test="cameratype != null" >
+        cameraType = #{cameratype,jdbcType=VARCHAR},
+      </if>
+      <if test="camerachannelnum != null" >
+        cameraChannelNum = #{camerachannelnum,jdbcType=VARCHAR},
+      </if>
+      <if test="smarttype != null" >
+        smartType = #{smarttype,jdbcType=VARCHAR},
+      </if>
+      <if test="smartsupport != null" >
+        smartSupport = #{smartsupport,jdbcType=VARCHAR},
+      </if>
+      <if test="onlinestatus != null" >
+        onlineStatus = #{onlinestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="keyboardcode != null" >
+        keyBoardCode = #{keyboardcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernum != null" >
+        orderNum = #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unituuid != null" >
+        unitUuid = #{unituuid,jdbcType=VARCHAR},
+      </if>
+      <if test="regionuuid != null" >
+        regionUuid = #{regionuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="encoderuuid != null" >
+        encoderUuid = #{encoderuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="resauths != null" >
+        resAuths = #{resauths,jdbcType=VARCHAR},
+      </if>
+      <if test="xloc != null" >
+        xLoc = #{xloc,jdbcType=VARCHAR},
+      </if>
+      <if test="yloc != null" >
+        yLoc = #{yloc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.TbCamera" >
+    update tb_camera
+    set cameraUuid = #{camerauuid,jdbcType=VARCHAR},
+      cameraName = #{cameraname,jdbcType=VARCHAR},
+      cameraType = #{cameratype,jdbcType=VARCHAR},
+      cameraChannelNum = #{camerachannelnum,jdbcType=VARCHAR},
+      smartType = #{smarttype,jdbcType=VARCHAR},
+      smartSupport = #{smartsupport,jdbcType=VARCHAR},
+      onlineStatus = #{onlinestatus,jdbcType=VARCHAR},
+      keyBoardCode = #{keyboardcode,jdbcType=VARCHAR},
+      orderNum = #{ordernum,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      unitUuid = #{unituuid,jdbcType=VARCHAR},
+      regionUuid = #{regionuuid,jdbcType=VARCHAR},
+      encoderUuid = #{encoderuuid,jdbcType=VARCHAR},
+      resAuths = #{resauths,jdbcType=VARCHAR},
+      xLoc = #{xloc,jdbcType=VARCHAR},
+      yLoc = #{yloc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByCameraName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_camera
+    where cameraName = #{cameraName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_camera
+  </select>
+
+  <select id="page" resultMap="BaseResultMap" parameterType="com.jtzh.pojo.CameraPagination">
+    select <include refid="Base_Column_List"></include>
+    from tb_camera
+    <if test="cameraName != null and cameraName != ''">
+    where cameraname like concat("%", #{cameraName, jdbcType = VARCHAR}, "%")
+    </if>
+    order by updateTime desc
+    limit
+    #{start},#{pageSize}
+  </select>
+
+  <select id="count" resultType="int" parameterType="com.jtzh.pojo.CameraPagination">
+    select count(1)
+    from tb_camera
+    <if test="cameraName != null and cameraName != ''">
+      where cameraname like concat("%", #{cameraName, jdbcType = VARCHAR}, "%")
+    </if>
+  </select>
+
+</mapper>

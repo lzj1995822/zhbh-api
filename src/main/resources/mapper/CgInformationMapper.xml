@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.CgInformationMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.CgInformation">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="enclosure" property="enclosure" jdbcType="VARCHAR" />
+		<result column="attachment_source" property="attachmentSource" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="createId" property="createId" jdbcType="VARCHAR" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    	<result column="delflag" jdbcType="VARCHAR" property="delflag" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, type, title,
+		content, enclosure, 
+		attachment_source, yhzh, 
+		createId, createTime, delflag
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from cginformation
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<insert id="insert" parameterType="com.jtzh.entity.CgInformation">
+		insert into
+		cginformation (id, type, title,
+		content, enclosure, 
+		attachment_source, yhzh, 
+		createId, createTime, delflag)
+		values (#{id,jdbcType=INTEGER},
+		#{type,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{enclosure,jdbcType=VARCHAR}, 
+		#{attachmentSource,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE},
+		#{delflag,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.CgInformation">
+		insert into cginformation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="enclosure != null">
+				enclosure,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="createId != null">
+				createId,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="enclosure != null">
+				#{enclosure,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="selectCgITotal" parameterType="com.jtzh.pojo.CgInformationParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from cginformation
+		where delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and title like concat('%', #{page.key},
+			'%')
+		</if>
+		<if test="page.type != null and page.type != ''">
+			and type like concat('%', #{page.type},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.CgInformationParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from cginformation
+		where delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and title like concat('%', #{page.key},
+			'%')
+		</if>
+		<if test="page.type != null and page.type != ''">
+			and type like concat('%', #{page.type},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="getCgInformationInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from cginformation
+		where id = #{id}
+	</select>
+	<update id="deleteCgInformation">
+		update cginformation
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateCgInformation" parameterType="com.jtzh.entity.CgInformation">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    update cginformation
+    set 
+    	type = #{type,jdbcType=VARCHAR},
+		title = #{title,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		enclosure = #{enclosure,jdbcType=VARCHAR}, 
+		yhzh = #{yhzh,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertCgInformation" parameterType="com.jtzh.entity.CgInformation">
+  <selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    insert into 
+    cginformation (type, title,
+		content, enclosure, 
+		attachment_source, yhzh, 
+		createId, createTime, delflag)
+    values (#{type,jdbcType=VARCHAR},
+    	#{title,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{enclosure,jdbcType=VARCHAR}, 
+		#{attachmentSource,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=VARCHAR})
+  </insert>
+
+	<select id="getCgInformationTypeCount" parameterType="com.jtzh.entity.CgInformationTypeCount"
+			resultType="com.jtzh.entity.CgInformationTypeCount">
+  select distinct a.type,ifnull(b.count,0) as value
+from cginformation as a
+			left join(
+			select type,count(1) as count
+			from cginformation
+			where delflag = 'A'
+			group by type)as b
+			on a.type=b.type
+
+</select>
+
+</mapper>

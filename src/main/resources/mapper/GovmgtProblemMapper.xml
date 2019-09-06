@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.GovmgtProblemMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.GovmgtProblem">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="reception_time" property="receptionTime" jdbcType="TIMESTAMP" />
+		<result column="mode" property="mode" jdbcType="VARCHAR" />
+		<result column="reception_name" property="receptionName" jdbcType="VARCHAR" />
+		<result column="reception_card" property="receptionCard" jdbcType="VARCHAR" />
+		<result column="reception_phone" property="receptionPhone" jdbcType="VARCHAR" />
+		<result column="company_name" property="companyName" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="company_people" property="companyPeople" jdbcType="VARCHAR" />
+		<result column="company_phone" property="companyPhone" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="major" property="major" jdbcType="VARCHAR" />
+		<result column="situation" property="situation" jdbcType="VARCHAR" />
+		<result column="result" property="result" jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="createId" property="createId" jdbcType="VARCHAR" />
+		<result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="delflag" property="delflag" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, title, reception_time, mode, reception_name, reception_card, 
+		reception_phone, company_name, address, company_people, company_phone, 
+		content, type, major, situation, result, yhzh, createId, createTime, delflag
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from govmgt_adjust
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		govmgt_adjust
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.GovmgtProblem">
+		insert into govmgt_adjust
+		(id, title, reception_time, mode, reception_name, reception_card, 
+		reception_phone, company_name, address, company_people, company_phone, 
+		content, type, major, situation, result, yhzh, createId, createTime, delflag)
+		values (#{id,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{receptionTime,jdbcType=TIMESTAMP},
+		#{mode,jdbcType=VARCHAR},
+		#{receptionName,jdbcType=VARCHAR},
+		#{receptionCard,jdbcType=VARCHAR},
+		#{receptionPhone,jdbcType=VARCHAR},
+		#{companyName,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{companyPeople,jdbcType=VARCHAR},
+		#{companyPhone,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR},
+		#{major,jdbcType=VARCHAR},
+		#{situation,jdbcType=VARCHAR},
+		#{result,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.GovmgtProblem">
+		insert into govmgt_adjust
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="receptionTime != null">
+				reception_time,
+			</if>
+			<if test="mode != null">
+				mode,
+			</if>
+			<if test="receptionName != null">
+				reception_name,
+			</if>
+			<if test="receptionCard != null">
+				reception_card,
+			</if>
+			<if test="receptionPhone != null">
+				reception_phone,
+			</if>
+			<if test="companyName != null">
+				company_name,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="companyPeople != null">
+				company_people,
+			</if>
+			<if test="companyPhone != null">
+				company_phone,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="major != null">
+				major,
+			</if>
+			<if test="situation != null">
+				situation,
+			</if>
+			<if test="result != null">
+				result,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="createId != null">
+				createId,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="receptionTime != null">
+				#{receptionTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mode != null">
+				#{mode,jdbcType=VARCHAR},
+			</if>
+			<if test="receptionName != null">
+				#{receptionName,jdbcType=VARCHAR},
+			</if>
+			<if test="receptionCard != null">
+				#{receptionCard,jdbcType=VARCHAR},
+			</if>
+			<if test="receptionPhone != null">
+				#{receptionPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="companyName != null">
+				#{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="companyPeople != null">
+				#{companyPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="companyPhone != null">
+				#{companyPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="major != null">
+				#{major,jdbcType=VARCHAR},
+			</if>
+			<if test="situation != null">
+				#{situation,jdbcType=VARCHAR},
+			</if>
+			<if test="result != null">
+				#{result,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.GovmgtProblem">
+		update govmgt_adjust
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="receptionTime != null">
+				reception_time = #{receptionTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mode != null">
+				mode = #{mode,jdbcType=VARCHAR},
+			</if>
+			<if test="receptionName != null">
+				reception_name = #{receptionName,jdbcType=VARCHAR},
+			</if>
+			<if test="receptionCard != null">
+				reception_card = #{receptionCard,jdbcType=VARCHAR},
+			</if>
+			<if test="receptionPhone != null">
+				reception_phone = #{receptionPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="companyName != null">
+				company_name = #{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="companyPeople != null">
+				company_people = #{companyPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="companyPhone != null">
+				company_phone = #{companyPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="major != null">
+				major = #{major,jdbcType=VARCHAR},
+			</if>
+			<if test="situation != null">
+				situation = #{situation,jdbcType=VARCHAR},
+			</if>
+			<if test="result != null">
+				result = #{result,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				yhzh = #{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				createId = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				createTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.GovmgtProblem">
+		update
+		govmgt_adjust
+		set 
+		title = #{title,jdbcType=VARCHAR},
+		reception_time = #{receptionTime,jdbcType=TIMESTAMP},
+		mode = #{mode,jdbcType=VARCHAR},
+		reception_name = #{receptionName,jdbcType=VARCHAR},
+		reception_card = #{receptionCard,jdbcType=VARCHAR},
+		reception_phone = #{receptionPhone,jdbcType=VARCHAR},
+		company_name = #{companyName,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		company_people = #{companyPeople,jdbcType=VARCHAR},
+		company_phone = #{companyPhone,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		major = #{major,jdbcType=VARCHAR},
+		situation = #{situation,jdbcType=VARCHAR},
+		result = #{result,jdbcType=VARCHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.ProblemPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from govmgt_adjust
+		where delflag != 'D'
+		<if test="page.key != null and page.key != ''">
+			and (title like concat('%', #{page.key},
+			'%') or mode like concat('%', #{page.key},
+			'%') or reception_name like concat('%', #{page.key},
+			'%') or company_name like concat('%', #{page.key},
+			'%') or company_people like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.ProblemPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from govmgt_adjust
+		where delflag != 'D'
+		<if test="page.key != null and page.key != ''">
+			and (title like concat('%', #{page.key},
+			'%') or mode like concat('%', #{page.key},
+			'%') or reception_name like concat('%', #{page.key},
+			'%') or company_name like concat('%', #{page.key},
+			'%') or company_people like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectProblem" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from govmgt_adjust
+		where id = #{id}
+	</select>
+	<update id="deleteProblem">
+		update govmgt_adjust
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertProblem" parameterType="com.jtzh.entity.GovmgtProblem">
+		insert into govmgt_adjust (title, reception_time, mode, reception_name, reception_card, 
+		reception_phone, company_name, address, company_people, company_phone, 
+		content, type, major, situation, result, yhzh, createId, createTime, delflag)
+		values
+		(#{title,jdbcType=VARCHAR},
+		#{receptionTime,jdbcType=TIMESTAMP},
+		#{mode,jdbcType=VARCHAR},
+		#{receptionName,jdbcType=VARCHAR},
+		#{receptionCard,jdbcType=VARCHAR},
+		#{receptionPhone,jdbcType=VARCHAR},
+		#{companyName,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{companyPeople,jdbcType=VARCHAR},
+		#{companyPhone,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR},
+		#{major,jdbcType=VARCHAR},
+		#{situation,jdbcType=VARCHAR},
+		#{result,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=VARCHAR})
+	</insert>
+</mapper>

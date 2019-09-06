@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.SecurityInfAppointMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.SecurityInfAppoint">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="news_id" property="newsId" jdbcType="INTEGER" />
+		<result column="security_committee_id" property="securityCommitteeId"
+			jdbcType="INTEGER" />
+		<result column="countryside_id" property="countrysideId"
+			jdbcType="INTEGER" />
+		<result column="countryside_name" property="countrysideName"
+			jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, news_id, security_committee_id, countryside_id, countryside_name,
+		create_time,
+		create_id, delflag, yhzh
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from security_inf_appoint
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from security_inf_appoint
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.SecurityInfAppoint">
+		insert into security_inf_appoint (id, news_id, security_committee_id,
+		countryside_id, countryside_name, create_time,
+		create_id, delflag, yhzh
+		)
+		values (#{id,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER},
+		#{securityCommitteeId,jdbcType=INTEGER},
+		#{countrysideId,jdbcType=INTEGER},
+		#{countrysideName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{createId,jdbcType=VARCHAR}, #{delflag,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.SecurityInfAppoint">
+		insert into security_inf_appoint
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="newsId != null">
+				news_id,
+			</if>
+			<if test="securityCommitteeId != null">
+				security_committee_id,
+			</if>
+			<if test="countrysideId != null">
+				countryside_id,
+			</if>
+			<if test="countrysideName != null">
+				countryside_name,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createId != null">
+				create_id,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="newsId != null">
+				#{newsId,jdbcType=INTEGER},
+			</if>
+			<if test="securityCommitteeId != null">
+				#{securityCommitteeId,jdbcType=INTEGER},
+			</if>
+			<if test="countrysideId != null">
+				#{countrysideId,jdbcType=INTEGER},
+			</if>
+			<if test="countrysideName != null">
+				#{countrysideName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.SecurityInfAppoint">
+		update security_inf_appoint
+		<set>
+			<if test="newsId != null">
+				news_id = #{newsId,jdbcType=INTEGER},
+			</if>
+			<if test="securityCommitteeId != null">
+				security_committee_id = #{securityCommitteeId,jdbcType=INTEGER},
+			</if>
+			<if test="countrysideId != null">
+				countryside_id = #{countrysideId,jdbcType=INTEGER},
+			</if>
+			<if test="countrysideName != null">
+				countryside_name = #{countrysideName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				create_id = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				yhzh = #{yhzh,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.SecurityInfAppoint">
+		update security_inf_appoint
+		set news_id = #{newsId,jdbcType=INTEGER},
+		security_committee_id = #{securityCommitteeId,jdbcType=INTEGER},
+		countryside_id = #{countrysideId,jdbcType=INTEGER},
+		countryside_name = #{countrysideName,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		create_id = #{createId,jdbcType=VARCHAR},
+		delflag = #{delflag,jdbcType=CHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getNewsIds" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select news_id
+		from security_inf_appoint
+		where countryside_id = #{userId,jdbcType=INTEGER}
+	</select>
+	<select id="getNewsIds2" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select news_id
+		from security_inf_appoint
+		where security_committee_id = #{userId,jdbcType=INTEGER}
+	</select>
+</mapper>

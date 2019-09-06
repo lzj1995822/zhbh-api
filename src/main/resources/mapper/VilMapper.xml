@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.VilMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.Vil">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="vil_province" property="vilProvince" jdbcType="CHAR" />
+		<result column="vil_city" property="vilCity" jdbcType="CHAR" />
+		<result column="vil_area" property="vilArea" jdbcType="CHAR" />
+		<result column="vil_street" property="vilStreet" jdbcType="VARCHAR" />
+		<result column="vil_community" property="vilCommunity"
+			jdbcType="VARCHAR" />
+		<result column="vil_greed" property="vilGreed" jdbcType="VARCHAR" />
+		<result column="vil_road" property="vilRoad" jdbcType="VARCHAR" />
+		<result column="vil_door_number" property="vilDoorNumber"
+			jdbcType="VARCHAR" />
+		<result column="vil_floor" property="vilFloor" jdbcType="VARCHAR" />
+		<result column="vil_ground" property="vilGround" jdbcType="CHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, vil_province, vil_city, vil_area, vil_street, vil_community,
+		vil_greed, vil_road,
+		vil_door_number, vil_floor, vil_ground, delflag, create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from vil
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from vil
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.Vil">
+		insert into vil (id, vil_province, vil_city,
+		vil_area, vil_street, vil_community,
+		vil_greed, vil_road, vil_door_number,
+		vil_floor, vil_ground, delflag,
+		create_time)
+		values (#{id,jdbcType=BIGINT}, #{vilProvince,jdbcType=CHAR},
+		#{vilCity,jdbcType=CHAR},
+		#{vilArea,jdbcType=CHAR}, #{vilStreet,jdbcType=VARCHAR}, #{vilCommunity,jdbcType=VARCHAR},
+		#{vilGreed,jdbcType=VARCHAR}, #{vilRoad,jdbcType=VARCHAR},
+		#{vilDoorNumber,jdbcType=VARCHAR},
+		#{vilFloor,jdbcType=VARCHAR}, #{vilGround,jdbcType=CHAR}, #{delflag,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.Vil">
+		insert into vil
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="vilProvince != null">
+				vil_province,
+			</if>
+			<if test="vilCity != null">
+				vil_city,
+			</if>
+			<if test="vilArea != null">
+				vil_area,
+			</if>
+			<if test="vilStreet != null">
+				vil_street,
+			</if>
+			<if test="vilCommunity != null">
+				vil_community,
+			</if>
+			<if test="vilGreed != null">
+				vil_greed,
+			</if>
+			<if test="vilRoad != null">
+				vil_road,
+			</if>
+			<if test="vilDoorNumber != null">
+				vil_door_number,
+			</if>
+			<if test="vilFloor != null">
+				vil_floor,
+			</if>
+			<if test="vilGround != null">
+				vil_ground,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="vilProvince != null">
+				#{vilProvince,jdbcType=CHAR},
+			</if>
+			<if test="vilCity != null">
+				#{vilCity,jdbcType=CHAR},
+			</if>
+			<if test="vilArea != null">
+				#{vilArea,jdbcType=CHAR},
+			</if>
+			<if test="vilStreet != null">
+				#{vilStreet,jdbcType=VARCHAR},
+			</if>
+			<if test="vilCommunity != null">
+				#{vilCommunity,jdbcType=VARCHAR},
+			</if>
+			<if test="vilGreed != null">
+				#{vilGreed,jdbcType=VARCHAR},
+			</if>
+			<if test="vilRoad != null">
+				#{vilRoad,jdbcType=VARCHAR},
+			</if>
+			<if test="vilDoorNumber != null">
+				#{vilDoorNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="vilFloor != null">
+				#{vilFloor,jdbcType=VARCHAR},
+			</if>
+			<if test="vilGround != null">
+				#{vilGround,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.Vil">
+		update vil
+		<set>
+			<if test="vilProvince != null">
+				vil_province = #{vilProvince,jdbcType=CHAR},
+			</if>
+			<if test="vilCity != null">
+				vil_city = #{vilCity,jdbcType=CHAR},
+			</if>
+			<if test="vilArea != null">
+				vil_area = #{vilArea,jdbcType=CHAR},
+			</if>
+			<if test="vilStreet != null">
+				vil_street = #{vilStreet,jdbcType=VARCHAR},
+			</if>
+			<if test="vilCommunity != null">
+				vil_community = #{vilCommunity,jdbcType=VARCHAR},
+			</if>
+			<if test="vilGreed != null">
+				vil_greed = #{vilGreed,jdbcType=VARCHAR},
+			</if>
+			<if test="vilRoad != null">
+				vil_road = #{vilRoad,jdbcType=VARCHAR},
+			</if>
+			<if test="vilDoorNumber != null">
+				vil_door_number = #{vilDoorNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="vilFloor != null">
+				vil_floor = #{vilFloor,jdbcType=VARCHAR},
+			</if>
+			<if test="vilGround != null">
+				vil_ground = #{vilGround,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.Vil">
+		update vil
+		set vil_province = #{vilProvince,jdbcType=CHAR},
+		vil_city = #{vilCity,jdbcType=CHAR},
+		vil_area = #{vilArea,jdbcType=CHAR},
+		vil_street = #{vilStreet,jdbcType=VARCHAR},
+		vil_community = #{vilCommunity,jdbcType=VARCHAR},
+		vil_greed = #{vilGreed,jdbcType=VARCHAR},
+		vil_road = #{vilRoad,jdbcType=VARCHAR},
+		vil_door_number = #{vilDoorNumber,jdbcType=VARCHAR},
+		vil_floor = #{vilFloor,jdbcType=VARCHAR},
+		vil_ground = #{vilGround,jdbcType=CHAR},
+		delflag = #{delflag,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="getVilList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from vil
+		where delflag != 'D'
+		order by create_time asc
+	</select>
+</mapper>

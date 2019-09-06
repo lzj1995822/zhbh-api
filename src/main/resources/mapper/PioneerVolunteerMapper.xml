@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.PioneerVolunteerMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerVolunteer">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="CHAR" property="xb" />
+    <result column="mz" jdbcType="VARCHAR" property="mz" />
+    <result column="zzmm" jdbcType="VARCHAR" property="zzmm" />
+    <result column="sg" jdbcType="CHAR" property="sg" />
+    <result column="tz" jdbcType="CHAR" property="tz" />
+    <result column="csny" jdbcType="VARCHAR" property="csny" />
+    <result column="sfz" jdbcType="CHAR" property="sfz" />
+    <result column="xl" jdbcType="VARCHAR" property="xl" />
+    <result column="lxdh" jdbcType="CHAR" property="lxdh" />
+    <result column="bxqk" jdbcType="VARCHAR" property="bxqk" />
+    <result column="gzdw" jdbcType="VARCHAR" property="gzdw" />
+    <result column="dwdh" jdbcType="CHAR" property="dwdh" />
+    <result column="jzdz" jdbcType="VARCHAR" property="jzdz" />
+    <result column="jjlxr" jdbcType="VARCHAR" property="jjlxr" />
+    <result column="tx" jdbcType="VARCHAR" property="tx" />
+    <result column="ybrgx" jdbcType="CHAR" property="ybrgx" />
+    <result column="jjlxrdh" jdbcType="CHAR" property="jjlxrdh" />
+    <result column="grtcjn" jdbcType="VARCHAR" property="grtcjn" />
+    <result column="cjdw" jdbcType="VARCHAR" property="cjdw" />
+    <result column="shzt" jdbcType="CHAR" property="shzt" />
+    <result column="delflag" jdbcType="CHAR" property="delflag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, xm, xb, mz, zzmm, sg, tz, csny, sfz, xl, lxdh, bxqk, gzdw, dwdh, jzdz, jjlxr, 
+    ybrgx, jjlxrdh, grtcjn, cjdw, shzt, delflag, create_time,tx,create_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_volunteer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <update id="updateZyzZt">
+  	update pioneer_volunteer set 
+  	shzt = #{zt} where id = #{id}
+  </update>
+    <select id="getZyz" parameterType="com.jtzh.pojo.KeyParam" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_volunteer
+    where delflag != 'D'
+    <if test="keyparam.keyword != null and keyparam.keyword != ''" >
+		and xm like concat('%', #{keyparam.keyword},'%') 
+	</if>
+      <if test="keyparam.startTime != null and keyparam.startTime != ''" >
+        and create_time &gt;= #{keyparam.startTime}
+      </if>
+      <if test="keyparam.endTime != null and keyparam.endTime != ''" >
+        and create_time &lt;=  #{keyparam.endTime}
+      </if>
+    order by create_time DESC limit #{keyparam.start} ,  #{keyparam.pageSize}
+  </select>
+  
+    <select id="getZyzTotal" parameterType="com.jtzh.pojo.KeyParam" resultType="java.lang.Integer">
+    select count(1)
+    from pioneer_volunteer
+    where delflag != 'D'
+    <if test="keyparam.keyword != null and keyparam.keyword != ''" >
+		and xm like concat('%', #{keyparam.keyword},'%') 
+	</if>
+      <if test="keyparam.startTime != null and keyparam.startTime != ''" >
+        and create_time &gt;= #{keyparam.startTime}
+      </if>
+      <if test="keyparam.endTime != null and keyparam.endTime != ''" >
+        and create_time &lt;=  #{keyparam.endTime}
+      </if>
+  </select>
+      <select id="getZyzInfoBySjh" resultType="java.lang.Integer">
+    select count(1)
+    from pioneer_volunteer
+    where delflag != 'D'
+    and sfz = #{sfz}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pioneer_volunteer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.PioneerVolunteer">
+  	<selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pioneer_volunteer (xm, xb,tx, mz, 
+      zzmm, sg, tz, csny, 
+      sfz, xl, lxdh, bxqk, 
+      gzdw, dwdh, jzdz, jjlxr, 
+      ybrgx, jjlxrdh, grtcjn, cjdw, 
+      shzt, delflag, create_time,create_id
+      )
+    values (#{xm,jdbcType=VARCHAR}, #{xb,jdbcType=CHAR},  #{tx,jdbcType=VARCHAR},#{mz,jdbcType=VARCHAR}, 
+      #{zzmm,jdbcType=VARCHAR}, #{sg,jdbcType=CHAR}, #{tz,jdbcType=CHAR}, #{csny,jdbcType=VARCHAR}, 
+      #{sfz,jdbcType=CHAR}, #{xl,jdbcType=VARCHAR}, #{lxdh,jdbcType=CHAR}, #{bxqk,jdbcType=VARCHAR}, 
+      #{gzdw,jdbcType=VARCHAR}, #{dwdh,jdbcType=CHAR}, #{jzdz,jdbcType=VARCHAR}, #{jjlxr,jdbcType=VARCHAR}, 
+      #{ybrgx,jdbcType=CHAR}, #{jjlxrdh,jdbcType=CHAR}, #{grtcjn,jdbcType=VARCHAR}, #{cjdw,jdbcType=VARCHAR}, 
+      #{shzt,jdbcType=CHAR}, #{delflag,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},#{createId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.PioneerVolunteer">
+    insert into pioneer_volunteer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="mz != null">
+        mz,
+      </if>
+      <if test="zzmm != null">
+        zzmm,
+      </if>
+      <if test="sg != null">
+        sg,
+      </if>
+      <if test="tz != null">
+        tz,
+      </if>
+      <if test="csny != null">
+        csny,
+      </if>
+      <if test="sfz != null">
+        sfz,
+      </if>
+      <if test="xl != null">
+        xl,
+      </if>
+      <if test="lxdh != null">
+        lxdh,
+      </if>
+      <if test="bxqk != null">
+        bxqk,
+      </if>
+      <if test="gzdw != null">
+        gzdw,
+      </if>
+      <if test="dwdh != null">
+        dwdh,
+      </if>
+      <if test="jzdz != null">
+        jzdz,
+      </if>
+      <if test="jjlxr != null">
+        jjlxr,
+      </if>
+      <if test="ybrgx != null">
+        ybrgx,
+      </if>
+      <if test="jjlxrdh != null">
+        jjlxrdh,
+      </if>
+      <if test="grtcjn != null">
+        grtcjn,
+      </if>
+      <if test="cjdw != null">
+        cjdw,
+      </if>
+      <if test="shzt != null">
+        shzt,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=CHAR},
+      </if>
+      <if test="mz != null">
+        #{mz,jdbcType=VARCHAR},
+      </if>
+      <if test="zzmm != null">
+        #{zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="sg != null">
+        #{sg,jdbcType=CHAR},
+      </if>
+      <if test="tz != null">
+        #{tz,jdbcType=CHAR},
+      </if>
+      <if test="csny != null">
+        #{csny,jdbcType=VARCHAR},
+      </if>
+      <if test="sfz != null">
+        #{sfz,jdbcType=CHAR},
+      </if>
+      <if test="xl != null">
+        #{xl,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        #{lxdh,jdbcType=CHAR},
+      </if>
+      <if test="bxqk != null">
+        #{bxqk,jdbcType=VARCHAR},
+      </if>
+      <if test="gzdw != null">
+        #{gzdw,jdbcType=VARCHAR},
+      </if>
+      <if test="dwdh != null">
+        #{dwdh,jdbcType=CHAR},
+      </if>
+      <if test="jzdz != null">
+        #{jzdz,jdbcType=VARCHAR},
+      </if>
+      <if test="jjlxr != null">
+        #{jjlxr,jdbcType=VARCHAR},
+      </if>
+      <if test="ybrgx != null">
+        #{ybrgx,jdbcType=CHAR},
+      </if>
+      <if test="jjlxrdh != null">
+        #{jjlxrdh,jdbcType=CHAR},
+      </if>
+      <if test="grtcjn != null">
+        #{grtcjn,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdw != null">
+        #{cjdw,jdbcType=VARCHAR},
+      </if>
+      <if test="shzt != null">
+        #{shzt,jdbcType=CHAR},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerVolunteer">
+    update pioneer_volunteer
+    <set>
+      <if test="xm != null">
+        xm = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        xb = #{xb,jdbcType=CHAR},
+      </if>
+      <if test="mz != null">
+        mz = #{mz,jdbcType=VARCHAR},
+      </if>
+      <if test="zzmm != null">
+        zzmm = #{zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="sg != null">
+        sg = #{sg,jdbcType=CHAR},
+      </if>
+      <if test="tz != null">
+        tz = #{tz,jdbcType=CHAR},
+      </if>
+      <if test="csny != null">
+        csny = #{csny,jdbcType=VARCHAR},
+      </if>
+      <if test="sfz != null">
+        sfz = #{sfz,jdbcType=CHAR},
+      </if>
+      <if test="xl != null">
+        xl = #{xl,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        lxdh = #{lxdh,jdbcType=CHAR},
+      </if>
+      <if test="bxqk != null">
+        bxqk = #{bxqk,jdbcType=VARCHAR},
+      </if>
+      <if test="gzdw != null">
+        gzdw = #{gzdw,jdbcType=VARCHAR},
+      </if>
+      <if test="dwdh != null">
+        dwdh = #{dwdh,jdbcType=CHAR},
+      </if>
+      <if test="jzdz != null">
+        jzdz = #{jzdz,jdbcType=VARCHAR},
+      </if>
+      <if test="jjlxr != null">
+        jjlxr = #{jjlxr,jdbcType=VARCHAR},
+      </if>
+      <if test="ybrgx != null">
+        ybrgx = #{ybrgx,jdbcType=CHAR},
+      </if>
+      <if test="jjlxrdh != null">
+        jjlxrdh = #{jjlxrdh,jdbcType=CHAR},
+      </if>
+      <if test="grtcjn != null">
+        grtcjn = #{grtcjn,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdw != null">
+        cjdw = #{cjdw,jdbcType=VARCHAR},
+      </if>
+      <if test="shzt != null">
+        shzt = #{shzt,jdbcType=CHAR},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerVolunteer">
+    update pioneer_volunteer
+    set xm = #{xm,jdbcType=VARCHAR},
+      xb = #{xb,jdbcType=CHAR},
+      mz = #{mz,jdbcType=VARCHAR},
+      zzmm = #{zzmm,jdbcType=VARCHAR},
+      sg = #{sg,jdbcType=CHAR},
+      tz = #{tz,jdbcType=CHAR},
+      csny = #{csny,jdbcType=VARCHAR},
+      sfz = #{sfz,jdbcType=CHAR},
+      xl = #{xl,jdbcType=VARCHAR},
+      lxdh = #{lxdh,jdbcType=CHAR},
+      bxqk = #{bxqk,jdbcType=VARCHAR},
+      gzdw = #{gzdw,jdbcType=VARCHAR},
+      dwdh = #{dwdh,jdbcType=CHAR},
+      jzdz = #{jzdz,jdbcType=VARCHAR},
+      jjlxr = #{jjlxr,jdbcType=VARCHAR},
+      ybrgx = #{ybrgx,jdbcType=CHAR},
+      jjlxrdh = #{jjlxrdh,jdbcType=CHAR},
+      grtcjn = #{grtcjn,jdbcType=VARCHAR},
+      cjdw = #{cjdw,jdbcType=VARCHAR},
+      shzt = #{shzt,jdbcType=CHAR},
+      delflag = #{delflag,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+    <update id="updateById">
+    update pioneer_volunteer
+    set 
+      delflag = 'D'
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <resultMap id="countResultModel" type="com.jtzh.model.VolunteerResultModel">
+    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="cultureSport" jdbcType="INTEGER" property="cultureSport" />
+    <result column="theory" jdbcType="INTEGER" property="theory" />
+    <result column="health" jdbcType="INTEGER" property="health" />
+    <result column="technology" jdbcType="INTEGER" property="technology" />
+    <result column="education" jdbcType="INTEGER" property="education" />
+    <result column="other" jdbcType="INTEGER" property="other" />
+  </resultMap>
+  <select id="countByMonthAndType" resultMap="countResultModel">
+    SELECT
+        a.click_month AS `month`,
+        count( pv.grtcjn = '文体服务' OR NULL ) AS cultureSport,
+        count( pv.grtcjn = '理论宣讲' OR NULL ) AS theory,
+        count( pv.grtcjn = '健康普及' OR NULL ) AS health,
+        count( pv.grtcjn = '科技科普' OR NULL ) AS technology,
+        count( pv.grtcjn = '教育服务' OR NULL ) AS education,
+        count( pv.grtcjn = '其他' OR NULL ) AS other
+    FROM
+        (
+    SELECT
+        DATE_FORMAT( DATE_SUB( CURDATE( ), INTERVAL 5 MONTH ), '%Y-%m' ) AS click_month UNION ALL
+    SELECT
+        DATE_FORMAT( DATE_SUB( CURDATE( ), INTERVAL 4 MONTH ), '%Y-%m' ) AS click_month UNION ALL
+    SELECT
+        DATE_FORMAT( DATE_SUB( CURDATE( ), INTERVAL 3 MONTH ), '%Y-%m' ) AS click_month UNION ALL
+    SELECT
+        DATE_FORMAT( DATE_SUB( CURDATE( ), INTERVAL 2 MONTH ), '%Y-%m' ) AS click_month UNION ALL
+    SELECT
+        DATE_FORMAT( DATE_SUB( CURDATE( ), INTERVAL 1 MONTH ), '%Y-%m' ) AS click_month UNION ALL
+    SELECT
+        DATE_FORMAT( DATE_SUB( CURDATE( ), INTERVAL 0 MONTH ), '%Y-%m' ) AS click_month
+        ) a
+        LEFT JOIN pioneer_volunteer pv ON DATE_FORMAT( pv.create_time, '%Y-%m' ) <![CDATA[ <= ]]> a.click_month
+        AND pv.delflag != 'D'
+    GROUP BY
+        a.click_month
+  </select>
+</mapper>

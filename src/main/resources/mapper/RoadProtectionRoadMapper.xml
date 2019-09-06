@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.RoadProtectionRoadMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.RoadProtectionRoad">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="road_name" property="roadName" jdbcType="VARCHAR" />
+		<result column="road_type" property="roadType" jdbcType="CHAR" />
+		<result column="road_address" property="roadAddress" jdbcType="VARCHAR" />
+		<result column="road_concern_degree" property="roadConcernDegree"
+			jdbcType="CHAR" />
+		<result column="road_full_time_people" property="roadFullTimePeople"
+			jdbcType="VARCHAR" />
+		<result column="road_defend_team_people" property="roadDefendTeamPeople"
+			jdbcType="VARCHAR" />
+		<result column="road_charge_person" property="roadChargePerson"
+			jdbcType="VARCHAR" />
+		<result column="road_charge_person_phone" property="roadChargePersonPhone"
+			jdbcType="VARCHAR" />
+		<result column="road_safe_charge_person" property="roadSafeChargePerson"
+			jdbcType="VARCHAR" />
+		<result column="road_safe_charge_person_phone" property="roadSafeChargePersonPhone"
+			jdbcType="VARCHAR" />
+		<result column="attachment_source" property="attachmentSource"
+			jdbcType="CHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="road_x" property="roadX" jdbcType="VARCHAR" />
+		<result column="road_y" property="roadY" jdbcType="VARCHAR" />
+		<result column="trail" property="trail" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, road_name, road_type, road_address,
+		road_concern_degree,
+		road_full_time_people,
+		road_defend_team_people,
+		road_charge_person, road_charge_person_phone,
+		road_safe_charge_person,
+		road_safe_charge_person_phone, attachment_source, delflag,
+		create_time, create_id,
+		yhzh, road_x, road_y, trail
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from road_protection_road
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		road_protection_road
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.RoadProtectionRoad">
+		insert into
+		road_protection_road (id, road_name, road_type,
+		road_address,
+		road_concern_degree, road_full_time_people,
+		road_defend_team_people,
+		road_charge_person,
+		road_charge_person_phone, road_safe_charge_person,
+		road_safe_charge_person_phone, attachment_source,
+		delflag, create_time,
+		create_id,
+		yhzh, road_x, road_y, trail)
+		values (#{id,jdbcType=BIGINT},
+		#{roadName,jdbcType=VARCHAR},
+		#{roadType,jdbcType=CHAR},
+		#{roadAddress,jdbcType=VARCHAR}, #{roadConcernDegree,jdbcType=CHAR},
+		#{roadFullTimePeople,jdbcType=VARCHAR},
+		#{roadDefendTeamPeople,jdbcType=VARCHAR},
+		#{roadChargePerson,jdbcType=VARCHAR},
+		#{roadChargePersonPhone,jdbcType=VARCHAR},
+		#{roadSafeChargePerson,jdbcType=VARCHAR},
+		#{roadSafeChargePersonPhone,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR},
+		#{delflag,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR}, #{roadX,jdbcType=VARCHAR},
+		#{roadY,jdbcType=VARCHAR},#{trail,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.RoadProtectionRoad">
+		insert into road_protection_road
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="roadName != null">
+				road_name,
+			</if>
+			<if test="roadType != null">
+				road_type,
+			</if>
+			<if test="roadAddress != null">
+				road_address,
+			</if>
+			<if test="roadConcernDegree != null">
+				road_concern_degree,
+			</if>
+			<if test="roadFullTimePeople != null">
+				road_full_time_people,
+			</if>
+			<if test="roadDefendTeamPeople != null">
+				road_defend_team_people,
+			</if>
+			<if test="roadChargePerson != null">
+				road_charge_person,
+			</if>
+			<if test="roadChargePersonPhone != null">
+				road_charge_person_phone,
+			</if>
+			<if test="roadSafeChargePerson != null">
+				road_safe_charge_person,
+			</if>
+			<if test="roadSafeChargePersonPhone != null">
+				road_safe_charge_person_phone,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createId != null">
+				create_id,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="roadX != null">
+				road_x,
+			</if>
+			<if test="roadY != null">
+				road_y,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="roadName != null">
+				#{roadName,jdbcType=VARCHAR},
+			</if>
+			<if test="roadType != null">
+				#{roadType,jdbcType=CHAR},
+			</if>
+			<if test="roadAddress != null">
+				#{roadAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="roadConcernDegree != null">
+				#{roadConcernDegree,jdbcType=CHAR},
+			</if>
+			<if test="roadFullTimePeople != null">
+				#{roadFullTimePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="roadDefendTeamPeople != null">
+				#{roadDefendTeamPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="roadChargePerson != null">
+				#{roadChargePerson,jdbcType=VARCHAR},
+			</if>
+			<if test="roadChargePersonPhone != null">
+				#{roadChargePersonPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="roadSafeChargePerson != null">
+				#{roadSafeChargePerson,jdbcType=VARCHAR},
+			</if>
+			<if test="roadSafeChargePersonPhone != null">
+				#{roadSafeChargePersonPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="roadX != null">
+				#{roadX,jdbcType=VARCHAR},
+			</if>
+			<if test="roadY != null">
+				#{roadY,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.RoadProtectionRoad">
+		update road_protection_road
+		<set>
+			<if test="roadName != null">
+				road_name = #{roadName,jdbcType=VARCHAR},
+			</if>
+			<if test="roadType != null">
+				road_type = #{roadType,jdbcType=CHAR},
+			</if>
+			<if test="roadAddress != null">
+				road_address = #{roadAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="roadConcernDegree != null">
+				road_concern_degree = #{roadConcernDegree,jdbcType=CHAR},
+			</if>
+			<if test="roadFullTimePeople != null">
+				road_full_time_people =
+				#{roadFullTimePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="roadDefendTeamPeople != null">
+				road_defend_team_people =
+				#{roadDefendTeamPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="roadChargePerson != null">
+				road_charge_person =
+				#{roadChargePerson,jdbcType=VARCHAR},
+			</if>
+			<if test="roadChargePersonPhone != null">
+				road_charge_person_phone =
+				#{roadChargePersonPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="roadSafeChargePerson != null">
+				road_safe_charge_person =
+				#{roadSafeChargePerson,jdbcType=VARCHAR},
+			</if>
+			<if test="roadSafeChargePersonPhone != null">
+				road_safe_charge_person_phone =
+				#{roadSafeChargePersonPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source = #{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				create_id = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				yhzh = #{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="roadX != null">
+				road_x = #{roadX,jdbcType=VARCHAR},
+			</if>
+			<if test="roadY != null">
+				road_y = #{roadY,jdbcType=VARCHAR},
+			</if>
+			<if test="trail != null">
+				trail = #{trail,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.RoadProtectionRoad">
+		update
+		road_protection_road
+		set road_name = #{roadName,jdbcType=VARCHAR},
+		road_type = #{roadType,jdbcType=CHAR},
+		road_address =
+		#{roadAddress,jdbcType=VARCHAR},
+		road_concern_degree =
+		#{roadConcernDegree,jdbcType=CHAR},
+		road_full_time_people =
+		#{roadFullTimePeople,jdbcType=VARCHAR},
+		road_defend_team_people =
+		#{roadDefendTeamPeople,jdbcType=VARCHAR},
+		road_charge_person =
+		#{roadChargePerson,jdbcType=VARCHAR},
+		road_charge_person_phone =
+		#{roadChargePersonPhone,jdbcType=VARCHAR},
+		road_safe_charge_person =
+		#{roadSafeChargePerson,jdbcType=VARCHAR},
+		road_safe_charge_person_phone =
+		#{roadSafeChargePersonPhone,jdbcType=VARCHAR},
+		attachment_source =
+		#{attachmentSource,jdbcType=CHAR},
+		delflag = #{delflag,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		create_id =
+		#{createId,jdbcType=VARCHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR},
+		road_x =
+		#{roadX,jdbcType=VARCHAR},
+		road_y = #{roadY,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=BIGINT}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.RoadProtectionRoadPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from road_protection_road
+		where delflag != '1'
+		<if test="page.key != null and page.key != ''">
+			and (road_name like concat('%', #{page.key},
+			'%') or
+			road_address like concat('%', #{page.key},
+			'%') or road_charge_person like concat('%',
+			#{page.key},
+			'%') or road_charge_person_phone like concat('%', #{page.key},
+			'%') or
+			road_safe_charge_person like concat('%', #{page.key},
+			'%') or
+			road_safe_charge_person_phone like concat('%', #{page.key},
+			'%') 
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.RoadProtectionRoadPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from road_protection_road
+		where delflag != '1'
+		<if test="page.key != null and page.key != ''">
+			and (road_name like concat('%', #{page.key},
+			'%') or
+			road_address like concat('%', #{page.key},
+			'%') or road_charge_person like concat('%',
+			#{page.key},
+			'%') or road_charge_person_phone like concat('%', #{page.key},
+			'%') or
+			road_safe_charge_person like concat('%', #{page.key},
+			'%') or
+			road_safe_charge_person_phone like concat('%', #{page.key},
+			'%') 
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectRoad" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from road_protection_road
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<update id="deleteRoad">
+		update road_protection_road
+		set
+		delflag = '1'
+		where id =
+		#{id,jdbcType=BIGINT}
+	</update>
+	<insert id="insertRoad" parameterType="com.jtzh.entity.RoadProtectionRoad">
+		<selectKey resultType="java.lang.Long" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		road_protection_road (id, road_name, road_type,
+		road_address,
+		road_concern_degree, road_full_time_people,
+		road_defend_team_people,
+		road_charge_person,
+		road_charge_person_phone, road_safe_charge_person,
+		road_safe_charge_person_phone, attachment_source,
+		delflag, create_time,
+		create_id,
+		yhzh, road_x, road_y, trail)
+		values (#{id,jdbcType=BIGINT},
+		#{roadName,jdbcType=VARCHAR},
+		#{roadType,jdbcType=CHAR},
+		#{roadAddress,jdbcType=VARCHAR}, #{roadConcernDegree,jdbcType=CHAR},
+		#{roadFullTimePeople,jdbcType=VARCHAR},
+		#{roadDefendTeamPeople,jdbcType=VARCHAR},
+		#{roadChargePerson,jdbcType=VARCHAR},
+		#{roadChargePersonPhone,jdbcType=VARCHAR},
+		#{roadSafeChargePerson,jdbcType=VARCHAR},
+		#{roadSafeChargePersonPhone,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR},
+		#{delflag,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR}, #{roadX,jdbcType=VARCHAR},
+		#{roadY,jdbcType=VARCHAR}, #{trail,jdbcType=VARCHAR})
+	</insert>
+</mapper>

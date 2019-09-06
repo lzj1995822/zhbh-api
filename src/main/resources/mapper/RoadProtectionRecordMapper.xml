@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.RoadProtectionRecordMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.RoadProtectionRecord">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="record_number" property="recordNumber"
+			jdbcType="VARCHAR" />
+		<result column="record_nature" property="recordNature"
+			jdbcType="VARCHAR" />
+		<result column="establish_time" property="establishTime"
+			jdbcType="VARCHAR" />
+		<result column="crime_people" property="crimePeople" jdbcType="VARCHAR" />
+		<result column="escape_people" property="escapePeople"
+			jdbcType="VARCHAR" />
+		<result column="record_description" property="recordDescription"
+			jdbcType="VARCHAR" />
+		<result column="attachment_source" property="attachmentSource"
+			jdbcType="CHAR" />
+		<result column="road_id" property="roadId" jdbcType="BIGINT" />
+		<result column="record_type" property="recordType" jdbcType="CHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, record_number, record_nature, establish_time, crime_people,
+		escape_people, record_description,
+		attachment_source, road_id, record_type, delflag, create_time, create_id, yhzh
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from road_protection_record
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from road_protection_record
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.RoadProtectionRecord">
+		insert into road_protection_record (id, record_number, record_nature,
+		establish_time, crime_people, escape_people,
+		record_description, attachment_source, road_id,
+		record_type, delflag, create_time,
+		create_id, yhzh)
+		values (#{id,jdbcType=BIGINT}, #{recordNumber,jdbcType=VARCHAR},
+		#{recordNature,jdbcType=VARCHAR},
+		#{establishTime,jdbcType=VARCHAR}, #{crimePeople,jdbcType=VARCHAR}, #{escapePeople,jdbcType=VARCHAR},
+		#{recordDescription,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR}, #{roadId,jdbcType=BIGINT},
+		#{recordType,jdbcType=CHAR}, #{delflag,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{createId,jdbcType=VARCHAR}, #{yhzh,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.RoadProtectionRecord">
+		insert into road_protection_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="recordNumber != null">
+				record_number,
+			</if>
+			<if test="recordNature != null">
+				record_nature,
+			</if>
+			<if test="establishTime != null">
+				establish_time,
+			</if>
+			<if test="crimePeople != null">
+				crime_people,
+			</if>
+			<if test="escapePeople != null">
+				escape_people,
+			</if>
+			<if test="recordDescription != null">
+				record_description,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="roadId != null">
+				road_id,
+			</if>
+			<if test="recordType != null">
+				record_type,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createId != null">
+				create_id,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="recordNumber != null">
+				#{recordNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="recordNature != null">
+				#{recordNature,jdbcType=VARCHAR},
+			</if>
+			<if test="establishTime != null">
+				#{establishTime,jdbcType=VARCHAR},
+			</if>
+			<if test="crimePeople != null">
+				#{crimePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="escapePeople != null">
+				#{escapePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="recordDescription != null">
+				#{recordDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="roadId != null">
+				#{roadId,jdbcType=BIGINT},
+			</if>
+			<if test="recordType != null">
+				#{recordType,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.RoadProtectionRecord">
+		update road_protection_record
+		<set>
+			<if test="recordNumber != null">
+				record_number = #{recordNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="recordNature != null">
+				record_nature = #{recordNature,jdbcType=VARCHAR},
+			</if>
+			<if test="establishTime != null">
+				establish_time = #{establishTime,jdbcType=VARCHAR},
+			</if>
+			<if test="crimePeople != null">
+				crime_people = #{crimePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="escapePeople != null">
+				escape_people = #{escapePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="recordDescription != null">
+				record_description = #{recordDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source = #{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="roadId != null">
+				road_id = #{roadId,jdbcType=BIGINT},
+			</if>
+			<if test="recordType != null">
+				record_type = #{recordType,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				create_id = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				yhzh = #{yhzh,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.RoadProtectionRecord">
+		update road_protection_record
+		set record_number = #{recordNumber,jdbcType=VARCHAR},
+		record_nature = #{recordNature,jdbcType=VARCHAR},
+		establish_time = #{establishTime,jdbcType=VARCHAR},
+		crime_people = #{crimePeople,jdbcType=VARCHAR},
+		escape_people = #{escapePeople,jdbcType=VARCHAR},
+		record_description = #{recordDescription,jdbcType=VARCHAR},
+		attachment_source = #{attachmentSource,jdbcType=CHAR},
+		road_id = #{roadId,jdbcType=BIGINT},
+		record_type = #{recordType,jdbcType=CHAR},
+		delflag = #{delflag,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		create_id = #{createId,jdbcType=VARCHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.RoadProtectionRecordPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from road_protection_record
+		where delflag != '1' and record_type = #{page.type}
+		<if test="page.key != null and page.key != ''">
+			and (record_nature like concat('%', #{page.key},
+			'%') or
+			record_description like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.RoadProtectionRecordPagination"
+		resultMap="BaseResultMap">
+		select
+		a.id,a.record_number as recordNumber,a.record_nature as recordNature,a.establish_time
+		as establishTime,a.crime_people as crimePeople,a.escape_people as escapePeople,
+		a.record_description as recordDescription,a.road_id as roadId,a.record_type as
+		recordType,a.create_time as createTime,a.create_id as createId,b.road_name as yhzh
+		from road_protection_record a left join road_protection_road b on a.road_id = b.id
+		where a.delflag != '1' and a.record_type = #{page.type}
+		<if test="page.key != null and page.key != ''">
+			and (a.record_nature like concat('%', #{page.key},
+			'%') or
+			a.record_description like concat('%', #{page.key},
+			'%') or
+			b.road_name like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and a.create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and a.create_time &lt; #{page.endTime}
+		</if>
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectRecord" resultMap="BaseResultMap">
+		select
+		a.id,a.record_number as recordNumber,a.record_nature as recordNature,a.establish_time
+		as establishTime,a.crime_people as crimePeople,a.escape_people as escapePeople,
+		a.record_description as recordDescription,a.road_id as roadId,a.record_type as
+		recordType,a.create_time as createTime,a.create_id as createId,b.road_name as yhzh
+		from road_protection_record a left join road_protection_road b on a.road_id = b.id
+		where a.id = #{id,jdbcType=BIGINT}
+	</select>
+	<update id="deleteRecord">
+		update road_protection_record
+		set
+		delflag = '1'
+		where id
+		=
+		#{id,jdbcType=BIGINT}
+	</update>
+	<insert id="insertRecord" parameterType="com.jtzh.entity.RoadProtectionRecord">
+		<selectKey resultType="java.lang.Long" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into road_protection_record (id, record_number, record_nature,
+		establish_time, crime_people, escape_people,
+		record_description, attachment_source, road_id,
+		record_type, delflag, create_time,
+		create_id, yhzh)
+		values (#{id,jdbcType=BIGINT}, #{recordNumber,jdbcType=VARCHAR},
+		#{recordNature,jdbcType=VARCHAR},
+		#{establishTime,jdbcType=VARCHAR}, #{crimePeople,jdbcType=VARCHAR}, #{escapePeople,jdbcType=VARCHAR},
+		#{recordDescription,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR}, #{roadId,jdbcType=BIGINT},
+		#{recordType,jdbcType=CHAR}, #{delflag,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{createId,jdbcType=VARCHAR}, #{yhzh,jdbcType=VARCHAR})
+	</insert>
+</mapper>

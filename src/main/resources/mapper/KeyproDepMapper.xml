@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.KeyproDepMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.KeyproDep">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="dep_name" property="depName" jdbcType="VARCHAR" />
+		<result column="dep_leader" property="depLeader" jdbcType="CHAR" />
+		<result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+		<result column="dep_address" property="depAddress" jdbcType="VARCHAR" />
+		<result column="work_content" property="workContent" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="dep_linkman" property="depLinkman" jdbcType="VARCHAR" />
+		<result column="linkman_phone" property="linkmanPhone" jdbcType="VARCHAR" />
+		<result column="dep_x" property="depX" jdbcType="VARCHAR" />
+		<result column="dep_y" property="depY" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, dep_name, dep_leader, phone_number, dep_address, work_content,
+		create_time, delflag, yhzh, create_id, dep_linkman, linkman_phone,dep_x,dep_y
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_dep
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from keypro_dep
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.KeyproDep">
+		insert into keypro_dep (id, dep_name, dep_leader,
+		phone_number, dep_address, work_content,
+		create_time, delflag, yhzh, create_id, dep_linkman, linkman_phone,dep_x,dep_y)
+		values (#{id,jdbcType=INTEGER}, #{depName,jdbcType=VARCHAR},
+		#{depLeader,jdbcType=CHAR},
+		#{phoneNumber,jdbcType=VARCHAR}, #{depAddress,jdbcType=VARCHAR}, #{workContent,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR},#{createId,jdbcType=VARCHAR},
+		#{depLinkman,jdbcType=VARCHAR},#{linkmanPhone,jdbcType=VARCHAR},
+		#{depX,jdbcType=VARCHAR},#{depY,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.KeyproDep">
+		insert into keypro_dep
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="depName != null">
+				dep_name,
+			</if>
+			<if test="depLeader != null">
+				dep_leader,
+			</if>
+			<if test="phoneNumber != null">
+				phone_number,
+			</if>
+			<if test="depAddress != null">
+				dep_address,
+			</if>
+			<if test="workContent != null">
+				work_content,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="depName != null">
+				#{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="depLeader != null">
+				#{depLeader,jdbcType=CHAR},
+			</if>
+			<if test="phoneNumber != null">
+				#{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="depAddress != null">
+				#{depAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="workContent != null">
+				#{workContent,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.KeyproDep">
+		update keypro_dep
+		<set>
+			<if test="depName != null">
+				dep_name = #{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="depLeader != null">
+				dep_leader = #{depLeader,jdbcType=CHAR},
+			</if>
+			<if test="phoneNumber != null">
+				phone_number = #{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="depAddress != null">
+				dep_address = #{depAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="workContent != null">
+				work_content = #{workContent,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.KeyproDep">
+		update keypro_dep
+		set dep_name = #{depName,jdbcType=VARCHAR},
+		dep_leader = #{depLeader,jdbcType=CHAR},
+		phone_number = #{phoneNumber,jdbcType=VARCHAR},
+		dep_address = #{depAddress,jdbcType=VARCHAR},
+		work_content = #{workContent,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		delflag = #{delflag,jdbcType=CHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR},
+		create_id = #{createId,jdbcType=VARCHAR},
+		dep_linkman = #{depLinkman,jdbcType=VARCHAR},
+		linkman_phone = #{linkmanPhone,jdbcType=VARCHAR},
+		dep_x = #{depX,jdbcType=VARCHAR},
+		dep_y = #{depY,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.DepPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from keypro_dep
+		where delflag != 'D'
+		<if test="page.key != null and page.key != ''">
+			and (dep_name like concat('%', #{page.key},
+			'%') or dep_leader like concat('%', #{page.key},
+			'%') or phone_number like concat('%', #{page.key},
+			'%') or dep_address like concat('%', #{page.key},
+			'%') or work_content like concat('%', #{page.key},
+			'%') or yhzh like concat('%', #{page.key},
+			'%') or create_id like concat('%', #{page.key},
+			'%') or dep_linkman like concat('%', #{page.key},
+			'%') or linkman_phone like concat('%', #{page.key},
+			'%') or dep_x like concat('%', #{page.key},
+			'%') or dep_y like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.UserPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_dep
+		where delflag != 'D'
+		<if test="page.key != null and page.key != ''">
+			and (dep_name like concat('%', #{page.key},
+			'%') or dep_leader like concat('%', #{page.key},
+			'%') or phone_number like concat('%', #{page.key},
+			'%') or dep_address like concat('%', #{page.key},
+			'%') or work_content like concat('%', #{page.key},
+			'%') or yhzh like concat('%', #{page.key},
+			'%') or create_id like concat('%', #{page.key},
+			'%') or dep_linkman like concat('%', #{page.key},
+			'%') or linkman_phone like concat('%', #{page.key},
+			'%') or dep_x like concat('%', #{page.key},
+			'%') or dep_y like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		order by create_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectDep" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_dep
+		where id = #{id}
+	</select>
+	<update id="deleteDep">
+		update keypro_dep
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="getDepList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_dep
+		where delflag != 'D'
+		order by create_time asc
+	</select>
+</mapper>

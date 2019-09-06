@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.KeyproProblemChuliMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.KeyproProblemChuli">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="shangbaoid" property="shangbaoid" jdbcType="INTEGER" />
+		<result column="chuliren" property="chuliren" jdbcType="VARCHAR" />
+		<result column="chulitime" property="chulitime" jdbcType="DATE" />
+		<result column="chulidep" property="chulidep" jdbcType="VARCHAR" />
+		<result column="chulimiaoshu" property="chulimiaoshu" jdbcType="VARCHAR" />
+		<result column="sheheren" property="sheheren" jdbcType="VARCHAR" />
+		<result column="shehetime" property="shehetime" jdbcType="DATE" />
+		<result column="shehemiaoshu" property="shehemiaoshu" jdbcType="VARCHAR" />
+		<result column="photo1" property="photo1" jdbcType="VARCHAR" />
+		<result column="attachment_source" property="attachmentSource"
+			jdbcType="CHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="huituiren" property="huituiren" jdbcType="VARCHAR" />
+		<result column="huituitime" property="huituitime" jdbcType="DATE" />
+		<result column="huituimiaoshu" property="huituimiaoshu" jdbcType="VARCHAR" />
+		<result column="appoint_man" property="appointMan" jdbcType="VARCHAR" />
+		<result column="appoint_dep" property="appointDep" jdbcType="VARCHAR" />
+		<result column="appoint_time" property="appointTime" jdbcType="DATE" />
+		<result column="is_solve" property="isSolve" jdbcType="CHAR" />
+		<result column="is_check" property="isCheck" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, shangbaoid, chuliren, chulitime, chulidep,
+		chulimiaoshu, sheheren,
+		shehetime,
+		shehemiaoshu, photo1,
+		attachment_source, delflag, create_time, create_id,
+		huituiren, huituitime,huituimiaoshu,appoint_man,
+		appoint_dep,appoint_time,is_solve,is_check
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_problem_chuli
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		keypro_problem_chuli
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.KeyproProblemChuli">
+		<selectKey resultType="java.lang.String" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		keypro_problem_chuli (id, shangbaoid, chuliren,
+		chulitime, chulidep,
+		chulimiaoshu,
+		sheheren, shehetime, shehemiaoshu,
+		photo1,
+		attachment_source, delflag,
+		create_time, create_id,appoint_man,
+		appoint_dep,appoint_time,is_solve,is_check)
+		values
+		(#{id,jdbcType=BIGINT}, #{shangbaoid,jdbcType=INTEGER},
+		#{chuliren,jdbcType=VARCHAR},
+		#{chulitime,jdbcType=DATE},
+		#{chulidep,jdbcType=VARCHAR}, #{chulimiaoshu,jdbcType=VARCHAR},
+		#{sheheren,jdbcType=VARCHAR}, #{shehetime,jdbcType=DATE},
+		#{shehemiaoshu,jdbcType=VARCHAR},
+		#{photo1,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR}, #{delflag,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR},
+		#{appointMan,jdbcType=VARCHAR}, #{appointDep,jdbcType=VARCHAR},
+		#{appointTime,jdbcType=DATE}, #{isSolve,jdbcType=CHAR},#{isCheck,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.KeyproProblemChuli">
+		insert into keypro_problem_chuli
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="shangbaoid != null">
+				shangbaoid,
+			</if>
+			<if test="chuliren != null">
+				chuliren,
+			</if>
+			<if test="chulitime != null">
+				chulitime,
+			</if>
+			<if test="chulidep != null">
+				chulidep,
+			</if>
+			<if test="chulimiaoshu != null">
+				chulimiaoshu,
+			</if>
+			<if test="sheheren != null">
+				sheheren,
+			</if>
+			<if test="shehetime != null">
+				shehetime,
+			</if>
+			<if test="shehemiaoshu != null">
+				shehemiaoshu,
+			</if>
+			<if test="photo1 != null">
+				photo1,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createId != null">
+				create_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="shangbaoid != null">
+				#{shangbaoid,jdbcType=INTEGER},
+			</if>
+			<if test="chuliren != null">
+				#{chuliren,jdbcType=VARCHAR},
+			</if>
+			<if test="chulitime != null">
+				#{chulitime,jdbcType=DATE},
+			</if>
+			<if test="chulidep != null">
+				#{chulidep,jdbcType=VARCHAR},
+			</if>
+			<if test="chulimiaoshu != null">
+				#{chulimiaoshu,jdbcType=VARCHAR},
+			</if>
+			<if test="sheheren != null">
+				#{sheheren,jdbcType=VARCHAR},
+			</if>
+			<if test="shehetime != null">
+				#{shehetime,jdbcType=DATE},
+			</if>
+			<if test="shehemiaoshu != null">
+				#{shehemiaoshu,jdbcType=VARCHAR},
+			</if>
+			<if test="photo1 != null">
+				#{photo1,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.KeyproProblemChuli">
+		update keypro_problem_chuli
+		<set>
+			<if test="shangbaoid != null">
+				shangbaoid = #{shangbaoid,jdbcType=INTEGER},
+			</if>
+			<if test="chuliren != null">
+				chuliren = #{chuliren,jdbcType=VARCHAR},
+			</if>
+			<if test="chulitime != null">
+				chulitime = #{chulitime,jdbcType=DATE},
+			</if>
+			<if test="chulidep != null">
+				chulidep = #{chulidep,jdbcType=VARCHAR},
+			</if>
+			<if test="chulimiaoshu != null">
+				chulimiaoshu = #{chulimiaoshu,jdbcType=VARCHAR},
+			</if>
+			<if test="sheheren != null">
+				sheheren = #{sheheren,jdbcType=VARCHAR},
+			</if>
+			<if test="shehetime != null">
+				shehetime = #{shehetime,jdbcType=DATE},
+			</if>
+			<if test="shehemiaoshu != null">
+				shehemiaoshu = #{shehemiaoshu,jdbcType=VARCHAR},
+			</if>
+			<if test="photo1 != null">
+				photo1 = #{photo1,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source = #{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				create_id = #{createId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.KeyproProblemChuli">
+		update
+		keypro_problem_chuli
+		set shangbaoid = #{shangbaoid,jdbcType=INTEGER},
+		chuliren = #{chuliren,jdbcType=VARCHAR},
+		chulitime =
+		#{chulitime,jdbcType=DATE},
+		chulidep = #{chulidep,jdbcType=VARCHAR},
+		chulimiaoshu = #{chulimiaoshu,jdbcType=VARCHAR},
+		sheheren =
+		#{sheheren,jdbcType=VARCHAR},
+		shehetime = #{shehetime,jdbcType=DATE},
+		shehemiaoshu = #{shehemiaoshu,jdbcType=VARCHAR},
+		photo1 =
+		#{photo1,jdbcType=VARCHAR},
+		attachment_source =
+		#{attachmentSource,jdbcType=CHAR},
+		delflag = #{delflag,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		create_id =
+		#{createId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="shenghe" parameterType="com.jtzh.pojo.KeyproProblemReq">
+		update keypro_problem_chuli
+		set
+		sheheren = #{sheheren,jdbcType=VARCHAR},
+		shehetime =
+		#{shehetime,jdbcType=TIMESTAMP},
+		shehemiaoshu =
+		#{shehemiaoshu,jdbcType=VARCHAR},
+		huituiren = #{huituiren,jdbcType=VARCHAR},
+		is_check = #{isCheck,jdbcType=CHAR}
+		where id = #{id,jdbcType=INTEGER} and delflag = 'A'
+	</update>
+	<update id="returnSolve" parameterType="com.jtzh.pojo.KeyproProblemReq">
+		update keypro_problem_chuli
+		set
+		is_solve = #{isSolve,jdbcType=CHAR}
+		where id = #{id,jdbcType=INTEGER} and delflag = 'A'
+	</update>
+	<update id="chuli" parameterType="com.jtzh.entity.KeyproProblemChuli">
+		update keypro_problem_chuli
+		set
+		chuliren = #{chuliren,jdbcType=VARCHAR},
+		chulitime =
+		#{chulitime,jdbcType=DATE},
+		chulidep =
+		#{chulidep,jdbcType=VARCHAR},
+		chulimiaoshu =
+		#{chulimiaoshu,jdbcType=VARCHAR},
+		is_solve = #{isSolve,jdbcType=CHAR},
+		is_check = #{isCheck,jdbcType=CHAR},
+		huituiren = #{huituiren,jdbcType=VARCHAR},
+		sheheren = #{sheheren,jdbcType=VARCHAR},
+		shehetime =
+		#{shehetime,jdbcType=DATE},
+		shehemiaoshu =
+		#{shehemiaoshu,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER} and delflag = 'A'
+	</update>
+	<update id="huitui" parameterType="com.jtzh.entity.KeyproProblemChuli">
+		update keypro_problem_chuli
+		set
+		huituiren = #{huituiren,jdbcType=VARCHAR},
+		huituitime =
+		#{huituitime,jdbcType=TIMESTAMP},
+		huituimiaoshu =
+		#{huituimiaoshu,jdbcType=VARCHAR}
+		where shangbaoid = #{shangbaoid,jdbcType=INTEGER} and delflag = 'A'
+	</update>
+	<select id="selectBySid" resultType="com.jtzh.detail.pojo.KeySolveResponse">
+		select id,shangbaoid,chuliren,chulitime,
+		chulidep,chulimiaoshu,sheheren,shehetime,shehemiaoshu,huituiren,delflag,
+		appoint_man as appointMan,appoint_dep as appointDep,
+		appoint_time as appointTime,is_solve as isSolve
+		from keypro_problem_chuli
+		where shangbaoid = #{shangbaoid} and delflag = 'A'
+	</select>
+	<select id="selectBySolveId" resultType="com.jtzh.detail.pojo.KeySolveResponse">
+		select id,shangbaoid,chuliren,chulitime,
+		chulidep,chulimiaoshu,sheheren,shehetime,shehemiaoshu,huituiren,delflag,
+		appoint_man as appointMan,appoint_dep as appointDep,
+		appoint_time as appointTime,is_solve as isSolve,is_check as isCheck
+		from keypro_problem_chuli
+		where id = #{solveId} and delflag = 'A'
+	</select>
+	<select id="selectAllBySid" resultType="com.jtzh.detail.pojo.KeySolveResponse">
+		select id,shangbaoid,chuliren,chulitime,
+		chulidep,chulimiaoshu,sheheren,shehetime,shehemiaoshu,
+		huituiren,delflag,appoint_man as appointMan,appoint_dep as appointDep,
+		appoint_time as appointTime,is_solve as isSolve,is_check as isCheck
+		from keypro_problem_chuli
+		where shangbaoid = #{shangbaoid,jdbcType=BIGINT}
+	</select>
+	<update id="deleteSolve" parameterType="java.lang.String">
+		update keypro_problem_chuli
+		set
+		delflag = 'D'
+		where id =
+		#{id}
+	</update>
+	<select id="selectProblemChuli" resultType="com.jtzh.entity.KeyproProblemChuli">
+		select id,shangbaoid,chuliren,chulitime,
+		chulidep,chulimiaoshu,sheheren,shehetime,shehemiaoshu,
+		delflag,appoint_man as appointMan,appoint_dep as appointDep,
+		appoint_time as appointTime,is_solve as isSolve,is_check as isCheck
+		from keypro_problem_chuli
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="countAppoints" resultType="java.lang.Integer">
+		select count(1)
+		from keypro_problem_chuli
+		where shangbaoid = #{shangbaoid} and delflag = 'A'
+	</select>
+	<select id="countHasSolved" resultType="java.lang.Integer">
+		select count(1)
+		from keypro_problem_chuli
+		where shangbaoid = #{shangbaoid} and delflag = 'A' and is_solve = '1'
+	</select>
+	<select id="countCheckedYes" resultType="java.lang.Integer">
+		select count(1)
+		from keypro_problem_chuli
+		where shangbaoid = #{shangbaoid} and delflag = 'A' and huituiren = '1'
+	</select>
+	<select id="countCheckedNo" resultType="java.lang.Integer">
+		select count(1)
+		from keypro_problem_chuli
+		where shangbaoid = #{shangbaoid} and delflag = 'A' and huituiren = '0'
+	</select>
+	<insert id="insertChuli" parameterType="com.jtzh.entity.KeyproProblemChuli">
+		insert into
+		keypro_problem_chuli (id, shangbaoid, chuliren,
+		chulitime, chulidep,
+		chulimiaoshu,
+		sheheren, shehetime, shehemiaoshu,
+		photo1,
+		attachment_source, delflag,
+		create_time, create_id,appoint_man,
+		appoint_dep,appoint_time,is_solve,is_check)
+		values
+		(#{id,jdbcType=BIGINT}, #{shangbaoid,jdbcType=INTEGER},
+		#{chuliren,jdbcType=VARCHAR},
+		#{chulitime,jdbcType=DATE},
+		#{chulidep,jdbcType=VARCHAR}, #{chulimiaoshu,jdbcType=VARCHAR},
+		#{sheheren,jdbcType=VARCHAR}, #{shehetime,jdbcType=DATE},
+		#{shehemiaoshu,jdbcType=VARCHAR},
+		#{photo1,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR}, #{delflag,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR},
+		#{appointMan,jdbcType=VARCHAR}, #{appointDep,jdbcType=VARCHAR},
+		#{appointTime,jdbcType=DATE}, #{isSolve,jdbcType=CHAR},#{isCheck,jdbcType=CHAR})
+	</insert>
+</mapper>

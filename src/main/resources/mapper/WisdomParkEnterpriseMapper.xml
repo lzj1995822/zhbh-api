@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.WisdomParkEnterpriseMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.WisdomParkEnterprise">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="enterprise_name" property="enterpriseName"
+			jdbcType="VARCHAR" />
+		<result column="enterprise_address" property="enterpriseAddress"
+			jdbcType="VARCHAR" />
+		<result column="enterprise_establish_time" property="enterpriseEstablishTime"
+			jdbcType="DATE" />
+		<result column="registered_capital" property="registeredCapital"
+			jdbcType="DOUBLE" />
+		<result column="enterprise_scale_type" property="enterpriseScaleType"
+			jdbcType="VARCHAR" />
+		<result column="enterprise_legal_person" property="enterpriseLegalPerson"
+			jdbcType="VARCHAR" />
+		<result column="social_credit_code" property="socialCreditCode"
+			jdbcType="VARCHAR" />
+		<result column="industry_belong" property="industryBelong"
+			jdbcType="VARCHAR" />
+		<result column="sale_erlingyiliu" property="saleErlingyiliu"
+			jdbcType="DOUBLE" />
+		<result column="slae_erlingyiqi" property="slaeErlingyiqi"
+			jdbcType="DOUBLE" />
+		<result column="contact_person_name" property="contactPersonName"
+			jdbcType="CHAR" />
+		<result column="contact_person_phone" property="contactPersonPhone"
+			jdbcType="VARCHAR" />
+		<result column="enterprise_type" property="enterpriseType"
+			jdbcType="VARCHAR" />
+		<result column="business_scope" property="businessScope"
+			jdbcType="VARCHAR" />
+		<result column="business_license_copy" property="businessLicenseCopy"
+			jdbcType="VARCHAR" />
+		<result column="position_x" property="positionX" jdbcType="VARCHAR" />
+		<result column="position_y" property="positionY" jdbcType="VARCHAR" />
+		<result column="is_deleted" property="isDeleted" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="DATE" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="park_belong" property="parkBelong" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, enterprise_name, enterprise_address,
+		enterprise_establish_time,
+		registered_capital,
+		enterprise_scale_type,
+		enterprise_legal_person, social_credit_code, industry_belong,
+		sale_erlingyiliu, slae_erlingyiqi, contact_person_name,
+		contact_person_phone, enterprise_type,
+		business_scope,
+		business_license_copy, position_x, position_y, is_deleted,
+		create_time,
+		create_id, park_belong
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from wisdom_park_enterprise
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		wisdom_park_enterprise
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.WisdomParkEnterprise">
+		insert into
+		wisdom_park_enterprise (id, enterprise_name,
+		enterprise_address,
+		enterprise_establish_time, registered_capital,
+		enterprise_scale_type,
+		enterprise_legal_person,
+		social_credit_code, industry_belong,
+		sale_erlingyiliu,
+		slae_erlingyiqi, contact_person_name,
+		contact_person_phone,
+		enterprise_type, business_scope,
+		business_license_copy,
+		position_x, position_y, is_deleted,
+		create_time,
+		create_id)
+		values (#{id,jdbcType=INTEGER},
+		#{enterpriseName,jdbcType=VARCHAR},
+		#{enterpriseAddress,jdbcType=VARCHAR},
+		#{enterpriseEstablishTime,jdbcType=DATE},
+		#{registeredCapital,jdbcType=DOUBLE},
+		#{enterpriseScaleType,jdbcType=VARCHAR},
+		#{enterpriseLegalPerson,jdbcType=VARCHAR},
+		#{socialCreditCode,jdbcType=VARCHAR},
+		#{industryBelong,jdbcType=VARCHAR},
+		#{saleErlingyiliu,jdbcType=DOUBLE},
+		#{slaeErlingyiqi,jdbcType=DOUBLE},
+		#{contactPersonName,jdbcType=CHAR},
+		#{contactPersonPhone,jdbcType=VARCHAR},
+		#{enterpriseType,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR},
+		#{businessLicenseCopy,jdbcType=VARCHAR},
+		#{positionX,jdbcType=VARCHAR}, #{positionY,jdbcType=VARCHAR},
+		#{isDeleted,jdbcType=CHAR},
+		#{createTime,jdbcType=DATE},
+		#{createId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.WisdomParkEnterprise">
+		insert into wisdom_park_enterprise
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="enterpriseName != null">
+				enterprise_name,
+			</if>
+			<if test="enterpriseAddress != null">
+				enterprise_address,
+			</if>
+			<if test="enterpriseEstablishTime != null">
+				enterprise_establish_time,
+			</if>
+			<if test="registeredCapital != null">
+				registered_capital,
+			</if>
+			<if test="enterpriseScaleType != null">
+				enterprise_scale_type,
+			</if>
+			<if test="enterpriseLegalPerson != null">
+				enterprise_legal_person,
+			</if>
+			<if test="socialCreditCode != null">
+				social_credit_code,
+			</if>
+			<if test="industryBelong != null">
+				industry_belong,
+			</if>
+			<if test="saleErlingyiliu != null">
+				sale_erlingyiliu,
+			</if>
+			<if test="slaeErlingyiqi != null">
+				slae_erlingyiqi,
+			</if>
+			<if test="contactPersonName != null">
+				contact_person_name,
+			</if>
+			<if test="contactPersonPhone != null">
+				contact_person_phone,
+			</if>
+			<if test="enterpriseType != null">
+				enterprise_type,
+			</if>
+			<if test="businessScope != null">
+				business_scope,
+			</if>
+			<if test="businessLicenseCopy != null">
+				business_license_copy,
+			</if>
+			<if test="positionX != null">
+				position_x,
+			</if>
+			<if test="positionY != null">
+				position_y,
+			</if>
+			<if test="isDeleted != null">
+				is_deleted,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createId != null">
+				create_id,
+			</if>
+			<if test="parkBelong != null">
+				park_belong,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="enterpriseName != null">
+				#{enterpriseName,jdbcType=VARCHAR},
+			</if>
+			<if test="enterpriseAddress != null">
+				#{enterpriseAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="enterpriseEstablishTime != null">
+				#{enterpriseEstablishTime,jdbcType=DATE},
+			</if>
+			<if test="registeredCapital != null">
+				#{registeredCapital,jdbcType=DOUBLE},
+			</if>
+			<if test="enterpriseScaleType != null">
+				#{enterpriseScaleType,jdbcType=VARCHAR},
+			</if>
+			<if test="enterpriseLegalPerson != null">
+				#{enterpriseLegalPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="socialCreditCode != null">
+				#{socialCreditCode,jdbcType=VARCHAR},
+			</if>
+			<if test="industryBelong != null">
+				#{industryBelong,jdbcType=VARCHAR},
+			</if>
+			<if test="saleErlingyiliu != null">
+				#{saleErlingyiliu,jdbcType=DOUBLE},
+			</if>
+			<if test="slaeErlingyiqi != null">
+				#{slaeErlingyiqi,jdbcType=DOUBLE},
+			</if>
+			<if test="contactPersonName != null">
+				#{contactPersonName,jdbcType=CHAR},
+			</if>
+			<if test="contactPersonPhone != null">
+				#{contactPersonPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="enterpriseType != null">
+				#{enterpriseType,jdbcType=VARCHAR},
+			</if>
+			<if test="businessScope != null">
+				#{businessScope,jdbcType=VARCHAR},
+			</if>
+			<if test="businessLicenseCopy != null">
+				#{businessLicenseCopy,jdbcType=VARCHAR},
+			</if>
+			<if test="positionX != null">
+				#{positionX,jdbcType=VARCHAR},
+			</if>
+			<if test="positionY != null">
+				#{positionY,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				#{isDeleted,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="parkBelong != null">
+				#{parkBelong,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.WisdomParkEnterprise">
+		update wisdom_park_enterprise
+		<set>
+			<if test="enterpriseName != null">
+				enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+			</if>
+			<if test="enterpriseAddress != null">
+				enterprise_address =
+				#{enterpriseAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="enterpriseEstablishTime != null">
+				enterprise_establish_time =
+				#{enterpriseEstablishTime,jdbcType=DATE},
+			</if>
+			<if test="registeredCapital != null">
+				registered_capital =
+				#{registeredCapital,jdbcType=DOUBLE},
+			</if>
+			<if test="enterpriseScaleType != null">
+				enterprise_scale_type =
+				#{enterpriseScaleType,jdbcType=VARCHAR},
+			</if>
+			<if test="enterpriseLegalPerson != null">
+				enterprise_legal_person =
+				#{enterpriseLegalPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="socialCreditCode != null">
+				social_credit_code =
+				#{socialCreditCode,jdbcType=VARCHAR},
+			</if>
+			<if test="industryBelong != null">
+				industry_belong = #{industryBelong,jdbcType=VARCHAR},
+			</if>
+			<if test="saleErlingyiliu != null">
+				sale_erlingyiliu = #{saleErlingyiliu,jdbcType=DOUBLE},
+			</if>
+			<if test="slaeErlingyiqi != null">
+				slae_erlingyiqi = #{slaeErlingyiqi,jdbcType=DOUBLE},
+			</if>
+			<if test="contactPersonName != null">
+				contact_person_name = #{contactPersonName,jdbcType=CHAR},
+			</if>
+			<if test="contactPersonPhone != null">
+				contact_person_phone =
+				#{contactPersonPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="enterpriseType != null">
+				enterprise_type = #{enterpriseType,jdbcType=VARCHAR},
+			</if>
+			<if test="businessScope != null">
+				business_scope = #{businessScope,jdbcType=VARCHAR},
+			</if>
+			<if test="businessLicenseCopy != null">
+				business_license_copy =
+				#{businessLicenseCopy,jdbcType=VARCHAR},
+			</if>
+			<if test="positionX != null">
+				position_x = #{positionX,jdbcType=VARCHAR},
+			</if>
+			<if test="positionY != null">
+				position_y = #{positionY,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				is_deleted = #{isDeleted,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=DATE},
+			</if>
+			<if test="createId != null">
+				create_id = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="parkBelong != null">
+				park_belong = #{parkBelong,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.WisdomParkEnterprise">
+		update
+		wisdom_park_enterprise
+		set enterprise_name =
+		#{enterpriseName,jdbcType=VARCHAR},
+		enterprise_address =
+		#{enterpriseAddress,jdbcType=VARCHAR},
+		enterprise_establish_time =
+		#{enterpriseEstablishTime,jdbcType=DATE},
+		registered_capital =
+		#{registeredCapital,jdbcType=DOUBLE},
+		enterprise_scale_type =
+		#{enterpriseScaleType,jdbcType=VARCHAR},
+		enterprise_legal_person =
+		#{enterpriseLegalPerson,jdbcType=VARCHAR},
+		social_credit_code =
+		#{socialCreditCode,jdbcType=VARCHAR},
+		industry_belong =
+		#{industryBelong,jdbcType=VARCHAR},
+		sale_erlingyiliu =
+		#{saleErlingyiliu,jdbcType=DOUBLE},
+		slae_erlingyiqi =
+		#{slaeErlingyiqi,jdbcType=DOUBLE},
+		contact_person_name =
+		#{contactPersonName,jdbcType=CHAR},
+		contact_person_phone =
+		#{contactPersonPhone,jdbcType=VARCHAR},
+		enterprise_type =
+		#{enterpriseType,jdbcType=VARCHAR},
+		business_scope =
+		#{businessScope,jdbcType=VARCHAR},
+		business_license_copy =
+		#{businessLicenseCopy,jdbcType=VARCHAR},
+		position_x =
+		#{positionX,jdbcType=VARCHAR},
+		position_y =
+		#{positionY,jdbcType=VARCHAR},
+		is_deleted = #{isDeleted,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=DATE},
+		create_id =
+		#{createId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.WisdomParkEnterprisePagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from wisdom_park_enterprise
+		where is_deleted != '1'
+		<if test="page.key != null and page.key != ''">
+			and (enterprise_name like concat('%', #{page.key},'%')
+			or enterprise_address like concat('%', #{page.key},'%')
+			or registered_capital like concat('%', #{page.key},'%')
+			or enterprise_scale_type like concat('%', #{page.key},'%')
+			or enterprise_legal_person like concat('%', #{page.key},'%')
+			or social_credit_code like concat('%',#{page.key},'%')
+			or industry_belong like concat('%', #{page.key},'%')
+			or sale_erlingyiliu like concat('%', #{page.key},'%')
+			or slae_erlingyiqi like concat('%', #{page.key},'%')
+			or contact_person_name like concat('%', #{page.key},'%')
+			or contact_person_phone like concat('%',#{page.key},'%')
+			or enterprise_type like concat('%', #{page.key},'%')
+			or business_scope like concat('%', #{page.key},'%')
+			or business_license_copy like concat('%', #{page.key},'%')
+			or position_x like concat('%', #{page.key},'%')
+			or position_y like concat('%',#{page.key},'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and enterprise_establish_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and enterprise_establish_time &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.WisdomParkEnterprisePagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wisdom_park_enterprise
+		where is_deleted != '1'
+		<if test="page.key != null and page.key != ''">
+			and (enterprise_name like concat('%', #{page.key},'%')
+			or enterprise_address like concat('%', #{page.key},'%')
+			or registered_capital like concat('%', #{page.key},'%')
+			or enterprise_scale_type like concat('%', #{page.key},'%')
+			or enterprise_legal_person like concat('%', #{page.key},'%')
+			or social_credit_code like concat('%',#{page.key},'%')
+			or industry_belong like concat('%', #{page.key},'%')
+			or sale_erlingyiliu like concat('%', #{page.key},'%')
+			or slae_erlingyiqi like concat('%', #{page.key},'%')
+			or contact_person_name like concat('%', #{page.key},'%')
+			or contact_person_phone like concat('%',#{page.key},'%')
+			or enterprise_type like concat('%', #{page.key},'%')
+			or business_scope like concat('%', #{page.key},'%')
+			or business_license_copy like concat('%', #{page.key},'%')
+			or position_x like concat('%', #{page.key},'%')
+			or position_y like concat('%',#{page.key},'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and enterprise_establish_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and enterprise_establish_time &lt; #{page.endTime}
+		</if>
+
+		<if test="page.position_x != null and page.position_x != ''">
+			and position_x = #{page.position_x}
+		</if>
+		<if test="page.position_y != null and page.position_y != ''">
+			and position_y = #{page.position_y}
+		</if>
+
+		order by enterprise_establish_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+
+
+
+	<select id="selectWisdomParkEnterprise" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wisdom_park_enterprise
+		where id = #{id}
+	</select>
+	<update id="deleteWisdomParkEnterprise">
+		update wisdom_park_enterprise
+		set
+		is_deleted = '1'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectInfoWeb" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wisdom_park_enterprise
+		where is_deleted = '0'
+	</select>
+	<select id="countWEIndustryBelong" resultType="com.jtzh.pojo.CountWisdomTalent">
+		select
+		industry_belong as type,count(id)
+		as count from
+		wisdom_park_enterprise
+		where is_deleted = '0'
+		group by industry_belong
+	</select>
+	<select id="countWEParkBelong" resultType="com.jtzh.pojo.CountWisdomTalent">
+		select
+		park_belong as type,count(id)
+		as count from
+		wisdom_park_enterprise
+		where is_deleted = '0'
+		group by park_belong
+	</select>
+</mapper>

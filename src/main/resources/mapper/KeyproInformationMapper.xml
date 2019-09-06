@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.KeyproInformationMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.KeyproInformation">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="information_company_name" property="informationCompanyName"
+			jdbcType="VARCHAR" />
+		<result column="information_site_leader" property="informationSiteLeader"
+			jdbcType="VARCHAR" />
+		<result column="information_phone_number" property="informationPhoneNumber"
+			jdbcType="VARCHAR" />
+		<result column="information_type" property="informationType"
+			jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="create_name" property="createName" jdbcType="VARCHAR" />
+		<result column="source_id" property="sourceId" jdbcType="INTEGER" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, information_company_name, information_site_leader,
+		information_phone_number,
+		information_type, create_time, delflag, create_name, source_id, yhzh
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_information
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from keypro_information
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.KeyproInformation">
+		insert into keypro_information (id, information_company_name,
+		information_site_leader,
+		information_phone_number, information_type, create_time,
+		delflag, create_name, source_id, yhzh)
+		values (#{id,jdbcType=INTEGER}, #{informationCompanyName,jdbcType=VARCHAR},
+		#{informationSiteLeader,jdbcType=VARCHAR},
+		#{informationPhoneNumber,jdbcType=VARCHAR},
+		#{informationType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=CHAR}, #{createName,jdbcType=VARCHAR},
+		#{sourceId,jdbcType=INTEGER}, #{yhzh,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.KeyproInformation">
+		insert into keypro_information
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="informationCompanyName != null">
+				information_company_name,
+			</if>
+			<if test="informationSiteLeader != null">
+				information_site_leader,
+			</if>
+			<if test="informationPhoneNumber != null">
+				information_phone_number,
+			</if>
+			<if test="informationType != null">
+				information_type,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="createName != null">
+				create_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="informationCompanyName != null">
+				#{informationCompanyName,jdbcType=VARCHAR},
+			</if>
+			<if test="informationSiteLeader != null">
+				#{informationSiteLeader,jdbcType=VARCHAR},
+			</if>
+			<if test="informationPhoneNumber != null">
+				#{informationPhoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="informationType != null">
+				#{informationType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createName != null">
+				#{createName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.KeyproInformation">
+		update keypro_information
+		<set>
+			<if test="informationCompanyName != null">
+				information_company_name =
+				#{informationCompanyName,jdbcType=VARCHAR},
+			</if>
+			<if test="informationSiteLeader != null">
+				information_site_leader = #{informationSiteLeader,jdbcType=VARCHAR},
+			</if>
+			<if test="informationPhoneNumber != null">
+				information_phone_number =
+				#{informationPhoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="informationType != null">
+				information_type = #{informationType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createName != null">
+				create_name = #{createName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.KeyproInformation">
+		update keypro_information
+		set information_company_name =
+		#{informationCompanyName,jdbcType=VARCHAR},
+		information_site_leader = #{informationSiteLeader,jdbcType=VARCHAR},
+		information_phone_number = #{informationPhoneNumber,jdbcType=VARCHAR},
+		information_type = #{informationType,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		delflag = #{delflag,jdbcType=CHAR},
+		create_name = #{createName,jdbcType=VARCHAR},
+		source_id = #{sourceId,jdbcType=INTEGER},
+		yhzh = #{yhzh,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_information
+		where id = #{id}
+	</select>
+	<update id="deleteInfo">
+		update keypro_information
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectFive" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_information
+		where source_id = #{id} and delflag = 'A'
+	</select>
+	<insert id="insertInfo" parameterType="com.jtzh.entity.KeyproInformation">
+		<selectKey resultType="java.lang.String" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into keypro_information (id, information_company_name,
+		information_site_leader,
+		information_phone_number, information_type, create_time,
+		delflag, create_name, source_id, yhzh)
+		values (#{id,jdbcType=INTEGER}, #{informationCompanyName,jdbcType=VARCHAR},
+		#{informationSiteLeader,jdbcType=VARCHAR},
+		#{informationPhoneNumber,jdbcType=VARCHAR},
+		#{informationType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=CHAR}, #{createName,jdbcType=VARCHAR},
+		#{sourceId,jdbcType=INTEGER},#{yhzh,jdbcType=VARCHAR})
+	</insert>
+</mapper>

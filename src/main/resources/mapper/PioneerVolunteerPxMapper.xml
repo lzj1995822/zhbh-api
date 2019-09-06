@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.PioneerVolunteerPxMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerVolunteerPx">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="volunteer_id" jdbcType="BIGINT" property="volunteerId" />
+    <result column="sj" jdbcType="VARCHAR" property="sj" />
+    <result column="pxdw" jdbcType="VARCHAR" property="pxdw" />
+    <result column="zsmc" jdbcType="VARCHAR" property="zsmc" />
+    <result column="delflag" jdbcType="CHAR" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, volunteer_id, sj, pxdw, zsmc, delflag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_volunteer_px
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+    <select id="selectByZyzId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_volunteer_px 
+    where delflag != 'D' and volunteer_id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pioneer_volunteer_px
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.PioneerVolunteerPx">
+    insert into pioneer_volunteer_px (id, volunteer_id, sj, 
+      pxdw, zsmc, delflag)
+    values (#{id,jdbcType=BIGINT}, #{volunteerId,jdbcType=BIGINT}, #{sj,jdbcType=VARCHAR}, 
+      #{pxdw,jdbcType=VARCHAR}, #{zsmc,jdbcType=VARCHAR}, #{delflag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.PioneerVolunteerPx">
+    insert into pioneer_volunteer_px
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="volunteerId != null">
+        volunteer_id,
+      </if>
+      <if test="sj != null">
+        sj,
+      </if>
+      <if test="pxdw != null">
+        pxdw,
+      </if>
+      <if test="zsmc != null">
+        zsmc,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="volunteerId != null">
+        #{volunteerId,jdbcType=BIGINT},
+      </if>
+      <if test="sj != null">
+        #{sj,jdbcType=VARCHAR},
+      </if>
+      <if test="pxdw != null">
+        #{pxdw,jdbcType=VARCHAR},
+      </if>
+      <if test="zsmc != null">
+        #{zsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerVolunteerPx">
+    update pioneer_volunteer_px
+    <set>
+      <if test="volunteerId != null">
+        volunteer_id = #{volunteerId,jdbcType=BIGINT},
+      </if>
+      <if test="sj != null">
+        sj = #{sj,jdbcType=VARCHAR},
+      </if>
+      <if test="pxdw != null">
+        pxdw = #{pxdw,jdbcType=VARCHAR},
+      </if>
+      <if test="zsmc != null">
+        zsmc = #{zsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerVolunteerPx">
+    update pioneer_volunteer_px
+    set volunteer_id = #{volunteerId,jdbcType=BIGINT},
+      sj = #{sj,jdbcType=VARCHAR},
+      pxdw = #{pxdw,jdbcType=VARCHAR},
+      zsmc = #{zsmc,jdbcType=VARCHAR},
+      delflag = #{delflag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+    <update id="updateById" >
+    update pioneer_volunteer_px
+    set 
+      delflag = 'D'
+    where volunteer_id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

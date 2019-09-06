@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.RoadProNewsMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.RoadProNews">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="people" property="people" jdbcType="VARCHAR" />
+		<result column="department" property="department" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="enclosure" property="enclosure" jdbcType="VARCHAR" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="createId" property="createId" jdbcType="VARCHAR" />
+		<result column="createTime" jdbcType="DATE" property="createTime" />
+    	<result column="delflag" jdbcType="VARCHAR" property="delflag" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, title, people, department, 
+		content, enclosure, remarks, yhzh, 
+		createId, createTime, delflag
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from road_protection_news
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<insert id="insert" parameterType="com.jtzh.entity.RoadProNews">
+		insert into
+		road_protection_news (id, title, 
+		people, department, content, 
+		enclosure, remarks, yhzh, 
+		createId, createTime, delflag)
+		values (#{id,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{people,jdbcType=VARCHAR},
+		#{department,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{enclosure,jdbcType=VARCHAR}, 
+		#{remarks,jdbcType=VARCHAR}, 
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE},
+		#{delflag,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.RoadProNews">
+		insert into road_protection_news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="people != null">
+				people,
+			</if>
+			<if test="department != null">
+				department,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="enclosure != null">
+				enclosure,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="createId != null">
+				createId,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="people != null">
+				#{people,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				#{department,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="enclosure != null">
+				#{enclosure,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="selectRPNTotal" parameterType="com.jtzh.pojo.RoadProNewsParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from road_protection_news
+		where delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (title like concat('%', #{page.key},
+			'%') or people like concat('%', #{page.key},
+			'%') or department like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+	</select>
+	<select id="selectRPNInfo" parameterType="com.jtzh.pojo.RoadProNewsParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from road_protection_news
+		where delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (title like concat('%', #{page.key},
+			'%') or people like concat('%', #{page.key},
+			'%') or department like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="getRoadProNewsInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from road_protection_news
+		where id = #{id}
+	</select>
+	<update id="deleteRoadProNews">
+		update road_protection_news
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateRoadProNews" parameterType="com.jtzh.entity.RoadProNews">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    update road_protection_news
+    set 
+		title = #{title,jdbcType=VARCHAR},
+		people = #{people,jdbcType=VARCHAR},
+		department = #{department,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		enclosure = #{enclosure,jdbcType=VARCHAR}, 
+		remarks = #{remarks,jdbcType=VARCHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="addRoadProNews" parameterType="com.jtzh.entity.RoadProNews">
+  <selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    insert into 
+    road_protection_news (title,
+    	people, department,
+		content, enclosure, remarks, yhzh, 
+		createId, createTime, delflag)
+    values (#{title,jdbcType=VARCHAR},
+    	#{people,jdbcType=VARCHAR},
+    	#{department,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{enclosure,jdbcType=VARCHAR}, 
+		#{remarks,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE},
+		#{delflag,jdbcType=VARCHAR})
+  </insert>
+</mapper>

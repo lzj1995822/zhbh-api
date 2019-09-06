@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.KeyproInfoDeliveryMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.KeyproInfoDelivery">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="info_title" property="infoTitle" jdbcType="VARCHAR" />
+		<result column="info_des" property="infoDes" jdbcType="VARCHAR" />
+		<result column="info_pic_type" property="infoPicType" jdbcType="CHAR" />
+		<result column="attachment_source" property="attachmentSource"
+			jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="create_name" property="createName" jdbcType="CHAR" />
+		<result column="create_id" property="createId" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, info_title, info_des, info_pic_type, attachment_source,
+		create_time,
+		update_time,
+		delflag, create_name, create_id, yhzh
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_info_delivery
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		keypro_info_delivery
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.KeyproInfoDelivery">
+		insert into
+		keypro_info_delivery (id, info_title, info_des,
+		info_pic_type,
+		attachment_source, create_time,
+		update_time, delflag, create_name,
+		create_id, yhzh)
+		values (#{id,jdbcType=BIGINT},
+		#{infoTitle,jdbcType=VARCHAR},
+		#{infoDes,jdbcType=VARCHAR},
+		#{infoPicType,jdbcType=CHAR}, #{attachmentSource,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=CHAR},
+		#{createName,jdbcType=CHAR},
+		#{createId,jdbcType=CHAR}, #{yhzh,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.KeyproInfoDelivery">
+		insert into keypro_info_delivery
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="infoTitle != null">
+				info_title,
+			</if>
+			<if test="infoDes != null">
+				info_des,
+			</if>
+			<if test="infoPicType != null">
+				info_pic_type,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="createName != null">
+				create_name,
+			</if>
+			<if test="createId != null">
+				create_id,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="infoTitle != null">
+				#{infoTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="infoDes != null">
+				#{infoDes,jdbcType=VARCHAR},
+			</if>
+			<if test="infoPicType != null">
+				#{infoPicType,jdbcType=CHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createName != null">
+				#{createName,jdbcType=CHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.KeyproInfoDelivery">
+		update keypro_info_delivery
+		<set>
+			<if test="infoTitle != null">
+				info_title = #{infoTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="infoDes != null">
+				info_des = #{infoDes,jdbcType=VARCHAR},
+			</if>
+			<if test="infoPicType != null">
+				info_pic_type = #{infoPicType,jdbcType=CHAR},
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source = #{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createName != null">
+				create_name = #{createName,jdbcType=CHAR},
+			</if>
+			<if test="createId != null">
+				create_id = #{createId,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				yhzh = #{yhzh,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.KeyproInfoDelivery">
+		update
+		keypro_info_delivery
+		set info_title = #{infoTitle,jdbcType=VARCHAR},
+		info_des = #{infoDes,jdbcType=VARCHAR},
+		info_pic_type =
+		#{infoPicType,jdbcType=CHAR},
+		attachment_source =
+		#{attachmentSource,jdbcType=CHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		delflag = #{delflag,jdbcType=CHAR},
+		create_name = #{createName,jdbcType=CHAR},
+		create_id =
+		#{createId,jdbcType=CHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=BIGINT}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.KeyproInfoPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from keypro_info_delivery
+		where delflag != 'D'
+		<if test="page.type != null and page.type != ''">
+			and info_pic_type = #{page.type}
+		</if>
+		<if test="page.infoTitle != null and page.infoTitle != ''">
+			and info_title like concat('%', #{page.infoTitle},
+			'%')
+		</if>
+		<if test="page.createName != null and page.createName != ''">
+			and create_name like concat('%', #{page.createName},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.KeyproInfoPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_info_delivery
+		where delflag != 'D'
+		<if test="page.type != null and page.type != ''">
+			and info_pic_type = #{page.type}
+		</if>
+		<if test="page.infoTitle != null and page.infoTitle != ''">
+			and info_title like concat('%', #{page.infoTitle},
+			'%')
+		</if>
+		<if test="page.createName != null and page.createName != ''">
+			and create_name like concat('%', #{page.createName},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+		order by create_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectInf" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_info_delivery
+		where id = #{id} and info_pic_type = #{type}
+	</select>
+	<update id="deleteInf">
+		update keypro_info_delivery
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertInf" parameterType="com.jtzh.entity.KeyproInfoDelivery">
+		<selectKey resultType="java.lang.String" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		keypro_info_delivery (id, info_title, info_des,
+		info_pic_type,
+		attachment_source, create_time,
+		update_time, delflag,
+		create_name,
+		create_id, yhzh)
+		values (#{id,jdbcType=BIGINT},
+		#{infoTitle,jdbcType=VARCHAR},
+		#{infoDes,jdbcType=VARCHAR},
+		#{infoPicType,jdbcType=CHAR}, #{attachmentSource,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=CHAR},
+		#{createName,jdbcType=CHAR},
+		#{createId,jdbcType=CHAR}, #{yhzh,jdbcType=VARCHAR})
+	</insert>
+</mapper>

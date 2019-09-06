@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.PioneerJfMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerJf">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="dy_id" jdbcType="VARCHAR" property="dyId" />
+    <result column="zf" jdbcType="INTEGER" property="zf" />
+    <result column="fz1" jdbcType="INTEGER" property="fz1" />
+    <result column="fz2" jdbcType="INTEGER" property="fz2" />
+    <result column="fz3" jdbcType="INTEGER" property="fz3" />
+    <result column="fz4" jdbcType="INTEGER" property="fz4" />
+    <result column="fz5" jdbcType="INTEGER" property="fz5" />
+    <result column="fz6" jdbcType="INTEGER" property="fz6" />
+    <result column="fz7" jdbcType="INTEGER" property="fz7" />
+    <result column="fz8" jdbcType="INTEGER" property="fz8" />
+    <result column="dfr" jdbcType="VARCHAR" property="dfr" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="delflag" jdbcType="CHAR" property="delflag" />
+    <result column="jd" jdbcType="CHAR" property="jd" />
+    <result column="nd" jdbcType="CHAR" property="nd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dy_id, zf, fz1, fz2, fz3, fz4, fz5, fz6, fz7, fz8, dfr, create_time, delflag, 
+    jd, nd
+  </sql>
+  <select id="getDyjf" parameterType="com.jtzh.entity.PioneerJf" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_jf
+    where dy_id = #{dyId,jdbcType=VARCHAR} 
+    <if test="nd != null and nd != ''" >
+		and nd = #{nd,jdbcType=CHAR} 
+	</if>
+	<if test="jd != null and jd != ''" >
+    	and jd = #{jd,jdbcType=CHAR}
+	</if>
+	order by nd ,jd DESC
+  </select>
+  
+    <select id="getDyjfTotal" parameterType="com.jtzh.entity.PioneerJf" resultType="java.lang.Integer">
+    select count(1)
+    from pioneer_jf
+    where dy_id = #{dyId,jdbcType=VARCHAR} 
+    <if test="nd != null and nd != ''" >
+		and nd = #{nd,jdbcType=CHAR} 
+	</if>
+	<if test="jd != null and jd != ''" >
+    	and jd = #{jd,jdbcType=CHAR}
+	</if>
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pioneer_jf
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.PioneerJf">
+    insert into pioneer_jf (id, dy_id, zf, 
+      fz1, fz2, fz3, fz4, 
+      fz5, fz6, fz7, fz8, 
+      dfr, create_time, delflag, 
+      jd, nd)
+    values (#{id,jdbcType=BIGINT}, #{dyId,jdbcType=VARCHAR}, #{zf,jdbcType=INTEGER}, 
+      #{fz1,jdbcType=INTEGER}, #{fz2,jdbcType=INTEGER}, #{fz3,jdbcType=INTEGER}, #{fz4,jdbcType=INTEGER}, 
+      #{fz5,jdbcType=INTEGER}, #{fz6,jdbcType=INTEGER}, #{fz7,jdbcType=INTEGER}, #{fz8,jdbcType=INTEGER}, 
+      #{dfr,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=CHAR}, 
+      #{jd,jdbcType=CHAR}, #{nd,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.PioneerJf">
+    insert into pioneer_jf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dyId != null">
+        dy_id,
+      </if>
+      <if test="zf != null">
+        zf,
+      </if>
+      <if test="fz1 != null">
+        fz1,
+      </if>
+      <if test="fz2 != null">
+        fz2,
+      </if>
+      <if test="fz3 != null">
+        fz3,
+      </if>
+      <if test="fz4 != null">
+        fz4,
+      </if>
+      <if test="fz5 != null">
+        fz5,
+      </if>
+      <if test="fz6 != null">
+        fz6,
+      </if>
+      <if test="fz7 != null">
+        fz7,
+      </if>
+      <if test="fz8 != null">
+        fz8,
+      </if>
+      <if test="dfr != null">
+        dfr,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+      <if test="jd != null">
+        jd,
+      </if>
+      <if test="nd != null">
+        nd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dyId != null">
+        #{dyId,jdbcType=VARCHAR},
+      </if>
+      <if test="zf != null">
+        #{zf,jdbcType=INTEGER},
+      </if>
+      <if test="fz1 != null">
+        #{fz1,jdbcType=INTEGER},
+      </if>
+      <if test="fz2 != null">
+        #{fz2,jdbcType=INTEGER},
+      </if>
+      <if test="fz3 != null">
+        #{fz3,jdbcType=INTEGER},
+      </if>
+      <if test="fz4 != null">
+        #{fz4,jdbcType=INTEGER},
+      </if>
+      <if test="fz5 != null">
+        #{fz5,jdbcType=INTEGER},
+      </if>
+      <if test="fz6 != null">
+        #{fz6,jdbcType=INTEGER},
+      </if>
+      <if test="fz7 != null">
+        #{fz7,jdbcType=INTEGER},
+      </if>
+      <if test="fz8 != null">
+        #{fz8,jdbcType=INTEGER},
+      </if>
+      <if test="dfr != null">
+        #{dfr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="jd != null">
+        #{jd,jdbcType=CHAR},
+      </if>
+      <if test="nd != null">
+        #{nd,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerJf">
+    update pioneer_jf
+    <set>
+      <if test="dyId != null">
+        dy_id = #{dyId,jdbcType=VARCHAR},
+      </if>
+      <if test="zf != null">
+        zf = #{zf,jdbcType=INTEGER},
+      </if>
+      <if test="fz1 != null">
+        fz1 = #{fz1,jdbcType=INTEGER},
+      </if>
+      <if test="fz2 != null">
+        fz2 = #{fz2,jdbcType=INTEGER},
+      </if>
+      <if test="fz3 != null">
+        fz3 = #{fz3,jdbcType=INTEGER},
+      </if>
+      <if test="fz4 != null">
+        fz4 = #{fz4,jdbcType=INTEGER},
+      </if>
+      <if test="fz5 != null">
+        fz5 = #{fz5,jdbcType=INTEGER},
+      </if>
+      <if test="fz6 != null">
+        fz6 = #{fz6,jdbcType=INTEGER},
+      </if>
+      <if test="fz7 != null">
+        fz7 = #{fz7,jdbcType=INTEGER},
+      </if>
+      <if test="fz8 != null">
+        fz8 = #{fz8,jdbcType=INTEGER},
+      </if>
+      <if test="dfr != null">
+        dfr = #{dfr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="jd != null">
+        jd = #{jd,jdbcType=CHAR},
+      </if>
+      <if test="nd != null">
+        nd = #{nd,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerJf">
+    update pioneer_jf
+    set dy_id = #{dyId,jdbcType=VARCHAR},
+      zf = #{zf,jdbcType=INTEGER},
+      fz1 = #{fz1,jdbcType=INTEGER},
+      fz2 = #{fz2,jdbcType=INTEGER},
+      fz3 = #{fz3,jdbcType=INTEGER},
+      fz4 = #{fz4,jdbcType=INTEGER},
+      fz5 = #{fz5,jdbcType=INTEGER},
+      fz6 = #{fz6,jdbcType=INTEGER},
+      fz7 = #{fz7,jdbcType=INTEGER},
+      fz8 = #{fz8,jdbcType=INTEGER},
+      dfr = #{dfr,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      delflag = #{delflag,jdbcType=CHAR},
+      jd = #{jd,jdbcType=CHAR},
+      nd = #{nd,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

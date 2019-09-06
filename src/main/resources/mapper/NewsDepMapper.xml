@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.NewsDepMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.NewsDep">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="news_id" property="newsId" jdbcType="INTEGER" />
+		<result column="dep_id" property="depId" jdbcType="INTEGER" />
+		<result column="dep_name" property="depName" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="DATE" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="dep_need_receive_num" property="depNeedReceiveNum"
+			jdbcType="INTEGER" />
+		<result column="dep_has_receive_num" property="depHasReceiveNum"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, news_id, dep_id, dep_name, create_time, create_id, delflag, yhzh,dep_need_receive_num, dep_has_receive_num
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from news_dep
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from news_dep
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.NewsDep">
+		insert into news_dep (id, news_id, dep_id,
+		dep_name, create_time, create_id,
+		delflag, yhzh)
+		values (#{id,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER},
+		#{depId,jdbcType=INTEGER},
+		#{depName,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createId,jdbcType=VARCHAR},
+		#{delflag,jdbcType=CHAR}, #{yhzh,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.NewsDep">
+		insert into news_dep
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="newsId != null">
+				news_id,
+			</if>
+			<if test="depId != null">
+				dep_id,
+			</if>
+			<if test="depName != null">
+				dep_name,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createId != null">
+				create_id,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="depNeedReceiveNum != null">
+				dep_need_receive_num,
+			</if>
+			<if test="depHasReceiveNum != null">
+				dep_has_receive_num,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="newsId != null">
+				#{newsId,jdbcType=INTEGER},
+			</if>
+			<if test="depId != null">
+				#{depId,jdbcType=INTEGER},
+			</if>
+			<if test="depName != null">
+				#{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="depNeedReceiveNum != null">
+				#{depNeedReceiveNum,jdbcType=INTEGER},
+			</if>
+			<if test="depHasReceiveNum != null">
+				#{depHasReceiveNum,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.NewsDep">
+		update news_dep
+		<set>
+			<if test="newsId != null">
+				news_id = #{newsId,jdbcType=INTEGER},
+			</if>
+			<if test="depId != null">
+				dep_id = #{depId,jdbcType=INTEGER},
+			</if>
+			<if test="depName != null">
+				dep_name = #{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=DATE},
+			</if>
+			<if test="createId != null">
+				create_id = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				yhzh = #{yhzh,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.NewsDep">
+		update news_dep
+		set news_id = #{newsId,jdbcType=INTEGER},
+		dep_id = #{depId,jdbcType=INTEGER},
+		dep_name = #{depName,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=DATE},
+		create_id = #{createId,jdbcType=VARCHAR},
+		delflag = #{delflag,jdbcType=CHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getNewsIds" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select news_id
+		from news_dep
+		where dep_name = #{depName}
+	</select>
+	<select id="selectIdByNewsDep" parameterType="com.jtzh.entity.NewsDep"
+		resultType="java.lang.Integer">
+		select
+		id
+		from news_dep
+		where news_id = #{newsId,jdbcType=INTEGER} and dep_name = #{depName}
+	</select>
+	<update id="updateDepHasReceiveNum">
+		update news_dep
+		set
+		dep_has_receive_num = dep_has_receive_num + 1
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+</mapper>

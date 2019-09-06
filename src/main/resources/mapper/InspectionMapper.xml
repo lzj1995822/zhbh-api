@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.InspectionMapper">
+	<resultMap id="BaseResultMap"
+		type="com.jtzh.entity.InspectionRecord">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="number" property="number" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="department" property="department" jdbcType="CHAR" />
+		<result column="people" property="people" jdbcType="VARCHAR" />
+		<result column="attachment_source" property="attachmentSource" jdbcType="CHAR" />
+		<result column="x" property="x" jdbcType="VARCHAR" />
+		<result column="y" property="y" jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="createId" jdbcType="VARCHAR" property="createId" />
+		<result column="createTime" jdbcType="DATE" property="createTime" />
+		<result column="isdeleted" jdbcType="VARCHAR" property="isdeleted" />
+		<result column="start_time" property="startTime" jdbcType="VARCHAR" />
+		<result column="end_time" property="endTime" jdbcType="VARCHAR" />
+		<result column="trail" property="trail" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, number, name, address,
+		department,
+		people,
+		attachment_source,
+		x, y, yhzh, createId,
+		createTime, isdeleted,start_time,end_time,trail
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from inspection_record
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<insert id="insert"
+		parameterType="com.jtzh.entity.InspectionRecord">
+		insert into
+		inspection_record (id, number, name,
+		address,
+		department, people,
+		attachment_source,
+		x, y, yhzh, createId,
+		createTime, isdeleted)
+		values (#{id,jdbcType=INTEGER},
+		#{number,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{department,jdbcType=CHAR},
+		#{people,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR},
+		#{x,jdbcType=VARCHAR},#{y,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE},
+		#{isdeleted,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.jtzh.entity.InspectionRecord">
+		insert into inspection_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="department != null">
+				department,
+			</if>
+			<if test="people != null">
+				people,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="x != null">
+				x,
+			</if>
+			<if test="y != null">
+				y,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="createId != null">
+				createId,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="isdeleted != null">
+				isdeleted,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				#{department,jdbcType=CHAR},
+			</if>
+			<if test="people != null">
+				#{people,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="x != null">
+				#{x,jdbcType=VARCHAR},
+			</if>
+			<if test="y != null">
+				#{y,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="isdeleted != null">
+				#{isdeleted,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="selectInsTotal"
+		parameterType="com.jtzh.pojo.InspectionParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from inspection_record
+		where isdeleted = '0'
+		<if test="page.key != null and page.key != ''">
+			and (number like concat('%', #{page.key},'%')
+			or name like concat('%', #{page.key},'%')
+			or address like concat('%', #{page.key},'%')
+			or department like concat('%', #{page.key},'%')
+			or people like concat('%', #{page.key},'%')
+			or yhzh like concat('%', #{page.key},'%')
+			or createId like concat('%', #{page.key},'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo"
+		parameterType="com.jtzh.pojo.InspectionParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from inspection_record
+		where isdeleted = '0'
+		<if test="page.key != null and page.key != ''">
+			and (number like concat('%', #{page.key},'%')
+			or name like concat('%', #{page.key},'%')
+			or address like concat('%', #{page.key},'%')
+			or department like concat('%', #{page.key},'%')
+			or people like concat('%', #{page.key},'%')
+			or yhzh like concat('%', #{page.key},'%')
+			or createId like concat('%', #{page.key},'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		order by createTime desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="getInspectionInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from inspection_record
+		where id = #{id}
+	</select>
+	<update id="deleteInspection">
+		update inspection_record
+		set
+		isdeleted = '1'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateInspection"
+		parameterType="com.jtzh.entity.InspectionRecord">
+		<!-- WARNING - @mbggenerated This element is automatically generated by 
+			MyBatis Generator, do not modify. This element was generated on Wed Jul 18 
+			10:32:41 CST 2018. -->
+		update inspection_record
+		set number = #{number,jdbcType=VARCHAR},
+			name = #{name,jdbcType=VARCHAR},
+			address = #{address,jdbcType=VARCHAR},
+			department = #{department,jdbcType=CHAR},
+			people = #{people,jdbcType=VARCHAR},
+			x = #{x,jdbcType=VARCHAR},
+			y = #{y,jdbcType=VARCHAR},
+			yhzh = #{yhzh,jdbcType=VARCHAR},
+			start_time = #{startTime,jdbcType=VARCHAR},
+			end_time = #{endTime,jdbcType=VARCHAR},
+			trail = #{trail,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertInspection"
+		parameterType="com.jtzh.entity.InspectionRecord">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		<!-- WARNING - @mbggenerated This element is automatically generated by 
+			MyBatis Generator, do not modify. This element was generated on Wed Jul 18 
+			10:32:41 CST 2018. -->
+		insert into
+		inspection_record (number, name,
+		address,
+		department, people,
+		attachment_source,
+		x, y, yhzh, createId,
+		createTime, isdeleted,
+		start_time, end_time, trail
+		)
+		values (
+		#{number,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{department,jdbcType=CHAR},
+		#{people,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR},
+		#{x,jdbcType=VARCHAR},#{y,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE},
+		#{isdeleted,jdbcType=VARCHAR},
+		#{startTime,jdbcType=VARCHAR},
+		#{endTime,jdbcType=VARCHAR},
+		#{trail,jdbcType=VARCHAR})
+	</insert>
+	<select id="countInspectionState" resultType="com.jtzh.pojo.CountHiddenAndInspection">
+		select people,count(id) as count from
+		inspection_record where isdeleted  = '0'
+		group by people
+	</select>
+	<select id="countInspectionByYear" resultType="com.jtzh.pojo.CountQuarter">
+    	select count(id) as count,QUARTER(createTime) as quarter from inspection_record where YEAR(createTime) = #{year} and isdeleted = '0' GROUP BY QUARTER(createTime) 
+    </select>
+	<select id="countInspectionByMonth" resultType="com.jtzh.pojo.CountMonth">
+    	select count(id) as count,MONTH(createTime) as month from inspection_record where YEAR(createTime) = #{year} and isdeleted = '0' GROUP BY MONTH(createTime) 
+    </select>
+    <select id="countInspectionByDay" resultType="com.jtzh.pojo.CountDay">
+    	select count(id) as count,DAYNAME(createTime) as dayName from inspection_record where YEAR(createTime) = #{year} and isdeleted = '0' GROUP BY DAYNAME(createTime) 
+    </select>
+    <select id="selectInfoWeb" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from inspection_record
+		where isdeleted = '0'
+	</select>
+</mapper>

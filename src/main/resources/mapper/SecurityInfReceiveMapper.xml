@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.SecurityInfReceiveMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.SecurityInfReceive">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="news_id" property="newsId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="is_receive" property="isReceive" jdbcType="CHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="attachment_source" property="attachmentSource"
+			jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, news_id, user_id, is_receive, description,
+		attachment_source,
+		create_time, create_id,
+		delflag, yhzh
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from security_inf_receive
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		security_inf_receive
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.SecurityInfReceive">
+		insert into
+		security_inf_receive (id, news_id, user_id,
+		is_receive, description,
+		attachment_source,
+		create_time, create_id, delflag,
+		yhzh)
+		values
+		(#{id,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{isReceive,jdbcType=CHAR},
+		#{description,jdbcType=VARCHAR}, #{attachmentSource,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR},
+		#{delflag,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.SecurityInfReceive">
+		insert into security_inf_receive
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="newsId != null">
+				news_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="isReceive != null">
+				is_receive,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createId != null">
+				create_id,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="newsId != null">
+				#{newsId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="isReceive != null">
+				#{isReceive,jdbcType=CHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.SecurityInfReceive">
+		update security_inf_receive
+		<set>
+			<if test="newsId != null">
+				news_id = #{newsId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="isReceive != null">
+				is_receive = #{isReceive,jdbcType=CHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source = #{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				create_id = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				yhzh = #{yhzh,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.SecurityInfReceive">
+		update
+		security_inf_receive
+		set news_id = #{newsId,jdbcType=INTEGER},
+		user_id =
+		#{userId,jdbcType=INTEGER},
+		is_receive = #{isReceive,jdbcType=CHAR},
+		description = #{description,jdbcType=VARCHAR},
+		attachment_source =
+		#{attachmentSource,jdbcType=CHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		create_id =
+		#{createId,jdbcType=VARCHAR},
+		delflag = #{delflag,jdbcType=CHAR},
+		yhzh =
+		#{yhzh,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="hasReceiveOrNot" parameterType="com.jtzh.entity.SecurityInfReceive"
+		resultType="java.lang.Integer">
+		select
+		count(1)
+		from security_inf_receive
+		where news_id =
+		#{newsId,jdbcType=INTEGER} and user_id =
+		#{userId,jdbcType=INTEGER} and is_receive = '2'
+	</select>
+	<select id="hasReadOrNot" parameterType="com.jtzh.entity.SecurityInfReceive"
+		resultType="java.lang.Integer">
+		select
+		count(1)
+		from security_inf_receive
+		where news_id =
+		#{newsId,jdbcType=INTEGER} and user_id =
+		#{userId,jdbcType=INTEGER} and is_receive = '1'
+	</select>
+	<select id="getReceiveInf" parameterType="com.jtzh.entity.SecurityInfReceive"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from security_inf_receive
+		where news_id =
+		#{newsId,jdbcType=INTEGER} and user_id =
+		#{userId,jdbcType=INTEGER}
+	</select>
+	<insert id="insertSecurityInfReceive" parameterType="com.jtzh.entity.SecurityInfReceive">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		security_inf_receive (id, news_id, user_id,
+		is_receive, description,
+		attachment_source,
+		create_time, create_id, delflag,
+		yhzh)
+		values
+		(#{id,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{isReceive,jdbcType=CHAR},
+		#{description,jdbcType=VARCHAR}, #{attachmentSource,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR},
+		#{delflag,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR})
+	</insert>
+	<select id="getSafeNoticeDetail" resultType="com.jtzh.responsevo.SecurityInfReceiveVo"
+		parameterType="com.jtzh.entity.SecurityInfReceive">
+		select
+		a.id,a.news_id as newsId,a.user_id as userId,a.is_receive as isReceive,
+		a.description,a.create_time as createTime,b.title,b.content,b.enclosure,
+		c.UINickname as nickName,c.UIRealName as realName,c.UISubordinateDepartment
+		as depName,c.UISubordinateVillage as vilName
+		from security_inf_receive a left join security_inf b on a.news_id = b.id
+		left join UserInformation c on a.user_id = c.id
+		where news_id = #{newsId,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
+	</select>
+	<select id="getReceiveByNewsId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from security_inf_receive
+		where news_id = #{newsId,jdbcType=INTEGER}
+	</select>
+</mapper>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.PioneerOrgMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerOrg">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="org_number" property="orgNumber" jdbcType="VARCHAR" />
+		<result column="party_committee" property="partyCommittee"
+			jdbcType="VARCHAR" />
+		<result column="org_name" property="orgName" jdbcType="VARCHAR" />
+		<result column="org_level" property="orgLevel" jdbcType="VARCHAR" />
+		<result column="org_nature" property="orgNature" jdbcType="VARCHAR" />
+		<result column="branch_secretary" property="branchSecretary"
+			jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="superior_id" property="superiorId" jdbcType="INTEGER" />
+		<result column="leader_sex" property="leaderSex" jdbcType="CHAR" />
+		<result column="leader_phone" property="leaderPhone" jdbcType="VARCHAR" />
+		<result column="create_id" property="createId"
+			jdbcType="VARCHAR" />
+        <result column="lat" property="lat"
+                jdbcType="VARCHAR" />
+        <result column="lon" property="lon"
+                jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, org_number, party_committee, org_name, org_level, org_nature,
+		branch_secretary,create_time, delflag, yhzh, superior_id, leader_sex, 
+		leader_phone, create_id,lon,lat
+	</sql>
+	<select id="selectAllOrg" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pioneer_org
+	</select>
+
+	<select id="getOrgCount" resultType="java.util.HashMap">
+		SELECT party_org as orgName,count(1) as total FROM pioneer_user GROUP BY party_org
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from pioneer_org
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from pioneer_org
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.PioneerOrg">
+		insert into pioneer_org (id, org_number, party_committee,
+		org_name, org_level, org_nature,
+		branch_secretary, create_time, delflag,
+		yhzh, superior_id, leader_sex,
+		leader_phone, create_id)
+		values (#{id,jdbcType=INTEGER}, #{orgNumber,jdbcType=VARCHAR},
+		#{partyCommittee,jdbcType=VARCHAR},
+		#{orgName,jdbcType=VARCHAR}, #{orgLevel,jdbcType=VARCHAR}, #{orgNature,jdbcType=VARCHAR},
+		#{branchSecretary,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR}, #{superiorId,jdbcType=INTEGER}, #{leaderSex,jdbcType=CHAR},
+		#{leaderPhone,jdbcType=VARCHAR},#{createId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.PioneerOrg">
+		insert into pioneer_org
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="orgNumber != null">
+				org_number,
+			</if>
+			<if test="partyCommittee != null">
+				party_committee,
+			</if>
+			<if test="orgName != null">
+				org_name,
+			</if>
+			<if test="orgLevel != null">
+				org_level,
+			</if>
+			<if test="orgNature != null">
+				org_nature,
+			</if>
+			<if test="branchSecretary != null">
+				branch_secretary,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="superiorId != null">
+				superior_id,
+			</if>
+			<if test="leaderSex != null">
+				leader_sex,
+			</if>
+			<if test="leaderPhone != null">
+				leader_phone,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="orgNumber != null">
+				#{orgNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="partyCommittee != null">
+				#{partyCommittee,jdbcType=VARCHAR},
+			</if>
+			<if test="orgName != null">
+				#{orgName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgLevel != null">
+				#{orgLevel,jdbcType=CHAR},
+			</if>
+			<if test="orgNature != null">
+				#{orgNature,jdbcType=VARCHAR},
+			</if>
+			<if test="branchSecretary != null">
+				#{branchSecretary,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="superiorId != null">
+				#{superiorId,jdbcType=INTEGER},
+			</if>
+			<if test="leaderSex != null">
+				#{leaderSex,jdbcType=CHAR},
+			</if>
+			<if test="leaderPhone != null">
+				#{leaderPhone,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerOrg">
+		update pioneer_org
+		<set>
+			<if test="orgNumber != null">
+				org_number = #{orgNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="partyCommittee != null">
+				party_committee = #{partyCommittee,jdbcType=VARCHAR},
+			</if>
+			<if test="orgName != null">
+				org_name = #{orgName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgLevel != null">
+				org_level = #{orgLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="orgNature != null">
+				org_nature = #{orgNature,jdbcType=VARCHAR},
+			</if>
+			<if test="branchSecretary != null">
+				branch_secretary = #{branchSecretary,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				yhzh = #{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="superiorId != null">
+				superior_id = #{superiorId,jdbcType=INTEGER},
+			</if>
+			<if test="leaderSex != null">
+				leader_sex = #{leaderSex,jdbcType=CHAR},
+			</if>
+			<if test="leaderPhone != null">
+				leader_phone = #{leaderPhone,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerOrg">
+		update pioneer_org
+		set org_number = #{orgNumber,jdbcType=VARCHAR},
+		party_committee = #{partyCommittee,jdbcType=VARCHAR},
+		org_name = #{orgName,jdbcType=VARCHAR},
+		org_level = #{orgLevel,jdbcType=VARCHAR},
+		org_nature = #{orgNature,jdbcType=VARCHAR},
+		branch_secretary = #{branchSecretary,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		delflag = #{delflag,jdbcType=CHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR},
+		superior_id = #{superiorId,jdbcType=INTEGER},
+		leader_sex = #{leaderSex,jdbcType=CHAR},
+		leader_phone = #{leaderPhone,jdbcType=VARCHAR},
+		create_id = #{createId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.PioneerOrgPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from pioneer_org
+		where delflag != 'D'
+		<if test="page.orgName != null and page.orgName != ''">
+			and org_name like concat('%', #{page.orgName},
+			'%')
+		</if>
+		<if test="page.leaderName != null and page.leaderName != ''">
+			and branch_secretary like concat('%', #{page.leaderName},
+			'%')
+		</if>
+		<if test="page.leaderSex != null and page.leaderSex != ''">
+			and leader_sex like concat('%', #{page.leaderSex},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.PioneerOrgPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pioneer_org
+		where delflag != 'D'
+		<if test="page.orgName != null and page.orgName != ''">
+			and org_name like concat('%', #{page.orgName},
+			'%')
+		</if>
+		<if test="page.leaderName != null and page.leaderName != ''">
+			and branch_secretary like concat('%', #{page.leaderName},
+			'%')
+		</if>
+		<if test="page.leaderSex != null and page.leaderSex != ''">
+			and leader_sex like concat('%', #{page.leaderSex},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectOrg" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pioneer_org
+		where id = #{id}
+	</select>
+	<update id="deleteOrg">
+		update pioneer_org
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectBySId" resultType="com.jtzh.pojo.PioneerOrgTree">
+		select branch_secretary as name
+		,org_name as departName, org_level as orgLevel,id
+		from pioneer_org
+		where delflag
+		!='D'
+		and
+		superior_id = #{id}
+	</select>
+	<select id="getCountList" resultType="long">
+    	select
+    	count(id)
+    	from pioneer_org
+    	where superior_id = 0 and
+    	delflag = "A"
+    </select>
+    <select id="selectBySId2" resultType="com.jtzh.pojo.PioneerOrgCount">
+		select id,org_name as orgName 
+		from pioneer_org
+		where delflag ='A'
+		and
+		superior_id = #{id}
+	</select>
+	<select id="getCountOrgList" resultType="long">
+    	select
+    	count(id)
+    	from pioneer_org
+    	where superior_id = #{id} and delflag = 'A'
+    </select>
+</mapper>

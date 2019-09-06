@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.WisdomParkTalentMapper" >
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.WisdomParkTalent" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="talent_name" property="talentName" jdbcType="CHAR" />
+    <result column="talent_identity" property="talentIdentity" jdbcType="VARCHAR" />
+    <result column="talent_education_degree" property="talentEducationDegree" jdbcType="VARCHAR" />
+    <result column="graduate_school" property="graduateSchool" jdbcType="VARCHAR" />
+    <result column="graduate_major" property="graduateMajor" jdbcType="VARCHAR" />
+    <result column="talent_address" property="talentAddress" jdbcType="VARCHAR" />
+    <result column="registered_residence" property="registeredResidence" jdbcType="VARCHAR" />
+    <result column="enterprise_belong" property="enterpriseBelong" jdbcType="VARCHAR" />
+    <result column="is_full_time" property="isFullTime" jdbcType="CHAR" />
+    <result column="talent_plan_level" property="talentPlanLevel" jdbcType="VARCHAR" />
+    <result column="talent_plan_name" property="talentPlanName" jdbcType="VARCHAR" />
+    <result column="talent_plan_start_time" property="talentPlanStartTime" jdbcType="DATE" />
+    <result column="talent_plan_period" property="talentPlanPeriod" jdbcType="VARCHAR" />
+    <result column="position_x" property="positionX" jdbcType="VARCHAR" />
+    <result column="position_y" property="positionY" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="CHAR" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+     <result column="enterprise_address" property="enterpriseAddress" jdbcType="VARCHAR" />
+     <result column="talent_portrait" property="talentPortrait" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, talent_name, talent_identity, talent_education_degree, graduate_school, graduate_major, 
+    talent_address, registered_residence, enterprise_belong, is_full_time, talent_plan_level, 
+    talent_plan_name, talent_plan_start_time, talent_plan_period, position_x, position_y, 
+    is_deleted, create_id, create_time,enterprise_address,talent_portrait
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wisdom_park_talent
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wisdom_park_talent
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.WisdomParkTalent" >
+    insert into wisdom_park_talent (id, talent_name, talent_identity, 
+      talent_education_degree, graduate_school, 
+      graduate_major, talent_address, registered_residence, 
+      enterprise_belong, is_full_time, talent_plan_level, 
+      talent_plan_name, talent_plan_start_time, talent_plan_period, 
+      position_x, position_y, is_deleted, 
+      create_id, create_time,enterprise_address,talent_portrait)
+    values (#{id,jdbcType=INTEGER}, #{talentName,jdbcType=CHAR}, #{talentIdentity,jdbcType=VARCHAR}, 
+      #{talentEducationDegree,jdbcType=VARCHAR}, #{graduateSchool,jdbcType=VARCHAR}, 
+      #{graduateMajor,jdbcType=VARCHAR}, #{talentAddress,jdbcType=VARCHAR}, #{registeredResidence,jdbcType=VARCHAR}, 
+      #{enterpriseBelong,jdbcType=VARCHAR}, #{isFullTime,jdbcType=CHAR}, #{talentPlanLevel,jdbcType=VARCHAR}, 
+      #{talentPlanName,jdbcType=VARCHAR}, #{talentPlanStartTime,jdbcType=DATE}, #{talentPlanPeriod,jdbcType=VARCHAR}, 
+      #{positionX,jdbcType=VARCHAR}, #{positionY,jdbcType=VARCHAR}, #{isDeleted,jdbcType=CHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},#{enterpriseAddress,jdbcType=VARCHAR},#{talentPortrait,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.WisdomParkTalent" >
+    insert into wisdom_park_talent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="talentName != null" >
+        talent_name,
+      </if>
+      <if test="talentIdentity != null" >
+        talent_identity,
+      </if>
+      <if test="talentEducationDegree != null" >
+        talent_education_degree,
+      </if>
+      <if test="graduateSchool != null" >
+        graduate_school,
+      </if>
+      <if test="graduateMajor != null" >
+        graduate_major,
+      </if>
+      <if test="talentAddress != null" >
+        talent_address,
+      </if>
+      <if test="registeredResidence != null" >
+        registered_residence,
+      </if>
+      <if test="enterpriseBelong != null" >
+        enterprise_belong,
+      </if>
+      <if test="isFullTime != null" >
+        is_full_time,
+      </if>
+      <if test="talentPlanLevel != null" >
+        talent_plan_level,
+      </if>
+      <if test="talentPlanName != null" >
+        talent_plan_name,
+      </if>
+      <if test="talentPlanStartTime != null" >
+        talent_plan_start_time,
+      </if>
+      <if test="talentPlanPeriod != null" >
+        talent_plan_period,
+      </if>
+      <if test="positionX != null" >
+        position_x,
+      </if>
+      <if test="positionY != null" >
+        position_y,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+       <if test="enterpriseAddress != null" >
+         enterprise_address,
+       </if>
+       <if test="talentPortrait != null" >
+         talent_portrait,
+       </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="talentName != null" >
+        #{talentName,jdbcType=CHAR},
+      </if>
+      <if test="talentIdentity != null" >
+        #{talentIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="talentEducationDegree != null" >
+        #{talentEducationDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateSchool != null" >
+        #{graduateSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateMajor != null" >
+        #{graduateMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="talentAddress != null" >
+        #{talentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredResidence != null" >
+        #{registeredResidence,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseBelong != null" >
+        #{enterpriseBelong,jdbcType=VARCHAR},
+      </if>
+      <if test="isFullTime != null" >
+        #{isFullTime,jdbcType=CHAR},
+      </if>
+      <if test="talentPlanLevel != null" >
+        #{talentPlanLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="talentPlanName != null" >
+        #{talentPlanName,jdbcType=VARCHAR},
+      </if>
+      <if test="talentPlanStartTime != null" >
+        #{talentPlanStartTime,jdbcType=DATE},
+      </if>
+      <if test="talentPlanPeriod != null" >
+        #{talentPlanPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="positionX != null" >
+        #{positionX,jdbcType=VARCHAR},
+      </if>
+      <if test="positionY != null" >
+        #{positionY,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+        <if test="enterpriseAddress != null" >
+            #{enterpriseAddress,jdbcType=VARCHAR},
+        </if>
+        <if test="talentPortrait != null" >
+            #{talentPortrait,jdbcType=VARCHAR},
+        </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.WisdomParkTalent" >
+    update wisdom_park_talent
+    <set >
+      <if test="talentName != null" >
+        talent_name = #{talentName,jdbcType=CHAR},
+      </if>
+      <if test="talentIdentity != null" >
+        talent_identity = #{talentIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="talentEducationDegree != null" >
+        talent_education_degree = #{talentEducationDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateSchool != null" >
+        graduate_school = #{graduateSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateMajor != null" >
+        graduate_major = #{graduateMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="talentAddress != null" >
+        talent_address = #{talentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredResidence != null" >
+        registered_residence = #{registeredResidence,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseBelong != null" >
+        enterprise_belong = #{enterpriseBelong,jdbcType=VARCHAR},
+      </if>
+      <if test="isFullTime != null" >
+        is_full_time = #{isFullTime,jdbcType=CHAR},
+      </if>
+      <if test="talentPlanLevel != null" >
+        talent_plan_level = #{talentPlanLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="talentPlanName != null" >
+        talent_plan_name = #{talentPlanName,jdbcType=VARCHAR},
+      </if>
+      <if test="talentPlanStartTime != null" >
+        talent_plan_start_time = #{talentPlanStartTime,jdbcType=DATE},
+      </if>
+      <if test="talentPlanPeriod != null" >
+        talent_plan_period = #{talentPlanPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="positionX != null" >
+        position_x = #{positionX,jdbcType=VARCHAR},
+      </if>
+      <if test="positionY != null" >
+        position_y = #{positionY,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+       <if test="enterpriseAddress != null" >
+           enterprise_address=#{enterpriseAddress,jdbcType=VARCHAR},
+       </if>
+       <if test="talentPortrait != null" >
+           talent_portrait=#{talentPortrait,jdbcType=VARCHAR},
+       </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.WisdomParkTalent" >
+    update wisdom_park_talent
+    set talent_name = #{talentName,jdbcType=CHAR},
+      talent_identity = #{talentIdentity,jdbcType=VARCHAR},
+      talent_education_degree = #{talentEducationDegree,jdbcType=VARCHAR},
+      graduate_school = #{graduateSchool,jdbcType=VARCHAR},
+      graduate_major = #{graduateMajor,jdbcType=VARCHAR},
+      talent_address = #{talentAddress,jdbcType=VARCHAR},
+      registered_residence = #{registeredResidence,jdbcType=VARCHAR},
+      enterprise_belong = #{enterpriseBelong,jdbcType=VARCHAR},
+      is_full_time = #{isFullTime,jdbcType=CHAR},
+      talent_plan_level = #{talentPlanLevel,jdbcType=VARCHAR},
+      talent_plan_name = #{talentPlanName,jdbcType=VARCHAR},
+      talent_plan_start_time = #{talentPlanStartTime,jdbcType=DATE},
+      talent_plan_period = #{talentPlanPeriod,jdbcType=VARCHAR},
+      position_x = #{positionX,jdbcType=VARCHAR},
+      position_y = #{positionY,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=CHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      enterprise_address=#{enterpriseAddress,jdbcType=VARCHAR},
+      talent_portrait=#{talentPortrait,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectTotal" parameterType="com.jtzh.pojo.DepPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from wisdom_park_talent
+		where is_deleted != '1'
+		<if test="page.key != null and page.key != ''">
+			and (talent_name like concat('%', #{page.key},
+			'%') or talent_identity like concat('%', #{page.key},
+			'%') or talent_education_degree like concat('%', #{page.key},
+			'%') or graduate_school like concat('%', #{page.key},
+			'%') or graduate_major like concat('%', #{page.key},
+			'%') or talent_address like concat('%', #{page.key},
+			'%') or registered_residence like concat('%', #{page.key},
+			'%') or enterprise_belong like concat('%', #{page.key},
+			'%') or is_full_time like concat('%', #{page.key},
+			'%') or talent_plan_level like concat('%', #{page.key},
+			'%') or talent_plan_name like concat('%', #{page.key},
+			'%') or talent_plan_period like concat('%', #{page.key},
+			'%') or position_x like concat('%', #{page.key},
+			'%') or position_y like concat('%', #{page.key},
+            '%') or enterprise_address like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and talent_plan_start_time <![CDATA[>= ]]> #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and talent_plan_start_time <![CDATA[<= ]]> #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.UserPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wisdom_park_talent
+		where is_deleted != '1'
+		<if test="page.key != null and page.key != ''">
+			and (talent_name like concat('%', #{page.key},
+			'%') or talent_identity like concat('%', #{page.key},
+			'%') or talent_education_degree like concat('%', #{page.key},
+			'%') or graduate_school like concat('%', #{page.key},
+			'%') or graduate_major like concat('%', #{page.key},
+			'%') or talent_address like concat('%', #{page.key},
+			'%') or registered_residence like concat('%', #{page.key},
+			'%') or enterprise_belong like concat('%', #{page.key},
+			'%') or is_full_time like concat('%', #{page.key},
+			'%') or talent_plan_level like concat('%', #{page.key},
+			'%') or talent_plan_name like concat('%', #{page.key},
+			'%') or talent_plan_period like concat('%', #{page.key},
+			'%') or position_x like concat('%', #{page.key},
+			'%') or position_y like concat('%', #{page.key},
+            '%') or enterprise_address like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+        <if test="page.startTime != null and page.startTime != ''">
+            and talent_plan_start_time <![CDATA[>= ]]> #{page.startTime}
+        </if>
+        <if test="page.endTime != null and page.endTime != ''">
+            and talent_plan_start_time <![CDATA[<= ]]> #{page.endTime}
+        </if>
+		order by talent_plan_start_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectWisdomParkTalent" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wisdom_park_talent
+		where id = #{id}
+	</select>
+	<update id="deleteWisdomParkTalent">
+		update wisdom_park_talent
+		set
+		is_deleted = '1'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	 <select id="selectInfoWeb" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wisdom_park_talent
+		where is_deleted = '0'
+	</select>
+	<select id="countWTHighestMajor" resultType="com.jtzh.pojo.CountWisdomTalent">
+		select graduate_major as type,count(id)
+		as count from
+		wisdom_park_talent where is_deleted = '0'
+		group by graduate_major
+	</select>
+	<select id="countWTDecade" resultType="com.jtzh.pojo.CountWisdomTalent">
+    	select ifnull(count(id),0) as count,YEAR(talent_plan_start_time) as type from wisdom_park_talent
+    	where talent_plan_start_time between str_to_date
+    	('2010-01-01 00:00:00', '%Y-%m-%d %H:%i:%s') and
+    	str_to_date ('2019-12-31 23:59:59', '%Y-%m-%d %H:%i:%s')
+    	and is_deleted = '0' GROUP BY YEAR(talent_plan_start_time) 
+    </select>
+</mapper>

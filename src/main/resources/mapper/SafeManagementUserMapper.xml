@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.SafeManagementUserMapper" >
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.SafeManagementUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="CHAR" />
+    <result column="user_sex" property="userSex" jdbcType="CHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="dep_name" property="depName" jdbcType="VARCHAR" />
+    <result column="user_position" property="userPosition" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="delflag" property="delflag" jdbcType="CHAR" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, user_sex, user_phone, dep_name, user_position, remark, address, delflag, 
+    create_id, create_time, yhzh
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from safe_management_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from safe_management_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.SafeManagementUser" >
+    insert into safe_management_user (id, user_name, user_sex, 
+      user_phone, dep_name, user_position, 
+      remark, address, delflag, 
+      create_id, create_time, yhzh
+      )
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=CHAR}, #{userSex,jdbcType=CHAR}, 
+      #{userPhone,jdbcType=VARCHAR}, #{depName,jdbcType=VARCHAR}, #{userPosition,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{delflag,jdbcType=CHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{yhzh,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.SafeManagementUser" >
+    insert into safe_management_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="depName != null" >
+        dep_name,
+      </if>
+      <if test="userPosition != null" >
+        user_position,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="delflag != null" >
+        delflag,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="yhzh != null" >
+        yhzh,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=CHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="depName != null" >
+        #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPosition != null" >
+        #{userPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null" >
+        #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="yhzh != null" >
+        #{yhzh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.SafeManagementUser" >
+    update safe_management_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=CHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="depName != null" >
+        dep_name = #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPosition != null" >
+        user_position = #{userPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null" >
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="yhzh != null" >
+        yhzh = #{yhzh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.SafeManagementUser" >
+    update safe_management_user
+    set user_name = #{userName,jdbcType=CHAR},
+      user_sex = #{userSex,jdbcType=CHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      dep_name = #{depName,jdbcType=VARCHAR},
+      user_position = #{userPosition,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      delflag = #{delflag,jdbcType=CHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      yhzh = #{yhzh,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <select id="selectTotal" parameterType="com.jtzh.pojo.SafeUserPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from safe_management_user
+		where delflag != '1'
+		<if test="page.key != null and page.key != ''">
+			and (user_name like concat('%', #{page.key},
+			'%') or
+			user_sex like concat('%', #{page.key},
+			'%') or user_phone like concat('%',
+			#{page.key},
+			'%') or dep_name like concat('%', #{page.key},
+			'%') or
+			user_position like concat('%', #{page.key},
+			'%') or remark like concat('%', #{page.key},
+			'%') or
+			address like concat('%', #{page.key},
+			'%') 
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.SafeUserPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from safe_management_user
+		where delflag != '1'
+		<if test="page.key != null and page.key != ''">
+			and (user_name like concat('%', #{page.key},
+			'%') or
+			user_sex like concat('%', #{page.key},
+			'%') or user_phone like concat('%',
+			#{page.key},
+			'%') or dep_name like concat('%', #{page.key},
+			'%') or
+			user_position like concat('%', #{page.key},
+			'%') or remark like concat('%', #{page.key},
+			'%') or
+			address like concat('%', #{page.key},
+			'%') 
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectUser" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from safe_management_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<update id="deleteUser">
+		update safe_management_user
+		set
+		delflag = '1'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+</mapper>

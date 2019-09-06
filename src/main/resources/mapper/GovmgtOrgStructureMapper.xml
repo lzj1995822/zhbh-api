@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.GovmgtOrgStructureMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.GovmgtOrgStructure">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="CHAR" />
+		<result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+		<result column="user_level" property="userLevel" jdbcType="CHAR" />
+		<result column="user_position" property="userPosition"
+			jdbcType="VARCHAR" />
+		<result column="dep_name" property="depName" jdbcType="VARCHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="superior_id" property="superiorId" jdbcType="INTEGER" />
+		<result column="superior_user_name" property="superiorUserName"
+			jdbcType="CHAR" />
+		<result column="superior_dep_name" property="superiorDepName"
+			jdbcType="VARCHAR" />
+		<result column="user_sex" property="userSex" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_name, phone_number, user_level, user_position, dep_name,
+		delflag, create_time,
+		superior_id, superior_user_name, superior_dep_name, user_sex
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from govmgt_org_structure
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from govmgt_org_structure
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.GovmgtOrgStructure">
+		insert into govmgt_org_structure (id, user_name, phone_number,
+		user_level, user_position, dep_name,
+		delflag, create_time, superior_id,
+		superior_user_name, superior_dep_name, user_sex
+		)
+		values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=CHAR},
+		#{phoneNumber,jdbcType=VARCHAR},
+		#{userLevel,jdbcType=CHAR}, #{userPosition,jdbcType=VARCHAR}, #{depName,jdbcType=VARCHAR},
+		#{delflag,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{superiorId,jdbcType=INTEGER},
+		#{superiorUserName,jdbcType=CHAR}, #{superiorDepName,jdbcType=VARCHAR}, #{userSex,jdbcType=CHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.GovmgtOrgStructure">
+		insert into govmgt_org_structure
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="phoneNumber != null">
+				phone_number,
+			</if>
+			<if test="userLevel != null">
+				user_level,
+			</if>
+			<if test="userPosition != null">
+				user_position,
+			</if>
+			<if test="depName != null">
+				dep_name,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="superiorId != null">
+				superior_id,
+			</if>
+			<if test="superiorUserName != null">
+				superior_user_name,
+			</if>
+			<if test="superiorDepName != null">
+				superior_dep_name,
+			</if>
+			<if test="userSex != null">
+				user_sex,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=CHAR},
+			</if>
+			<if test="phoneNumber != null">
+				#{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="userLevel != null">
+				#{userLevel,jdbcType=CHAR},
+			</if>
+			<if test="userPosition != null">
+				#{userPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="depName != null">
+				#{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="superiorId != null">
+				#{superiorId,jdbcType=INTEGER},
+			</if>
+			<if test="superiorUserName != null">
+				#{superiorUserName,jdbcType=CHAR},
+			</if>
+			<if test="superiorDepName != null">
+				#{superiorDepName,jdbcType=VARCHAR},
+			</if>
+			<if test="userSex != null">
+				#{userSex,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.GovmgtOrgStructure">
+		update govmgt_org_structure
+		<set>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=CHAR},
+			</if>
+			<if test="phoneNumber != null">
+				phone_number = #{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="userLevel != null">
+				user_level = #{userLevel,jdbcType=CHAR},
+			</if>
+			<if test="userPosition != null">
+				user_position = #{userPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="depName != null">
+				dep_name = #{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="superiorId != null">
+				superior_id = #{superiorId,jdbcType=INTEGER},
+			</if>
+			<if test="superiorUserName != null">
+				superior_user_name = #{superiorUserName,jdbcType=CHAR},
+			</if>
+			<if test="superiorDepName != null">
+				superior_dep_name = #{superiorDepName,jdbcType=VARCHAR},
+			</if>
+			<if test="userSex != null">
+				user_sex = #{userSex,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.GovmgtOrgStructure">
+		update govmgt_org_structure
+		set user_name = #{userName,jdbcType=CHAR},
+		phone_number = #{phoneNumber,jdbcType=VARCHAR},
+		user_level = #{userLevel,jdbcType=CHAR},
+		user_position = #{userPosition,jdbcType=VARCHAR},
+		dep_name = #{depName,jdbcType=VARCHAR},
+		delflag = #{delflag,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		superior_id = #{superiorId,jdbcType=INTEGER},
+		superior_user_name = #{superiorUserName,jdbcType=CHAR},
+		superior_dep_name = #{superiorDepName,jdbcType=VARCHAR},
+		user_sex = #{userSex,jdbcType=CHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectBySId" resultType="com.jtzh.pojo.TreeParam">
+		select user_name as name ,dep_name as departName, id
+		from govmgt_org_structure
+		where delflag !='D'
+		and superior_id = #{id}
+	</select>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.TenetgrideventreturnMapper" >
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.Tenetgrideventreturn" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="eventID" property="eventid" jdbcType="BIGINT" />
+    <result column="returnReason" property="returnreason" jdbcType="VARCHAR" />
+    <result column="returnTime" property="returntime" jdbcType="TIMESTAMP" />
+    <result column="returnDep" property="returndep" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="delflag" property="delflag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, eventID, returnReason, returnTime, returnDep, type, delflag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from TENetGridEventReturn
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from TENetGridEventReturn
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.Tenetgrideventreturn" >
+    insert into TENetGridEventReturn (id, eventID, returnReason, 
+      returnTime, returnDep, type, 
+      delflag)
+    values (#{id,jdbcType=BIGINT}, #{eventid,jdbcType=BIGINT}, #{returnreason,jdbcType=VARCHAR}, 
+      #{returntime,jdbcType=TIMESTAMP}, #{returndep,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, 
+      #{delflag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.Tenetgrideventreturn" >
+    insert into TENetGridEventReturn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="eventid != null" >
+        eventID,
+      </if>
+      <if test="returnreason != null" >
+        returnReason,
+      </if>
+      <if test="returntime != null" >
+        returnTime,
+      </if>
+      <if test="returndep != null" >
+        returnDep,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="delflag != null" >
+        delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="eventid != null" >
+        #{eventid,jdbcType=BIGINT},
+      </if>
+      <if test="returnreason != null" >
+        #{returnreason,jdbcType=VARCHAR},
+      </if>
+      <if test="returntime != null" >
+        #{returntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returndep != null" >
+        #{returndep,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="delflag != null" >
+        #{delflag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.Tenetgrideventreturn" >
+    update TENetGridEventReturn
+    <set >
+      <if test="eventid != null" >
+        eventID = #{eventid,jdbcType=BIGINT},
+      </if>
+      <if test="returnreason != null" >
+        returnReason = #{returnreason,jdbcType=VARCHAR},
+      </if>
+      <if test="returntime != null" >
+        returnTime = #{returntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returndep != null" >
+        returnDep = #{returndep,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="delflag != null" >
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.Tenetgrideventreturn" >
+    update TENetGridEventReturn
+    set eventID = #{eventid,jdbcType=BIGINT},
+      returnReason = #{returnreason,jdbcType=VARCHAR},
+      returnTime = #{returntime,jdbcType=TIMESTAMP},
+      returnDep = #{returndep,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      delflag = #{delflag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

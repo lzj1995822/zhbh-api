@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.PioneerLddyMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerLddy">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="CHAR" property="xb" />
+    <result column="sr" jdbcType="VARCHAR" property="sr" />
+    <result column="rdsh" jdbcType="VARCHAR" property="rdsh" />
+    <result column="xl" jdbcType="VARCHAR" property="xl" />
+    <result column="zy" jdbcType="VARCHAR" property="zy" />
+    <result column="jzxq" jdbcType="VARCHAR" property="jzxq" />
+    <result column="lxdh" jdbcType="VARCHAR" property="lxdh" />
+    <result column="ahtc" jdbcType="VARCHAR" property="ahtc" />
+    <result column="zzgxszd" jdbcType="VARCHAR" property="zzgxszd" />
+    <result column="cjhdszzb" jdbcType="VARCHAR" property="cjhdszzb" />
+    <result column="qt" jdbcType="VARCHAR" property="qt" />
+    <result column="lon" jdbcType="VARCHAR" property="lon" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="delflag" jdbcType="CHAR" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, xm, xb, sr, rdsh, xl, zy, jzxq, lxdh, ahtc, zzgxszd, cjhdszzb, qt, create_time, 
+    delflag,lon,lat
+  </sql>
+  <select id="getLddy" parameterType="com.jtzh.pojo.KeyParam" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_lddy
+    where delflag != 'D'
+    <if test="keyparam.keyword != null and keyparam.keyword != ''" >
+		and (xm like CONCAT('%', #{keyparam.keyword},'%') or xb like CONCAT('%', #{keyparam.keyword},'%')or jzxq like CONCAT('%', #{keyparam.keyword},'%'))
+	</if>
+      <if test="keyparam.startTime != null and keyparam.startTime != ''" >
+          and create_time &gt;= #{keyparam.startTime}
+      </if>
+      <if test="keyparam.endTime != null and keyparam.endTime != ''" >
+          and create_time &lt;=  #{keyparam.endTime}
+      </if>
+	order by create_time DESC limit #{keyparam.start} ,  #{keyparam.pageSize}
+  </select>
+  
+    <select id="getLddys" parameterType="com.jtzh.pojo.KeyParam" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_lddy
+    where delflag != 'D'
+  </select>
+    <select id="getLddyTotal" parameterType="com.jtzh.pojo.KeyParam" resultType="java.lang.Integer">
+    select count(1)
+    from pioneer_lddy
+    where delflag != 'D'
+    <if test="keyparam.keyword != null and keyparam.keyword != ''" >
+      and (xm like CONCAT('%', #{keyparam.keyword},'%') or xb like CONCAT('%', #{keyparam.keyword},'%')or jzxq like CONCAT('%', #{keyparam.keyword},'%'))
+	</if>
+      <if test="keyparam.startTime != null and keyparam.startTime != ''" >
+        and create_time &gt;= #{keyparam.startTime}
+      </if>
+      <if test="keyparam.endTime != null and keyparam.endTime != ''" >
+        and create_time &lt;=  #{keyparam.endTime}
+      </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pioneer_lddy
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.PioneerLddy">
+    insert into pioneer_lddy (id, xm, xb, sr, 
+      rdsh, xl, zy, jzxq, 
+      lxdh, ahtc, zzgxszd, 
+      cjhdszzb, qt, create_time, 
+      delflag, lon, lat)
+    values (#{id,jdbcType=BIGINT}, #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=CHAR}, #{sr,jdbcType=VARCHAR}, 
+      #{rdsh,jdbcType=VARCHAR}, #{xl,jdbcType=VARCHAR}, #{zy,jdbcType=VARCHAR}, #{jzxq,jdbcType=VARCHAR}, 
+      #{lxdh,jdbcType=VARCHAR}, #{ahtc,jdbcType=VARCHAR}, #{zzgxszd,jdbcType=VARCHAR}, 
+      #{cjhdszzb,jdbcType=VARCHAR}, #{qt,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{delflag,jdbcType=CHAR}, #{lon,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.PioneerLddy">
+    insert into pioneer_lddy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="sr != null">
+        sr,
+      </if>
+      <if test="rdsh != null">
+        rdsh,
+      </if>
+      <if test="xl != null">
+        xl,
+      </if>
+      <if test="zy != null">
+        zy,
+      </if>
+      <if test="jzxq != null">
+        jzxq,
+      </if>
+      <if test="lxdh != null">
+        lxdh,
+      </if>
+      <if test="ahtc != null">
+        ahtc,
+      </if>
+      <if test="zzgxszd != null">
+        zzgxszd,
+      </if>
+      <if test="cjhdszzb != null">
+        cjhdszzb,
+      </if>
+      <if test="qt != null">
+        qt,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=CHAR},
+      </if>
+      <if test="sr != null">
+        #{sr,jdbcType=VARCHAR},
+      </if>
+      <if test="rdsh != null">
+        #{rdsh,jdbcType=VARCHAR},
+      </if>
+      <if test="xl != null">
+        #{xl,jdbcType=VARCHAR},
+      </if>
+      <if test="zy != null">
+        #{zy,jdbcType=VARCHAR},
+      </if>
+      <if test="jzxq != null">
+        #{jzxq,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ahtc != null">
+        #{ahtc,jdbcType=VARCHAR},
+      </if>
+      <if test="zzgxszd != null">
+        #{zzgxszd,jdbcType=VARCHAR},
+      </if>
+      <if test="cjhdszzb != null">
+        #{cjhdszzb,jdbcType=VARCHAR},
+      </if>
+      <if test="qt != null">
+        #{qt,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerLddy">
+    update pioneer_lddy
+    <set>
+      <if test="xm != null">
+        xm = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        xb = #{xb,jdbcType=CHAR},
+      </if>
+      <if test="sr != null">
+        sr = #{sr,jdbcType=VARCHAR},
+      </if>
+      <if test="rdsh != null">
+        rdsh = #{rdsh,jdbcType=VARCHAR},
+      </if>
+      <if test="xl != null">
+        xl = #{xl,jdbcType=VARCHAR},
+      </if>
+      <if test="zy != null">
+        zy = #{zy,jdbcType=VARCHAR},
+      </if>
+      <if test="jzxq != null">
+        jzxq = #{jzxq,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        lxdh = #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ahtc != null">
+        ahtc = #{ahtc,jdbcType=VARCHAR},
+      </if>
+      <if test="zzgxszd != null">
+        zzgxszd = #{zzgxszd,jdbcType=VARCHAR},
+      </if>
+      <if test="cjhdszzb != null">
+        cjhdszzb = #{cjhdszzb,jdbcType=VARCHAR},
+      </if>
+      <if test="qt != null">
+        qt = #{qt,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerLddy">
+    update pioneer_lddy
+    set xm = #{xm,jdbcType=VARCHAR},
+      xb = #{xb,jdbcType=CHAR},
+      sr = #{sr,jdbcType=VARCHAR},
+      rdsh = #{rdsh,jdbcType=VARCHAR},
+      xl = #{xl,jdbcType=VARCHAR},
+      zy = #{zy,jdbcType=VARCHAR},
+      jzxq = #{jzxq,jdbcType=VARCHAR},
+      lxdh = #{lxdh,jdbcType=VARCHAR},
+      ahtc = #{ahtc,jdbcType=VARCHAR},
+      zzgxszd = #{zzgxszd,jdbcType=VARCHAR},
+      cjhdszzb = #{cjhdszzb,jdbcType=VARCHAR},
+      qt = #{qt,jdbcType=VARCHAR},
+      lon = #{lon,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

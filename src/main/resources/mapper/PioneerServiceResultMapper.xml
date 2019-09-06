@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.PioneerServiceResultMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerServiceResult">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="hdid" jdbcType="BIGINT" property="hdid" />
+    <result column="hdmc" jdbcType="VARCHAR" property="hdmc" />
+    <result column="zyzwth" jdbcType="VARCHAR" property="zyzwth" />
+    <result column="fwdxpj" jdbcType="VARCHAR" property="fwdxpj" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="delflag" jdbcType="CHAR" property="delflag" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jtzh.entity.PioneerServiceResult">
+    <result column="nr" jdbcType="LONGVARCHAR" property="nr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, hdid, hdmc, zyzwth, fwdxpj, create_time, delflag
+  </sql>
+  <sql id="Blob_Column_List">
+    nr
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pioneer_service_result
+    where hdid = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pioneer_service_result
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.PioneerServiceResult">
+    insert into pioneer_service_result (id, hdid, hdmc, 
+      zyzwth, fwdxpj, create_time, 
+      delflag, nr)
+    values (#{id,jdbcType=BIGINT}, #{hdid,jdbcType=BIGINT}, #{hdmc,jdbcType=VARCHAR}, 
+      #{zyzwth,jdbcType=VARCHAR}, #{fwdxpj,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{delflag,jdbcType=CHAR}, #{nr,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.PioneerServiceResult">
+    insert into pioneer_service_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="hdid != null">
+        hdid,
+      </if>
+      <if test="hdmc != null">
+        hdmc,
+      </if>
+      <if test="zyzwth != null">
+        zyzwth,
+      </if>
+      <if test="fwdxpj != null">
+        fwdxpj,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+      <if test="nr != null">
+        nr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="hdid != null">
+        #{hdid,jdbcType=BIGINT},
+      </if>
+      <if test="hdmc != null">
+        #{hdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zyzwth != null">
+        #{zyzwth,jdbcType=VARCHAR},
+      </if>
+      <if test="fwdxpj != null">
+        #{fwdxpj,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="nr != null">
+        #{nr,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerServiceResult">
+    update pioneer_service_result
+    <set>
+      <if test="hdid != null">
+        hdid = #{hdid,jdbcType=BIGINT},
+      </if>
+      <if test="hdmc != null">
+        hdmc = #{hdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zyzwth != null">
+        zyzwth = #{zyzwth,jdbcType=VARCHAR},
+      </if>
+      <if test="fwdxpj != null">
+        fwdxpj = #{fwdxpj,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="nr != null">
+        nr = #{nr,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jtzh.entity.PioneerServiceResult">
+    update pioneer_service_result
+    set hdid = #{hdid,jdbcType=BIGINT},
+      hdmc = #{hdmc,jdbcType=VARCHAR},
+      zyzwth = #{zyzwth,jdbcType=VARCHAR},
+      fwdxpj = #{fwdxpj,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      delflag = #{delflag,jdbcType=CHAR},
+      nr = #{nr,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerServiceResult">
+    update pioneer_service_result
+    set 
+      zyzwth = #{zyzwth,jdbcType=VARCHAR},
+      fwdxpj = #{fwdxpj,jdbcType=VARCHAR},
+       nr = #{nr,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

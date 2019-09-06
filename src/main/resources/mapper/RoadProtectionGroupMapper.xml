@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.RoadProtectionGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.RoadProtectionGroup" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="group_belong_area" property="groupBelongArea" jdbcType="VARCHAR" />
+    <result column="group_type" property="groupType" jdbcType="CHAR" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="establish_time" property="establishTime" jdbcType="VARCHAR" />
+    <result column="contact_person" property="contactPerson" jdbcType="VARCHAR" />
+    <result column="contact_person_phone" property="contactPersonPhone" jdbcType="VARCHAR" />
+    <result column="group_introduction" property="groupIntroduction" jdbcType="VARCHAR" />
+    <result column="delflag" property="delflag" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+    <result column="road_id" property="roadId" jdbcType="BIGINT" />
+    <result column="grid_id" property="gridId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, group_belong_area, group_type, group_name, establish_time, contact_person, contact_person_phone, 
+    group_introduction, delflag, create_time, create_id, yhzh, road_id, grid_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from road_protection_group
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from road_protection_group
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.RoadProtectionGroup" >
+    insert into road_protection_group (id, group_belong_area, group_type, 
+      group_name, establish_time, contact_person, 
+      contact_person_phone, group_introduction, 
+      delflag, create_time, create_id, 
+      yhzh, road_id)
+    values (#{id,jdbcType=INTEGER}, #{groupBelongArea,jdbcType=VARCHAR}, #{groupType,jdbcType=CHAR}, 
+      #{groupName,jdbcType=VARCHAR}, #{establishTime,jdbcType=VARCHAR}, #{contactPerson,jdbcType=VARCHAR}, 
+      #{contactPersonPhone,jdbcType=VARCHAR}, #{groupIntroduction,jdbcType=VARCHAR}, 
+      #{delflag,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR}, 
+      #{yhzh,jdbcType=VARCHAR},#{roadId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.RoadProtectionGroup" >
+    insert into road_protection_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupBelongArea != null" >
+        group_belong_area,
+      </if>
+      <if test="groupType != null" >
+        group_type,
+      </if>
+      <if test="groupName != null" >
+        group_name,
+      </if>
+      <if test="establishTime != null" >
+        establish_time,
+      </if>
+      <if test="contactPerson != null" >
+        contact_person,
+      </if>
+      <if test="contactPersonPhone != null" >
+        contact_person_phone,
+      </if>
+      <if test="groupIntroduction != null" >
+        group_introduction,
+      </if>
+      <if test="delflag != null" >
+        delflag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="yhzh != null" >
+        yhzh,
+      </if>
+      <if test="roadId != null" >
+        road_id,
+      </if>
+      <if test="gridId != null" >
+        grid_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupBelongArea != null" >
+        #{groupBelongArea,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null" >
+        #{groupType,jdbcType=CHAR},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="establishTime != null" >
+        #{establishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPersonPhone != null" >
+        #{contactPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="groupIntroduction != null" >
+        #{groupIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null" >
+        #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="yhzh != null" >
+        #{yhzh,jdbcType=VARCHAR},
+      </if>
+       <if test="roadId != null" >
+        #{roadId,jdbcType=BIGINT},
+      </if>
+       <if test="gridId != null" >
+        #{gridId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.RoadProtectionGroup" >
+    update road_protection_group
+    <set >
+      <if test="groupBelongArea != null" >
+        group_belong_area = #{groupBelongArea,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null" >
+        group_type = #{groupType,jdbcType=CHAR},
+      </if>
+      <if test="groupName != null" >
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="establishTime != null" >
+        establish_time = #{establishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        contact_person = #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPersonPhone != null" >
+        contact_person_phone = #{contactPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="groupIntroduction != null" >
+        group_introduction = #{groupIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null" >
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="yhzh != null" >
+        yhzh = #{yhzh,jdbcType=VARCHAR},
+      </if>
+      <if test="roadId != null" >
+        road_id = #{roadId,jdbcType=BIGINT},
+      </if>
+       <if test="gridId != null" >
+        grid_id = #{gridId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.RoadProtectionGroup" >
+    update road_protection_group
+    set group_belong_area = #{groupBelongArea,jdbcType=VARCHAR},
+      group_type = #{groupType,jdbcType=CHAR},
+      group_name = #{groupName,jdbcType=VARCHAR},
+      establish_time = #{establishTime,jdbcType=VARCHAR},
+      contact_person = #{contactPerson,jdbcType=VARCHAR},
+      contact_person_phone = #{contactPersonPhone,jdbcType=VARCHAR},
+      group_introduction = #{groupIntroduction,jdbcType=VARCHAR},
+      delflag = #{delflag,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=VARCHAR},
+      yhzh = #{yhzh,jdbcType=VARCHAR},
+      road_id = #{roadId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectTotal" parameterType="com.jtzh.pojo.RoadProtectionGroupPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from road_protection_group
+		where delflag != '1'
+		<if test="page.key != null and page.key != ''">
+			and (group_belong_area like concat('%', #{page.key},
+			'%') or
+			group_name like concat('%', #{page.key},
+			'%') or contact_person like concat('%',
+			#{page.key},
+			'%') or contact_person_phone like concat('%', #{page.key},
+			'%') or
+			group_introduction like concat('%', #{page.key},
+			'%') )
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.RoadProtectionGroupPagination"
+		resultType="com.jtzh.responsevo.RoadProtectionGroupVo">
+		select a.id,a.group_belong_area as groupBelongArea,a.group_type as groupType,
+		a.group_name as groupName,a.establish_time as establishTime,a.contact_person
+		as contactPerson,a.contact_person_phone as contactPersonPhone,a.group_introduction
+		as groupIntroduction,a.delflag,a.create_time as createTime,a.create_id
+		as createId,a.yhzh,a.road_id as roadId,a.grid_id as gridId,b.road_name
+		as roadName from road_protection_group a left join road_protection_road b
+		on a.road_id = b.id
+		where a.delflag != '1'
+		<if test="page.key != null and page.key != ''">
+			and (a.group_belong_area like concat('%', #{page.key},
+			'%') or
+			a.group_name like concat('%', #{page.key},
+			'%') or a.contact_person like concat('%',
+			#{page.key},
+			'%') or a.contact_person_phone like concat('%', #{page.key},
+			'%') or
+			a.group_introduction like concat('%', #{page.key},
+			'%') )
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and a.create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and a.create_time &lt; #{page.endTime}
+		</if>
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectGroup" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from road_protection_group
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<update id="deleteGroup">
+		update road_protection_group
+		set
+		delflag = '1'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+</mapper>

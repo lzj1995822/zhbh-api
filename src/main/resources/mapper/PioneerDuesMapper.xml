@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.PioneerDuesMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerDues">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="ssdzb" jdbcType="VARCHAR" property="ssdzb" />
+    <result column="jfsj" jdbcType="VARCHAR" property="jfsj" />
+    <result column="jfsd" jdbcType="VARCHAR" property="jfsd" />
+    <result column="jfje" jdbcType="VARCHAR" property="jfje" />
+    <result column="jffs" jdbcType="VARCHAR" property="jffs" />
+    <result column="sfzhm" jdbcType="VARCHAR" property="sfzhm" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="delflag" jdbcType="CHAR" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, xm, ssdzb, jfsj, jfsd, jfje, jffs, sfzhm, create_time, delflag
+  </sql>
+  
+  
+  <select id="getDf" parameterType="com.jtzh.pojo.KeyParam" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_dues
+    where delflag != 'D'
+    <if test="keyparam.keyword != null and keyparam.keyword != ''" >
+		and (xm like CONCAT('%', #{keyparam.keyword},'%') or ssdzb like CONCAT('%', #{keyparam.keyword},'%'))
+	</if>
+    <if test="keyparam.startTime != null and keyparam.startTime != ''" >
+      and create_time &gt;= #{keyparam.startTime}
+    </if>
+    <if test="keyparam.endTime != null and keyparam.endTime != ''" >
+      and create_time &lt;=  #{keyparam.endTime}
+    </if>
+	order by create_time DESC limit #{keyparam.start} ,  #{keyparam.pageSize}
+  </select>
+    <select id="getDfTotal" parameterType="com.jtzh.pojo.KeyParam" resultType="java.lang.Integer">
+    select count(1)
+    from pioneer_dues
+    where delflag != 'D'
+    <if test="keyparam.keyword != null and keyparam.keyword != ''" >
+		and (xm like CONCAT('%', #{keyparam.keyword},'%') or ssdzb like CONCAT('%', #{keyparam.keyword},'%'))
+	</if>
+      <if test="keyparam.startTime != null and keyparam.startTime != ''" >
+        and create_time &gt;= #{keyparam.startTime}
+      </if>
+      <if test="keyparam.endTime != null and keyparam.endTime != ''" >
+        and create_time &lt;=  #{keyparam.endTime}
+      </if>
+  </select>
+  
+  
+  
+  
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_dues
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pioneer_dues
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.PioneerDues">
+    insert into pioneer_dues (id, xm, ssdzb, 
+      jfsj, jfsd, jfje, jffs, 
+      sfzhm, create_time, delflag
+      )
+    values (#{id,jdbcType=BIGINT}, #{xm,jdbcType=VARCHAR}, #{ssdzb,jdbcType=VARCHAR}, 
+      #{jfsj,jdbcType=VARCHAR}, #{jfsd,jdbcType=VARCHAR}, #{jfje,jdbcType=VARCHAR}, #{jffs,jdbcType=VARCHAR}, 
+      #{sfzhm,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.PioneerDues">
+    insert into pioneer_dues
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="ssdzb != null">
+        ssdzb,
+      </if>
+      <if test="jfsj != null">
+        jfsj,
+      </if>
+      <if test="jfsd != null">
+        jfsd,
+      </if>
+      <if test="jfje != null">
+        jfje,
+      </if>
+      <if test="jffs != null">
+        jffs,
+      </if>
+      <if test="sfzhm != null">
+        sfzhm,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="ssdzb != null">
+        #{ssdzb,jdbcType=VARCHAR},
+      </if>
+      <if test="jfsj != null">
+        #{jfsj,jdbcType=VARCHAR},
+      </if>
+      <if test="jfsd != null">
+        #{jfsd,jdbcType=VARCHAR},
+      </if>
+      <if test="jfje != null">
+        #{jfje,jdbcType=VARCHAR},
+      </if>
+      <if test="jffs != null">
+        #{jffs,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null">
+        #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerDues">
+    update pioneer_dues
+    <set>
+      <if test="xm != null and xm != ''">
+        xm = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="ssdzb != null and ssdzb != ''">
+        ssdzb = #{ssdzb,jdbcType=VARCHAR},
+      </if>
+      <if test="jfsj != null and jfsj != ''">
+        jfsj = #{jfsj,jdbcType=VARCHAR},
+      </if>
+      <if test="jfsd != null and jfsd != ''">
+        jfsd = #{jfsd,jdbcType=VARCHAR},
+      </if>
+      <if test="jfje != null and jfje != ''">
+        jfje = #{jfje,jdbcType=VARCHAR},
+      </if>
+      <if test="jffs != null and jffs != ''">
+        jffs = #{jffs,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null and sfzhm != ''">
+        sfzhm = #{sfzhm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerDues">
+    update pioneer_dues
+    set xm = #{xm,jdbcType=VARCHAR},
+      ssdzb = #{ssdzb,jdbcType=VARCHAR},
+      jfsj = #{jfsj,jdbcType=VARCHAR},
+      jfsd = #{jfsd,jdbcType=VARCHAR},
+      jfje = #{jfje,jdbcType=VARCHAR},
+      jffs = #{jffs,jdbcType=VARCHAR},
+      sfzhm = #{sfzhm,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

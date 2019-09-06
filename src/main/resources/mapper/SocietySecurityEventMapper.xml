@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.SocietySecurityEventMapper">
+    <resultMap id="BaseResultMap" type="com.jtzh.entity.SocietySecurityEvent">
+        <id column="SSEventID" jdbcType="BIGINT" property="ssEventID"/>
+        <result column="SSEventName" jdbcType="VARCHAR" property="ssEventName"/>
+        <result column="SSEventKind" jdbcType="INTEGER" property="ssEventKind"/>
+        <result column="SSEventTypeValue" jdbcType="CHAR" property="ssEventTypeValue"/>
+        <result column="SSEventContent" jdbcType="VARCHAR" property="ssEventContent"/>
+        <result column="SSEventStartDateTime" jdbcType="TIMESTAMP"
+                property="ssEventStartDateTime"/>
+        <result column="SSEventEndDateTime" jdbcType="TIMESTAMP"
+                property="ssEventEndDateTime"/>
+        <result column="SSEventHappenLongitude" jdbcType="DOUBLE"
+                property="ssEventHappenLongitude"/>
+        <result column="SSEventHappenLatitude" jdbcType="DOUBLE"
+                property="ssEventHappenLatitude"/>
+        <result column="SSEventStatusTypeValue" jdbcType="CHAR"
+                property="ssEventStatusTypeValue"/>
+        <result column="CurrentRemarks" jdbcType="VARCHAR" property="currentRemarks"/>
+        <result column="CurrentResponsiblePersonCertID" jdbcType="CHAR"
+                property="currentResponsiblePersonCertID"/>
+        <result column="CurrentResponsiblePersonName" jdbcType="VARCHAR"
+                property="currentResponsiblePersonName"/>
+        <result column="CurrentResponsiblePersonContact" jdbcType="VARCHAR"
+                property="currentResponsiblePersonContact"/>
+        <result column="NetGridID" jdbcType="BIGINT" property="netGridID"/>
+    </resultMap>
+    <resultMap id="SocietySecurityEventVO" type="com.jtzh.vo.gis.SocietySecurityEventVO">
+        <id column="SSEventID" jdbcType="BIGINT" property="ssEventID"/>
+        <result column="SSEventName" jdbcType="VARCHAR" property="ssEventName"/>
+        <result column="SSEventKind" jdbcType="INTEGER" property="ssEventKind"/>
+        <result column="SSEventTypeValue" jdbcType="CHAR" property="ssEventTypeValue"/>
+        <result column="SSEventContent" jdbcType="VARCHAR" property="ssEventContent"/>
+        <result column="SSEventStartDateTime" jdbcType="TIMESTAMP"
+                property="ssEventStartDateTime"/>
+        <result column="SSEventEndDateTime" jdbcType="TIMESTAMP"
+                property="ssEventEndDateTime"/>
+        <result column="SSEventHappenLongitude" jdbcType="DOUBLE"
+                property="ssEventHappenLongitude"/>
+        <result column="SSEventHappenLatitude" jdbcType="DOUBLE"
+                property="ssEventHappenLatitude"/>
+        <result column="SSEventStatusTypeValue" jdbcType="CHAR"
+                property="ssEventStatusTypeValue"/>
+        <result column="CurrentRemarks" jdbcType="VARCHAR" property="currentRemarks"/>
+        <result column="CurrentResponsiblePersonCertID" jdbcType="CHAR"
+                property="currentResponsiblePersonCertID"/>
+        <result column="CurrentResponsiblePersonName" jdbcType="VARCHAR"
+                property="currentResponsiblePersonName"/>
+        <result column="CurrentResponsiblePersonContact" jdbcType="VARCHAR"
+                property="currentResponsiblePersonContact"/>
+        <result column="NetGridID" jdbcType="BIGINT" property="netGridID"/>
+        <result column="SSEventTypeName" jdbcType="VARCHAR" property="ssEventTypeName"/>
+        <result column="SSEventStatusTypeName" jdbcType="VARCHAR"
+                property="ssEventStatusTypeName"/>
+        <result column="NetGridName" jdbcType="VARCHAR" property="netGridName"/>
+    </resultMap>
+
+    <resultMap id="SSVO" type="com.jtzh.vo.ss.SSVO">
+        <id column="SSEventID" jdbcType="BIGINT" property="ssEventID"/>
+        <result column="SSEventName" jdbcType="VARCHAR" property="ssEventName"/>
+        <result column="SSEventKind" jdbcType="INTEGER" property="ssEventKind"/>
+        <result column="SSEventTypeName" jdbcType="VARCHAR" property="ssEventTypeName"/>
+        <result column="SSEventContent" jdbcType="VARCHAR" property="ssEventContent"/>
+        <result column="SSEventStartDateTime" jdbcType="TIMESTAMP"
+                property="ssEventStartDateTime"/>
+        <result column="SSEventEndDateTime" jdbcType="TIMESTAMP"
+                property="ssEventEndDateTime"/>
+        <result column="SSEventHappenLongitude" jdbcType="DOUBLE"
+                property="ssEventHappenLongitude"/>
+        <result column="SSEventHappenLatitude" jdbcType="DOUBLE"
+                property="ssEventHappenLatitude"/>
+        <result column="SSEventStatusTypeName" jdbcType="VARCHAR"
+                property="ssEventStatusTypeName"/>
+        <result column="CurrentRemarks" jdbcType="VARCHAR" property="currentRemarks"/>
+        <result column="CurrentResponsiblePersonCertID" jdbcType="CHAR"
+                property="currentResponsiblePersonCertID"/>
+        <result column="CurrentResponsiblePersonName" jdbcType="VARCHAR"
+                property="currentResponsiblePersonName"/>
+        <result column="CurrentResponsiblePersonContact" jdbcType="VARCHAR"
+                property="currentResponsiblePersonContact"/>
+        <result column="NetGridName" jdbcType="VARCHAR" property="netGridName"/>
+        <result column="RealName" jdbcType="VARCHAR" property="realName"/>
+        <result column="Dept" jdbcType="VARCHAR" property="dept"/>
+        <result column="MobileTel" jdbcType="VARCHAR" property="mobileTel"/>
+    </resultMap>
+
+    <resultMap id="SSCountVO" type="com.jtzh.vo.ss.SSCountVO">
+        <result column="NetGridName" jdbcType="VARCHAR" property="netGridName"/>
+        <result column="common" jdbcType="INTEGER" property="common"/>
+        <result column="great" jdbcType="INTEGER" property="great"/>
+    </resultMap>
+    <resultMap id="SSCountCheckVO" type="com.jtzh.vo.dispute.DisputeEventCountVO">
+        <result column="NetGridName" jdbcType="VARCHAR" property="name"/>
+        <result column="solve" jdbcType="INTEGER" property="solved"/>
+        <result column="unsolve" jdbcType="INTEGER" property="unsolved"/>
+    </resultMap>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		TESocietySecurityEvent
+		where SSEventID =
+		#{SSEventID,jdbcType=BIGINT}
+	</delete>
+    <insert id="insert" parameterType="com.jtzh.entity.SocietySecurityEvent"
+            keyProperty="ssEventID" useGeneratedKeys="true">
+		insert into
+		TESocietySecurityEvent (SSEventID, SSEventName,
+		SSEventKind,
+		SSEventTypeValue, SSEventContent, SSEventStartDateTime,
+		SSEventEndDateTime, SSEventHappenLongitude,
+		SSEventHappenLatitude,
+		SSEventStatusTypeValue,
+		CurrentRemarks, CurrentResponsiblePersonCertID,
+		CurrentResponsiblePersonName, CurrentResponsiblePersonContact,
+		NetGridID)
+		values (#{ssEventID,jdbcType=BIGINT},
+		#{ssEventName,jdbcType=VARCHAR},
+		#{ssEventKind,jdbcType=INTEGER},
+		#{ssEventTypeValue,jdbcType=CHAR}, #{ssEventContent,jdbcType=VARCHAR},
+		#{ssEventStartDateTime,jdbcType=TIMESTAMP},
+		#{ssEventEndDateTime,jdbcType=TIMESTAMP},
+		#{ssEventHappenLongitude,jdbcType=DOUBLE},
+		#{ssEventHappenLatitude,jdbcType=DOUBLE},
+		#{ssEventStatusTypeValue,jdbcType=CHAR},
+		#{currentRemarks,jdbcType=VARCHAR},
+		#{currentResponsiblePersonCertID,jdbcType=CHAR},
+		#{currentResponsiblePersonName,jdbcType=VARCHAR},
+		#{currentResponsiblePersonContact,jdbcType=VARCHAR},
+		#{netGridID,jdbcType=BIGINT})
+	</insert>
+    <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.SocietySecurityEvent">
+		update
+		TESocietySecurityEvent
+		set SSEventName =
+		#{ssEventName,jdbcType=VARCHAR},
+		SSEventKind =
+		#{ssEventKind,jdbcType=INTEGER},
+		SSEventTypeValue =
+		#{ssEventTypeValue,jdbcType=CHAR},
+		SSEventContent =
+		#{ssEventContent,jdbcType=VARCHAR},
+		SSEventStartDateTime =
+		#{ssEventStartDateTime,jdbcType=TIMESTAMP},
+		SSEventEndDateTime =
+		#{ssEventEndDateTime,jdbcType=TIMESTAMP},
+		SSEventHappenLongitude =
+		#{ssEventHappenLongitude,jdbcType=DOUBLE},
+		SSEventHappenLatitude =
+		#{ssEventHappenLatitude,jdbcType=DOUBLE},
+		SSEventStatusTypeValue =
+		#{ssEventStatusTypeValue,jdbcType=CHAR},
+		CurrentRemarks =
+		#{currentRemarks,jdbcType=VARCHAR},
+		CurrentResponsiblePersonCertID =
+		#{currentResponsiblePersonCertID,jdbcType=CHAR},
+		CurrentResponsiblePersonName =
+		#{currentResponsiblePersonName,jdbcType=VARCHAR},
+		CurrentResponsiblePersonContact =
+		#{currentResponsiblePersonContact,jdbcType=VARCHAR},
+		NetGridID =
+		#{netGridID,jdbcType=BIGINT}
+		where SSEventID =
+		#{ssEventID,jdbcType=BIGINT}
+	</update>
+    <update id="updateSSEventStatus">
+        update TESocietySecurityEvent
+        set
+        SSEventStatusTypeValue = #{type}
+        where SSEventID = #{id}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultMap="BaseResultMap">
+		select SSEventID, SSEventName, SSEventKind,
+		SSEventTypeValue,
+		SSEventContent, SSEventStartDateTime,
+		SSEventEndDateTime,
+		SSEventHappenLongitude, SSEventHappenLatitude,
+		SSEventStatusTypeValue,
+		CurrentRemarks, CurrentResponsiblePersonCertID,
+		CurrentResponsiblePersonName,
+		CurrentResponsiblePersonContact,
+		NetGridID
+		from TESocietySecurityEvent
+		where SSEventID =
+		#{SSEventID,jdbcType=BIGINT}
+	</select>
+    <select id="selectAll" resultMap="BaseResultMap">
+		select SSEventID, SSEventName,
+		SSEventKind, SSEventTypeValue,
+		SSEventContent, SSEventStartDateTime,
+		SSEventEndDateTime,
+		SSEventHappenLongitude, SSEventHappenLatitude,
+		SSEventStatusTypeValue,
+		CurrentRemarks, CurrentResponsiblePersonCertID,
+		CurrentResponsiblePersonName,
+		CurrentResponsiblePersonContact,
+		NetGridID
+		from TESocietySecurityEvent
+	</select>
+    <select id="getSSEventByType" resultMap="SocietySecurityEventVO">
+        SELECT t1.*,t2.SSEventTypeName,t3.SSEventStatusTypeName,t4.NetGridName
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2
+        on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join
+        TECODESSEventStatusType t3
+        on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid
+        t4 on t1.NetGridID=t4.NetGridID
+        where 1=1
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="type!=null and type!=0">
+            and t1.SSEventKind=#{type}
+        </if>
+    </select>
+
+
+    <select id="getSSEventQuery" resultMap="SocietySecurityEventVO">
+        SELECT t1.*,t2.SSEventTypeName,t3.SSEventStatusTypeName,t4.NetGridName
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2
+        on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join
+        TECODESSEventStatusType t3
+        on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid
+        t4 on t1.NetGridID=t4.NetGridID
+        where 1=1
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        order by SSEventStartDateTime desc
+        limit #{start}, #{pageSize}
+    </select>
+
+    <select id="getSSEventQueryCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2
+        on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join
+        TECODESSEventStatusType t3
+        on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid
+        t4 on t1.NetGridID=t4.NetGridID
+        where 1=1
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+    </select>
+
+
+    <select id="getSSEventReporterQuery" resultMap="SocietySecurityEventVO">
+        SELECT t1.*,SSEventTypeName,SSEventStatusTypeName,NetGridName
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TEUser t5 on CurrentResponsiblePersonCertID=UserID
+        WHERE 1=1 and UserID=#{id}
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+        order by SSEventStartDateTime desc
+        limit #{start}, #{pageSize}
+    </select>
+    <select id="getSSEventReporterQueryCount" resultType="java.lang.Integer">
+
+        SELECT count(*)
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TEUser t5 on CurrentResponsiblePersonCertID=UserID
+        WHERE 1=1 and UserID=#{id}
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+    </select>
+
+
+    <select id="getSSEventDespatcherQuery" resultMap="SocietySecurityEventVO">
+        SELECT t1.*,SSEventTypeName,SSEventStatusTypeName,NetGridName
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventDistribute t5 on t1.SSEventID=t5.EventID
+        where 1=1 and (t1.SSEventStatusTypeValue='01' or t1.SSEventStatusTypeValue='03' or
+        t1.SSEventStatusTypeValue='04'
+        or t5.UserID=#{id})
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+        group by t1.SSEventID
+        order by SSEventStartDateTime desc
+        limit #{start}, #{pageSize}
+    </select>
+    <select id="getSSEventDespatcherQueryCount" resultType="java.lang.Integer">
+
+        SELECT count(DISTINCT t1.SSEventID)
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventDistribute t5 on t1.SSEventID=t5.EventID
+        where 1=1 and (t1.SSEventStatusTypeValue='01' or t1.SSEventStatusTypeValue='03' or
+        t1.SSEventStatusTypeValue='04'
+        or t5.UserID=#{id})
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+    </select>
+
+
+    <select id="getSSEventDeptDespatcherQuery" resultMap="SocietySecurityEventVO">
+        SELECT t1.*,SSEventTypeName,SSEventStatusTypeName,NetGridName
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventDistribute t5 on t1.SSEventID=t5.EventID
+        where 1=1 and t5.AcceptedUserID=#{id}
+        or t5.UserID=#{id}
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+        group by t1.SSEventID
+        order by SSEventStartDateTime desc
+        limit #{start}, #{pageSize}
+    </select>
+
+    <select id="getSSEventDeptDespatcherQueryCount" resultType="java.lang.Integer">
+
+        SELECT count(DISTINCT t1.SSEventID)
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventDistribute t5 on t1.SSEventID=t5.EventID
+        where 1=1 and (t5.AcceptedUserID=#{id}
+        or t5.UserID=#{id})
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+    </select>
+
+
+    <select id="getSSEventHandlerQuery" resultMap="SocietySecurityEventVO">
+        SELECT t1.*,SSEventTypeName,SSEventStatusTypeName,NetGridName
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventDistribute t5 on t1.SSEventID=t5.EventID
+        left join TRSSEventDealing t6 on t1.SSEventID=t6.EventID
+        where 1=1 and (t5.AcceptedUserID=#{id} or t6.DealingUserID=#{id})
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+        group by t1.SSEventID
+        order by SSEventStartDateTime desc
+        limit #{start}, #{pageSize}
+    </select>
+    <select id="getSSEventHandlerQueryCount" resultType="java.lang.Integer">
+
+        SELECT count(distinct t1.SSEventID)
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventDistribute t5 on t1.SSEventID=t5.EventID
+        left join TRSSEventDealing t6 on t1.SSEventID=t6.EventID
+        where 1=1 and (t5.AcceptedUserID=#{id} or t6.DealingUserID=#{id})
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+    </select>
+
+
+    <select id="getSSEventAuditorQuery" resultMap="SocietySecurityEventVO">
+        SELECT t1.*,SSEventTypeName,SSEventStatusTypeName,NetGridName
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventChecked t5 on t1.SSEventID=t5.EventID
+        where 1=1 and (t1.SSEventStatusTypeValue='06'
+        or t5.CheckedUserID=#{id})
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+        group by t1.SSEventID
+        order by SSEventStartDateTime desc
+        limit #{start}, #{pageSize}
+    </select>
+    <select id="getSSEventAuditorQueryCount" resultType="java.lang.Integer">
+
+        SELECT count(DISTINCT t1.SSEventID)
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventChecked t5 on t1.SSEventID=t5.EventID
+        where 1=1 and (t1.SSEventStatusTypeValue='06'
+        or t5.CheckedUserID=#{id})
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+    </select>
+
+    <select id="getSSEventDetail" resultMap="SSVO">
+        select t1.SSEventID,t1.SSEventName,t1.SSEventKind,t2.SSEventTypeName,
+        t1.SSEventContent,t1.SSEventStartDateTime,t1.SSEventEndDateTime,t1.SSEventHappenLongitude,
+        t1.SSEventHappenLatitude,t3.SSEventStatusTypeName,t1.CurrentRemarks,t1.CurrentResponsiblePersonCertID,
+        t1.CurrentResponsiblePersonName,t1.CurrentResponsiblePersonContact,t4.NetGridName,RealName,Dept,MobileTel
+        from TESocietySecurityEvent t1
+        left join TECODESSEventType t2
+        on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join
+        TECODESSEventStatusType t3
+        on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid
+        t4 on t1.NetGridID=t4.NetGridID
+        left join TEUser t5 on
+        t1.CurrentResponsiblePersonCertID=t5.UserID
+        where t1.SSEventID=#{id};
+    </select>
+
+    <select id="getSSEventCount" resultMap="SSCountVO">
+      select tn.NetGridName,ifnull(ta.common,0) common,ifnull(ta.great,0) great from TENetGrid tn left join
+      (SELECT t2.NetGridName,sum(case when t1.SSEventKind=1 then 1 else 0 end) common,
+      sum(case when t1.SSEventKind=2 then 1 else 0 end) great
+      FROM TESocietySecurityEvent t1
+      left join TENetGrid t2 on
+      t1.NetGridID=t2.NetGridID
+      group by t2.NetGridName)ta on tn.NetGridName=ta.NetGridName where tn.FatherNetGridID=-1;
+    </select>
+    <select id="getSSEventByStatus" resultType="java.util.Map">
+        select ifnull(sum(case when SSEventStatusTypeValue='07' then 1 else 0 end),0) solved,
+        ifnull(sum(case when SSEventStatusTypeValue!='07' then 1 else 0 end),0)unsolved
+        from TESocietySecurityEvent
+        where 1=1
+        <if test="start!=null ">
+            and SSEventStartDateTime <![CDATA[>=]]>#{start}
+        </if>
+        <if test="end!=null">
+            and SSEventStartDateTime <![CDATA[<=]]>#{end}
+        </if>
+    </select>
+
+    <select id="getSSEventCountByNetGrid" resultType="java.util.Map">
+      select tn.NetGridName,ifnull(ta.count,0) value from TENetGrid tn left join
+      (SELECT t2.NetGridName,count(*) count
+      FROM TESocietySecurityEvent t1
+      left join TENetGrid t2 on
+      t1.NetGridID=t2.NetGridID
+      group by t2.NetGridName)ta on tn.NetGridName=ta.NetGridName where tn.FatherNetGridID=-1 order by tn.NetGridID;
+    </select>
+
+    <!-- 一般事件统计 -->
+    <select id="getCommonCount" resultType="java.lang.Integer">
+        select count(*) from
+        TESocietySecurityEvent where 1=1
+        and SSEventKind=1
+        <if test="netGridID!=0 and netGridID!=null">
+            and NetGridID=#{netGridID}
+        </if>
+    </select>
+    <!-- 重大事件统计 -->
+    <select id="getImportantCount" resultType="java.lang.Integer">
+        select count(*)
+        from
+        TESocietySecurityEvent where 1=1
+        and SSEventKind =2
+        <if test="netGridID!=0 and netGridID!=null">
+            and NetGridID=#{netGridID}
+        </if>
+    </select>
+
+
+    <select id="getSSEventAPPQuery" resultMap="SocietySecurityEventVO">
+        SELECT t1.*,SSEventTypeName,SSEventStatusTypeName,NetGridName
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventDistribute t6 on t1.SSEventID=t6.EventID
+        left join TRSSEventDealing t7 on t1.SSEventID=t7.EventID
+        left join TEUser t8 on t1.CurrentResponsiblePersonCertID=t8.UserID
+        where 1=1 and (t6.AcceptedUserID=#{id} or t7.DealingUserID=#{id} or t8.UserID=#{id})
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+        group by t1.SSEventID
+        order by SSEventStartDateTime desc
+        limit #{start}, #{pageSize}
+    </select>
+    <select id="getSSEventAPPQueryCount" resultType="java.lang.Integer">
+
+        SELECT count(DISTINCT t1.SSEventID)
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventDistribute t6 on t1.SSEventID=t6.EventID
+        left join TRSSEventDealing t7 on t1.SSEventID=t7.EventID
+        left join TEUser t8 on t1.CurrentResponsiblePersonCertID=t8.UserID
+        where 1=1 and (t6.AcceptedUserID=#{id} or t7.DealingUserID=#{id} or t8.UserID=#{id})
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+    </select>
+
+
+    <select id="getSSEventCountForCheck" resultMap="SSCountCheckVO">
+        select tn.NetGridName,ifnull(ta.complete,0) solve,ifnull(ta.incomplete,0) unsolve from TENetGrid tn left join
+        (SELECT t2.NetGridName,sum(case when t1.SSEventStatusTypeValue='07' then 1 else 0 end) complete,
+        sum(case when t1.SSEventStatusTypeValue!='07' then 1 else 0 end) incomplete
+        FROM TESocietySecurityEvent t1
+        left join TENetGrid t2 on
+        t1.NetGridID=t2.NetGridID
+        where 1=1
+        <if test="start!=null ">
+            and SSEventStartDateTime <![CDATA[>=]]>#{start}
+        </if>
+        <if test="end!=null">
+            and SSEventStartDateTime <![CDATA[<=]]>#{end}
+        </if>
+        group by t2.NetGridName)ta on tn.NetGridName=ta.NetGridName where tn.FatherNetGridID=-1 order by tn.NetGridID;
+    </select>
+
+
+    <select id="getSSEventForNetGrid" resultMap="SocietySecurityEventVO">
+        SELECT t1.*,SSEventTypeName,SSEventStatusTypeName,NetGridName
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        where 1=1
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+        group by t1.SSEventID
+        order by SSEventStartDateTime desc
+        limit #{start}, #{pageSize}
+    </select>
+    <select id="getSSEventForNetGridCount" resultType="java.lang.Integer">
+
+        SELECT count(DISTINCT t1.SSEventID)
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        where 1=1
+        <if test="kind!=null and kind!=0">
+            and t1.SSEventKind=#{kind}
+        </if>
+        <if test="name!=null and name!=''">
+            and t1.SSEventName like CONCAT(CONCAT('%',
+            #{name}), '%')
+        </if>
+        <if test="netGridID!=0 and netGridID!=null">
+            and t1.NetGridID=#{netGridID}
+        </if>
+        <if test="status!=null and status!=''">
+            and t1.SSEventStatusTypeValue =#{status}
+        </if>
+    </select>
+
+</mapper>

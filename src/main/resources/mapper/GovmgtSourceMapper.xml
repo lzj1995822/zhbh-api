@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.GovmgtSourceMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.GovmgtSource">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="attachment_source" property="attachmentSource"
+			jdbcType="CHAR" />
+		<result column="source_id" property="sourceId" jdbcType="BIGINT" />
+		<result column="file_type" property="fileType" jdbcType="CHAR" />
+		<result column="file_name" property="fileName" jdbcType="VARCHAR" />
+		<result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, attachment_source, source_id, file_type, file_name, file_url,
+		create_time, delflag, yhzh
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from govmgt_source
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from govmgt_source
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.GovmgtSource">
+		insert into govmgt_source (id, attachment_source, source_id,
+		file_type, file_name, file_url,
+		create_time, delflag, yhzh)
+		values (#{id,jdbcType=BIGINT}, #{attachmentSource,jdbcType=CHAR},
+		#{sourceId,jdbcType=BIGINT},
+		#{fileType,jdbcType=CHAR}, #{fileName,jdbcType=VARCHAR}, #{fileUrl,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=CHAR},#{yhzh,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.GovmgtSource">
+		insert into govmgt_source
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="sourceId != null">
+				source_id,
+			</if>
+			<if test="fileType != null">
+				file_type,
+			</if>
+			<if test="fileName != null">
+				file_name,
+			</if>
+			<if test="fileUrl != null">
+				file_url,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="sourceId != null">
+				#{sourceId,jdbcType=BIGINT},
+			</if>
+			<if test="fileType != null">
+				#{fileType,jdbcType=CHAR},
+			</if>
+			<if test="fileName != null">
+				#{fileName,jdbcType=VARCHAR},
+			</if>
+			<if test="fileUrl != null">
+				#{fileUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.GovmgtSource">
+		update govmgt_source
+		<set>
+			<if test="attachmentSource != null">
+				attachment_source = #{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="sourceId != null">
+				source_id = #{sourceId,jdbcType=BIGINT},
+			</if>
+			<if test="fileType != null">
+				file_type = #{fileType,jdbcType=CHAR},
+			</if>
+			<if test="fileName != null">
+				file_name = #{fileName,jdbcType=VARCHAR},
+			</if>
+			<if test="fileUrl != null">
+				file_url = #{fileUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.GovmgtSource">
+		update govmgt_source
+		set attachment_source = #{attachmentSource,jdbcType=CHAR},
+		source_id = #{sourceId,jdbcType=BIGINT},
+		file_type = #{fileType,jdbcType=CHAR},
+		file_name = #{fileName,jdbcType=VARCHAR},
+		file_url = #{fileUrl,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		delflag = #{delflag,jdbcType=CHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="selectSource" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from govmgt_source
+		where delflag != 'D'
+		and attachment_source = #{source}
+		and source_id = #{id}
+	</select>
+	<select id="getSourceInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from govmgt_source
+		where delflag != 'D'
+		and source_id = #{id} and
+		attachment_source =#{sourceType,jdbcType=INTEGER}
+	</select>
+	<update id="deleteSource">
+		update govmgt_source
+		set delflag = 'D'
+		where id = #{a}
+	</update>
+	<select id="selectphotoTotal" parameterType="com.jtzh.pojo.WorkSourceParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from govmgt_source
+		where delflag = 'A' and file_type = '2' and attachment_source = '01' and file_url != ''
+	</select>
+	<select id="selectphotoInfo" parameterType="com.jtzh.pojo.WorkSourceParam"
+		resultMap="BaseResultMap">
+		select
+		id,file_url,file_name 
+		from govmgt_source
+		where delflag = 'A' and file_type = '2' and attachment_source = '01' and file_url != ''
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+</mapper>

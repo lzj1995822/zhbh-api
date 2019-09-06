@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.NewsInfMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.NewsInf">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="DATE" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="release_dep" property="releaseDep" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="enclosure" property="enclosure" jdbcType="VARCHAR" />
+		<result column="read_num" property="readNum" jdbcType="INTEGER" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="CHAR" />
+		<result column="need_receive_num" property="needReceiveNum" jdbcType="INTEGER" />
+		<result column="has_receive_num" property="hasReceiveNum" jdbcType="INTEGER" />
+		<result column="dep_num" property="depNum" jdbcType="INTEGER" />
+
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, title, create_time, create_id, release_dep, content,
+		enclosure,
+		read_num, delflag,
+		yhzh,
+		state,need_receive_num, has_receive_num, dep_num
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from news_inf
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		news_inf
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.NewsInf">
+		insert into news_inf (id,
+		title, create_time,
+		create_id, release_dep, content,
+		enclosure,
+		read_num, delflag,
+		yhzh, need_receive_num, has_receive_num,dep_num,
+		state)
+		values (#{id,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE},
+		#{createId,jdbcType=VARCHAR}, #{releaseDep,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{enclosure,jdbcType=VARCHAR},
+		#{readNum,jdbcType=INTEGER},
+		#{delflag,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR},#{needReceiveNum,jdbcType=INTEGER},
+		#{hasReceiveNum,jdbcType=INTEGER},#{depNum,jdbcType=INTEGER},
+		#{state,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.NewsInf">
+		insert into news_inf
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createId != null">
+				create_id,
+			</if>
+			<if test="releaseDep != null">
+				release_dep,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="enclosure != null">
+				enclosure,
+			</if>
+			<if test="readNum != null">
+				read_num,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="needReceiveNum != null">
+				need_receive_num,
+			</if>
+			<if test="hasReceiveNum != null">
+				has_receive_num,
+			</if>
+			<if test="depNum != null">
+				dep_num,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="releaseDep != null">
+				#{releaseDep,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="enclosure != null">
+				#{enclosure,jdbcType=VARCHAR},
+			</if>
+			<if test="readNum != null">
+				#{readNum,jdbcType=INTEGER},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="needReceiveNum != null">
+				#{needReceiveNum,jdbcType=INTEGER},
+			</if>
+			<if test="hasReceiveNum != null">
+				#{hasReceiveNum,jdbcType=INTEGER},
+			</if>
+			<if test="depNum != null">
+				#{depNum,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.NewsInf">
+		update news_inf
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=DATE},
+			</if>
+			<if test="createId != null">
+				create_id = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="releaseDep != null">
+				release_dep = #{releaseDep,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="enclosure != null">
+				enclosure = #{enclosure,jdbcType=VARCHAR},
+			</if>
+			<if test="readNum != null">
+				read_num = #{readNum,jdbcType=INTEGER},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="yhzh != null">
+				yhzh = #{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="needReceiveNum != null">
+				need_receive_num = #{needReceiveNum,jdbcType=INTEGER},
+			</if>
+			<if test="hasReceiveNum != null">
+				has_receive_num = #{hasReceiveNum,jdbcType=INTEGER},
+			</if>
+			<if test="depNum != null">
+				dep_num = #{depNum,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.NewsInf">
+		update news_inf
+		set title = #{title,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=DATE},
+		create_id = #{createId,jdbcType=VARCHAR},
+		release_dep = #{releaseDep,jdbcType=VARCHAR},
+		content =
+		#{content,jdbcType=VARCHAR},
+		enclosure = #{enclosure,jdbcType=VARCHAR},
+		read_num = #{readNum,jdbcType=INTEGER},
+		delflag =
+		#{delflag,jdbcType=CHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR},
+		need_receive_num = #{needReceiveNum,jdbcType=INTEGER},
+		has_receive_num = #{hasReceiveNum,jdbcType=INTEGER},
+		dep_num = #{depNum,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.NewsInfPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from news_inf
+		where delflag != '1'
+		<if test="page.key != null and page.key != ''">
+			and (title like concat('%', #{page.key},
+			'%') or
+			release_dep like concat('%', #{page.key},
+			'%') or content like
+			concat('%',
+			#{page.key},
+			'%') or enclosure like concat('%',
+			#{page.key},
+			'%') or
+			read_num like concat('%', #{page.key},
+			'%') or
+			need_receive_num like concat('%', #{page.key},
+			'%') or
+			has_receive_num like concat('%', #{page.key},
+			'%') or
+			dep_num like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and state = #{page.state}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.NewsInfPagination"
+		resultMap="BaseResultMap">
+		select
+		id, title, create_time, create_id, release_dep, content,
+		enclosure,
+		d.count as read_num, delflag,
+		yhzh,
+		state,need_receive_num, has_receive_num, dep_num
+		from news_inf c
+		LEFT JOIN
+		(	SELECT a.id as newsId,COUNT(b.newsId) as count
+		FROM news_inf a LEFT JOIN news_browsingHistory b
+		ON a.id=b.newsId
+		GROUP BY a.id) d
+		on d.newsId=c.id
+		where delflag != '1'
+		<if test="page.key != null and page.key != ''">
+			and (title like concat('%', #{page.key},
+			'%') or
+			release_dep like concat('%', #{page.key},
+			'%') or content like
+			concat('%',
+			#{page.key},
+			'%') or enclosure like concat('%',
+			#{page.key},
+			'%') or
+			read_num like concat('%', #{page.key},
+			'%') or
+			need_receive_num like concat('%', #{page.key},
+			'%') or
+			has_receive_num like concat('%', #{page.key},
+			'%') or
+			dep_num like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and state = #{page.state}
+		</if>
+		order by id desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectTotal2" parameterType="com.jtzh.pojo.NewsInf2Pagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from news_inf where delflag != '1'
+		<if test="page.newsIds != null">
+			and id in
+			<foreach collection="page.newsIds" item="newsId" open="("
+				close=")" separator=",">
+				#{newsId}
+			</foreach>
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (title like concat('%', #{page.key},
+			'%') or
+			release_dep like concat('%', #{page.key},
+			'%') or content like
+			concat('%',
+			#{page.key},
+			'%') or enclosure like concat('%',
+			#{page.key},
+			'%') or
+			read_num like concat('%', #{page.key},
+			'%') or
+			need_receive_num like concat('%', #{page.key},
+			'%') or
+			has_receive_num like concat('%', #{page.key},
+			'%') or
+			dep_num like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and state = #{page.state}
+		</if>
+	</select>
+	<select id="selectInfo2" parameterType="com.jtzh.pojo.NewsInf2Pagination"
+		resultType="com.jtzh.entity.NewsInf">
+		select
+		ni.id as id,ni.title as title,ni.create_time as createTime,ni.create_id as createId,
+		ni.release_dep as releaseDep,ni.content as content,ni.enclosure as enclosure,
+		nc.count as readNum,ni.delflag as delflag,ni.yhzh as yhzh,
+		nd.dep_need_receive_num as needReceiveNum,nd.dep_has_receive_num as hasReceiveNum,
+		ni.dep_num as depNum
+		from news_inf ni left join news_dep nd on ni.id = nd.news_id
+		LEFT JOIN (	SELECT a.id as newsId,COUNT(b.newsId) as count
+		FROM news_inf a LEFT JOIN news_browsingHistory b
+		ON a.id=b.newsId
+		GROUP BY a.id)  nc ON ni.id=nc.newsId
+		where ni.delflag != '1'
+		<if test="page.depName != null and page.depName != ''">
+			and nd.dep_name = #{page.depName}
+		</if>
+		<if test="page.newsIds != null">
+			and ni.id in
+			<foreach collection="page.newsIds" item="newsId" open="("
+				close=")" separator=",">
+				#{newsId}
+			</foreach>
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (ni.title like concat('%', #{page.key},
+			'%') or
+			ni.release_dep like concat('%', #{page.key},
+			'%') or ni.content like
+			concat('%',
+			#{page.key},
+			'%') or ni.enclosure like concat('%',
+			#{page.key},
+			'%') or
+			ni.read_num like concat('%', #{page.key},
+			'%') or
+			ni.need_receive_num like concat('%', #{page.key},
+			'%') or
+			ni.has_receive_num like concat('%', #{page.key},
+			'%') or
+			ni.dep_num like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and ni.create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and ni.create_time &lt; #{page.endTime}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and ni.state = #{page.state}
+		</if>
+		order by ni.id desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectNews" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from news_inf
+		where id = #{newsId,jdbcType=INTEGER}
+	</select>
+	<select id="selectNewsOnlyDep" resultType="com.jtzh.entity.NewsInf"
+		parameterType="com.jtzh.pojo.NewsDepReq">
+		select ni.id,ni.title,ni.create_time as createTime,ni.create_id as createId,
+		ni.release_dep as releaseDep,ni.content,ni.enclosure,ni.read_num as readNum,
+		ni.delflag,ni.yhzh,
+		ni.state,
+		nd.dep_need_receive_num as needReceiveNum,
+		nd.dep_has_receive_num as hasReceiveNum,ni.dep_num as depNum
+		from news_inf ni left join news_dep nd on ni.id = nd.news_id
+		where ni.id = #{newsId,jdbcType=INTEGER}
+		<if test="depName != null and depName != ''">
+			and nd.dep_name = #{depName}
+		</if>
+
+	</select>
+	<update id="deleteNews">
+		update news_inf
+		set
+		delflag = '1'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateReadNum">
+		update news_inf
+		set
+		read_num = read_num + 1
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<insert id="insertNewsInf" parameterType="com.jtzh.entity.NewsInf">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into news_inf (id,
+		title, create_time,
+		create_id, release_dep,
+		content,
+		enclosure,
+		read_num, delflag,
+		yhzh,need_receive_num,has_receive_num,dep_num,
+		state
+		)
+		values
+		(#{id,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE},
+		#{userName,jdbcType=VARCHAR},
+		#{releaseDep,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{enclosure,jdbcType=VARCHAR},
+		#{readNum,jdbcType=INTEGER},
+		#{delflag,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{needReceiveNum,jdbcType=INTEGER},
+		#{hasReceiveNum,jdbcType=INTEGER},#{depNum,jdbcType=INTEGER},
+		#{state})
+	</insert>
+	<select id="selectTotal3" resultType="java.lang.Integer">
+		select count(1)
+		from news_inf where delflag != '1'
+	</select>
+	<update id="updateHasReceiveNum">
+		update news_inf
+		set
+		has_receive_num = has_receive_num + 1
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateState" parameterType="com.jtzh.entity.NewsInf">
+		update news_inf
+		set
+		state= #{state,jdbcType=CHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+    <insert id="insertBrowsingHistory" parameterType="com.jtzh.entity.NewsBrowsingHistory">
+		insert into news_browsingHistory (department, name, create_time,newsId)
+		values (#{department,jdbcType=VARCHAR},
+			#{name,jdbcType=VARCHAR},
+			now(),
+			#{newsId,jdbcType=INTEGER})
+	</insert>
+
+
+    <select id="getBrowsingHistory"  parameterType="com.jtzh.entity.BrowsingPage"
+            resultType="com.jtzh.entity.NewsBrowsingHistory">
+			SELECT newsId,department,name,count(create_time) as count
+            FROM `news_browsingHistory`
+            where newsId=#{newsId,jdbcType=INTEGER}
+            GROUP BY department,name
+            limit
+    		#{start},#{pageSize}
+	</select>
+
+
+    <select id="getBrowsingHistoryTotal" parameterType="com.jtzh.entity.BrowsingPage"
+            resultType="java.lang.Integer">
+			SELECT count(deue.name)as count
+            from (SELECT name,count(create_time) as count
+            FROM `news_browsingHistory`
+            where newsId=#{newsId,jdbcType=INTEGER}
+            GROUP BY name) as deue
+	</select>
+
+
+    <select id="getBrowsingList" parameterType="com.jtzh.entity.BrowsingPage"
+            resultType="com.jtzh.entity.NewsBrowsingHistory">
+        SELECT name,department,create_time as createTime
+        FROM `news_browsingHistory`
+        where newsId=#{newsId,jdbcType=INTEGER} and name=#{name,jdbcType=VARCHAR}
+        ORDER BY create_time desc
+        limit
+		#{start},#{pageSize}
+	</select>
+
+    <select id="getBrowsingListTotal" parameterType="com.jtzh.entity.BrowsingPage"
+            resultType="java.lang.Integer">
+        SELECT count(deue.name)as count
+        from (SELECT name,department,create_time as createTime
+        FROM `news_browsingHistory`
+        where newsId=#{newsId,jdbcType=INTEGER} and name=#{name,jdbcType=VARCHAR}
+       ) as deue
+	</select>
+
+</mapper>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.PermissionconfigurationMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.Permissionconfiguration">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="PCMenuNumber" jdbcType="INTEGER" property="pcmenunumber" />
+    <result column="PCRoleNumber" jdbcType="INTEGER" property="pcrolenumber" />
+    <result column="PCUserNumber" jdbcType="INTEGER" property="pcusernumber" />
+    <result column="VersionNo" jdbcType="INTEGER" property="versionno" />
+    <result column="TransactionID" jdbcType="CHAR" property="transactionid" />
+    <result column="CreateBy" jdbcType="CHAR" property="createby" />
+    <result column="CreateOn" jdbcType="TIMESTAMP" property="createon" />
+    <result column="UpdateBy" jdbcType="CHAR" property="updateby" />
+    <result column="UpdateOn" jdbcType="TIMESTAMP" property="updateon" />
+    <result column="DataLevel" jdbcType="CHAR" property="datalevel" />
+    <result column="IsDeleted" jdbcType="INTEGER" property="isdeleted" />
+    <result column="ord" jdbcType="INTEGER" property="ord" />
+  </resultMap>
+  <resultMap id="NameResultMap" type="com.jtzh.entity.PermissionName">
+  	<id column="pid" jdbcType="INTEGER" property="pid"/>
+  	   <result column="mccaption" jdbcType="CHAR" property="mccaption" />
+  	   <result column="croleName" jdbcType="CHAR" property="croleName" />
+  	   <result column="uiloginName" jdbcType="CHAR" property="uiloginName" />
+  
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, PCMenuNumber, PCRoleNumber, PCUserNumber, VersionNo, TransactionID, CreateBy, 
+    CreateOn, UpdateBy, UpdateOn, DataLevel, IsDeleted, ord
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PermissionConfiguration
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from PermissionConfiguration
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.Permissionconfiguration">
+    insert into PermissionConfiguration (id, PCMenuNumber, PCRoleNumber, 
+      PCUserNumber, VersionNo, TransactionID, 
+      CreateBy, CreateOn, UpdateBy, 
+      UpdateOn, DataLevel, IsDeleted, 
+      ord)
+    values (#{id,jdbcType=INTEGER}, #{pcmenunumber,jdbcType=INTEGER}, #{pcrolenumber,jdbcType=INTEGER}, 
+      #{pcusernumber,jdbcType=INTEGER}, #{versionno,jdbcType=INTEGER}, #{transactionid,jdbcType=CHAR}, 
+      #{createby,jdbcType=CHAR}, #{createon,jdbcType=TIMESTAMP}, #{updateby,jdbcType=CHAR}, 
+      #{updateon,jdbcType=TIMESTAMP}, #{datalevel,jdbcType=CHAR}, #{isdeleted,jdbcType=INTEGER}, 
+      #{ord,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.Permissionconfiguration">
+    insert into PermissionConfiguration
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pcmenunumber != null">
+        PCMenuNumber,
+      </if>
+      <if test="pcrolenumber != null">
+        PCRoleNumber,
+      </if>
+      <if test="pcusernumber != null">
+        PCUserNumber,
+      </if>
+      <if test="versionno != null">
+        VersionNo,
+      </if>
+      <if test="transactionid != null">
+        TransactionID,
+      </if>
+      <if test="createby != null">
+        CreateBy,
+      </if>
+      <if test="createon != null">
+        CreateOn,
+      </if>
+      <if test="updateby != null">
+        UpdateBy,
+      </if>
+      <if test="updateon != null">
+        UpdateOn,
+      </if>
+      <if test="datalevel != null">
+        DataLevel,
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted,
+      </if>
+      <if test="ord != null">
+        ord,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pcmenunumber != null">
+        #{pcmenunumber,jdbcType=INTEGER},
+      </if>
+      <if test="pcrolenumber != null">
+        #{pcrolenumber,jdbcType=INTEGER},
+      </if>
+      <if test="pcusernumber != null">
+        #{pcusernumber,jdbcType=INTEGER},
+      </if>
+      <if test="versionno != null">
+        #{versionno,jdbcType=INTEGER},
+      </if>
+      <if test="transactionid != null">
+        #{transactionid,jdbcType=CHAR},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=CHAR},
+      </if>
+      <if test="createon != null">
+        #{createon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=CHAR},
+      </if>
+      <if test="updateon != null">
+        #{updateon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datalevel != null">
+        #{datalevel,jdbcType=CHAR},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="ord != null">
+        #{ord,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.Permissionconfiguration">
+    update PermissionConfiguration
+    <set>
+      <if test="pcmenunumber != null">
+        PCMenuNumber = #{pcmenunumber,jdbcType=INTEGER},
+      </if>
+      <if test="pcrolenumber != null">
+        PCRoleNumber = #{pcrolenumber,jdbcType=INTEGER},
+      </if>
+      <if test="pcusernumber != null">
+        PCUserNumber = #{pcusernumber,jdbcType=INTEGER},
+      </if>
+      <if test="versionno != null">
+        VersionNo = #{versionno,jdbcType=INTEGER},
+      </if>
+      <if test="transactionid != null">
+        TransactionID = #{transactionid,jdbcType=CHAR},
+      </if>
+      <if test="createby != null">
+        CreateBy = #{createby,jdbcType=CHAR},
+      </if>
+      <if test="createon != null">
+        CreateOn = #{createon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null">
+        UpdateBy = #{updateby,jdbcType=CHAR},
+      </if>
+      <if test="updateon != null">
+        UpdateOn = #{updateon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datalevel != null">
+        DataLevel = #{datalevel,jdbcType=CHAR},
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="ord != null">
+        ord = #{ord,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.Permissionconfiguration">
+    update PermissionConfiguration
+    set PCMenuNumber = #{pcmenunumber,jdbcType=INTEGER},
+      PCRoleNumber = #{pcrolenumber,jdbcType=INTEGER},
+      PCUserNumber = #{pcusernumber,jdbcType=INTEGER},
+      VersionNo = #{versionno,jdbcType=INTEGER},
+      TransactionID = #{transactionid,jdbcType=CHAR},
+      CreateBy = #{createby,jdbcType=CHAR},
+      CreateOn = #{createon,jdbcType=TIMESTAMP},
+      UpdateBy = #{updateby,jdbcType=CHAR},
+      UpdateOn = #{updateon,jdbcType=TIMESTAMP},
+      DataLevel = #{datalevel,jdbcType=CHAR},
+      IsDeleted = #{isdeleted,jdbcType=INTEGER},
+      ord = #{ord,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <select id="selectPermissionconfig" parameterType="com.jtzh.pojo.PermissionconfigurationPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from PermissionConfiguration
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	 
+	<select id="selectPermissionconfigTotal" parameterType="com.jtzh.pojo.PermissionconfigurationPagination"
+		resultType="java.lang.Integer">
+		select count(id)
+		from PermissionConfiguration
+	</select>
+	<select id="SelectPCNumberName" resultMap="NameResultMap">
+	 select p.id as pid,m.MCCaption as mccaption ,c.CRoleName as croleName,u.UILoginName as uiloginName from  permissionconfiguration p 	left join menuconfiguration m on m.id=p.PCMenuNumber  
+ 			left join character_userinfo c on c.id=p.PCRoleNumber 
+ 			left join userinformation u on u.id=p.PCUserNumber
+	</select>
+</mapper>

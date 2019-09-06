@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.WisdomParkPolicyMapper" >
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.WisdomParkPolicy" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="policy_name" property="policyName" jdbcType="VARCHAR" />
+    <result column="policy_release_time" property="policyReleaseTime" jdbcType="DATE" />
+    <result column="policy_release_dep" property="policyReleaseDep" jdbcType="VARCHAR" />
+    <result column="policy_intro" property="policyIntro" jdbcType="VARCHAR" />
+    <result column="policy_enclosure" property="policyEnclosure" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, policy_name, policy_release_time, policy_release_dep, policy_intro, policy_enclosure, 
+    is_deleted, create_time, create_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wisdom_park_policy
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wisdom_park_policy
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.WisdomParkPolicy" >
+    insert into wisdom_park_policy (id, policy_name, policy_release_time, 
+      policy_release_dep, policy_intro, policy_enclosure, 
+      is_deleted, create_time, create_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{policyName,jdbcType=VARCHAR}, #{policyReleaseTime,jdbcType=DATE}, 
+      #{policyReleaseDep,jdbcType=VARCHAR}, #{policyIntro,jdbcType=VARCHAR}, #{policyEnclosure,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=CHAR}, #{createTime,jdbcType=DATE}, #{createId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.WisdomParkPolicy" >
+    insert into wisdom_park_policy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="policyName != null" >
+        policy_name,
+      </if>
+      <if test="policyReleaseTime != null" >
+        policy_release_time,
+      </if>
+      <if test="policyReleaseDep != null" >
+        policy_release_dep,
+      </if>
+      <if test="policyIntro != null" >
+        policy_intro,
+      </if>
+      <if test="policyEnclosure != null" >
+        policy_enclosure,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="policyName != null" >
+        #{policyName,jdbcType=VARCHAR},
+      </if>
+      <if test="policyReleaseTime != null" >
+        #{policyReleaseTime,jdbcType=DATE},
+      </if>
+      <if test="policyReleaseDep != null" >
+        #{policyReleaseDep,jdbcType=VARCHAR},
+      </if>
+      <if test="policyIntro != null" >
+        #{policyIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="policyEnclosure != null" >
+        #{policyEnclosure,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.WisdomParkPolicy" >
+    update wisdom_park_policy
+    <set >
+      <if test="policyName != null" >
+        policy_name = #{policyName,jdbcType=VARCHAR},
+      </if>
+      <if test="policyReleaseTime != null" >
+        policy_release_time = #{policyReleaseTime,jdbcType=DATE},
+      </if>
+      <if test="policyReleaseDep != null" >
+        policy_release_dep = #{policyReleaseDep,jdbcType=VARCHAR},
+      </if>
+      <if test="policyIntro != null" >
+        policy_intro = #{policyIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="policyEnclosure != null" >
+        policy_enclosure = #{policyEnclosure,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.WisdomParkPolicy" >
+    update wisdom_park_policy
+    set policy_name = #{policyName,jdbcType=VARCHAR},
+      policy_release_time = #{policyReleaseTime,jdbcType=DATE},
+      policy_release_dep = #{policyReleaseDep,jdbcType=VARCHAR},
+      policy_intro = #{policyIntro,jdbcType=VARCHAR},
+      policy_enclosure = #{policyEnclosure,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      create_id = #{createId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectTotal" parameterType="com.jtzh.pojo.DepPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from wisdom_park_policy
+		where is_deleted != '1'
+		<if test="page.key != null and page.key != ''">
+			and (policy_name like concat('%', #{page.key},
+			'%') or policy_release_dep like concat('%', #{page.key},
+			'%') or policy_intro like concat('%', #{page.key},
+			'%') or policy_enclosure like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and policy_release_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and policy_release_time &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.UserPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wisdom_park_policy
+		where is_deleted != '1'
+		<if test="page.key != null and page.key != ''">
+			and (policy_name like concat('%', #{page.key},
+			'%') or policy_release_dep like concat('%', #{page.key},
+			'%') or policy_intro like concat('%', #{page.key},
+			'%') or policy_enclosure like concat('%', #{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and policy_release_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and policy_release_time &lt; #{page.endTime}
+		</if>
+		order by policy_release_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectWisdomParkPolicy" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wisdom_park_policy
+		where id = #{id}
+	</select>
+	<update id="deleteWisdomParkPolicy">
+		update wisdom_park_policy
+		set
+		is_deleted = '1'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+</mapper>

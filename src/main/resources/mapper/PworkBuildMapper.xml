@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.PworkBuildMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.PworkBuild">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="pwork_title" property="pworkTitle" jdbcType="VARCHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="enclosure" property="enclosure" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="pwork_type" property="pworkType" jdbcType="CHAR" />
+		<result column="pwork_origin" property="pworkOrigin" jdbcType="VARCHAR" />
+		<result column="pwork_number" property="pworkNumber" jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="pwork_content" property="pworkContent" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, pwork_title, delflag, enclosure, create_time,
+		pwork_type, pwork_origin, pwork_number, yhzh, create_id, pwork_content
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from pwork_build
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		pwork_build
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.PworkBuild">
+		insert into pwork_build (id,
+		pwork_title, delflag,
+		enclosure, create_time, pwork_type, 
+		pwork_origin, pwork_number, yhzh, create_id, pwork_content
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{pworkTitle,jdbcType=VARCHAR},
+		#{delflag,jdbcType=CHAR},
+		#{enclosure,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{pworkType,jdbcType=CHAR},
+		#{pworkOrigin,jdbcType=VARCHAR}, #{pworkNumber,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR},#{pworkContent,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.PworkBuild">
+		insert into pwork_build
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="pworkTitle != null">
+				pwork_title,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="enclosure != null">
+				enclosure,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="pworkType != null">
+				pwork_type,
+			</if>
+			<if test="pworkOrigin != null">
+				pwork_origin,
+			</if>
+			<if test="pworkNumber != null">
+				pwork_number,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="pworkTitle != null">
+				#{pworkTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="enclosure != null">
+				#{enclosure,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="pworkType != null">
+				#{pworkType,jdbcType=CHAR},
+			</if>
+			<if test="pworkOrigin != null">
+				#{pworkOrigin,jdbcType=VARCHAR},
+			</if>
+			<if test="pworkNumber != null">
+				#{pworkNumber,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PworkBuild">
+		update pwork_build
+		<set>
+			<if test="pworkTitle != null">
+				pwork_title = #{pworkTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="enclosure != null">
+				enclosure = #{enclosure,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="pworkType != null">
+				pwork_type = #{pworkType,jdbcType=CHAR},
+			</if>
+			<if test="pworkOrigin != null">
+				pwork_origin = #{pworkOrigin,jdbcType=VARCHAR},
+			</if>
+			<if test="pworkNumber != null">
+				pwork_number = #{pworkNumber,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PworkBuild">
+		update pwork_build
+		set pwork_title = #{pworkTitle,jdbcType=VARCHAR},
+		delflag =
+		#{delflag,jdbcType=CHAR},
+		enclosure = #{enclosure,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		pwork_type =
+		#{pworkType,jdbcType=CHAR},
+		pwork_origin = #{pworkOrigin,jdbcType=VARCHAR},
+		pwork_number = #{pworkNumber,jdbcType=VARCHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR},
+		create_id = #{createId,jdbcType=VARCHAR},
+		pwork_content = #{pworkContent,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.PworkPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from pwork_build
+		where delflag != 'D' and pwork_type =
+		#{page.type}
+		<if test="page.key != null and page.key != ''">
+			and (pwork_title like concat('%', #{page.key},'%')
+			or pwork_content like concat('%', #{page.key},'%')
+			or pwork_origin like concat('%', #{page.key},'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.PworkPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pwork_build
+		where delflag != 'D' and pwork_type = #{page.type}
+		<if test="page.key != null and page.key != ''">
+			and (pwork_title like concat('%', #{page.key},'%')
+			or pwork_content like concat('%', #{page.key},'%')
+			or pwork_origin like concat('%', #{page.key},'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+		order by create_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectPwork" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pwork_build
+		where id = #{id} and pwork_type = #{type}
+	</select>
+	<update id="deletePwork">
+		update pwork_build
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertPwork" parameterType="com.jtzh.entity.PworkBuild">
+		<selectKey resultType="java.lang.String" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into pwork_build (id,
+		pwork_title, delflag,
+		enclosure,create_time, pwork_type, pwork_origin, 
+		pwork_number, yhzh, create_id, pwork_content
+		)
+		values
+		(#{id,jdbcType=INTEGER},
+		#{pworkTitle,jdbcType=VARCHAR},
+		#{delflag,jdbcType=CHAR},
+		#{enclosure,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{pworkType,jdbcType=CHAR},
+		#{pworkOrigin,jdbcType=VARCHAR},
+		#{pworkNumber,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{pworkContent,jdbcType=VARCHAR}
+		)
+	</insert>
+</mapper>

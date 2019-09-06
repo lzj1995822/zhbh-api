@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.DisputeEventMapper">
+    <resultMap id="BaseResultMap" type="com.jtzh.entity.DisputeEvent">
+        <id column="DisputeEventID" jdbcType="BIGINT" property="disputeEventID"/>
+        <result column="EventName" jdbcType="VARCHAR" property="eventName"/>
+        <result column="EventDate" jdbcType="DATE" property="eventDate"/>
+        <result column="EventPlace" jdbcType="VARCHAR" property="eventPlace"/>
+        <result column="EventScaleTypeValue" jdbcType="CHAR"
+                property="evenScaleTypeValue"/>
+        <result column="EventTypeValue" jdbcType="CHAR" property="eventTypeValue"/>
+        <result column="NumberofJoinning" jdbcType="INTEGER" property="numberofJoinning"/>
+        <result column="EventIntroduction" jdbcType="VARCHAR" property="eventIntroduction"/>
+        <result column="RelatedOrg" jdbcType="VARCHAR" property="relatedOrg"/>
+        <result column="MajorPersonCertTypeCode" jdbcType="CHAR"
+                property="majorPersonCertTypeCode"/>
+        <result column="MajorPersonCertID" jdbcType="CHAR" property="majorPersonCertID"/>
+        <result column="MajorPersonName" jdbcType="CHAR" property="majorPersonName"/>
+        <result column="MajorPersonSex" jdbcType="CHAR" property="majorPersonSex"/>
+        <result column="MajorPersonEthnicity" jdbcType="CHAR"
+                property="majorPersonEthnicity"/>
+        <result column="MajorPersonEducation" jdbcType="CHAR"
+                property="majorPersonEducation"/>
+        <result column="MajorPersonType" jdbcType="CHAR" property="majorPersonType"/>
+        <result column="MajorPersonDetailAddress" jdbcType="VARCHAR"
+                property="majorPersonDetailAddress"/>
+        <result column="SolvingDeadline" jdbcType="DATE" property="solvingDeadline"/>
+        <result column="SolvingMethodType" jdbcType="CHAR" property="solvingMethodType"/>
+        <result column="SolvingManagment" jdbcType="VARCHAR" property="solvingManagment"/>
+        <result column="SolvingByPersonName" jdbcType="VARCHAR"
+                property="solvingByPersonName"/>
+        <result column="SolvingByPersonContact" jdbcType="VARCHAR"
+                property="solvingByPersonContact"/>
+        <result column="IsSuccessInSolving" jdbcType="INTEGER"
+                property="isSuccessInSolving"/>
+        <result column="SolvingIntroduction" jdbcType="VARCHAR"
+                property="solvingIntroduction"/>
+        <result column="EvaluationDate" jdbcType="DATE" property="evaluationDate"/>
+        <result column="EvaluationSuggestion" jdbcType="VARCHAR"
+                property="evaluationSuggestion"/>
+        <result column="Longitude" jdbcType="DOUBLE" property="longitude"/>
+        <result column="Latitude" jdbcType="DOUBLE" property="latitude"/>
+        <result column="EventStatus" jdbcType="CHAR" property="eventStatus"/>
+        <result column="EventCheckStatus" jdbcType="INTEGER" property="eventCheckStatus"/>
+        <result column="NetGridID" jdbcType="BIGINT" property="netGridID"/>
+    </resultMap>
+    <resultMap id="DisputeEventVO" type="com.jtzh.vo.dispute.DisputeEventVO">
+        <id column="DisputeEventID" jdbcType="BIGINT" property="disputeEventID"/>
+        <result column="EventName" jdbcType="VARCHAR" property="eventName"/>
+        <result column="EventDate" jdbcType="VARCHAR" property="eventDate"/>
+        <result column="EventPlace" jdbcType="VARCHAR" property="eventPlace"/>
+        <result column="EventScaleTypeName" jdbcType="VARCHAR"
+                property="evenScaleTypeName"/>
+        <result column="EventTypeName" jdbcType="VARCHAR" property="eventTypeName"/>
+        <result column="NumberofJoinning" jdbcType="INTEGER" property="numberofJoinning"/>
+        <result column="EventIntroduction" jdbcType="VARCHAR" property="eventIntroduction"/>
+        <result column="RelatedOrg" jdbcType="VARCHAR" property="relatedOrg"/>
+        <result column="Longitude" jdbcType="DOUBLE" property="longitude"/>
+        <result column="Latitude" jdbcType="DOUBLE" property="latitude"/>
+        <result column="EventStatus" jdbcType="VARCHAR" property="eventStatus"/>
+        <result column="EventStatusName" jdbcType="VARCHAR" property="eventStatusName"/>
+        <result column="NetGridName" jdbcType="VARCHAR" property="netGridName"/>
+    </resultMap>
+    <resultMap id="DisputeEventDetailVO" type="com.jtzh.vo.dispute.DisputeEventDetailVO">
+        <id column="DisputeEventID" jdbcType="BIGINT" property="disputeEventID"/>
+        <result column="EventName" jdbcType="VARCHAR" property="eventName"/>
+        <result column="EventDate" jdbcType="VARCHAR" property="eventDate"/>
+        <result column="EventPlace" jdbcType="VARCHAR" property="eventPlace"/>
+        <result column="EventScaleTypeName" jdbcType="VARCHAR"
+                property="evenScaleTypeName"/>
+        <result column="EventTypeName" jdbcType="VARCHAR" property="eventTypeName"/>
+        <result column="NumberofJoinning" jdbcType="INTEGER" property="numberofJoinning"/>
+        <result column="EventIntroduction" jdbcType="VARCHAR" property="eventIntroduction"/>
+        <result column="RelatedOrg" jdbcType="VARCHAR" property="relatedOrg"/>
+        <result column="Longitude" jdbcType="DOUBLE" property="longitude"/>
+        <result column="Latitude" jdbcType="DOUBLE" property="latitude"/>
+        <result column="EventStatusName" jdbcType="VARCHAR" property="eventStatusName"/>
+        <result column="NetGridName" jdbcType="VARCHAR" property="netGridName"/>
+        <result column="RealName" jdbcType="VARCHAR" property="realName"/>
+        <result column="Dept" jdbcType="VARCHAR" property="dept"/>
+        <result column="MobileTel" jdbcType="VARCHAR" property="mobileTel"/>
+    </resultMap>
+    <resultMap type="com.jtzh.vo.dispute.DisputeEventCountVO"
+               id="DisputeEventCountVO">
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="solved" jdbcType="INTEGER" property="solved"/>
+        <result column="unsolved" jdbcType="INTEGER" property="unsolved"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!-- WARNING - @mbg.generated This element is automatically generated by
+            MyBatis Generator, do not modify. -->
+        delete from TEDisputeEvent
+        where DisputeEventID =
+        #{disputeEventID,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.jtzh.entity.DisputeEvent" keyProperty="disputeEventID"
+            useGeneratedKeys="true">
+        insert into TEDisputeEvent (DisputeEventID, EventName, EventDate,
+        EventPlace, EventScaleTypeValue, EventTypeValue,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg,
+        MajorPersonCertTypeCode,
+        MajorPersonCertID, MajorPersonName,
+        MajorPersonSex,
+        MajorPersonEthnicity, MajorPersonEducation,
+        MajorPersonType,
+        MajorPersonDetailAddress,
+        SolvingDeadline, SolvingMethodType,
+        SolvingManagment,
+        SolvingByPersonName, SolvingByPersonContact,
+        IsSuccessInSolving, SolvingIntroduction,
+        EvaluationDate,
+        EvaluationSuggestion, Longitude,
+        Latitude, EventStatus,
+        EventCheckStatus,NetGridID
+        )
+        values (#{disputeEventID,jdbcType=BIGINT},
+        #{eventName,jdbcType=VARCHAR},
+        #{eventDate,jdbcType=DATE},
+        #{eventPlace,jdbcType=VARCHAR}, #{evenScaleTypeValue,jdbcType=CHAR},
+        #{eventTypeValue,jdbcType=CHAR},
+        #{numberofJoinning,jdbcType=INTEGER},
+        #{eventIntroduction,jdbcType=VARCHAR}, #{relatedOrg,jdbcType=VARCHAR},
+        #{majorPersonCertTypeCode,jdbcType=CHAR},
+        #{majorPersonCertID,jdbcType=CHAR}, #{majorPersonName,jdbcType=CHAR},
+        #{majorPersonSex,jdbcType=CHAR},
+        #{majorPersonEthnicity,jdbcType=CHAR},
+        #{majorPersonEducation,jdbcType=CHAR},
+        #{majorPersonType,jdbcType=CHAR},
+        #{majorPersonDetailAddress,jdbcType=VARCHAR},
+        #{solvingDeadline,jdbcType=DATE}, #{solvingMethodType,jdbcType=CHAR},
+        #{solvingManagment,jdbcType=VARCHAR},
+        #{solvingByPersonName,jdbcType=VARCHAR},
+        #{solvingByPersonContact,jdbcType=VARCHAR},
+        #{isSuccessInSolving,jdbcType=INTEGER},
+        #{solvingIntroduction,jdbcType=VARCHAR},
+        #{evaluationDate,jdbcType=DATE},
+        #{evaluationSuggestion,jdbcType=VARCHAR},
+        #{longitude,jdbcType=DOUBLE},
+        #{latitude,jdbcType=DOUBLE},
+        #{eventStatus,jdbcType=CHAR}, #{eventCheckStatus,jdbcType=INTEGER},#{netGridID,jdbcType=BIGINT}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.DisputeEvent">
+        <!-- WARNING - @mbg.generated This element is automatically generated by
+            MyBatis Generator, do not modify. -->
+        update TEDisputeEvent
+        set EventName = #{eventName,jdbcType=VARCHAR},
+        EventDate = #{eventDate,jdbcType=DATE},
+        EventPlace =
+        #{eventPlace,jdbcType=VARCHAR},
+        EventScaleTypeValue =
+        #{evenScaleTypeValue,jdbcType=CHAR},
+        EventTypeValue =
+        #{eventTypeValue,jdbcType=CHAR},
+        NumberofJoinning =
+        #{numberofJoinning,jdbcType=INTEGER},
+        EventIntroduction =
+        #{eventIntroduction,jdbcType=VARCHAR},
+        RelatedOrg =
+        #{relatedOrg,jdbcType=VARCHAR},
+        MajorPersonCertTypeCode =
+        #{majorPersonCertTypeCode,jdbcType=CHAR},
+        MajorPersonCertID =
+        #{majorPersonCertID,jdbcType=CHAR},
+        MajorPersonName =
+        #{majorPersonName,jdbcType=CHAR},
+        MajorPersonSex =
+        #{majorPersonSex,jdbcType=CHAR},
+        MajorPersonEthnicity =
+        #{majorPersonEthnicity,jdbcType=CHAR},
+        MajorPersonEducation =
+        #{majorPersonEducation,jdbcType=CHAR},
+        MajorPersonType =
+        #{majorPersonType,jdbcType=CHAR},
+        MajorPersonDetailAddress =
+        #{majorPersonDetailAddress,jdbcType=VARCHAR},
+        SolvingDeadline =
+        #{solvingDeadline,jdbcType=DATE},
+        SolvingMethodType =
+        #{solvingMethodType,jdbcType=CHAR},
+        SolvingManagment =
+        #{solvingManagment,jdbcType=VARCHAR},
+        SolvingByPersonName =
+        #{solvingByPersonName,jdbcType=VARCHAR},
+        SolvingByPersonContact =
+        #{solvingByPersonContact,jdbcType=VARCHAR},
+        IsSuccessInSolving =
+        #{isSuccessInSolving,jdbcType=INTEGER},
+        SolvingIntroduction =
+        #{solvingIntroduction,jdbcType=VARCHAR},
+        EvaluationDate =
+        #{evaluationDate,jdbcType=DATE},
+        EvaluationSuggestion =
+        #{evaluationSuggestion,jdbcType=VARCHAR},
+        Longitude =
+        #{longitude,jdbcType=DOUBLE},
+        Latitude = #{latitude,jdbcType=DOUBLE},
+        EventStatus = #{eventStatus,jdbcType=CHAR},
+        EventCheckStatus =
+        #{eventCheckStatus,jdbcType=INTEGER},
+        NetGridID=#{netGridID,jdbcType=BIGINT}
+        where DisputeEventID =
+        #{disputeEventID,jdbcType=BIGINT}
+    </update>
+    <update id="updateEventStatus">
+        <!-- WARNING - @mbg.generated This element is automatically generated by
+            MyBatis Generator, do not modify. -->
+        update TEDisputeEvent
+        set
+        EventStatus = #{status}
+        where DisputeEventID =#{id}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultMap="DisputeEventDetailVO">
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeName, EventTypeName,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, Longitude, Latitude,
+        NetGridName,EventStatusName,RealName,Dept,MobileTel
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TEUser t6 on t1.SolvingByPersonName=t6.UserID
+        where DisputeEventID =
+        #{disputeEventID,jdbcType=BIGINT}
+    </select>
+    <select id="selectByDisputeEventID" parameterType="java.lang.Long"
+            resultMap="BaseResultMap">
+        select *
+        from TEDisputeEvent t1
+        where DisputeEventID =
+        #{disputeEventID,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectForGIS" resultMap="BaseResultMap">
+        <!-- WARNING - @mbg.generated This element is automatically generated by
+            MyBatis Generator, do not modify. -->
+        SELECT * FROM MSMIS_DB.TEDisputeEvent where
+        CONCAT(ifnull(EventName,
+        ''),ifnull(EventPlace,''),ifnull(EventIntroduction,''),ifnull(MajorPersonName,''),ifnull(SolvingByPersonName,''),ifnull(SolvingIntroduction,''))
+        like CONCAT(CONCAT('%', #{key}),'%')
+    </select>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        <!-- WARNING - @mbg.generated This element is automatically generated by
+            MyBatis Generator, do not modify. -->
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeValue, EventTypeValue,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, MajorPersonCertTypeCode,
+        MajorPersonCertID,
+        MajorPersonName, MajorPersonSex,
+        MajorPersonEthnicity, MajorPersonEducation,
+        MajorPersonType,
+        MajorPersonDetailAddress, SolvingDeadline, SolvingMethodType,
+        SolvingManagment,
+        SolvingByPersonName,
+        SolvingByPersonContact,
+        IsSuccessInSolving, SolvingIntroduction, EvaluationDate,
+        EvaluationSuggestion, Longitude, Latitude, EventStatus,
+        EventCheckStatus,NetGridID
+        from TEDisputeEvent
+    </select>
+
+    <select id="getUnSovleCount" resultType="java.lang.Integer">
+        <!-- WARNING - @mbg.generated This element is automatically generated by
+            MyBatis Generator, do not modify. -->
+        select count(*)
+        from TEDisputeEvent where EventStatus != '07'
+        <if test="netGridID != null and netGridID != 0">
+            and NetGridID = #{netGridID}
+        </if>
+    </select>
+
+    <select id="getSovleCount" resultType="java.lang.Integer">
+        <!-- WARNING - @mbg.generated This element is automatically generated by
+            MyBatis Generator, do not modify. -->
+        select count(*)
+        from TEDisputeEvent where EventStatus = '07'
+        <if test="netGridID != null and netGridID != 0">
+            and NetGridID = #{netGridID}
+        </if>
+    </select>
+
+    <select id="getDisputeEventCount" resultMap="DisputeEventCountVO">
+        select tg.NetGridName name,ifnull(tt.solved,0) solved,ifnull(tt.unsolved,0) unsolved from TENetGrid tg left join
+        (select NetGridName, sum(case when EventStatus='07' then 1 else 0 end) solved,
+        sum(case when EventStatus!='07' then 1 else 0 end)unsolved
+        from TEDisputeEvent t1
+        left join TENetGrid t2 on t1.NetGridID=t2.NetGridID
+        where 1=1
+        <if test="start!=null ">
+            and EventDate <![CDATA[>=]]>#{start}
+        </if>
+        <if test="end!=null">
+            and EventDate <![CDATA[<=]]>#{end}
+        </if>
+        group by NetGridName) tt on tg.NetGridName=tt.NetGridName where tg.FatherNetGridID=-1 order by tg.NetGridID;
+    </select>
+
+    <select id="getDisputeEventByStatus" resultType="java.util.Map">
+        select ifnull(sum(case when EventStatus='07' then 1 else 0 end),0) solved,
+        ifnull(sum(case when EventStatus!='07' then 1 else 0 end),0)unsolved
+        from TEDisputeEvent
+        where 1=1
+        <if test="start!=null ">
+            and EventDate <![CDATA[>=]]>#{start}
+        </if>
+        <if test="end!=null">
+            and EventDate <![CDATA[<=]]>#{end}
+        </if>
+    </select>
+
+    <select id="getDisputeEventCountByNetGrid" resultType="java.util.Map">
+       select tn.NetGridName,ifnull(ta.count,0) value from TENetGrid tn left join
+      (SELECT t2.NetGridName,count(*) count
+      FROM TEDisputeEvent t1
+      left join TENetGrid t2 on
+      t1.NetGridID=t2.NetGridID
+      group by t2.NetGridName)ta on tn.NetGridName=ta.NetGridName where tn.FatherNetGridID=-1 order by tn.NetGridID;
+    </select>
+
+    <select id="getSolveEvent" resultMap="BaseResultMap">
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeValue, EventTypeValue,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, MajorPersonCertTypeCode,
+        MajorPersonCertID,
+        MajorPersonName, MajorPersonSex,
+        MajorPersonEthnicity, MajorPersonEducation,
+        MajorPersonType,
+        MajorPersonDetailAddress, SolvingDeadline, SolvingMethodType,
+        SolvingManagment,
+        SolvingByPersonName,
+        SolvingByPersonContact,
+        IsSuccessInSolving, SolvingIntroduction, EvaluationDate,
+        EvaluationSuggestion, Longitude, Latitude, EventStatus,
+        EventCheckStatus,NetGridID
+        from TEDisputeEvent where
+        EventStatus='07'
+        <if test="netGridID != null and netGridID != 0">
+            and NetGridID = #{netGridID}
+        </if>
+    </select>
+    <select id="getUnSolveEvent" resultMap="BaseResultMap">
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeValue, EventTypeValue,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, MajorPersonCertTypeCode,
+        MajorPersonCertID,
+        MajorPersonName, MajorPersonSex,
+        MajorPersonEthnicity, MajorPersonEducation,
+        MajorPersonType,
+        MajorPersonDetailAddress, SolvingDeadline, SolvingMethodType,
+        SolvingManagment,
+        SolvingByPersonName,
+        SolvingByPersonContact,
+        IsSuccessInSolving, SolvingIntroduction, EvaluationDate,
+        EvaluationSuggestion, Longitude, Latitude, EventStatus,
+        EventCheckStatus,NetGridID
+        from TEDisputeEvent where
+        EventStatus!='07'
+        <if test="netGridID != null and netGridID != 0">
+            and NetGridID = #{netGridID}
+        </if>
+    </select>
+
+    <select id="getDisputeEventReporterQuery" resultMap="DisputeEventVO">
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeName, EventTypeName,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, Longitude, Latitude,
+        NetGridName,EventStatus,EventStatusName
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TEUser t6 on SolvingByPersonName=UserID
+        where 1=1
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+        <if test="status!='' and status!=null">
+            and t1.EventStatus=#{status}
+        </if>
+        and UserID=#{id}
+        order by EventDate desc
+        limit #{start}, #{pageSize}
+    </select>
+
+    <select id="getDisputeEventReporterQueryCount" resultType="java.lang.Integer">
+        select count(*)
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TEUser t6 on SolvingByPersonName=UserID
+        where 1=1
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+        <if test="status!='' and status!=null">
+            and t1.EventStatus=#{status}
+        </if>
+        and UserID=#{id}
+    </select>
+    <select id="getDisputeEventDespatcherQuery" resultMap="DisputeEventVO">
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeName, EventTypeName,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, Longitude, Latitude,
+        NetGridName,EventStatus,EventStatusName
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+        where 1=1 and (t1.EventStatus='01' or t1.EventStatus='03' or t1.EventStatus='04'
+        or t6.UserID=#{id})
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+        group by DisputeEventID
+        order by EventDate desc
+        limit #{start}, #{pageSize}
+    </select>
+
+    <select id="getDisputeEventDespatcherQueryCount" resultType="java.lang.Integer">
+        select count(DISTINCT DisputeEventID)
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+        where 1=1 and (t1.EventStatus='01' or t1.EventStatus='03' or t1.EventStatus='04'
+        or t6.UserID=#{id})
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+    </select>
+    <select id="getDisputeEventDeptDespatcherQuery" resultMap="DisputeEventVO">
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeName, EventTypeName,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, Longitude, Latitude,
+        NetGridName,EventStatus,EventStatusName
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+        where 1=1 and (t6.AcceptedUserID=#{id}
+        or t6.UserID=#{id})
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+        group by DisputeEventID
+        order by EventDate desc
+        limit #{start}, #{pageSize}
+    </select>
+
+    <select id="getDisputeEventDeptDespatcherQueryCount" resultType="java.lang.Integer">
+        select count(DISTINCT DisputeEventID)
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+        where 1=1 and (t6.AcceptedUserID=#{id}
+        or t6.UserID=#{id})
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+    </select>
+    <select id="getDisputeEventHandlerQuery" resultMap="DisputeEventVO">
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeName, EventTypeName,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, Longitude, Latitude,
+        NetGridName,EventStatus,EventStatusName
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+        left join TRDisputeEventDealing t7 on t1.DisputeEventID=t7.EventID
+        where 1=1 and (t6.AcceptedUserID=#{id} or t7.DealingUserID=#{id})
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+        group by DisputeEventID
+        order by EventDate desc
+        limit #{start}, #{pageSize}
+    </select>
+
+    <select id="getDisputeEventHandlerQueryCount" resultType="java.lang.Integer">
+        select count(DISTINCT DisputeEventID)
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+        left join TRDisputeEventDealing t7 on t1.DisputeEventID=t7.EventID
+        where 1=1 and (t6.AcceptedUserID=#{id} or t7.DealingUserID=#{id})
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+    </select>
+    <select id="getDisputeEventAuditorQuery" resultMap="DisputeEventVO">
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeName, EventTypeName,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, Longitude, Latitude,
+        NetGridName,EventStatus,EventStatusName
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventChecked t6 on t1.DisputeEventID=t6.EventID
+        where 1=1 and (t1.EventStatus='06'
+        or t6.CheckedUserID=#{id})
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+        group by DisputeEventID
+        order by EventDate desc
+        limit #{start}, #{pageSize}
+    </select>
+
+    <select id="getDisputeEventAuditorQueryCount" resultType="java.lang.Integer">
+        select count(DISTINCT DisputeEventID)
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventChecked t6 on t1.DisputeEventID=t6.EventID
+        where 1=1 and (t1.EventStatus='06'
+        or t6.CheckedUserID=#{id})
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+    </select>
+
+
+    <select id="getDisputeEventAPPQuery" resultMap="DisputeEventVO">
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeName, EventTypeName,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, Longitude, Latitude,
+        NetGridName,EventStatus,EventStatusName
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+        left join TRDisputeEventDealing t7 on t1.DisputeEventID=t7.EventID
+        left join TEUser t8 on SolvingByPersonName=t8.UserID
+        where 1=1 and (t6.AcceptedUserID=#{id} or t7.DealingUserID=#{id} or t8.UserID=#{id})
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+        group by DisputeEventID
+        order by EventDate desc
+        limit #{start}, #{pageSize}
+    </select>
+
+    <select id="getDisputeEventAPPQueryCount" resultType="java.lang.Integer">
+        select count(DISTINCT DisputeEventID)
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+        left join TRDisputeEventDealing t7 on t1.DisputeEventID=t7.EventID
+        left join TEUser t8 on SolvingByPersonName=t8.UserID
+        where 1=1 and (t6.AcceptedUserID=#{id} or t7.DealingUserID=#{id} or t8.UserID=#{id})
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+    </select>
+
+
+    <select id="getSSEventCountForCheck" resultType="java.lang.Integer">
+
+        SELECT count(*)
+        FROM TEDisputeEvent t1
+        where 1=1
+        <if test="isFinish!=null and isFinish==0">
+            and t1.EventStatus!='07'
+        </if>
+        <if test="isFinish!=null and isFinish==1">
+            and t1.EventStatus =='07'
+        </if>
+    </select>
+
+
+    <select id="getDisputeEventForNetGrid" resultMap="DisputeEventVO">
+        select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeName, EventTypeName,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, Longitude, Latitude,
+        NetGridName,EventStatus,EventStatusName
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        where 1=1
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+        group by DisputeEventID
+        order by EventDate desc
+        limit #{start}, #{pageSize}
+    </select>
+
+    <select id="getDisputeEventForNetGridCount" resultType="java.lang.Integer">
+        select count(DISTINCT DisputeEventID)
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        where 1=1
+        <if test="eventName != null and eventName != ''">
+            and EventName like CONCAT(CONCAT('%',
+            #{eventName}), '%')
+        </if>
+        <if test="eventTypeValue != null and eventTypeValue != ''">
+            and t1.EventTypeValue = #{eventTypeValue}
+        </if>
+        <if test="netGridID != null and netGridID != 0">
+            and t1.NetGridID = #{netGridID}
+        </if>
+    </select>
+
+
+</mapper>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.HiddenMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.HiddenDanger">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="attachment_source" property="attachmentSource"
+			jdbcType="CHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="VARCHAR" />
+		<result column="people" property="people" jdbcType="VARCHAR" />
+		<result column="department" property="department" jdbcType="VARCHAR" />
+		<result column="assign" property="assign" jdbcType="VARCHAR" />
+		<result column="completeDate" jdbcType="DATE" property="completeDate" />
+		<result column="solve" property="solve" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="x" property="x" jdbcType="VARCHAR" />
+		<result column="y" property="y" jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="createId" jdbcType="VARCHAR" property="createId" />
+		<result column="createTime" jdbcType="DATE" property="createTime" />
+		<result column="isdeleted" jdbcType="VARCHAR" property="isdeleted" />
+		<result column="countryside_id" property="countrysideId" jdbcType="INTEGER" />
+		<result column="hidden_type" property="hiddenType"
+			jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, attachment_source,
+		address, remarks, name,
+		number, people, department, assign,
+		completeDate, solve, state, x, y, yhzh,
+		createId, createTime, isdeleted,countryside_id,hidden_type
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from hidden_danger
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<insert id="insert" parameterType="com.jtzh.entity.HiddenDanger">
+		insert into
+		hidden_danger (
+		id,
+		attachment_source,
+		address, remarks, name,
+		number, people, department, assign,
+		completeDate, solve, state, x, y, yhzh,
+		createId, createTime, isdeleted)
+		values (#{id,jdbcType=INTEGER},
+		#{attachmentSource,jdbcType=CHAR},
+		#{address,jdbcType=VARCHAR},
+		#{remarks,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{number,jdbcType=VARCHAR},
+		#{people,jdbcType=VARCHAR},
+		#{department,jdbcType=VARCHAR},
+		#{assign,jdbcType=VARCHAR},
+		#{completeDate,jdbcType=DATE},
+		#{solve,jdbcType=VARCHAR},
+		#{state,jdbcType=VARCHAR},
+		#{x,jdbcType=VARCHAR},
+		#{y,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE},
+		#{isdeleted,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.HiddenDanger">
+		insert into hidden_danger
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="people != null">
+				people,
+			</if>
+			<if test="department != null">
+				department,
+			</if>
+			<if test="assign != null">
+				assign,
+			</if>
+			<if test="completeDate != null">
+				completeDate,
+			</if>
+			<if test="solve != null">
+				solve,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="x != null">
+				x,
+			</if>
+			<if test="y != null">
+				y,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="createId != null">
+				createId,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="isdeleted != null">
+				isdeleted,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=VARCHAR},
+			</if>
+			<if test="people != null">
+				#{people,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				#{department,jdbcType=VARCHAR},
+			</if>
+			<if test="assign != null">
+				#{assign,jdbcType=VARCHAR},
+			</if>
+			<if test="completeDate != null">
+				#{completeDate,jdbcType=DATE},
+			</if>
+			<if test="solve != null">
+				#{solve,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="x != null">
+				#{x,jdbcType=VARCHAR},
+			</if>
+			<if test="y != null">
+				#{y,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="isdeleted != null">
+				#{isdeleted,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="selectHidTotal" parameterType="com.jtzh.pojo.HiddenParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from hidden_danger
+		where isdeleted = '0'
+		<if test="page.key != null and page.key != ''">
+			and (address like concat('%', #{page.key},'%')
+			or name like concat('%', #{page.key},'%')
+			or number like concat('%', #{page.key},'%')
+			or people like concat('%', #{page.key},'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and state like concat('%', #{page.state},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.HiddenParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from hidden_danger
+		where isdeleted = '0'
+		<if test="page.key != null and page.key != ''">
+			and (address like concat('%', #{page.key},'%')
+			or name like concat('%', #{page.key},'%')
+			or number like concat('%', #{page.key},'%')
+			or people like concat('%', #{page.key},'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and state like concat('%', #{page.state},
+			'%')
+		</if>
+		order by createTime desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="getHiddenInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from hidden_danger
+		where id = #{id}
+	</select>
+	<update id="deleteHidden">
+		update hidden_danger
+		set
+		isdeleted = '1'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateHidden" parameterType="com.jtzh.entity.HiddenDanger">
+		<!-- WARNING - @mbggenerated This element is automatically generated by 
+			MyBatis Generator, do not modify. This element was generated on Wed Jul 18 
+			10:32:41 CST 2018. -->
+		update hidden_danger
+		set
+		address = #{address,jdbcType=VARCHAR},
+		remarks = #{remarks,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		number = #{number,jdbcType=VARCHAR},
+		department =
+		#{department,jdbcType=VARCHAR},
+		x = #{x,jdbcType=VARCHAR},
+		y =
+		#{y,jdbcType=VARCHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR},
+		countryside_id = #{countrysideId,jdbcType=INTEGER},
+		hidden_type = #{hiddenType,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertHidden" parameterType="com.jtzh.entity.HiddenDanger">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		<!-- WARNING - @mbggenerated This element is automatically generated by 
+			MyBatis Generator, do not modify. This element was generated on Wed Jul 18 
+			10:32:41 CST 2018. -->
+		insert into
+		hidden_danger (attachment_source,
+		address, remarks, name,
+		number, people,
+		state, x, y, yhzh, createId, createTime, isdeleted, countryside_id,hidden_type)
+		values (#{attachmentSource,jdbcType=CHAR},
+		#{address,jdbcType=VARCHAR},
+		#{remarks,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{number,jdbcType=VARCHAR},
+		#{people,jdbcType=VARCHAR},
+		#{state,jdbcType=VARCHAR},
+		#{x,jdbcType=VARCHAR},
+		#{y,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE},
+		#{isdeleted,jdbcType=VARCHAR},
+		#{countrysideId,jdbcType=INTEGER},
+		#{hiddenType,jdbcType=CHAR})
+	</insert>
+	<update id="moveHidden" parameterType="com.jtzh.entity.HiddenDanger">
+		<!-- WARNING - @mbggenerated This element is automatically generated by 
+			MyBatis Generator, do not modify. This element was generated on Wed Jul 18 
+			10:32:41 CST 2018. -->
+		update hidden_danger
+		set state = #{state,jdbcType=VARCHAR},
+		department = #{department,jdbcType=VARCHAR},
+		completeDate = #{completeDate,jdbcType=DATE}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="sendHidden" parameterType="com.jtzh.entity.HiddenDanger">
+		<!-- WARNING - @mbggenerated This element is automatically generated by 
+			MyBatis Generator, do not modify. This element was generated on Wed Jul 18 
+			10:32:41 CST 2018. -->
+		update hidden_danger
+		set state = #{state,jdbcType=VARCHAR},
+		assign = #{assign,jdbcType=VARCHAR},
+		completeDate = #{completeDate,jdbcType=DATE}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="solveHidden" parameterType="com.jtzh.entity.HiddenDanger">
+		<!-- WARNING - @mbggenerated This element is automatically generated by 
+			MyBatis Generator, do not modify. This element was generated on Wed Jul 18 
+			10:32:41 CST 2018. -->
+		update hidden_danger
+		set state = #{state,jdbcType=VARCHAR},
+		solve = #{solve,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getHiddenCoordinate" resultType="com.jtzh.detail.pojo.HiddenCoordinate">
+		select id, x, y from hidden_danger where isdeleted = '0' group by id
+	</select>
+	<select id="countHiddenState" resultType="com.jtzh.pojo.CountHiddenAndInspection">
+		select people,count(id)
+		as count from
+		hidden_danger where isdeleted = '0'
+		group by people
+	</select>
+	<select id="selectInfoWeb" parameterType="com.jtzh.pojo.HiddenParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from hidden_danger
+		where isdeleted = '0'
+		<if test="page.state != null and page.state != ''">
+			and state like concat('%', #{page.state},
+			'%')
+		</if>
+	</select>
+	<select id="countHiddenByYear" resultType="com.jtzh.pojo.CountQuarter">
+    	select count(id) as count,QUARTER(createTime) as quarter from hidden_danger where YEAR(createTime) = #{year} and isdeleted = '0' GROUP BY QUARTER(createTime)
+    </select>
+    <select id="countHiddenByState" resultType="java.lang.Integer">
+    	select count(id) from hidden_danger where state = #{state}
+    </select>
+	<select id="countHiddenStateNoParam" resultType="com.jtzh.pojo.CountState">
+		select a.state,ifnull(b.count,0) as count from hidden_danger_state as a
+		left join(
+		select state,count(id) as count from hidden_danger where isdeleted = '0' group
+		by state) as b
+		on a.state = b.state
+	</select>
+	<select id="countHiddenByMonth" resultType="com.jtzh.pojo.CountMonth">
+    	select count(id) as count,MONTH(createTime) as month from hidden_danger where YEAR(createTime) = #{year} and isdeleted = '0' GROUP BY MONTH(createTime) 
+    </select>
+    <select id="countHiddenByDay" resultType="com.jtzh.pojo.CountDay">
+    	select count(id) as count,DAYNAME(createTime) as dayName from hidden_danger where YEAR(createTime) = #{year} and isdeleted = '0' GROUP BY DAYNAME(createTime) 
+    </select>
+	<select id="countHiddenAllCountryside" resultType="com.jtzh.pojo.CountSafe">
+		select cl.countryside_name as type,ifnull(b.count,0)
+		as count from countrysideList cl left join(select countryside_id,count(id) as count from hidden_danger where isdeleted = '0' group
+		by countryside_id) as b
+		on b.countryside_id = cl.id
+	</select>
+	<select id="countHiddenByType" resultType="com.jtzh.responsevo.CountHiddenType"
+	parameterType="java.lang.String">
+		select hidden_type as type,sum(case when state=#{state} then
+		1 else 0 end )
+		as count from
+		hidden_danger where isdeleted = '0'
+		group by hidden_type
+	</select>
+	<select id="countHiddenByPeople" resultType="com.jtzh.responsevo.CountHiddenType"
+	parameterType="java.lang.String">
+		select people as type,sum(case when state=#{state} then
+		1 else 0 end )
+		as count from
+		hidden_danger where isdeleted = '0'
+		group by people
+	</select>
+
+	<select id="getHiddenCountByType" resultType="com.jtzh.responsevo.CountHiddenType"
+			parameterType="java.lang.String">
+    SELECT hidden_danger_type.hidden_type as type,
+		sum(case when state=#{state} then
+		1 else 0 end )
+		as count
+		FROM `hidden_danger_type` LEFT JOIN hidden_danger
+		on hidden_danger_type.hidden_type=hidden_danger.hidden_type
+		GROUP BY hidden_danger_type.hidden_type
+    </select>
+
+</mapper>

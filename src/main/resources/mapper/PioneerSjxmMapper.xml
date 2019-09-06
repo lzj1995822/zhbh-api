@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.PioneerSjxmMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerSjxm">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="xmmc" jdbcType="VARCHAR" property="xmmc" />
+    <result column="sbr" jdbcType="VARCHAR" property="sbr" />
+    <result column="zw" jdbcType="VARCHAR" property="zw" />
+    <result column="njjtcwt" jdbcType="VARCHAR" property="njjtcwt" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="delflag" jdbcType="CHAR" property="delflag" />
+    <result column="ssz" jdbcType="VARCHAR" property="ssz" />
+    <result column="sss" jdbcType="VARCHAR" property="sss" />
+    <result column="ssx" jdbcType="VARCHAR" property="ssx" />
+    <result column="zt" jdbcType="CHAR" property="zt" />
+    <result column="kzsd" jdbcType="VARCHAR" property="kzsd" />
+    <result column="szdz" jdbcType="VARCHAR" property="szdz" />
+    <result column="pointx" jdbcType="VARCHAR" property="pointx" />
+    <result column="pointy" jdbcType="VARCHAR" property="pointy" />
+    <result column="ssqy" jdbcType="VARCHAR" property="ssqy" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jtzh.entity.PioneerSjxm">
+    <result column="nr" jdbcType="LONGVARCHAR" property="nr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, xmmc, sbr, zw, njjtcwt, create_time, delflag, ssz, sss, ssx,zt,kzsd,szdz,pointx,pointy,ssqy
+  </sql>
+  <sql id="Blob_Column_List">
+    nr
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pioneer_sjxm
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+    <select id="getSjxmTotal" parameterType="com.jtzh.pojo.KeyParam" resultType="java.lang.Integer">
+    select count(1)
+    from pioneer_sjxm
+        where delflag != 'D'
+    <if test="keyparam.keyword !=null  and keyparam.keyword !=''">
+    	and (xmmc like concat('%',#{keyparam.keyword},'%') or sbr like concat('%',#{keyparam.keyword},'%')
+        or zw like concat('%',#{keyparam.keyword},'%') or nr like concat('%',#{keyparam.keyword},'%')
+        or njjtcwt like concat('%',#{keyparam.keyword},'%') or id like concat('%',#{keyparam.keyword},'%')
+        or delflag like concat('%',#{keyparam.keyword},'%') or ssz like concat('%',#{keyparam.keyword},'%')
+        or sss like concat('%',#{keyparam.keyword},'%') or zt like concat('%',#{keyparam.keyword},'%')
+        or ssx like concat('%',#{keyparam.keyword},'%') or kzsd like concat('%',#{keyparam.keyword},'%')
+        or szdz like concat('%',#{keyparam.keyword},'%') or pointx like concat('%',#{keyparam.keyword},'%')
+        or pointy like concat('%',#{keyparam.keyword},'%') or ssqy like concat('%',#{keyparam.keyword},'%')
+    	)
+    </if>
+        <if test="keyparam.startTime != null and keyparam.startTime != ''" >
+            and create_time &gt;= #{keyparam.startTime}
+        </if>
+        <if test="keyparam.endTime != null and keyparam.endTime != ''" >
+            and create_time &lt;=  #{keyparam.endTime}
+        </if>
+  </select>
+      <select id="getSjxm" parameterType="com.jtzh.pojo.KeyParam" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pioneer_sjxm
+          where delflag != 'D'
+    <if test="keyparam.keyword !=null  and keyparam.keyword !=''">
+    	and (xmmc like concat('%',#{keyparam.keyword},'%') or sbr like concat('%',#{keyparam.keyword},'%')
+        or zw like concat('%',#{keyparam.keyword},'%') or nr like concat('%',#{keyparam.keyword},'%')
+        or njjtcwt like concat('%',#{keyparam.keyword},'%') or id like concat('%',#{keyparam.keyword},'%')
+        or delflag like concat('%',#{keyparam.keyword},'%') or ssz like concat('%',#{keyparam.keyword},'%')
+        or sss like concat('%',#{keyparam.keyword},'%') or zt like concat('%',#{keyparam.keyword},'%')
+        or ssx like concat('%',#{keyparam.keyword},'%') or kzsd like concat('%',#{keyparam.keyword},'%')
+        or szdz like concat('%',#{keyparam.keyword},'%') or pointx like concat('%',#{keyparam.keyword},'%')
+        or pointy like concat('%',#{keyparam.keyword},'%') or ssqy like concat('%',#{keyparam.keyword},'%')
+    	)
+    </if>
+          <if test="keyparam.startTime != null and keyparam.startTime != ''" >
+              and create_time &gt;= #{keyparam.startTime}
+          </if>
+          <if test="keyparam.endTime != null and keyparam.endTime != ''" >
+              and create_time &lt;=  #{keyparam.endTime}
+          </if>
+    order by create_time desc limit #{keyparam.start},#{keyparam.pageSize}
+  </select>
+    <select id="getAllSjxm" parameterType="com.jtzh.pojo.KeyParam" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from pioneer_sjxm
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pioneer_sjxm
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.PioneerSjxm">
+    insert into pioneer_sjxm (id, xmmc, sbr, 
+      zw, njjtcwt, create_time, 
+      delflag, ssz, sss, ssx, 
+      nr,zt,kzsd,szdz,pointx,pointy,ssqy)
+    values (#{id,jdbcType=BIGINT}, #{xmmc,jdbcType=VARCHAR}, #{sbr,jdbcType=VARCHAR}, 
+      #{zw,jdbcType=VARCHAR}, #{njjtcwt,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{delflag,jdbcType=CHAR}, #{ssz,jdbcType=VARCHAR}, #{sss,jdbcType=VARCHAR}, #{ssx,jdbcType=VARCHAR}, 
+      #{nr,jdbcType=LONGVARCHAR}, #{zt,jdbcType=CHAR},#{kzsd,jdbcType=VARCHAR},#{szdz,jdbcType=VARCHAR},#{pointx,jdbcType=VARCHAR},
+      #{pointy,jdbcType=VARCHAR},#{ssqy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.PioneerSjxm">
+    insert into pioneer_sjxm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="xmmc != null">
+        xmmc,
+      </if>
+      <if test="sbr != null">
+        sbr,
+      </if>
+      <if test="zw != null">
+        zw,
+      </if>
+      <if test="njjtcwt != null">
+        njjtcwt,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+      <if test="ssz != null">
+        ssz,
+      </if>
+      <if test="sss != null">
+        sss,
+      </if>
+      <if test="ssx != null">
+        ssx,
+      </if>
+      <if test="nr != null">
+        nr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="xmmc != null">
+        #{xmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sbr != null">
+        #{sbr,jdbcType=VARCHAR},
+      </if>
+      <if test="zw != null">
+        #{zw,jdbcType=VARCHAR},
+      </if>
+      <if test="njjtcwt != null">
+        #{njjtcwt,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="ssz != null">
+        #{ssz,jdbcType=VARCHAR},
+      </if>
+      <if test="sss != null">
+        #{sss,jdbcType=VARCHAR},
+      </if>
+      <if test="ssx != null">
+        #{ssx,jdbcType=VARCHAR},
+      </if>
+      <if test="nr != null">
+        #{nr,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerSjxm">
+    update pioneer_sjxm
+    <set>
+      <if test="xmmc != null">
+        xmmc = #{xmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sbr != null">
+        sbr = #{sbr,jdbcType=VARCHAR},
+      </if>
+      <if test="zw != null">
+        zw = #{zw,jdbcType=VARCHAR},
+      </if>
+      <if test="njjtcwt != null">
+        njjtcwt = #{njjtcwt,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="ssz != null">
+        ssz = #{ssz,jdbcType=VARCHAR},
+      </if>
+      <if test="sss != null">
+        sss = #{sss,jdbcType=VARCHAR},
+      </if>
+      <if test="ssx != null">
+        ssx = #{ssx,jdbcType=VARCHAR},
+      </if>
+      <if test="nr != null">
+        nr = #{nr,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jtzh.entity.PioneerSjxm">
+    update pioneer_sjxm
+    set xmmc = #{xmmc,jdbcType=VARCHAR},
+      sbr = #{sbr,jdbcType=VARCHAR},
+      zw = #{zw,jdbcType=VARCHAR},
+      njjtcwt = #{njjtcwt,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      delflag = #{delflag,jdbcType=CHAR},
+      ssz = #{ssz,jdbcType=VARCHAR},
+      sss = #{sss,jdbcType=VARCHAR},
+      ssx = #{ssx,jdbcType=VARCHAR},
+      nr = #{nr,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerSjxm">
+    update pioneer_sjxm
+    set xmmc = #{xmmc,jdbcType=VARCHAR},
+      sbr = #{sbr,jdbcType=VARCHAR},
+      zw = #{zw,jdbcType=VARCHAR},
+      njjtcwt = #{njjtcwt,jdbcType=VARCHAR},
+      kzsd = #{kzsd,jdbcType=VARCHAR},
+      szdz = #{szdz,jdbcType=VARCHAR},
+      pointx = #{pointx,jdbcType=VARCHAR},
+      pointy = #{pointy,jdbcType=VARCHAR},
+      ssqy = #{ssqy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+    <update id="updateSjxmZt" parameterType="com.jtzh.entity.PioneerSjxm">
+    update pioneer_sjxm
+    set zt = #{zt,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

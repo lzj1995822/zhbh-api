@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.RoadProtectionInspectionMapper" >
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.RoadProtectionInspection" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="routing_date" property="routingDate" jdbcType="DATE" />
+    <result column="person_id" property="personId" jdbcType="INTEGER" />
+    <result column="road_id" property="roadId" jdbcType="BIGINT" />
+    <result column="scope" property="scope" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="trail" property="trail" jdbcType="VARCHAR" />
+    <result column="attachment_source" property="attachmentSource" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="delflag" property="delflag" jdbcType="CHAR" />
+    <result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, routing_date, person_id, road_id, scope, start_time, end_time, introduction, 
+    trail, attachment_source, create_time, create_id, delflag, yhzh
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from road_protection_inspection
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from road_protection_inspection
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.RoadProtectionInspection" >
+    insert into road_protection_inspection (id, routing_date, person_id, 
+      road_id, scope, start_time, 
+      end_time, introduction, trail, 
+      attachment_source, create_time, create_id, 
+      delflag, yhzh)
+    values (#{id,jdbcType=BIGINT}, #{routingDate,jdbcType=DATE}, #{personId,jdbcType=INTEGER}, 
+      #{roadId,jdbcType=BIGINT}, #{scope,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{introduction,jdbcType=VARCHAR}, #{trail,jdbcType=VARCHAR}, 
+      #{attachmentSource,jdbcType=CHAR}, #{createTime,jdbcType=DATE}, #{createId,jdbcType=VARCHAR}, 
+      #{delflag,jdbcType=CHAR}, #{yhzh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.RoadProtectionInspection" >
+    insert into road_protection_inspection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="routingDate != null" >
+        routing_date,
+      </if>
+      <if test="personId != null" >
+        person_id,
+      </if>
+      <if test="roadId != null" >
+        road_id,
+      </if>
+      <if test="scope != null" >
+        scope,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="trail != null" >
+        trail,
+      </if>
+      <if test="attachmentSource != null" >
+        attachment_source,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="delflag != null" >
+        delflag,
+      </if>
+      <if test="yhzh != null" >
+        yhzh,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="routingDate != null" >
+        #{routingDate,jdbcType=DATE},
+      </if>
+      <if test="personId != null" >
+        #{personId,jdbcType=INTEGER},
+      </if>
+      <if test="roadId != null" >
+        #{roadId,jdbcType=BIGINT},
+      </if>
+      <if test="scope != null" >
+        #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="trail != null" >
+        #{trail,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentSource != null" >
+        #{attachmentSource,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null" >
+        #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="yhzh != null" >
+        #{yhzh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.RoadProtectionInspection" >
+    update road_protection_inspection
+    <set >
+      <if test="routingDate != null" >
+        routing_date = #{routingDate,jdbcType=DATE},
+      </if>
+      <if test="personId != null" >
+        person_id = #{personId,jdbcType=INTEGER},
+      </if>
+      <if test="roadId != null" >
+        road_id = #{roadId,jdbcType=BIGINT},
+      </if>
+      <if test="scope != null" >
+        scope = #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="trail != null" >
+        trail = #{trail,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentSource != null" >
+        attachment_source = #{attachmentSource,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null" >
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="yhzh != null" >
+        yhzh = #{yhzh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.RoadProtectionInspection" >
+    update road_protection_inspection
+    set routing_date = #{routingDate,jdbcType=DATE},
+      person_id = #{personId,jdbcType=INTEGER},
+      road_id = #{roadId,jdbcType=BIGINT},
+      scope = #{scope,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      trail = #{trail,jdbcType=VARCHAR},
+      attachment_source = #{attachmentSource,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      create_id = #{createId,jdbcType=VARCHAR},
+      delflag = #{delflag,jdbcType=CHAR},
+      yhzh = #{yhzh,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectTotal" parameterType="com.jtzh.pojo.RoadProtectionInspectionPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from road_protection_inspection
+		where delflag != '1'
+		<if test="page.key != null and page.key != ''">
+			and (scope like concat('%', #{page.key},
+			'%') or
+			introduction like concat('%', #{page.key},
+			'%') or trail like concat('%',
+			#{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and routing_date &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and routing_date &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.RoadProtectionInspectionPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from road_protection_inspection
+		where delflag != '1'
+		<if test="page.key != null and page.key != ''">
+			and (scope like concat('%', #{page.key},
+			'%') or
+			introduction like concat('%', #{page.key},
+			'%') or trail like concat('%',
+			#{page.key},
+			'%')
+			)
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and routing_date &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and routing_date &lt; #{page.endTime}
+		</if>
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectInspection" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from road_protection_inspection
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<update id="deleteInspection">
+		update road_protection_inspection
+		set
+		delflag = '1'
+		where id =
+		#{id,jdbcType=BIGINT}
+	</update>
+	<insert id="insertInspection" parameterType="com.jtzh.entity.RoadProtectionInspection">
+		<selectKey resultType="java.lang.Long" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into road_protection_inspection (id, routing_date, person_id, 
+      road_id, scope, start_time, 
+      end_time, introduction, trail, 
+      attachment_source, create_time, create_id, 
+      delflag, yhzh)
+    values (#{id,jdbcType=BIGINT}, #{routingDate,jdbcType=DATE}, #{personId,jdbcType=INTEGER}, 
+      #{roadId,jdbcType=BIGINT}, #{scope,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{introduction,jdbcType=VARCHAR}, #{trail,jdbcType=VARCHAR}, 
+      #{attachmentSource,jdbcType=CHAR}, #{createTime,jdbcType=DATE}, #{createId,jdbcType=VARCHAR}, 
+      #{delflag,jdbcType=CHAR}, #{yhzh,jdbcType=VARCHAR})
+	</insert>
+</mapper>

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.GovmgtWorkMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.GovmgtWork">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="work_type" property="workType" jdbcType="CHAR" />
+		<result column="work_content" property="workContent" jdbcType="VARCHAR" />
+		<result column="work_enclosure" property="workEnclosure" jdbcType="VARCHAR" />
+		<result column="attachment_source" property="attachmentSource"
+			jdbcType="CHAR" />
+		<result column="work_title" property="workTitle" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_name" property="createName" jdbcType="CHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="work_number" property="workNumber" jdbcType="VARCHAR" />
+		<result column="work_state" property="workState"
+			jdbcType="CHAR" />
+		<result column="dep_name" property="depName" jdbcType="VARCHAR" />
+		<result column="work_policy_type" property="workPolicyType" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, work_type, work_content, work_enclosure, attachment_source, work_title,
+		create_time, create_name,
+		delflag, work_number, work_state, dep_name, 
+		work_policy_type, yhzh, create_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from govmgt_work
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		govmgt_work
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.GovmgtWork">
+		insert into govmgt_work (id,
+		work_type, work_content, work_enclosure,
+		attachment_source, work_title, create_time,
+		create_name, delflag, work_number, work_state, 
+		dep_name, work_policy_type, yhzh, create_id)
+		values (#{id,jdbcType=BIGINT},
+		#{workType,jdbcType=CHAR},
+		#{workContent,jdbcType=VARCHAR}, #{workEnclosure,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR}, #{workTitle,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},#{createName,jdbcType=CHAR},
+		#{delflag,jdbcType=CHAR},#{workNumber,jdbcType=VARCHAR},
+		#{workState,jdbcType=CHAR}, #{depName,jdbcType=VARCHAR},
+		#{workPolicyType,jdbcType=CHAR},#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.GovmgtWork">
+		insert into govmgt_work
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="workType != null">
+				work_type,
+			</if>
+			<if test="workContent != null">
+				work_content,
+			</if>
+			<if test="workEnclosure != null">
+				work_enclosure,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="workTitle != null">
+				work_title,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createName != null">
+				create_name,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="workNumber != null">
+				work_number,
+			</if>
+			<if test="workState != null">
+				work_state,
+			</if>
+			<if test="depName != null">
+				dep_name,
+			</if>
+			<if test="workPolicyType != null">
+				work_policy_type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="workType != null">
+				#{workType,jdbcType=CHAR},
+			</if>
+			<if test="workContent != null">
+				#{workContent,jdbcType=VARCHAR},
+			</if>
+			<if test="workEnclosure != null">
+				#{workEnclosure,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="workTitle != null">
+				#{workTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createName != null">
+				#{createName,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="workNumber != null">
+				#{workNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="workState != null">
+				#{workState,jdbcType=CHAR},
+			</if>
+			<if test="depName != null">
+				#{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="workPolicyType != null">
+				#{workPolicyType,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.GovmgtWork">
+		update govmgt_work
+		<set>
+			<if test="workType != null">
+				work_type = #{workType,jdbcType=CHAR},
+			</if>
+			<if test="workContent != null">
+				work_content = #{workContent,jdbcType=VARCHAR},
+			</if>
+			<if test="workEnclosure != null">
+				work_enclosure = #{workEnclosure,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source = #{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="workTitle != null">
+				work_title = #{workTitle,jdbcType=VARCHAR},
+			</if>
+ 			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createName != null">
+				create_name = #{createName,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="workNumber != null">
+				work_number = #{workNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="workState != null">
+				work_state = #{workState,jdbcType=CHAR},
+			</if>
+			<if test="depName != null">
+				dep_name = #{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="workPolicyType != null">
+				work_policy_type = #{workPolicyType,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.GovmgtWork">
+		update govmgt_work
+		set work_type = #{workType,jdbcType=CHAR},
+		work_content =
+		#{workContent,jdbcType=VARCHAR},
+		work_enclosure =
+		#{workEnclosure,jdbcType=VARCHAR},
+		attachment_source =
+		#{attachmentSource,jdbcType=CHAR},
+		work_title =
+		#{workTitle,jdbcType=VARCHAR},
+		delflag = #{delflag,jdbcType=CHAR}
+		where id
+		= #{id,jdbcType=BIGINT}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.WorkPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from govmgt_work
+		where delflag != 'D' and work_type =
+		#{page.type}
+		<if test="page.key != null and page.key != ''">
+			and (work_number like concat('%', #{page.key},
+			'%') or work_title like concat('%', #{page.key},
+			'%') or yhzh like concat('%', #{page.key},
+			'%') or create_id like concat('%', #{page.key},
+			'%') or work_type like concat('%', #{page.key},
+			'%') or dep_name like concat('%', #{page.key},
+			'%') or work_state like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.WorkPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from govmgt_work
+		where delflag != 'D' and work_type = #{page.type}
+		<if test="page.key != null and page.key != ''">
+			and (work_number like concat('%', #{page.key},
+			'%') or work_title like concat('%', #{page.key},
+			'%') or yhzh like concat('%', #{page.key},
+			'%') or create_id like concat('%', #{page.key},
+			'%') or work_type like concat('%', #{page.key},
+			'%') or dep_name like concat('%', #{page.key},
+			'%') or work_state like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and create_time &lt; #{page.endTime}
+		</if>
+		order by create_time desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectWork" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from govmgt_work
+		where id = #{id} and work_type = #{type}
+	</select>
+	<update id="deleteWork">
+		update govmgt_work
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertWork" parameterType="com.jtzh.entity.GovmgtWork">
+		<selectKey resultType="java.lang.String" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into govmgt_work (id,
+		work_type, work_content, work_enclosure,
+		attachment_source, work_title, create_time,
+		create_name, delflag, work_number, work_state, 
+		dep_name, work_policy_type, yhzh, create_id)
+		values (#{id,jdbcType=BIGINT},#{workType,jdbcType=CHAR},
+		#{workContent,jdbcType=VARCHAR}, #{workEnclosure,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR}, #{workTitle,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},#{createName,jdbcType=CHAR},
+		#{delflag,jdbcType=CHAR},#{workNumber,jdbcType=VARCHAR},
+		#{workState,jdbcType=CHAR}, #{depName,jdbcType=VARCHAR},
+		#{workPolicyType,jdbcType=CHAR},#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR})
+	</insert>
+</mapper>

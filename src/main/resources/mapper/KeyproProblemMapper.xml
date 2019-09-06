@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.KeyproProblemMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.KeyproProblem">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="keypro_problem_title" property="keyproProblemTitle"
+			jdbcType="VARCHAR" />
+		<result column="keypro_problem_content" property="keyproProblemContent"
+			jdbcType="VARCHAR" />
+		<result column="keypro_problem_type" property="keyproProblemType"
+			jdbcType="VARCHAR" />
+		<result column="keypro_problem_address" property="keyproProblemAddress"
+			jdbcType="VARCHAR" />
+		<result column="keypro_problem_report_person" property="keyproProblemReportPerson"
+			jdbcType="VARCHAR" />
+		<result column="keypro_problem_report_time" property="keyproProblemReportTime"
+			jdbcType="TIMESTAMP" />
+		<result column="attachment_source" property="attachmentSource"
+			jdbcType="CHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="process_state" property="processState"
+			jdbcType="CHAR" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="lianren" property="lianren" jdbcType="VARCHAR" />
+		<result column="paifaren" property="paifaren" jdbcType="VARCHAR" />
+		<result column="paifadep" property="paifadep" jdbcType="VARCHAR" />
+		<result column="paifatime" property="paifatime" jdbcType="TIMESTAMP" />
+		<result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+		<result column="x" property="x" jdbcType="VARCHAR" />
+		<result column="y" property="y" jdbcType="VARCHAR" />
+		<result column="pro_id" property="proId" jdbcType="INTEGER" />
+		<result column="source" property="source" jdbcType="VARCHAR" />
+		<result column="sourceId" property="sourceId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, keypro_problem_title, keypro_problem_content,
+		keypro_problem_type,
+		keypro_problem_address,
+		keypro_problem_report_person, keypro_problem_report_time,
+		attachment_source, delflag, yhzh, process_state, create_id,
+		create_time,lianren, liantime ,paifaren,
+		paifadep, paifatime,endtime, x, y, pro_id,source,sourceId
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_problem
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteBySourceId">
+		delete from
+		keypro_problem
+		where sourceId = #{sourceId}
+		and source = #{source}
+	</delete>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		keypro_problem
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.KeyproProblem">
+		insert into keypro_problem
+		(id, keypro_problem_title,
+		keypro_problem_content,
+		keypro_problem_type,
+		keypro_problem_address,
+		keypro_problem_report_person,
+		keypro_problem_report_time,
+		attachment_source, delflag, yhzh, x, y)
+		values
+		(#{id,jdbcType=INTEGER}, #{keyproProblemTitle,jdbcType=VARCHAR},
+		#{keyproProblemContent,jdbcType=VARCHAR},
+		#{keyproProblemType,jdbcType=VARCHAR},
+		#{keyproProblemAddress,jdbcType=VARCHAR},
+		#{keyproProblemReportPerson,jdbcType=VARCHAR},
+		#{keyproProblemReportTime,jdbcType=TIMESTAMP},
+		#{attachmentSource,jdbcType=CHAR}, #{delflag,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR}, #{x,jdbcType=VARCHAR},
+		#{y,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.KeyproProblem">
+		insert into keypro_problem
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="keyproProblemTitle != null">
+				keypro_problem_title,
+			</if>
+			<if test="keyproProblemContent != null">
+				keypro_problem_content,
+			</if>
+			<if test="keyproProblemType != null">
+				keypro_problem_type,
+			</if>
+			<if test="keyproProblemAddress != null">
+				keypro_problem_address,
+			</if>
+			<if test="keyproProblemReportPerson != null">
+				keypro_problem_report_person,
+			</if>
+			<if test="keyproProblemReportTime != null">
+				keypro_problem_report_time,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="keyproProblemTitle != null">
+				#{keyproProblemTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProblemContent != null">
+				#{keyproProblemContent,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProblemType != null">
+				#{keyproProblemType,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProblemAddress != null">
+				#{keyproProblemAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProblemReportPerson != null">
+				#{keyproProblemReportPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProblemReportTime != null">
+				#{keyproProblemReportTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.KeyproProblem">
+		update keypro_problem
+		<set>
+			<if test="keyproProblemTitle != null">
+				keypro_problem_title =
+				#{keyproProblemTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProblemContent != null">
+				keypro_problem_content =
+				#{keyproProblemContent,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProblemType != null">
+				keypro_problem_type =
+				#{keyproProblemType,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProblemAddress != null">
+				keypro_problem_address =
+				#{keyproProblemAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProblemReportPerson != null">
+				keypro_problem_report_person =
+				#{keyproProblemReportPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProblemReportTime != null">
+				keypro_problem_report_time =
+				#{keyproProblemReportTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source = #{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.KeyproProblem">
+		update
+		keypro_problem
+		set keypro_problem_title =
+		#{keyproProblemTitle,jdbcType=VARCHAR},
+		keypro_problem_content =
+		#{keyproProblemContent,jdbcType=VARCHAR},
+		keypro_problem_type =
+		#{keyproProblemType,jdbcType=VARCHAR},
+		keypro_problem_address =
+		#{keyproProblemAddress,jdbcType=VARCHAR},
+		keypro_problem_report_person
+		=
+		#{keyproProblemReportPerson,jdbcType=VARCHAR},
+		keypro_problem_report_time =
+		#{keyproProblemReportTime,jdbcType=TIMESTAMP},
+		attachment_source =
+		#{attachmentSource,jdbcType=CHAR},
+		delflag = #{delflag,jdbcType=CHAR},
+		yhzh =
+		#{yhzh,jdbcType=VARCHAR},
+		process_state =
+		#{processState,jdbcType=CHAR},
+		create_id =
+		#{createId,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		lianren =
+		#{lianren,jdbcType=VARCHAR},
+		liantime =
+		#{liantime,jdbcType=TIMESTAMP},
+		paifaren =
+		#{paifaren,jdbcType=VARCHAR},
+		paifadep =
+		#{paifadep,jdbcType=VARCHAR},
+		paifatime =
+		#{paifatime,jdbcType=TIMESTAMP},
+		endtime =
+		#{endtime,jdbcType=TIMESTAMP},
+		x =
+		#{x,jdbcType=VARCHAR},
+		y =
+		#{y,jdbcType=VARCHAR},
+		pro_id =
+		#{proId,jdbcType=VARCHAR},
+		source =
+		#{source,jdbcType=VARCHAR},
+		sourceId =
+		#{sourceId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectInfoWeb" parameterType="com.jtzh.pojo.ProblemPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_problem
+		where delflag != 'D'
+		<if test="page.state != null and page.state != ''">
+			and process_state like concat('%',
+			#{page.state},
+			'%')
+		</if>
+		order by create_time desc
+	</select>
+	<select id="selectCountWeb" parameterType="com.jtzh.pojo.ProblemPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from keypro_problem
+		where delflag != 'D'
+		<if test="page.state != null and page.state != ''">
+			and process_state like concat('%',
+			#{page.state},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.ProblemPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_problem
+		where delflag != 'D'
+		<if test="page.key != null and page.key != ''">
+			and (keypro_problem_title like concat('%',#{page.key},'%')
+			or keypro_problem_content like concat('%',#{page.key},'%')
+			or keypro_problem_type like concat('%',#{page.key},'%')
+			or keypro_problem_address like concat('%',#{page.key},'%')
+			or keypro_problem_report_person like concat('%',#{page.key},'%')
+			or lianren like concat('%',#{page.key},'%')
+			or paifaren like concat('%',#{page.key},'%')
+			or paifadep like concat('%',#{page.key},'%')
+			or paifadep like concat('%',#{page.key},'%')
+			)
+		</if>
+		<if test="page.problemType != null and page.problemType != ''">
+			and (lianren = #{name}
+			or paifaren = #{name}
+			or keypro_problem_report_person = #{name}
+			)
+		</if>
+		<if test="page.paifaren != null and page.paifaren != ''">
+			and paifaren = #{name}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and process_state like concat('%',
+			#{page.state},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and keypro_problem_report_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and keypro_problem_report_time &lt; #{page.endTime}
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+		order by process_state,create_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectCount" parameterType="com.jtzh.pojo.ProblemPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from keypro_problem
+		where delflag != 'D'
+		<if test="page.key != null and page.key != ''">
+			and (keypro_problem_title like concat('%',#{page.key},'%')
+			or keypro_problem_content like concat('%',#{page.key},'%')
+			or keypro_problem_type like concat('%',#{page.key},'%')
+			or keypro_problem_address like concat('%',#{page.key},'%')
+			or keypro_problem_report_person like concat('%',#{page.key},'%')
+			or lianren like concat('%',#{page.key},'%')
+			or paifaren like concat('%',#{page.key},'%')
+			or paifadep like concat('%',#{page.key},'%')
+			or paifadep like concat('%',#{page.key},'%')
+			)
+		</if>
+		<if test="page.problemType != null and page.problemType != ''">
+			and (lianren = #{name}
+			or paifaren = #{name}
+			or keypro_problem_report_person = #{name}
+			)
+		</if>
+		<if test="page.paifaren != null and page.paifaren != ''">
+			and paifaren = #{name}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and process_state like concat('%',
+			#{page.state},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and keypro_problem_report_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and keypro_problem_report_time &lt; #{page.endTime}
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo1" parameterType="com.jtzh.pojo.ProblemPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_problem
+		where delflag != 'D' and process_state != '4'
+		<if test="page.key != null and page.key != ''">
+			and (keypro_problem_title like concat('%',#{page.key},'%')
+			or keypro_problem_content like concat('%',#{page.key},'%')
+			or keypro_problem_type like concat('%',#{page.key},'%')
+			or keypro_problem_address like concat('%',#{page.key},'%')
+			or keypro_problem_report_person like concat('%',#{page.key},'%')
+			or lianren like concat('%',#{page.key},'%')
+			or paifaren like concat('%',#{page.key},'%')
+			or paifadep like concat('%',#{page.key},'%')
+			or paifadep like concat('%',#{page.key},'%')
+			)
+		</if>
+		<if test="page.problemType != null and page.problemType != ''">
+			and keypro_problem_report_person = #{name}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and process_state like concat('%',
+			#{page.state},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and keypro_problem_report_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and keypro_problem_report_time &lt; #{page.endTime}
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+		order by create_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectCount1" parameterType="com.jtzh.pojo.ProblemPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from keypro_problem
+		where delflag != 'D' and
+		process_state != '4'
+		<if test="page.key != null and page.key != ''">
+			and (keypro_problem_title like concat('%',#{page.key},'%')
+			or keypro_problem_content like concat('%',#{page.key},'%')
+			or keypro_problem_type like concat('%',#{page.key},'%')
+			or keypro_problem_address like concat('%',#{page.key},'%')
+			or keypro_problem_report_person like concat('%',#{page.key},'%')
+			or lianren like concat('%',#{page.key},'%')
+			or paifaren like concat('%',#{page.key},'%')
+			or paifadep like concat('%',#{page.key},'%')
+			or paifadep like concat('%',#{page.key},'%')
+			)
+		</if>
+		<if test="page.problemType != null and page.problemType != ''">
+			and keypro_problem_report_person = #{name}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and process_state like concat('%',
+			#{page.state},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and keypro_problem_report_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and keypro_problem_report_time &lt; #{page.endTime}
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+	</select>
+	<select id="selectProblem" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_problem
+		where id = #{id}
+	</select>
+	<select id="selectProblemVo" resultType="com.jtzh.pojo.KeyproProblemVo">
+		select
+		a.id,a.keypro_problem_title as
+		keyproProblemTitle,a.keypro_problem_content as
+		keyproProblemContent,a.keypro_problem_type as keyproProblemType,
+		a.keypro_problem_address as
+		keyproProblemAddress,a.keypro_problem_report_person as
+		keyproProblemReportPerson,
+		a.keypro_problem_report_time as
+		keyproProblemReportTime,a.process_state as processState,a.create_time
+		as createTime,
+		a.lianren,a.liantime,a.paifaren,a.paifadep,a.paifatime,a.endtime,a.x,a.y,a.pro_id
+		as proId,a.source,a.sourceId,b.keypro_pro_name as proName
+		from
+		keypro_problem a left join keypro_pro b on a.pro_id=b.id
+		where a.id =
+		#{id}
+	</select>
+	<update id="deleteProblem">
+		update keypro_problem
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertProblem" parameterType="com.jtzh.entity.KeyproProblem">
+		<selectKey resultType="java.lang.String" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into keypro_problem (id, keypro_problem_title,
+		keypro_problem_content,
+		keypro_problem_type, keypro_problem_address,
+		keypro_problem_report_person, keypro_problem_report_time,
+		attachment_source, delflag, yhzh,process_state, create_id,
+		create_time,
+		lianren, liantime ,paifaren, paifadep, paifatime,endtime
+		,x, y,pro_id,source,sourceId)
+		values
+		(#{id,jdbcType=INTEGER},#{keyproProblemTitle,jdbcType=VARCHAR},
+		#{keyproProblemContent,jdbcType=VARCHAR},#{keyproProblemType,jdbcType=VARCHAR},
+		#{keyproProblemAddress,jdbcType=VARCHAR},#{keyproProblemReportPerson,jdbcType=VARCHAR},
+		#{keyproProblemReportTime,jdbcType=TIMESTAMP},
+		#{attachmentSource,jdbcType=CHAR}, #{delflag,jdbcType=CHAR},
+		#{yhzh,jdbcType=VARCHAR},#{processState,jdbcType=CHAR},
+		#{createId,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},
+		#{lianren,jdbcType=VARCHAR},#{liantime,jdbcType=TIMESTAMP},
+		#{paifaren,jdbcType=VARCHAR}, #{paifadep,jdbcType=VARCHAR},
+		#{paifatime,jdbcType=TIMESTAMP},#{endtime,jdbcType=TIMESTAMP},
+		#{x,jdbcType=VARCHAR},#{y,jdbcType=VARCHAR},#{proId,jdbcType=INTEGER},
+		#{source,jdbcType=VARCHAR},#{sourceId,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateStatus">
+		update keypro_problem
+		set process_state
+		= #{zt}
+		where id
+		= #{id}
+	</update>
+	<update id="paifa" parameterType="com.jtzh.entity.KeyproProblem">
+		update keypro_problem
+		set
+		paifaren = #{paifaren,jdbcType=VARCHAR},
+		paifadep =
+		#{paifadep,jdbcType=VARCHAR},
+		paifatime =
+		#{paifatime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="yilian" parameterType="com.jtzh.entity.KeyproProblem">
+		update keypro_problem
+		set
+		lianren = #{lianren,jdbcType=VARCHAR},
+		liantime =
+		#{liantime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="yuqi">
+		update keypro_problem
+		set
+		process_state=#{zt}
+		where
+		endtime &lt;
+		curdate()
+	</update>
+	<delete id="deleteKeychuli">
+		delete from keypro_problem_chuli where
+		shangbaoid=#{id}
+	</delete>
+	<select id="countProblemState" resultType="com.jtzh.pojo.CountState">
+		select
+		a.process_state as state,ifnull(b.count,0) as count from keypro_process_state as a
+		left join(
+		select process_state,count(id) as count from keypro_problem where delflag = 'A' group
+		by process_state) as b
+		on a.process_state=b.process_state
+	</select>
+	<select id="findAllByState" resultType="com.jtzh.pojo.KeyproProblemResponse"
+		parameterType="java.lang.String">
+		select
+		a.*,b.shangbaoid,b.chuliren,b.chulitime,b.chulimiaoshu,b.sheheren,b.shehetime,b.shehemiaoshu
+		from keypro_problem a,keypro_problem_chuli b where a.id=b.shangbaoid
+		and a.process_state=#{state}
+	</select>
+	<select id="findByStateRelax" resultType="com.jtzh.pojo.KeyproProblemResponse"
+		parameterType="java.lang.String">
+		select
+		a.*,b.shangbaoid,b.chuliren,b.chulitime,b.chulidep,b.chulimiaoshu,b.sheheren,b.shehetime,b.shehemiaoshu
+		from keypro_problem a left join keypro_problem_chuli b on
+		a.id=b.shangbaoid
+		where a.id=#{id}
+	</select>
+	<select id="getKeyCoordinate" resultType="com.jtzh.detail.pojo.KeyCoordinateRes">
+		select id, x, y from
+		keypro_problem where delflag = 'A'
+		group by id
+	</select>
+	<select id="selectInfoApp" resultType="com.jtzh.pojo.KeyproProblemVo"
+		parameterType="com.jtzh.pojo.ProblemPagination">
+		select
+		a.id,a.keypro_problem_title as
+		keyproProblemTitle,a.keypro_problem_content as
+		keyproProblemContent,a.keypro_problem_type as keyproProblemType,
+		a.keypro_problem_address as
+		keyproProblemAddress,a.keypro_problem_report_person as
+		keyproProblemReportPerson,
+		a.keypro_problem_report_time as
+		keyproProblemReportTime,
+		a.process_state as processState,a.create_time
+		as createTime,
+		a.lianren,a.liantime,a.endtime,a.x,a.y,
+		a.pro_id as
+		proId,a.source,a.sourceId,b.keypro_pro_name as proName
+		from
+		keypro_problem a left join keypro_pro b on a.pro_id=b.id
+		left join
+		keypro_problem_chuli kpc on a.id = kpc.shangbaoid
+		where a.delflag !=
+		'D'
+		<if test="page.key != null and page.key != ''">
+			and a.keypro_problem_report_person = #{page.key} and
+			a.process_state != '4'
+		</if>
+		<if test="page.problemType != null and page.problemType != ''">
+			and kpc.appoint_man = #{page.problemType} and
+			a.process_state = '2'
+		</if>
+		<if test="page.paifaren != null and page.paifaren != ''">
+			and (kpc.appoint_man = #{page.paifaren} or
+			a.keypro_problem_report_person = #{page.paifaren}) and
+			a.process_state = '4'
+		</if>
+		order by a.create_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectCountApp" parameterType="com.jtzh.pojo.ProblemPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from keypro_problem a left join keypro_pro b on
+		a.pro_id=b.id
+		left join keypro_problem_chuli kpc on a.id =
+		kpc.shangbaoid
+		where a.delflag != 'D'
+		<if test="page.key != null and page.key != ''">
+			and a.keypro_problem_report_person = #{page.key} and
+			a.process_state != '4'
+		</if>
+		<if test="page.problemType != null and page.problemType != ''">
+			and kpc.appoint_man = #{page.problemType} and
+			a.process_state = '2'
+		</if>
+		<if test="page.paifaren != null and page.paifaren != ''">
+			and (kpc.appoint_man = #{page.paifaren} or
+			a.keypro_problem_report_person = #{page.paifaren}) and
+			a.process_state = '4'
+		</if>
+	</select>
+
+	<select id="selectProblemAndProName" resultType="com.jtzh.pojo.KeyproProblemVo"
+		parameterType="com.jtzh.pojo.ProblemPagination">
+		select
+		a.id,a.keypro_problem_title as
+		keyproProblemTitle,a.keypro_problem_content as
+		keyproProblemContent,a.keypro_problem_type as keyproProblemType,
+		a.keypro_problem_address as
+		keyproProblemAddress,a.keypro_problem_report_person as
+		keyproProblemReportPerson,
+		a.keypro_problem_report_time as
+		keyproProblemReportTime,
+		a.process_state as processState,a.create_time
+		as createTime,
+		a.lianren,a.liantime,a.paifaren,a.paifadep,a.paifatime,a.endtime,a.x,a.y,
+		a.pro_id as proId,a.source,a.sourceId,b.keypro_pro_name as proName
+		from keypro_problem a left join keypro_pro b on a.pro_id=b.id
+		where
+		a.delflag != 'D'
+		<if test="page.key != null and page.key != ''">
+			and (keypro_problem_title like concat('%',#{page.key},'%')
+			or keypro_problem_content like concat('%',#{page.key},'%')
+			or keypro_problem_type like concat('%',#{page.key},'%')
+			or keypro_problem_address like concat('%',#{page.key},'%')
+			or keypro_problem_report_person like concat('%',#{page.key},'%')
+			or lianren like concat('%',#{page.key},'%')
+			or paifaren like concat('%',#{page.key},'%')
+			or paifadep like concat('%',#{page.key},'%')
+			or paifadep like concat('%',#{page.key},'%')
+			)
+		</if>
+		<if test="page.problemType != null and page.problemType != ''">
+			and (lianren = #{name}
+			or paifaren = #{name}
+			or keypro_problem_report_person = #{name}
+			)
+		</if>
+		<if test="page.paifaren != null and page.paifaren != ''">
+			and paifaren = #{name}
+		</if>
+		<if test="page.state != null and page.state != ''">
+			and process_state like concat('%',
+			#{page.state},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and keypro_problem_report_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and keypro_problem_report_time &lt; #{page.endTime}
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and a.create_id like concat('%', #{page.createId},
+			'%')
+		</if>
+		order by a.create_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="countProblemAllCountryside" resultType="com.jtzh.pojo.CountKeypro">
+		select
+		cl.countryside_name as type,count(kp1.id)
+		as count from
+		keypro_problem
+		kp1
+		left join keypro_pro kp2 on kp1.pro_id = kp2.id
+		left join
+		countrysideList cl on kp2.countryside_id = cl.id
+		where
+		kp1.delflag = 'A'
+		group by cl.id
+	</select>
+	<select id="countProblemByYear" resultType="com.jtzh.pojo.CountQuarter">
+    	select count(id) as count,QUARTER(create_time) as quarter from keypro_problem where YEAR(create_time) = #{year} and delflag = 'A' GROUP BY QUARTER(create_time) 
+    </select>
+
+	<select id="countProblemType" resultType="com.jtzh.pojo.CountType">
+		SELECT
+		b.keypro_problem_type as type,
+		count( a.keypro_problem_type ) AS count
+		FROM
+		keypro_problem a
+		RIGHT JOIN news_type b ON a.keypro_problem_type = b.keypro_problem_type
+		GROUP BY
+		b.keypro_problem_type
+	</select>
+
+
+
+</mapper>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.DepartmentMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.Department">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="departname" jdbcType="CHAR" property="departname" />
+		<result column="VersionNo" jdbcType="INTEGER" property="versionno" />
+		<result column="TransactionID" jdbcType="CHAR" property="transactionid" />
+		<result column="CreateBy" jdbcType="CHAR" property="createby" />
+		<result column="CreateOn" jdbcType="TIMESTAMP" property="createon" />
+		<result column="UpdateBy" jdbcType="CHAR" property="updateby" />
+		<result column="UpdateOn" jdbcType="TIMESTAMP" property="updateon" />
+		<result column="DataLevel" jdbcType="CHAR" property="datalevel" />
+		<result column="IsDeleted" jdbcType="INTEGER" property="isdeleted" />
+		<result column="ord" jdbcType="INTEGER" property="ord" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, departname, VersionNo, TransactionID, CreateBy, CreateOn, UpdateBy,
+		UpdateOn,
+		DataLevel, IsDeleted, ord, address,phone
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from department
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from department
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.Department">
+		insert into department (id, departname, VersionNo,
+		TransactionID, CreateBy, CreateOn,
+		UpdateBy, UpdateOn, DataLevel,
+		IsDeleted, ord)
+		values (#{id,jdbcType=INTEGER}, #{departname,jdbcType=CHAR},
+		#{versionno,jdbcType=INTEGER},
+		#{transactionid,jdbcType=CHAR}, #{createby,jdbcType=CHAR}, #{createon,jdbcType=TIMESTAMP},
+		#{updateby,jdbcType=CHAR}, #{updateon,jdbcType=TIMESTAMP},
+		#{datalevel,jdbcType=CHAR},
+		#{isdeleted,jdbcType=INTEGER}, #{ord,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.Department">
+		insert into department
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="departname != null">
+				departname,
+			</if>
+			<if test="versionno != null">
+				VersionNo,
+			</if>
+			<if test="transactionid != null">
+				TransactionID,
+			</if>
+			<if test="createby != null">
+				CreateBy,
+			</if>
+			<if test="createon != null">
+				CreateOn,
+			</if>
+			<if test="updateby != null">
+				UpdateBy,
+			</if>
+			<if test="updateon != null">
+				UpdateOn,
+			</if>
+			<if test="datalevel != null">
+				DataLevel,
+			</if>
+			<if test="isdeleted != null">
+				IsDeleted,
+			</if>
+			<if test="ord != null">
+				ord,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="departname != null">
+				#{departname,jdbcType=CHAR},
+			</if>
+			<if test="versionno != null">
+				#{versionno,jdbcType=INTEGER},
+			</if>
+			<if test="transactionid != null">
+				#{transactionid,jdbcType=CHAR},
+			</if>
+			<if test="createby != null">
+				#{createby,jdbcType=CHAR},
+			</if>
+			<if test="createon != null">
+				#{createon,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateby != null">
+				#{updateby,jdbcType=CHAR},
+			</if>
+			<if test="updateon != null">
+				#{updateon,jdbcType=TIMESTAMP},
+			</if>
+			<if test="datalevel != null">
+				#{datalevel,jdbcType=CHAR},
+			</if>
+			<if test="isdeleted != null">
+				#{isdeleted,jdbcType=INTEGER},
+			</if>
+			<if test="ord != null">
+				#{ord,jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.Department">
+		update department
+		<set>
+			<if test="departname != null">
+				departname = #{departname,jdbcType=CHAR},
+			</if>
+			<if test="versionno != null">
+				VersionNo = #{versionno,jdbcType=INTEGER},
+			</if>
+			<if test="transactionid != null">
+				TransactionID = #{transactionid,jdbcType=CHAR},
+			</if>
+			<if test="createby != null">
+				CreateBy = #{createby,jdbcType=CHAR},
+			</if>
+			<if test="createon != null">
+				CreateOn = #{createon,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateby != null">
+				UpdateBy = #{updateby,jdbcType=CHAR},
+			</if>
+			<if test="updateon != null">
+				UpdateOn = #{updateon,jdbcType=TIMESTAMP},
+			</if>
+			<if test="datalevel != null">
+				DataLevel = #{datalevel,jdbcType=CHAR},
+			</if>
+			<if test="isdeleted != null">
+				IsDeleted = #{isdeleted,jdbcType=INTEGER},
+			</if>
+			<if test="ord != null">
+				ord = #{ord,jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.Department">
+		update department
+		set departname = #{departname,jdbcType=CHAR},
+		VersionNo = #{versionno,jdbcType=INTEGER},
+		TransactionID = #{transactionid,jdbcType=CHAR},
+		CreateBy = #{createby,jdbcType=CHAR},
+		CreateOn = #{createon,jdbcType=TIMESTAMP},
+		UpdateBy = #{updateby,jdbcType=CHAR},
+		UpdateOn = #{updateon,jdbcType=TIMESTAMP},
+		DataLevel = #{datalevel,jdbcType=CHAR},
+		IsDeleted = #{isdeleted,jdbcType=INTEGER},
+		ord = #{ord,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectDepartment" parameterType="com.jtzh.pojo.Departmentpagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from department
+		<where>
+			<if test="page.key != null and page.key != ''">
+				and (departname like concat('%',#{page.key},'%')
+				or phone like concat('%',#{page.key},'%')
+				or address like concat('%',#{page.key},'%')
+				)
+			</if>
+			<if test="page.startTime != null and page.startTime != ''">
+				and CreateOn &gt; #{page.startTime}
+			</if>
+			<if test="page.endTime != null and page.endTime != ''">
+				and CreateOn &lt; #{page.endTime}
+			</if>
+		</where>
+		order by id
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+
+	<select id="selectDepartmentTotal" parameterType="com.jtzh.pojo.Departmentpagination"
+		resultType="java.lang.Integer">
+		select count(id)
+		from department
+		<where>
+			<if test="page.key != null and page.key != ''">
+				and (departname like concat('%',#{page.key},'%')
+				or phone like concat('%',#{page.key},'%')
+				or address like concat('%',#{page.key},'%')
+				)
+			</if>
+			<if test="page.startTime != null and page.startTime != ''">
+				and CreateOn &gt; #{page.startTime}
+			</if>
+			<if test="page.endTime != null and page.endTime != ''">
+				and CreateOn &lt; #{page.endTime}
+			</if>
+		</where>
+	</select>
+	<select id="getAllDepartment" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from department
+		order by CreateOn desc
+	</select>
+</mapper>

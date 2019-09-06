@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.KeyproProMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.KeyproPro">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="keypro_pro_name" property="keyproProName"
+			jdbcType="VARCHAR" />
+		<result column="keypro_build_space" property="keyproBuildSpace"
+			jdbcType="VARCHAR" />
+		<result column="keypro_build_scale" property="keyproBuildScale"
+			jdbcType="VARCHAR" />
+		<result column="keypro_pro_investment" property="keyproProInvestment"
+			jdbcType="DOUBLE" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="keypro_pro_finish_time" property="keyproProFinishTime"
+			jdbcType="TIMESTAMP" />
+		<result column="keypro_pro_overdue_time" property="keyproProOverdueTime"
+			jdbcType="VARCHAR" />
+		<result column="delflag" property="delflag" jdbcType="CHAR" />
+		<result column="attachment_source" property="attachmentSource"
+			jdbcType="CHAR" />
+		<result column="has_five_information" property="hasFiveInformation"
+			jdbcType="CHAR" />
+		<result column="keypro_pro_title" property="keyproProTitle"
+			jdbcType="VARCHAR" />
+		<result column="keypro_pro_content" property="keyproProContent"
+			jdbcType="VARCHAR" />
+		<result column="keypro_pro_enclosure" property="keyproProEnclosure"
+			jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="keypro_pro_x" property="keyproProX" jdbcType="VARCHAR" />
+		<result column="keypro_pro_y" property="keyproProY" jdbcType="VARCHAR" />
+		<result column="others" property="others" jdbcType="VARCHAR" />
+		<result column="countryside_id" property="countrysideId"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, keypro_pro_name, keypro_build_space,
+		keypro_build_scale,
+		keypro_pro_investment,
+		create_time,
+		keypro_pro_finish_time, keypro_pro_overdue_time, delflag,
+		attachment_source,
+		has_five_information, keypro_pro_title,
+		keypro_pro_content, keypro_pro_enclosure,
+		yhzh, create_id, keypro_pro_x, keypro_pro_y,others,countryside_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_pro
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		keypro_pro
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jtzh.entity.KeyproPro">
+		insert into keypro_pro (id,
+		keypro_pro_name, keypro_build_space,
+		keypro_build_scale,
+		keypro_pro_investment, create_time,
+		keypro_pro_finish_time,
+		keypro_pro_overdue_time,
+		delflag, attachment_source,
+		has_five_information,
+		keypro_pro_title, keypro_pro_content,
+		keypro_pro_enclosure, yhzh, create_id,
+		keypro_pro_x, keypro_pro_y
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{keyproProName,jdbcType=VARCHAR},
+		#{keyproBuildSpace,jdbcType=VARCHAR},
+		#{keyproBuildScale,jdbcType=VARCHAR},
+		#{keyproProInvestment,jdbcType=DOUBLE},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{keyproProFinishTime,jdbcType=TIMESTAMP},
+		#{keyproProOverdueTime,jdbcType=VARCHAR},
+		#{delflag,jdbcType=CHAR},
+		#{attachmentSource,jdbcType=CHAR},
+		#{hasFiveInformation,jdbcType=CHAR},
+		#{keyproProTitle,jdbcType=VARCHAR},
+		#{keyproProContent,jdbcType=VARCHAR},
+		#{keyproProEnclosure,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},#{createId,jdbcType=VARCHAR},
+		#{keyproProX,jdbcType=VARCHAR},#{keyproProY,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.KeyproPro">
+		insert into keypro_pro
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="keyproProName != null">
+				keypro_pro_name,
+			</if>
+			<if test="keyproBuildSpace != null">
+				keypro_build_space,
+			</if>
+			<if test="keyproBuildScale != null">
+				keypro_build_scale,
+			</if>
+			<if test="keyproProInvestment != null">
+				keypro_pro_investment,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="keyproProFinishTime != null">
+				keypro_pro_finish_time,
+			</if>
+			<if test="keyproProOverdueTime != null">
+				keypro_pro_overdue_time,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="hasFiveInformation != null">
+				has_five_information,
+			</if>
+			<if test="keyproProTitle != null">
+				keypro_pro_title,
+			</if>
+			<if test="keyproProContent != null">
+				keypro_pro_content,
+			</if>
+			<if test="keyproProEnclosure != null">
+				keypro_pro_enclosure,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="keyproProName != null">
+				#{keyproProName,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproBuildSpace != null">
+				#{keyproBuildSpace,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproBuildScale != null">
+				#{keyproBuildScale,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProInvestment != null">
+				#{keyproProInvestment,jdbcType=DOUBLE},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="keyproProFinishTime != null">
+				#{keyproProFinishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="keyproProOverdueTime != null">
+				#{keyproProOverdueTime,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=CHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="hasFiveInformation != null">
+				#{hasFiveInformation,jdbcType=CHAR},
+			</if>
+			<if test="keyproProTitle != null">
+				#{keyproProTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProContent != null">
+				#{keyproProContent,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProEnclosure != null">
+				#{keyproProEnclosure,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.KeyproPro">
+		update keypro_pro
+		<set>
+			<if test="keyproProName != null">
+				keypro_pro_name = #{keyproProName,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproBuildSpace != null">
+				keypro_build_space =
+				#{keyproBuildSpace,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproBuildScale != null">
+				keypro_build_scale =
+				#{keyproBuildScale,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProInvestment != null">
+				keypro_pro_investment =
+				#{keyproProInvestment,jdbcType=DOUBLE},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="keyproProFinishTime != null">
+				keypro_pro_finish_time =
+				#{keyproProFinishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="keyproProOverdueTime != null">
+				keypro_pro_overdue_time =
+				#{keyproProOverdueTime,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				delflag = #{delflag,jdbcType=CHAR},
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source = #{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="hasFiveInformation != null">
+				has_five_information =
+				#{hasFiveInformation,jdbcType=CHAR},
+			</if>
+			<if test="keyproProTitle != null">
+				keypro_pro_title = #{keyproProTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProContent != null">
+				keypro_pro_content =
+				#{keyproProContent,jdbcType=VARCHAR},
+			</if>
+			<if test="keyproProEnclosure != null">
+				keypro_pro_enclosure =
+				#{keyproProEnclosure,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jtzh.entity.KeyproPro">
+		update keypro_pro
+		set keypro_pro_name = #{keyproProName,jdbcType=VARCHAR},
+		keypro_build_space = #{keyproBuildSpace,jdbcType=VARCHAR},
+		keypro_build_scale = #{keyproBuildScale,jdbcType=VARCHAR},
+		keypro_pro_investment = #{keyproProInvestment,jdbcType=DOUBLE},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		keypro_pro_finish_time
+		= #{keyproProFinishTime,jdbcType=TIMESTAMP},
+		keypro_pro_overdue_time =
+		#{keyproProOverdueTime,jdbcType=VARCHAR},
+		delflag =
+		#{delflag,jdbcType=CHAR},
+		attachment_source =
+		#{attachmentSource,jdbcType=CHAR},
+		has_five_information =
+		#{hasFiveInformation,jdbcType=CHAR},
+		keypro_pro_title =
+		#{keyproProTitle,jdbcType=VARCHAR},
+		keypro_pro_content =
+		#{keyproProContent,jdbcType=VARCHAR},
+		keypro_pro_enclosure =
+		#{keyproProEnclosure,jdbcType=VARCHAR},
+		yhzh =
+		#{yhzh,jdbcType=VARCHAR},
+		create_id =
+		#{createId,jdbcType=VARCHAR},
+		keypro_pro_x =
+		#{keyproProX,jdbcType=VARCHAR},
+		keypro_pro_y =
+		#{keyproProY,jdbcType=VARCHAR},
+		others =
+		#{others,jdbcType=VARCHAR},
+		countryside_id = #{countrysideId,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectTotal" parameterType="com.jtzh.pojo.KbuildPagination"
+		resultType="java.lang.Integer">
+		select count(1)
+		from keypro_pro
+		where delflag != 'D'
+		<if test="page.key != null and page.key != ''">
+			and (keypro_pro_name like concat('%', #{page.key},
+			'%') or
+			keypro_build_space like concat('%', #{page.key},
+			'%') or
+			keypro_build_scale like concat('%', #{page.key},
+			'%') or
+			keypro_pro_investment like concat('%', #{page.key},
+			'%') or
+			keypro_pro_overdue_time like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and keypro_pro_finish_time &lt; #{page.endTime}
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.KbuildPagination"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_pro
+		where delflag != 'D'
+		<if test="page.key != null and page.key != ''">
+			and (keypro_pro_name like concat('%', #{page.key},
+			'%') or
+			keypro_build_space like concat('%', #{page.key},
+			'%') or
+			keypro_build_scale like concat('%', #{page.key},
+			'%') or
+			keypro_pro_investment like concat('%', #{page.key},
+			'%') or
+			keypro_pro_overdue_time like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and create_time &gt;= #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and keypro_pro_finish_time &lt;= #{page.endTime}
+		</if>
+		order by create_time desc
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectPro" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_pro
+		where id = #{id}
+	</select>
+	<update id="deletePro">
+		update keypro_pro
+		set
+		delflag = 'D'
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertPro" parameterType="com.jtzh.entity.KeyproPro">
+		<selectKey resultType="java.lang.String" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into keypro_pro (id, keypro_pro_name, keypro_build_space,
+		keypro_build_scale, keypro_pro_investment, create_time,
+		keypro_pro_finish_time, keypro_pro_overdue_time,
+		delflag,
+		attachment_source, has_five_information,
+		keypro_pro_title,
+		keypro_pro_content, keypro_pro_enclosure, yhzh,
+		create_id, keypro_pro_x, keypro_pro_y,others,countryside_id
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{keyproProName,jdbcType=VARCHAR},
+		#{keyproBuildSpace,jdbcType=VARCHAR},
+		#{keyproBuildScale,jdbcType=VARCHAR},
+		#{keyproProInvestment,jdbcType=DOUBLE},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{keyproProFinishTime,jdbcType=TIMESTAMP},
+		#{keyproProOverdueTime,jdbcType=VARCHAR},
+		#{delflag,jdbcType=CHAR},
+		#{attachmentSource,jdbcType=CHAR},
+		#{hasFiveInformation,jdbcType=CHAR},
+		#{keyproProTitle,jdbcType=VARCHAR},
+		#{keyproProContent,jdbcType=VARCHAR},
+		#{keyproProEnclosure,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{keyproProX,jdbcType=VARCHAR},
+		#{keyproProY,jdbcType=VARCHAR},
+		#{others,jdbcType=VARCHAR},#{countrysideId,jdbcType=INTEGER}
+		)
+	</insert>
+	<select id="getProList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_pro
+		where delflag != 'D'
+		order by id asc
+	</select>
+	<select id="getKeyProjectCoordinate" resultMap="BaseResultMap">
+		select * from
+		keypro_pro where delflag = 'A'
+		group by id
+	</select>
+	<select id="getProNameAndId" resultType="com.jtzh.pojo.KeyproBuildVo">
+		select id as proId,
+		keypro_pro_name as proName from
+		keypro_pro where delflag = 'A'
+		group by
+		id
+	</select>
+	<select id="countProAllCountryside" resultType="com.jtzh.pojo.CountKeypro">
+		select cl.countryside_name as type,ifnull(b.count,0) as count
+		from countrysideList cl left join(select countryside_id,count(id) as count from keypro_pro where delflag = 'A' group
+		by countryside_id) as b
+		on b.countryside_id = cl.id
+	</select>
+</mapper>

@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jtzh.mapper.CountrysideProblemMapper">
+	<resultMap id="BaseResultMap" type="com.jtzh.entity.CountrysideProblem">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="isdeleted" property="isdeleted" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="attachment_source" property="attachmentSource" jdbcType="CHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="shangbaoren" property="shangbaoren" jdbcType="VARCHAR" />
+		<result column="shangbaotime" property="shangbaotime" jdbcType="DATE" />
+		<result column="lianren" property="lianren" jdbcType="VARCHAR" />
+		<result column="liantime" property="liantime" jdbcType="DATE" />
+		<result column="paifaren" property="paifaren" jdbcType="VARCHAR" />
+		<result column="paifatime" jdbcType="DATE" property="paifatime" />
+		<result column="endtime" property="endtime" jdbcType="DATE" />
+		<result column="x" property="x" jdbcType="VARCHAR" />
+		<result column="y" property="y" jdbcType="VARCHAR" />
+		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="createId" property="createId" jdbcType="VARCHAR" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    	<result column="delflag" jdbcType="VARCHAR" property="delflag" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, isdeleted, title, content, attachment_source,
+		type, address, shangbaoren, shangbaotime, 
+		lianren, liantime, paifaren, 
+		paifatime, endtime, x, y, yhzh, createId,
+		createTime, delflag
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_problem
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<insert id="insert" parameterType="com.jtzh.entity.CountrysideProblem">
+		insert into
+		countryside_problem (
+		id, isdeleted, title, content, attachment_source,
+		type, address, shangbaoren, shangbaotime, 
+		lianren, liantime, paifaren, 
+		paifatime, endtime, x, y, yhzh, createId
+		createTime, delflag)
+		values (#{id,jdbcType=INTEGER},
+		#{isdeleted,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{attachmentSource,jdbcType=CHAR},
+		#{type,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{shangbaoren,jdbcType=VARCHAR},
+		#{shangbaotime,jdbcType=DATE}, 
+		#{lianren,jdbcType=VARCHAR},
+		#{liantime,jdbcType=DATE},
+		#{paifaren,jdbcType=VARCHAR},
+		#{paifatime,jdbcType=DATE},
+		#{endtime,jdbcType=DATE},
+		#{x,jdbcType=VARCHAR},
+		#{y,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jtzh.entity.CountrysideProblem">
+		insert into countryside_problem
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="isdeleted != null">
+				isdeleted,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="attachmentSource != null">
+				attachment_source,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="shangbaoren != null">
+				shangbaoren,
+			</if>
+			<if test="shangbaotime != null">
+				shangbaotime,
+			</if>
+			<if test="lianren != null">
+				lianren,
+			</if>
+			<if test="liantime != null">
+				liantime,
+			</if>
+			<if test="paifaren != null">
+				paifaren,
+			</if>
+			<if test="paifatime != null">
+				paifatime,
+			</if>
+			<if test="endtime != null">
+				endtime,
+			</if>
+			<if test="x != null">
+				x,
+			</if>
+			<if test="y != null">
+				y,
+			</if>
+			<if test="yhzh != null">
+				yhzh,
+			</if>
+			<if test="createId != null">
+				createId,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="delflag != null">
+				delflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="isdeleted != null">
+				#{isdeleted,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentSource != null">
+				#{attachmentSource,jdbcType=CHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="shangbaoren != null">
+				#{shangbaoren,jdbcType=VARCHAR},
+			</if>
+			<if test="shangbaotime != null">
+				#{shangbaotime,jdbcType=DATE},
+			</if>
+			<if test="lianren != null">
+				#{lianren,jdbcType=VARCHAR},
+			</if>
+			<if test="liantime != null">
+				#{liantime,jdbcType=DATE},
+			</if>
+			<if test="paifaren != null">
+				#{paifaren,jdbcType=VARCHAR},
+			</if>
+			<if test="paifatime != null">
+				#{paifatime,jdbcType=DATE},
+			</if>
+			<if test="endtime != null">
+				#{endtime,jdbcType=DATE},
+			</if>
+			<if test="x != null">
+				#{x,jdbcType=VARCHAR},
+			</if>
+			<if test="y != null">
+				#{y,jdbcType=VARCHAR},
+			</if>
+			<if test="yhzh != null">
+				#{yhzh,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="selectCoPTotal" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from countryside_problem
+		where delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and isdeleted like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (shangbaoren like concat('%', #{page.key},
+			'%') or title like concat('%', #{page.key},
+			'%') or type like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_problem
+		where delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and isdeleted like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (shangbaoren like concat('%', #{page.key},
+			'%') or title like concat('%', #{page.key},
+			'%') or type like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		order by isdeleted asc,createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="getCountrysideProblemInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_problem
+		where id = #{id}
+	</select>
+	<update id="deleteCountrysideProblem">
+		update countryside_problem
+		set
+		delflag = 'D'
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateCountrysideProblem" parameterType="com.jtzh.entity.CountrysideProblem">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    update countryside_problem
+    set 
+		isdeleted = #{isdeleted,jdbcType=VARCHAR},
+		title = #{title,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		shangbaoren = #{shangbaoren,jdbcType=VARCHAR},
+		lianren = #{lianren,jdbcType=VARCHAR},
+		paifaren = #{paifaren,jdbcType=VARCHAR},
+		endtime = #{endtime,jdbcType=DATE},
+		x = #{x,jdbcType=VARCHAR},
+		y = #{y,jdbcType=VARCHAR},
+		yhzh = #{yhzh,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertCountrysideProblem" parameterType="com.jtzh.entity.CountrysideProblem">
+  <selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    insert into 
+    countryside_problem (
+    	isdeleted, title, content, 
+    	attachment_source,
+		type, address, shangbaoren, 
+		shangbaotime, x, y, yhzh, createId,
+		createTime, delflag)
+    values (#{isdeleted,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+    	#{attachmentSource,jdbcType=CHAR},
+		#{type,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{shangbaoren,jdbcType=VARCHAR},
+		#{shangbaotime,jdbcType=DATE},
+		#{x,jdbcType=VARCHAR},
+		#{y,jdbcType=VARCHAR},
+		#{yhzh,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{delflag,jdbcType=VARCHAR})
+  </insert>
+  <update id="Problemlian" parameterType="com.jtzh.entity.CountrysideProblem">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    update countryside_problem
+    set lianren = #{lianren,jdbcType=VARCHAR},
+    liantime = #{liantime,jdbcType=DATE}
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="Problempaifa" parameterType="com.jtzh.entity.CountrysideProblem">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    update countryside_problem
+    set paifaren = #{paifaren,jdbcType=VARCHAR},
+    paifatime = #{paifatime,jdbcType=DATE},
+    endtime = #{endtime,jdbcType=DATE}
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findbyId" resultType="com.jtzh.pojo.CountrysideFind" parameterType="java.lang.String">
+    select a.*,b.shangbaoid,b.chuliren,b.chulitime,b.chulimiaoshu,b.shenheren,b.shenhetime,b.shenhemiaoshu from countryside_problem a,countryside_chuli b where a.id=b.shangbaoid and a.id=#{id}
+  </select>
+  <select id="findbystate" parameterType="com.jtzh.pojo.CountrysideFind"
+		resultMap="BaseResultMap">
+		<!-- select
+		a.*,b.shangbaoid,b.chuliren,b.chulitime,b.chulimiaoshu from countryside_problem a,countryside_chuli b where a.id=b.shangbaoid and 
+		where delflag = 'A' -->
+		select a.*,b.shangbaoid,b.chuliren,b.chulitime,b.chulimiaoshu,b.shenheren,b.shenhetime,b.shenhemiaoshu from countryside_problem a,countryside_chuli b where a.id=b.shangbaoid and delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and isdeleted like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectCocTotal" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from countryside_problem
+		where delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and isdeleted like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (shangbaoren like concat('%', #{page.key},
+			'%') or title like concat('%', #{page.key},
+			'%') or type like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+	</select>
+	<select id="selectInfo1" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultType="com.jtzh.pojo.CountrysideFind">
+		select a.*,b.shangbaoid,b.chuliren,b.chulitime,b.chulimiaoshu,b.shenheren,b.shenhetime,b.shenhemiaoshu from countryside_problem a,countryside_chuli b where a.id=b.shangbaoid and a.delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and isdeleted like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (shangbaoren like concat('%', #{page.key},
+			'%') or title like concat('%', #{page.key},
+			'%') or type like concat('%', #{page.key},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectSbrTotal" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from countryside_problem
+		where delflag = 'A' and isdeleted != 4
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.people != null and page.people != ''">
+			and shangbaoren like concat('%', #{page.people},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (shangbaoren like concat('%', #{page.key},
+			'%') or title like concat('%', #{page.key},
+			'%') or type like concat('%', #{page.key},
+			'%'))
+		</if>
+	</select>
+	<select id="selectInfoSbr" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_problem
+		where delflag = 'A' and isdeleted != 4
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.people != null and page.people != ''">
+			and shangbaoren like concat('%', #{page.people},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (shangbaoren like concat('%', #{page.key},
+			'%') or title like concat('%', #{page.key},
+			'%') or type like concat('%', #{page.key},
+			'%'))
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectPfrTotal" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from countryside_problem
+		where delflag = 'A' and isdeleted = 2 
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.people != null and page.people != ''">
+			and paifaren like concat('%', #{page.people},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (shangbaoren like concat('%', #{page.key},
+			'%') or title like concat('%', #{page.key},
+			'%') or type like concat('%', #{page.key},
+			'%'))
+		</if>
+	</select>
+	<select id="selectInfoPfr" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_problem
+		where delflag = 'A' and isdeleted = 2 
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.people != null and page.people != ''">
+			and paifaren like concat('%', #{page.people},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (shangbaoren like concat('%', #{page.key},
+			'%') or title like concat('%', #{page.key},
+			'%') or type like concat('%', #{page.key},
+			'%'))
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectPeoTotal" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultType="java.lang.Integer">
+		select count(1)
+		from countryside_problem
+		where delflag = 'A' and isdeleted = 4
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.people != null and page.people != ''">
+			and (paifaren like concat('%', #{page.people},
+			'%') or lianren like concat('%', #{page.people},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (shangbaoren like concat('%', #{page.key},
+			'%') or title like concat('%', #{page.key},
+			'%') or type like concat('%', #{page.key},
+			'%'))
+		</if>
+	</select>
+	<select id="selectInfoPeo" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_problem
+		where delflag = 'A' and isdeleted = 4
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.people != null and page.people != ''">
+			and (paifaren like concat('%', #{page.people},
+			'%') or lianren like concat('%', #{page.people},
+			'%'))
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and (shangbaoren like concat('%', #{page.key},
+			'%') or title like concat('%', #{page.key},
+			'%') or type like concat('%', #{page.key},
+			'%'))
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<update id="updateIsdeleted" parameterType="com.jtzh.entity.CountrysideProblem">
+    <!--
+      WARNING - @mbggenerated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Wed Jul 18 10:32:41 CST 2018.
+    -->
+    update countryside_problem
+    set isdeleted = #{isdeleted,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getxyInfo" resultMap="BaseResultMap">
+		select
+		id, isdeleted, x, y
+		from countryside_problem
+		where id = #{id}
+	</select>
+	<select id="selectInfoxy" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultMap="BaseResultMap">
+		select
+		id, isdeleted, title, x, y, createTime
+		from countryside_problem
+		where delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and isdeleted like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and title like concat('%', #{page.key},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		order by createTime desc 
+		limit
+		#{page.start},#{page.pageSize}
+	</select>
+	<select id="selectInfoAllxy" parameterType="com.jtzh.pojo.CountrysideProblemParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_problem
+		where delflag = 'A'
+		<if test="page.yhzh != null and page.yhzh != ''">
+			and yhzh like concat('%', #{page.yhzh},
+			'%')
+		</if>
+		<if test="page.isdeleted != null and page.isdeleted != ''">
+			and isdeleted like concat('%', #{page.isdeleted},
+			'%')
+		</if>
+		<if test="page.startTime != null and page.startTime != ''">
+			and createTime &gt; #{page.startTime}
+		</if>
+		<if test="page.endTime != null and page.endTime != ''">
+			and createTime &lt; #{page.endTime}
+		</if>
+		<if test="page.key != null and page.key != ''">
+			and title like concat('%', #{page.key},
+			'%')
+		</if>
+		<if test="page.createId != null and page.createId != ''">
+			and createId like concat('%', #{page.createId},
+			'%')
+		</if>
+		limit
+		#{page.start},999999
+	</select>
+	<select id="getCountListfeiqi" resultType="long">
+    	select
+    	count(id)
+    	from countryside_problem
+    	where isdeleted = 0 and 
+    	delflag = "A"
+    </select>
+    <select id="getCountListdaipaifa" resultType="long">
+    	select
+    	count(id)
+    	from countryside_problem
+    	where isdeleted > 0 and 
+    	delflag = "A"
+    </select>
+    <select id="getCountListchulizhong" resultType="long">
+    	select
+    	count(id)
+    	from countryside_problem
+    	where isdeleted > 1 and 
+    	delflag = "A"
+    </select>
+    <select id="getCountListdaishenhe" resultType="long">
+    	select
+    	count(id)
+    	from countryside_problem
+    	where isdeleted > 2 and 
+    	delflag = "A"
+    </select>
+    <select id="getCountListyijiean" resultType="long">
+    	select
+    	count(id)
+    	from countryside_problem
+    	where isdeleted = 4 and 
+    	delflag = "A"
+    </select>
+    <select id="getCountListjidu" resultType="com.jtzh.pojo.CountIsdeleted">
+    	select count(id) as count,QUARTER(createTime) as isdeleted from countryside_problem where YEAR(createTime) = #{col} and delflag = "A" GROUP BY QUARTER(createTime) 
+    </select>
+    <select id="getCount" resultType="com.jtzh.pojo.CountIsdeleted">
+    	<!-- select isdeleted as isdeleted, count(1) as count from countryside_problem group by isdeleted -->
+    	select a.isdeleted,ifnull(b.count,0) as count from cgisdeleted as a
+			left join(
+			select isdeleted,count(1) as count from countryside_problem where delflag = 'A' group by isdeleted) as b 
+			on a.isdeleted=b.isdeleted
+    </select>
+    <select id="getCountList" resultType="long">
+    	select
+    	count(id)
+    	from countryside_problem
+    	where isdeleted = #{isdeleted,jdbcType=VARCHAR} and delflag = 'A'
+    </select>
+    <select id="countProblemByYear" resultType="com.jtzh.pojo.CountQuarter">
+    	select count(id) as count,QUARTER(createTime) as quarter from countryside_problem where YEAR(createTime) = #{year} and delflag = 'A' GROUP BY QUARTER(createTime) 
+    </select>
+</mapper>

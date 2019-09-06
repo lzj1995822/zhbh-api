@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.PioneerVolunteerServiceMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.entity.PioneerVolunteerServiceE">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="hdmc" jdbcType="VARCHAR" property="hdmc" />
+    <result column="hdsj" jdbcType="VARCHAR" property="hdsj" />
+    <result column="hddz" jdbcType="VARCHAR" property="hddz" />
+    <result column="fwdx" jdbcType="VARCHAR" property="fwdx" />
+    <result column="bmkssj" jdbcType="TIMESTAMP" property="bmkssj" />
+    <result column="bmjssj" jdbcType="TIMESTAMP" property="bmjssj" />
+    <result column="fwlb" jdbcType="VARCHAR" property="fwlb" />
+    <result column="zyzbz" jdbcType="VARCHAR" property="zyzbz" />
+    <result column="hdgs" jdbcType="VARCHAR" property="hdgs" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="delflag" jdbcType="CHAR" property="delflag" />
+    <result column="sfjs" jdbcType="CHAR" property="sfjs" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, hdmc, hdsj, hddz, fwdx, bmkssj, bmjssj, fwlb, zyzbz, hdgs,sfjs,create_time, delflag
+  </sql>
+  
+
+	<select id="getZyzHd" parameterType="com.jtzh.pojo.KeyParam" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_volunteer_service
+      where delflag != 'D'
+   <if test="keyparam.keyword != null and keyparam.keyword != ''" >
+		and hdmc like concat('%', #{keyparam.keyword},'%') 
+	</if>
+	<if test="keyparam.startTime != null and keyparam.startTime != ''" >
+		and STR_TO_DATE(hdsj,'%Y-%m-%d %H:%i:%s') &gt;= #{keyparam.startTime}
+	</if>
+	<if test="keyparam.endTime != null and keyparam.endTime != ''" >
+		and STR_TO_DATE(hdsj,'%Y-%m-%d %H:%i:%s') &lt;= #{keyparam.endTime}
+	</if>
+    order by create_time DESC limit #{keyparam.start} ,  #{keyparam.pageSize}
+  </select>
+  
+  	<select id="getZyzHdTotal" parameterType="com.jtzh.pojo.KeyParam" resultType="java.lang.Integer">
+    select count(1)
+    from pioneer_volunteer_service
+    where delflag != 'D'
+   <if test="keyparam.keyword != null and keyparam.keyword != ''" >
+		and hdmc like concat('%', #{keyparam.keyword},'%') 
+	</if>
+      <if test="keyparam.startTime != null and keyparam.startTime != ''" >
+        and STR_TO_DATE(hdsj,'%Y-%m-%d %H:%i:%s') &gt;= #{keyparam.startTime}
+      </if>
+      <if test="keyparam.endTime != null and keyparam.endTime != ''" >
+        and STR_TO_DATE(hdsj,'%Y-%m-%d %H:%i:%s') &lt;= #{keyparam.endTime}
+      </if>
+  	</select>
+  
+  
+  <select id="getZyzHdApp" parameterType="com.jtzh.pojo.KeyParam" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_volunteer_service
+   	where bmkssj <![CDATA[ <= ]]> now() and bmjssj <![CDATA[ >= ]]> now()
+    order by create_time DESC limit #{keyparam.start} ,  #{keyparam.pageSize}
+  </select>
+  
+  	<select id="getZyzHdTotalApp" parameterType="com.jtzh.pojo.KeyParam" resultType="java.lang.Integer">
+    select count(1)
+    from pioneer_volunteer_service
+    where bmkssj <![CDATA[ <= ]]> now() and bmjssj <![CDATA[ >= ]]> now()
+  	</select> 
+  	
+  	  <select id="getZyzHdAppYjs" parameterType="com.jtzh.pojo.KeyParam" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pioneer_volunteer_service
+   	where delflag != 'D' and sfjs = '1'
+    order by create_time DESC limit #{keyparam.start} ,  #{keyparam.pageSize}
+  </select>
+  
+  	<select id="getZyzHdTotalAppYjs" parameterType="com.jtzh.pojo.KeyParam" resultType="java.lang.Integer">
+    select count(1)
+    from pioneer_volunteer_service
+    where delflag != 'D' and sfjs = '1'
+  	</select> 
+  	
+  	
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pioneer_volunteer_service
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.entity.PioneerVolunteerServiceE">
+    insert into pioneer_volunteer_service ( hdmc, hdsj, 
+      hddz, fwdx, bmkssj, 
+      bmjssj, fwlb, zyzbz, 
+      hdgs, create_time, delflag,sfjs
+      )
+    values ( #{hdmc,jdbcType=VARCHAR}, #{hdsj,jdbcType=VARCHAR}, 
+      #{hddz,jdbcType=VARCHAR}, #{fwdx,jdbcType=VARCHAR}, #{bmkssj,jdbcType=TIMESTAMP}, 
+      #{bmjssj,jdbcType=TIMESTAMP}, #{fwlb,jdbcType=VARCHAR}, #{zyzbz,jdbcType=VARCHAR}, 
+      #{hdgs,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=CHAR}, #{sfjs,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.entity.PioneerVolunteerServiceE">
+    insert into pioneer_volunteer_service
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="hdmc != null">
+        hdmc,
+      </if>
+      <if test="hdsj != null">
+        hdsj,
+      </if>
+      <if test="hddz != null">
+        hddz,
+      </if>
+      <if test="fwdx != null">
+        fwdx,
+      </if>
+      <if test="bmkssj != null">
+        bmkssj,
+      </if>
+      <if test="bmjssj != null">
+        bmjssj,
+      </if>
+      <if test="fwlb != null">
+        fwlb,
+      </if>
+      <if test="zyzbz != null">
+        zyzbz,
+      </if>
+      <if test="hdgs != null">
+        hdgs,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="hdmc != null">
+        #{hdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="hdsj != null">
+        #{hdsj,jdbcType=VARCHAR},
+      </if>
+      <if test="hddz != null">
+        #{hddz,jdbcType=VARCHAR},
+      </if>
+      <if test="fwdx != null">
+        #{fwdx,jdbcType=VARCHAR},
+      </if>
+      <if test="bmkssj != null">
+        #{bmkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bmjssj != null">
+        #{bmjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fwlb != null">
+        #{fwlb,jdbcType=VARCHAR},
+      </if>
+      <if test="zyzbz != null">
+        #{zyzbz,jdbcType=VARCHAR},
+      </if>
+      <if test="hdgs != null">
+        #{hdgs,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.entity.PioneerVolunteerServiceE">
+    update pioneer_volunteer_service
+    <set>
+      <if test="hdmc != null">
+        hdmc = #{hdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="hdsj != null">
+        hdsj = #{hdsj,jdbcType=VARCHAR},
+      </if>
+      <if test="hddz != null">
+        hddz = #{hddz,jdbcType=VARCHAR},
+      </if>
+      <if test="fwdx != null">
+        fwdx = #{fwdx,jdbcType=VARCHAR},
+      </if>
+      <if test="bmkssj != null">
+        bmkssj = #{bmkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bmjssj != null">
+        bmjssj = #{bmjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fwlb != null">
+        fwlb = #{fwlb,jdbcType=VARCHAR},
+      </if>
+      <if test="zyzbz != null">
+        zyzbz = #{zyzbz,jdbcType=VARCHAR},
+      </if>
+      <if test="hdgs != null">
+        hdgs = #{hdgs,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.PioneerVolunteerServiceE">
+    update pioneer_volunteer_service
+    set hdmc = #{hdmc,jdbcType=VARCHAR},
+      hdsj = #{hdsj,jdbcType=VARCHAR},
+      hddz = #{hddz,jdbcType=VARCHAR},
+      fwdx = #{fwdx,jdbcType=VARCHAR},
+      bmkssj = #{bmkssj,jdbcType=TIMESTAMP},
+      bmjssj = #{bmjssj,jdbcType=TIMESTAMP},
+      fwlb = #{fwlb,jdbcType=VARCHAR},
+      zyzbz = #{zyzbz,jdbcType=VARCHAR},
+      hdgs = #{hdgs,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateYjs">
+
+    update pioneer_volunteer_service set sfjs = '1' where id = #{id}
+
+  </update>
+</mapper>
