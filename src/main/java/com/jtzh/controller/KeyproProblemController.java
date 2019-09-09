@@ -3,11 +3,8 @@ package com.jtzh.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.*;
 
 import com.jtzh.detail.pojo.KeyProblemChuliDetail;
 import com.jtzh.detail.pojo.KeyproProblemAppointmans;
@@ -371,5 +368,14 @@ public class KeyproProblemController {
 		return keyproProblemService.countProblemType();
 	}
 
+	@ApiOperation(value="修改类型")
+	@PostMapping("/updateZt")
+	public String updateZt(@RequestParam(value = "id") int id, @RequestParam(value = "processState") String processState){
+		String message="修改失败";
+		if(keyproProblemService.updateZt(id, processState)==1){
+			message="修改成功";
+		}
+		return message;
 
+	}
 }

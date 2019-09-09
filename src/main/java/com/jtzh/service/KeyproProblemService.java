@@ -1,5 +1,6 @@
 package com.jtzh.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.jtzh.detail.pojo.KeyProblemChuliDetail;
@@ -69,5 +70,6 @@ public interface KeyproProblemService {
 	public Object countProblemByYear(String year);
 
 	public Object countProblemType();
+	int updateZt(@Param("id") int id, @Param("processState") String processState);
 	
 }

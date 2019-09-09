@@ -88,6 +88,7 @@ public interface KeyproProblemMapper {
 
 	//按类型统计数量
 	List<CountType> countProblemType();
+	int updateZt(@Param("id") int id,@Param("processState") String processState);
 
 
 }

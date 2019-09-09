@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.jtzh.pojo.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -486,6 +487,10 @@ public class KeyproProblemServiceImpl implements KeyproProblemService {
 		ResultObject res = new ResultObject();
 		res.setObj(count);
 		return res;
+	}
+
+	public 	int updateZt(@Param("id") int id, @Param("processState") String processState){
+		return problemMapper.updateZt(id, processState);
 	}
 
 

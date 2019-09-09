@@ -690,6 +690,9 @@
 		b.keypro_problem_type
 	</select>
 
-
+<update id="updateZt">
+	update keypro_problem set process_state=#{processState}
+	where id=#{id}
+</update>
 
 </mapper>
