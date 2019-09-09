@@ -79,6 +79,15 @@
     where delflag != 'D'
     and sfz = #{sfz}
   </select>
+
+  <select id="getIdByPhoneNumber" resultType="java.lang.Integer">
+    select id
+    from pioneer_volunteer
+    where delflag != 'D'
+    and lxdh = #{zyzzh} limit 1
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from pioneer_volunteer
     where id = #{id,jdbcType=BIGINT}

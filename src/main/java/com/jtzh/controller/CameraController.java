@@ -8,10 +8,8 @@ import com.jtzh.service.Impl.CameraServiceImpl;
 import com.jtzh.util.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.json.JSONObject;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -46,5 +44,11 @@ public class CameraController {
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public BaseResponse<List<TbCamera>> page(@RequestBody CameraPagination cameraPagination){
         return cameraServiceImpl.page(cameraPagination);
+    }
+
+    @ApiOperation(value="获取播放xml")
+    @RequestMapping(value = "/getPreviewXml/{cameraUuid}", method = RequestMethod.POST)
+    public BaseResponse<JSONObject> getPreviewXml(@PathVariable String cameraUuid){
+        return BaseResponse.of(cameraServiceImpl.getPreivewList(cameraUuid));
     }
 }

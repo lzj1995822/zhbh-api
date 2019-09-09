@@ -102,7 +102,6 @@ public class CameraServiceImpl implements CameraService {
        return  restTemplate.postForEntity(url, param, JSONObject.class).getBody();
    }
 
-    @Test
     public void getCameraList(){
         JSONObject param = new JSONObject();
         param.put("appkey", APP_KEY);
@@ -116,7 +115,6 @@ public class CameraServiceImpl implements CameraService {
         System.out.printf(post.toJSONString());
     }
 
-    @Test
     public void getAllNet(){
         JSONObject param = new JSONObject();
         param.put("appkey", APP_KEY);
@@ -128,7 +126,7 @@ public class CameraServiceImpl implements CameraService {
         JSONObject post = post(fullUrl, param);
         System.out.printf(post.toJSONString());
     }
-    @Test
+
     public void getPointList(){
         JSONObject param = new JSONObject();
         param.put("appkey", APP_KEY);
@@ -165,8 +163,7 @@ public class CameraServiceImpl implements CameraService {
         System.out.printf(post.toJSONString());
     }
 ///openapi/service/vss/preview/getPreviewParamByCameraUuid{"appkey":"a592d676","time":1547621030451,"pageNo":1,"pageSize":10,"opUserUuid":"c26a811c141a11e79aeeb32ef95273f2","netZoneUuid":"5b994421aced4e2d9a76179e8cc70734"}69681c3587194a50a2b11f1335ad6f41
-    @Test
-    public void getPreivewList(){
+    public JSONObject getPreivewList(String cameraUuid){
 //        {"appkey":"a592d676","time":1547619590896,"pageNo":1,"pageSize":10,"opUserUuid":"c26a811c141a11e79aeeb32ef95273f2","cameraUuid":"05cb445d93eb4a6bb21c69e9169a43c4","netZoneUuid":"5b994421aced4e2d9a76179e8cc70734"}
         JSONObject param = new JSONObject();
         param.put("appkey", APP_KEY);
@@ -174,12 +171,17 @@ public class CameraServiceImpl implements CameraService {
         param.put("pageNo", 1);
         param.put("pageSize", 10);
         param.put("opUserUuid", "c26a811c141a11e79aeeb32ef95273f2");
-        param.put("cameraUuid", "5be72b7886b8424d8675dc345e6f40fa");
+        param.put("cameraUuid", cameraUuid);
         param.put("netZoneUuid","5b994421aced4e2d9a76179e8cc70734"); // 外网
 //        param.put("netZoneUuid", "f5816cf43fcc41d880d9f636fa8bc443"); // 内网
         String fullUrl = getFullUrl(PERVIEW_URL, param.toJSONString());
-        JSONObject post = post(fullUrl, param);
-        System.out.printf(post.toJSONString());
+        JSONObject post;
+        try {
+            post = post(fullUrl, param);
+        } catch (Exception e) {
+            return null;
+        }
+        return post;
     }
 
     public void readExcelOrigin() {

@@ -71,8 +71,8 @@
   	  <select id="getZyzHdAppYjs" parameterType="com.jtzh.pojo.KeyParam" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from pioneer_volunteer_service
-   	where delflag != 'D' and sfjs = '1'
+    from pioneer_volunteer_service pvs left join pioneer_service_result psr on psr.hdid = pvs.id
+   	where delflag != 'D' and sfjs = '1' and pvs.id is not null
     order by create_time DESC limit #{keyparam.start} ,  #{keyparam.pageSize}
   </select>
   

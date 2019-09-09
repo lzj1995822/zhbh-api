@@ -286,6 +286,13 @@ public class PioneerVolunteerServiceImpl implements PioneerVolunteerService {
 		p.setDelflag("A");
 		p.setHdid(Long.valueOf(hdid));
 		p.setZyzzh(zyzzh);
+		Integer zyzid = pioneerVolunteerMapper.getIdByPhoneNumber(zyzzh);
+		if (zyzid == null) {
+			obj.setResult(false);
+			obj.setMessage("此手机号暂未绑定支志愿者");
+			return obj;
+		}
+		p.setZyzid(Long.valueOf(zyzid));
 		int num =  pioneerServiceEnrollMapper.insert(p);
 		if(num > 0) {
 			obj.setResult(true);

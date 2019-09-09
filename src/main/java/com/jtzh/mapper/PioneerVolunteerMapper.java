@@ -31,4 +31,11 @@ public interface PioneerVolunteerMapper {
     int updateZyzZt(@Param("id")String id,@Param("zt")String zt);
 
     List<VolunteerResultModel> countByMonthAndType();
+
+    /**
+     * 通过手机号获取志愿者id
+     * @param zyzzh
+     * @return
+     */
+    Integer getIdByPhoneNumber(String zyzzh);
 }

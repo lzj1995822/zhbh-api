@@ -43,6 +43,18 @@ public class BaseResponse<T> {
 	public void setTotal(int total) {
 		this.total = total;
 	}
+
+	public BaseResponse(Integer statusCode, String statusMsg, T responseData, boolean isOk, int total) {
+		this.statusCode = statusCode;
+		this.statusMsg = statusMsg;
+		this.responseData = responseData;
+		this.isOk = isOk;
+		this.total = total;
+	}
+
+	public static <T> BaseResponse of(T content) {
+		return new BaseResponse(Constants.RESPONSE_STATUS_CODE_SUCCESS, "请求成功", content, true, 0);
+	}
 	
 	
 }
