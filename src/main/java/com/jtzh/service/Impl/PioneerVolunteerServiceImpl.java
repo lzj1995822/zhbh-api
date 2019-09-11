@@ -213,6 +213,7 @@ public class PioneerVolunteerServiceImpl implements PioneerVolunteerService {
             user.setUisubordinatedepartment("志愿者");
             user.setUiloginname(p.getLxdh());
             user.setUicode(p.getLxdh().substring(p.getLxdh().length()-6,p.getLxdh().length()));
+            user.setUirealname(p.getXm());
             userinformationMapper.insert(user);
 		}
 		ResultObject obj = new ResultObject();
