@@ -578,6 +578,7 @@ public class KeyproBuildServiceImpl implements KeyproBuildService {
 		fiveUser.setCreateon(new Date());
 		fiveUser.setUirealname(info.getInformationSiteLeader());
 		fiveUser.setUisubordinatedepartment("重点工程");
+		fiveUser.setUibooth(info.getInformationPhoneNumber());
 		int num = userinformationMapper.getCountByLoginId(fiveUser.getUiloginname());
 		if (num < 1) {
 			userinformationMapper.insertUserReturnId(fiveUser);
