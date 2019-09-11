@@ -214,6 +214,7 @@ public class PioneerVolunteerServiceImpl implements PioneerVolunteerService {
             user.setUiloginname(p.getLxdh());
             user.setUicode(p.getLxdh().substring(p.getLxdh().length()-6,p.getLxdh().length()));
             user.setUirealname(p.getXm());
+            user.setUibooth(p.getLxdh());
             userinformationMapper.insert(user);
 		}
 		ResultObject obj = new ResultObject();
