@@ -236,14 +236,14 @@
 	<update id="shenghe" parameterType="com.jtzh.pojo.KeyproProblemReq">
 		update keypro_problem_chuli
 		set
-		sheheren = #{sheheren,jdbcType=VARCHAR},
+		sheheren = #{sheheren},
 		shehetime =
-		#{shehetime,jdbcType=TIMESTAMP},
+		#{shehetime},
 		shehemiaoshu =
-		#{shehemiaoshu,jdbcType=VARCHAR},
-		huituiren = #{huituiren,jdbcType=VARCHAR},
-		is_check = #{isCheck,jdbcType=CHAR}
-		where id = #{id,jdbcType=INTEGER} and delflag = 'A'
+		#{shehemiaoshu},
+		huituiren = #{huituiren},
+		is_check = #{isCheck}
+		where shangbaoid = #{shangbaoid} and delflag = 'A'
 	</update>
 	<update id="returnSolve" parameterType="com.jtzh.pojo.KeyproProblemReq">
 		update keypro_problem_chuli
