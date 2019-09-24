@@ -340,6 +340,7 @@ public class KeyproProblemServiceImpl implements KeyproProblemService {
 			param.setShehetime(new Date());
 			param.setHuituiren(Constants.EXAMINE_NO);
 			chuliMapper.shenghe(param);
+			param.setIsSolve("0");
 			param.setIsSolve(Constants.SOLVE_WAIT);
 			chuliMapper.returnSolve(param);
 			//chuliMapper.deleteSolve(param.getId());

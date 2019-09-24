@@ -249,7 +249,7 @@
 		update keypro_problem_chuli
 		set
 		is_solve = #{isSolve,jdbcType=CHAR}
-		where id = #{id,jdbcType=INTEGER} and delflag = 'A'
+		where shangbaoid = #{shangbaoid} and delflag = 'A'
 	</update>
 	<update id="chuli" parameterType="com.jtzh.entity.KeyproProblemChuli">
 		update keypro_problem_chuli
