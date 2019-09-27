@@ -309,7 +309,7 @@ public class Constants {
 	public static final String DIC_1000410 = "1000410";// 微信通知模版
 
 	// 用户默认密码
-	public static final String DEFAULT_USER_PASSWORD = "123456";
+	public static final String DEFAULT_USER_PASSWORD = "Bh#96296";
 	// 1：代理人 2：学校教职工 3：系统管理员
 	public static final String ACCOUNT_TYPE_AGENT = "1";
 	public static final String ACCOUNT_TYPE_SCHOOL_STAFF = "2";
