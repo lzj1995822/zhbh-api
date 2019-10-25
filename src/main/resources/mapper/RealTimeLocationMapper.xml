@@ -41,9 +41,9 @@
     </insert>
     <insert id="addRealTimeLocation" parameterType="com.jtzh.entity.RealTimeLocation">
     insert into TERealTimeLocation (UserID, Lon,
-      Lat, Moment)
+      Lat, Moment,type)
     values (#{userID,jdbcType=BIGINT}, #{lon,jdbcType=DOUBLE},
-      #{lat,jdbcType=DOUBLE}, #{moment,jdbcType=TIMESTAMP})
+      #{lat,jdbcType=DOUBLE}, #{moment,jdbcType=TIMESTAMP},#{type,jdbcType=VARCHAR})
   </insert>
     <update id="updateByPrimaryKey" parameterType="com.jtzh.entity.RealTimeLocation">
         <!--
@@ -54,7 +54,8 @@
         set UserID = #{userID,jdbcType=BIGINT},
         Lon = #{lon,jdbcType=DOUBLE},
         Lat = #{lat,jdbcType=DOUBLE},
-        Moment = #{moment,jdbcType=TIMESTAMP}
+        Moment = #{moment,jdbcType=TIMESTAMP},
+        type = #{type,jdbcType=VARCHAR}
         where ID = #{ID,jdbcType=BIGINT}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">

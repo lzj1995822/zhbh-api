@@ -1,16 +1,13 @@
 /*     */ package com.jtzh.service.Impl;
 /*     */ import com.jtzh.common.Constants;
 import com.jtzh.entity.*;
-import com.jtzh.mapper.NetGridMapper;
-import com.jtzh.mapper.RealTimeLocationMapper;
+import com.jtzh.mapper.*;
 import com.jtzh.util.DateUtil;
 /*     */ import com.jtzh.vo.dispute.DisputeEventAPPUploadVO;
 /*     */ import com.jtzh.vo.netGrid.NetGridEventAPPUploadVO;
 /*     */ import com.jtzh.vo.skynet.SPEventAPPUploadVO;
 /*     */ import com.jtzh.vo.ss.SSEventAPPUploadVO;
 /*     */ import com.jtzh.vo.trafficAccident.TrafficAccidentAPPUploadVO;
-import com.jtzh.mapper.PictureMapper;
-import com.jtzh.mapper.TEFileMapper;
 
 /*     */ import java.io.File;
 /*     */ import java.text.ParseException;
@@ -98,6 +95,8 @@ import javax.annotation.Resource;
 /*     */   private com.jtzh.mapper.NetGridMemberMapper netGridMemberMapper;
             @Autowired
             private NetGridMapper netGridMapper;
+            @Autowired
+            private UserinformationMapper userinformationMapper;
 
 @Resource
 private RealTimeLocationMapper realTimeLocationMapper;
@@ -837,8 +836,9 @@ public int insertData() {
 	@Transactional
 	public boolean addRealTimeLocation(RealTimeLocation location)
 	{
+
         User user = userMapper.selectByPrimaryKey(location.getUserID());
-        if (StringUtils.isNotBlank(user.getRealName()) && user.getRealName().contains("网格")){
+        if (user != null){
             String netGirdName = replaceChar(user.getRealName());
             Long netGirdId = user.getNetGridID();
             NetGrid netGrid = netGridMapper.getNetGridFaterIdAndChildName(netGirdId,netGirdName);
@@ -853,15 +853,18 @@ public int insertData() {
             boolean flag = this.realTimeLocationMapper.addRealTimeLocation(location) != 0;
             return flag;
         }else {
-            location.setUserID(user.getUserID());
+            Userinformation userinformation = userinformationMapper.selectByPrimaryKey(Integer.valueOf(location.getUserID().toString()));
+            location.setUserID(Long.valueOf(userinformation.getId()));
             location.setType("1");
             location.setMoment(new Date());
+            location.setType("1");
             RealTimeLocation realTimeLocation = realTimeLocationMapper.selectByPrimaryKey(location.getUserID(),"1");
             if (realTimeLocation != null){
                 location.setID(realTimeLocation.getID());
                 boolean flag = this.realTimeLocationMapper.updateByPrimaryKey(location) != 0;
                 return flag;
             }
+
             boolean flag = this.realTimeLocationMapper.addRealTimeLocation(location) != 0;
             return flag;
         }
