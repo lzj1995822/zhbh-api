@@ -17,7 +17,8 @@ import com.jtzh.mapper.TEFileMapper;
 /*     */ import java.util.Date;
 import java.util.List;
 /*     */ import java.util.Properties;
-/*     */ import org.springframework.beans.factory.annotation.Autowired;
+/*     */ import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 /*     */ import org.springframework.transaction.annotation.Transactional;
 /*     */ import org.springframework.web.multipart.MultipartFile;
 
@@ -837,19 +838,33 @@ public int insertData() {
 	public boolean addRealTimeLocation(RealTimeLocation location)
 	{
         User user = userMapper.selectByPrimaryKey(location.getUserID());
-		String netGirdName = replaceChar(user.getRealName());
-		Long netGirdId = user.getNetGridID();
-        NetGrid netGrid = netGridMapper.getNetGridFaterIdAndChildName(netGirdId,netGirdName);
-        location.setUserID(netGrid.getNetGridID());
-		RealTimeLocation realTimeLocation = realTimeLocationMapper.selectByPrimaryKey(location.getUserID());
-		location.setMoment(new Date());
-		if (realTimeLocation != null){
-			location.setID(realTimeLocation.getID());
-			boolean flag = this.realTimeLocationMapper.updateByPrimaryKey(location) != 0;
-			return flag;
-		}
-		boolean flag = this.realTimeLocationMapper.addRealTimeLocation(location) != 0;
-		return flag;
+        if (StringUtils.isNotBlank(user.getRealName()) && user.getRealName().contains("网格")){
+            String netGirdName = replaceChar(user.getRealName());
+            Long netGirdId = user.getNetGridID();
+            NetGrid netGrid = netGridMapper.getNetGridFaterIdAndChildName(netGirdId,netGirdName);
+            location.setUserID(netGrid.getNetGridID());
+            RealTimeLocation realTimeLocation = realTimeLocationMapper.selectByPrimaryKey(location.getUserID(),"");
+            location.setMoment(new Date());
+            if (realTimeLocation != null){
+                location.setID(realTimeLocation.getID());
+                boolean flag = this.realTimeLocationMapper.updateByPrimaryKey(location) != 0;
+                return flag;
+            }
+            boolean flag = this.realTimeLocationMapper.addRealTimeLocation(location) != 0;
+            return flag;
+        }else {
+            location.setUserID(user.getUserID());
+            location.setType("1");
+            location.setMoment(new Date());
+            RealTimeLocation realTimeLocation = realTimeLocationMapper.selectByPrimaryKey(location.getUserID(),"1");
+            if (realTimeLocation != null){
+                location.setID(realTimeLocation.getID());
+                boolean flag = this.realTimeLocationMapper.updateByPrimaryKey(location) != 0;
+                return flag;
+            }
+            boolean flag = this.realTimeLocationMapper.addRealTimeLocation(location) != 0;
+            return flag;
+        }
 	}
 
 	private String replaceChar(String str){

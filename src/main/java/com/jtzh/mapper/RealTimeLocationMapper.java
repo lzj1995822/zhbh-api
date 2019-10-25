@@ -14,7 +14,7 @@ public abstract interface RealTimeLocationMapper
 
     public abstract int addRealTimeLocation(RealTimeLocation paramRealTimeLocation);
 
-    public abstract RealTimeLocation selectByPrimaryKey(@Param("UserID") Long UserID);
+    public abstract RealTimeLocation selectByPrimaryKey(@Param("UserID") Long UserID,@Param("type")String type);
 
     public abstract List<RealTimeLocation> selectAll();
 

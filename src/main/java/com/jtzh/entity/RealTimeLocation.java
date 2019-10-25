@@ -10,6 +10,7 @@ public class RealTimeLocation
     private Long userID;
     private Double lon;
     private Double lat;
+    private String type;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date moment;
 
@@ -61,5 +62,13 @@ public class RealTimeLocation
     public void setMoment(Date moment)
     {
         this.moment = moment;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
