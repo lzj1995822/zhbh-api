@@ -160,4 +160,11 @@ public interface CgshangbaoMapper {
     List<CountQuarter> countProblemByYear(@Param("year")String year);
     List <CountSmallcategories> getCgCountSmallcategories();
 
+    /**
+     * 根据案件来源分类统计
+     * @param calDay 统计日期
+     * @return {案件来源：数量}
+     */
+    Map<String, String> calBySource(String calDay);
+
 }

@@ -256,4 +256,12 @@ public class CgshangbaoService {
         return cgshangbaoMapper.getCgCountSmallcategories();
     }
 
+    /**
+     * 根据案件来源分类统计
+     * @return {案件来源：数量}
+     */
+    public Map<String, String> calBySource(String date) {
+	    return cgshangbaoMapper.calBySource(date);
+    }
+
 }

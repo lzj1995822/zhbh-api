@@ -1,16 +1,12 @@
 package com.jtzh.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.jtzh.common.Constants;
 import com.jtzh.entity.AA;
@@ -501,6 +497,9 @@ public class CgshangbaoController {
         return obj;
     }
 
-
+    @GetMapping(value = "/calBySource")
+    public Map<String, String> calBySource(@RequestParam String calDay) {
+        return cgshangbaoService.calBySource(calDay);
+    }
 
 }
