@@ -3,6 +3,7 @@ package com.jtzh.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nullable;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -492,14 +493,23 @@ public class CgshangbaoController {
 
     // 根据小类进行统计
     @RequestMapping(value = "/getCgCountSmallcategories", method = RequestMethod.GET)
-    public Object getCgCountSmallcategories() {
-        Object obj =cgshangbaoService.getCgCountSmallcategories();
+    public Object getCgCountSmallcategories(@RequestParam @Nullable String calDay) {
+        Object obj =cgshangbaoService.getCgCountSmallcategories(calDay);
         return obj;
     }
 
     @GetMapping(value = "/calBySource")
-    public Map<String, String> calBySource(@RequestParam String calDay) {
+    public List<Map> calBySource(@RequestParam @Nullable String calDay) {
         return cgshangbaoService.calBySource(calDay);
     }
 
+    @GetMapping(value = "/calByPeople")
+    public List<Map> calByPeople(@RequestParam @Nullable String calDay) {
+        return cgshangbaoService.calByPeople(calDay);
+    }
+
+    @GetMapping(value = "/todaySituation")
+    public Map<String, Integer> todaySituation() {
+        return cgshangbaoService.todaySituation();
+    }
 }

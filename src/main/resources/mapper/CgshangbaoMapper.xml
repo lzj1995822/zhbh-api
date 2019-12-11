@@ -855,7 +855,7 @@
 			and paifabumen like concat('%', #{page.paifaren},
 			'%')
 		</if>
-		order by isdeleted asc,createTime desc 
+		order by createTime desc
 		limit
 		#{page.currPage},#{page.pageSize}
 	</select>
@@ -1198,20 +1198,49 @@
     	select count(id) as count,QUARTER(createTime) as quarter from cgshangbao where YEAR(createTime) = #{year} and delflag = 'A' GROUP BY QUARTER(createTime) 
     </select>
 
-  <select id="getCgCountSmallcategories" resultType="com.jtzh.pojo.CountSmallcategories">
-    	select t1.smallcategories as smallcategories,count(t2.smallcategories) as count
-        from cgAndhw_type t1 LEFT JOIN cgshangbao t2
-        on t1.smallcategories=t2.smallcategories
-        GROUP BY t1.smallcategories
+  <select id="getCgCountSmallcategories" parameterType="String" resultType="com.jtzh.pojo.CountSmallcategories">
+    SELECT DISTINCT cg.smallcategories, IF(temp.count is null, 0 ,temp.count) as count from cgshangbao cg LEFT JOIN (
+      SELECT
+          smallcategories,
+          count(1) AS count
+      FROM
+          cgshangbao
+      <if test="calDay != null">
+        WHERE
+            DATE_FORMAT(createTime, '%Y-%m-%d') = #{calDay}
+      </if>
+      GROUP BY
+          smallcategories
+    ) temp on cg.smallcategories = temp.smallcategories order by count
     </select>
 
-  <select id="calBySource">
-    SELECT DISTINCT a.source, IF(temp.amount is NULL,0, temp.amount) amount from cgshangbao a LEFT JOIN  (
+  <select id="calBySource" resultType="java.util.Map" parameterType="String">
+    SELECT DISTINCT a.source as 'name', IF(temp.amount is NULL,0, temp.amount) as 'value' from cgshangbao a LEFT JOIN  (
     select count(1) amount, source from cgshangbao
     <if test="calDay != null">
-      where DATE_FORMAT(createTime,'%Y-%m-%d') = calDay
+      where DATE_FORMAT(createTime,'%Y-%m-%d') = #{calDay}
     </if>
-    group by source ) temp on temp.source = a.source
+    group by source order by amount) temp on temp.source = a.source
   </select>
 
+  <select id="calByPeople" resultType="java.util.Map" parameterType="String">
+    SELECT DISTINCT a.people as 'name', IF(temp.amount is NULL,0, temp.amount) as 'value' from cgshangbao a LEFT JOIN  (
+    select count(1) amount, people from cgshangbao
+    <if test="calDay != null">
+      where DATE_FORMAT(createTime,'%Y-%m-%d') = #{calDay}
+    </if>
+    group by people) temp on temp.people = a.people WHERE source != '综治网格联动问题' order by 'value'
+  </select>
+
+  <select id="todayResolved" resultType="java.lang.Integer">
+    select count(1) from cgchuli where chulitime = DATE_FORMAT(now(),'%Y-%m-%d')
+  </select>
+
+  <select id="todayPassed" resultType="java.lang.Integer">
+    select count(1) from cgchuli where shehetime = DATE_FORMAT(now(),'%Y-%m-%d') and shenheState = '1'
+  </select>
+
+  <select id="todayAdd" resultType="java.lang.Integer">
+    select count(1) from cgshangbao where DATE_FORMAT(createTime,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d')
+  </select>
 </mapper>

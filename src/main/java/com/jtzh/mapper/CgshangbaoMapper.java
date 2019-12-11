@@ -10,6 +10,7 @@ import com.jtzh.entity.AB;
 import com.jtzh.entity.Cgshangbao;
 import com.jtzh.entity.CgshangbaoExample;
 import com.jtzh.entity.Yhzhshangbao;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface CgshangbaoMapper {
     /**
@@ -158,13 +159,25 @@ public interface CgshangbaoMapper {
     List<CountCountryside> getCountrysideList();
     List<CountSource> getCountSource();
     List<CountQuarter> countProblemByYear(@Param("year")String year);
-    List <CountSmallcategories> getCgCountSmallcategories();
+    List <CountSmallcategories> getCgCountSmallcategories(@Param(value = "calDay") String calDay);
 
     /**
      * 根据案件来源分类统计
      * @param calDay 统计日期
      * @return {案件来源：数量}
      */
-    Map<String, String> calBySource(String calDay);
+    List<Map> calBySource(@Param(value = "calDay") String calDay);
 
+    /**
+     * 根据案件来源分类统计
+     * @param calDay 统计日期
+     * @return {案件来源：数量}
+     */
+    List<Map> calByPeople(@Param(value = "calDay") String calDay);
+
+    Integer todayPassed();
+
+    Integer todayResolved();
+
+    Integer todayAdd();
 }

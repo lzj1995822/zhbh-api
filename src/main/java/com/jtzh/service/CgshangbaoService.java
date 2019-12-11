@@ -1,10 +1,6 @@
 package com.jtzh.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Resource;
 
@@ -252,16 +248,34 @@ public class CgshangbaoService {
         return cgshangbaoMapper.getCountSource();
     }
 
-    public List <CountSmallcategories> getCgCountSmallcategories() {
-        return cgshangbaoMapper.getCgCountSmallcategories();
+    public List <CountSmallcategories> getCgCountSmallcategories(String calDay) {
+        return cgshangbaoMapper.getCgCountSmallcategories(calDay);
     }
 
     /**
      * 根据案件来源分类统计
      * @return {案件来源：数量}
      */
-    public Map<String, String> calBySource(String date) {
-	    return cgshangbaoMapper.calBySource(date);
+    public List<Map> calBySource(String calDay) {
+	    return cgshangbaoMapper.calBySource(calDay);
+    }
+
+    /**
+     * 根据案件上报人分类统计
+     * @return {案件来源：数量}
+     */
+    public List<Map> calByPeople(String date) {
+        List<Map> list = cgshangbaoMapper.calByPeople(date);
+        list.sort(Comparator.comparing(o -> o.get("value").toString()));
+        return list;
+    }
+
+    public Map<String, Integer> todaySituation() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("todayAdd",  cgshangbaoMapper.todayAdd());
+        map.put("todayPassed",  cgshangbaoMapper.todayPassed());
+        map.put("todayResolved",  cgshangbaoMapper.todayResolved());
+        return map;
     }
 
 }
