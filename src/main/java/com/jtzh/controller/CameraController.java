@@ -23,13 +23,13 @@ public class CameraController {
     private CameraServiceImpl cameraServiceImpl;
 
     @ApiOperation(value="获取视频资源")
-    @RequestMapping(value = "/get", method = RequestMethod.POST)
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
     public void getTotal(){
         cameraServiceImpl.getPointList();
     }
 
     @ApiOperation(value="获取视频资源坐标")
-    @RequestMapping(value = "/getXY", method = RequestMethod.POST)
+    @RequestMapping(value = "/getXY", method = RequestMethod.GET)
     public void getXY(){
         cameraServiceImpl.readExcelOrigin();
     }

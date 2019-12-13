@@ -127,6 +127,27 @@ public class CameraServiceImpl implements CameraService {
         System.out.printf(post.toJSONString());
     }
 
+//    宝华城管流动板房 51d903ab88f1486c9a1290b1c953b638
+//    宝华新中学 68d84f741fda4ba1a7142d5e74a2bb53
+//    仙林大道 e975836a993545c5b2a7bbdfc70dcbb2
+//    宝华大道 ea2a0e1e8ad447e0abb4b71953b6f259
+//    玉兰路 a6c81a2437e144b691d6afd078126b8e
+//    栏江行政村 b6b3b5262c1f46f3ae64d31c39733025
+//    铜山行政村 c6995c0baf7b40c2b40b254fb0e0e2ac
+//    仓头行政村 da7abb2a2f194dc78d705885e0d7bd14
+//    栗庄行政村 a8648b143baa486db60895e19436a995
+//    宝华行政村 b0fe775ffcb144b3a4cbe643dac5ea4f
+//    和平行政村 31235e441143401a8eda3ea9e5c8c79c
+//    宝华物流园 7fd7fc28294f45daa46bbe8929dc1e3b
+//    宝华山人脸识别 54ab82f24a544db7978de9dac2f98c19
+//    宝华交警 3deb282944df4d6e9e92cf1d7fbd02cc
+//    宝华青龙山采石宕口 2940d78c81db49fda04940ccd1480db3
+//    铁路沿线 72f6e0f6eb3a422ebf7c7ce86419751d
+//    宝华2019新增 ef873975ac22467195e9e59616a69e56
+//    南北通道 7f69cd6ba9894be99426920a0fce6ba1
+//    312国道 13558c7e9e0f48deb1e3578e960915af
+//    宝华山北门 2744eb96f5954f338e4c8037fe53bb92
+
     public void getPointList(){
         JSONObject param = new JSONObject();
         param.put("appkey", APP_KEY);
@@ -136,7 +157,13 @@ public class CameraServiceImpl implements CameraService {
         param.put("opUserUuid", "c26a811c141a11e79aeeb32ef95273f2");
 //        param.put("cameraName", "大门口");
 //        param.put("unitUuids","1048576" );
-        param.put("regionUuids","bb50bc93e23746a0a45c08ded2f5ae7d,21d54ed3b4c84ff1bd48ed88ab36a412,d14ffdc9bc2041a89363ea7a091793b9,0acdf08a477d4f9594e805a3e859e903,5819b46032784b8baaa6e51723898e06,6e9285aead3943cabf33bc1c4d1c11b0,dcfd2f2155704dc7902d8dd20881c2fd,152536b37a23422fbf30446dd6a5350d,366e9e4639b841278dd0ea15bfe79c90,036571297294481cb97b298354cc8e8f,001e208953734c32a70b0ba921773897,f6c263dbf3eb4852a6dbacbfe928769e,1117bec10ab745f4ba38b4f718564fc1,4169d15bd5034c299ea23f1cf0b8b99c,848d5ae182e94e2b81d3b7cd0ac57cc9,0860d80027ef4295904bc00414312d49");
+        param.put("regionUuids","51d903ab88f1486c9a1290b1c953b638,68d84f741fda4ba1a7142d5e74a2bb53,e975836a993545c5b2a7bbdfc70dcbb2," +
+                "ea2a0e1e8ad447e0abb4b71953b6f259,a6c81a2437e144b691d6afd078126b8e,b6b3b5262c1f46f3ae64d31c39733025," +
+                "c6995c0baf7b40c2b40b254fb0e0e2ac,da7abb2a2f194dc78d705885e0d7bd14,a8648b143baa486db60895e19436a995," +
+                "b0fe775ffcb144b3a4cbe643dac5ea4f,31235e441143401a8eda3ea9e5c8c79c,7fd7fc28294f45daa46bbe8929dc1e3b," +
+                "54ab82f24a544db7978de9dac2f98c19,3deb282944df4d6e9e92cf1d7fbd02cc,2940d78c81db49fda04940ccd1480db3," +
+                "72f6e0f6eb3a422ebf7c7ce86419751d,ef873975ac22467195e9e59616a69e56,7f69cd6ba9894be99426920a0fce6ba1," +
+                "13558c7e9e0f48deb1e3578e960915af,2744eb96f5954f338e4c8037fe53bb92");
         String fullUrl = getFullUrl(PONIT_URL, param.toJSONString());
         JSONObject post = post(fullUrl, param);
 //        tbCameraMapper.insert();
@@ -162,6 +189,10 @@ public class CameraServiceImpl implements CameraService {
 
         System.out.printf(post.toJSONString());
     }
+    @Test
+    public void test() {
+       getPreivewList("1b8412465b434e1ea2008145367b2273");
+    }
 ///openapi/service/vss/preview/getPreviewParamByCameraUuid{"appkey":"a592d676","time":1547621030451,"pageNo":1,"pageSize":10,"opUserUuid":"c26a811c141a11e79aeeb32ef95273f2","netZoneUuid":"5b994421aced4e2d9a76179e8cc70734"}69681c3587194a50a2b11f1335ad6f41
     public JSONObject getPreivewList(String cameraUuid){
 //        {"appkey":"a592d676","time":1547619590896,"pageNo":1,"pageSize":10,"opUserUuid":"c26a811c141a11e79aeeb32ef95273f2","cameraUuid":"05cb445d93eb4a6bb21c69e9169a43c4","netZoneUuid":"5b994421aced4e2d9a76179e8cc70734"}
@@ -181,20 +212,21 @@ public class CameraServiceImpl implements CameraService {
         } catch (Exception e) {
             return null;
         }
+        System.out.println(post.toJSONString());
         return post;
     }
 
     public void readExcelOrigin() {
-        File file = new File("F:/data.xls");
+        File file = new File("/Users/asher/Desktop/tb_camera.xls");
         List list = readExcel(file);
         for (int i = 1; i < list.size(); i++) {
             ArrayList row = (ArrayList) list.get(i);
-            String name = (String) row.get(0);
-            double x = Double.valueOf((String) row.get(5));
-            double y = Double.valueOf((String) row.get(6));
+            String cameraUuid = (String) row.get(1);
+            double x = Double.valueOf((String) row.get(2));
+            double y = Double.valueOf((String) row.get(3));
             Point point = wgs84togcj02(x, y);
             point = gcj02tobd09(point.x, point.y);
-            TbCamera tbCamera = tbCameraMapper.selectByCameraName(name);
+            TbCamera tbCamera = tbCameraMapper.selectByCameraName(cameraUuid);
             if (tbCamera != null) {
                 tbCamera.setXloc(String.valueOf(point.x));
                 tbCamera.setYloc(String.valueOf(point.y));
