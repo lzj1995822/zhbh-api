@@ -30,7 +30,9 @@ public abstract interface SpecialServedPersonMapper
   public abstract List<SpecialPersonCountByTypeVO> getSpecialPersonCountByType();
   
   public abstract List<SpecialPersonPieVO> getSpecialPersonPieCount(@Param("type") String paramString);
+  Long countSpecialPerson();
 }
+
 
 
 /* Location:              C:\Users\rainb\Desktop\msmis.war!\WEB-INF\classes\com\gbt\dao\SpecialServedPersonMapper.class

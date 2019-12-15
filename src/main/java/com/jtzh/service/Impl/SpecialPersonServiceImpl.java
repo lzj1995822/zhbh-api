@@ -83,7 +83,9 @@ import com.jtzh.mapper.TRSpecialServedPersonMapper;
 /*  82 */     return lists;
 /*     */   }
 /*     */   
-/*     */ 
+/*     */  public   Long countSpecialPerson(){
+    return specialServedPersonMapper.countSpecialPerson();
+}
 /*     */ 
 /*     */   public SpecialPsychoticResponseVO getPsychoticInfo(String name, String certifID, Integer netGridID, int page, int pageSize)
 /*     */   {
@@ -305,7 +307,7 @@ import com.jtzh.mapper.TRSpecialServedPersonMapper;
 /* 304 */     map.put("special", keyPetitioners);
 /* 305 */     return map;
 /*     */   }
-/*     */   
+/*     */
 /*     */ 
 /*     */   public List getSpecialPersonCountByType()
 /*     */   {

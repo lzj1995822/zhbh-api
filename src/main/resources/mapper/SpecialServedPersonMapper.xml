@@ -254,6 +254,8 @@
 		 where t.FatherNetGridID=-1
 
 	</select>
-
+<select id="countSpecialPerson" resultType="long">
+	select count(ServedPersonID) from TEServedPersonBasic
+</select>
 
 </mapper>
