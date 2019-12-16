@@ -40,7 +40,7 @@ public abstract interface SpecialPersonService
   public abstract List getKeyPetitionersPieCount();
   
   public abstract List getSpecialPersonCountByType();
-  
+  public   Long countSpecialPerson();
   public abstract List<SpecialPersonPieVO> getSpecialPersonPieCount(String paramString);
   
   public abstract boolean checkSpecialPersonByCertifID(String paramString1, String paramString2);

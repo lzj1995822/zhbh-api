@@ -6,7 +6,8 @@ import com.jtzh.service.SpecialPersonService;
 /*     */ import org.springframework.beans.factory.annotation.Autowired;
 /*     */ import org.springframework.stereotype.Controller;
 /*     */ import org.springframework.web.bind.annotation.CrossOrigin;
-/*     */ import org.springframework.web.bind.annotation.RequestMapping;
+/*     */ import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 /*     */ import org.springframework.web.bind.annotation.ResponseBody;
 /*     */ 
 /*     */ 
@@ -74,7 +75,12 @@ import com.jtzh.service.SpecialPersonService;
 /*     */   public ExtResponse getSpecialPersonCountByType() {
 /*  75 */     return ResponseUtil.success(this.personService.getSpecialPersonCountByType());
 /*     */   }
-/*     */   
+/*     */       @GetMapping("/getCountSpecialPerson")//统计特殊人群
+                @ResponseBody
+                public  ExtResponse counSpecialPerson(){
+                    return ResponseUtil.success(this.personService.countSpecialPerson());
+                }
+
 /*     */   @RequestMapping({"/getSpecialPersonPieCount"})
 /*     */   @ResponseBody
 /*     */   public ExtResponse getSpecialPersonPieCount(String type) {
