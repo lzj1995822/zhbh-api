@@ -20,6 +20,8 @@ public interface TbCameraMapper {
 
     TbCamera selectByCameraName(String cameraName);
 
+    TbCamera selectByCameraUuid(String cameraUuid);
+
     List<TbCamera> selectAll();
 
     List<TbCamera> page(CameraPagination cameraPagination);

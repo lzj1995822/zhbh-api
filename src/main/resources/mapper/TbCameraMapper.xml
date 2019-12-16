@@ -261,8 +261,15 @@
     select count(1)
     from tb_camera
     <if test="cameraName != null and cameraName != ''">
-      where cameraname like concat("%", #{cameraName, jdbcType = VARCHAR}, "%")
+      where cameraname = #{cameraName, jdbcType = VARCHAR}
     </if>
+  </select>
+
+  <select id="selectByCameraUuid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_camera
+    where cameraUuid = #{cameraUuid,jdbcType=VARCHAR}
   </select>
 
 </mapper>
