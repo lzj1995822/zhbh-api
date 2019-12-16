@@ -55,6 +55,10 @@ public class BaseResponse<T> {
 	public static <T> BaseResponse of(T content) {
 		return new BaseResponse(Constants.RESPONSE_STATUS_CODE_SUCCESS, "请求成功", content, true, 0);
 	}
+
+	public static <T> BaseResponse ofFail() {
+		return new BaseResponse(Constants.RESPONSE_STATUS_CODE_FAILED, "请求失败", null, false, 0);
+	}
 	
 	
 }

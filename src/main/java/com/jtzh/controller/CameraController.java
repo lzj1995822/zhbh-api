@@ -49,6 +49,10 @@ public class CameraController {
     @ApiOperation(value="获取播放xml")
     @RequestMapping(value = "/getPreviewXml/{cameraUuid}", method = RequestMethod.POST)
     public BaseResponse<JSONObject> getPreviewXml(@PathVariable String cameraUuid){
-        return BaseResponse.of(cameraServiceImpl.getPreivewList(cameraUuid));
+        com.alibaba.fastjson.JSONObject preivewList = cameraServiceImpl.getPreivewList(cameraUuid);
+        if (preivewList == null) {
+            return BaseResponse.ofFail();
+        }
+        return BaseResponse.of(preivewList);
     }
 }
