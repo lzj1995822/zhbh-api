@@ -19,6 +19,10 @@ import com.jtzh.service.PioneerUserService;
 
 import io.swagger.annotations.Api;
 
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 @Api(tags = "宝华先锋党员管理")
 @RestController
 @RequestMapping("pioneerUser")
@@ -27,6 +31,60 @@ public class PioneerUserController {
 	private PioneerUserService pioneerUserService;
 	@Resource
 	private LoginUserTestService loginUserTestService;
+
+
+	/**
+	 * 获取人员年龄信息
+	 * @author zdw
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "/getPioneerUserAgeList", method = RequestMethod.GET)
+	public Object getPioneerUserAgeList() {
+
+		TreeMap<String,Integer> map =new TreeMap<>();
+		map.put("18-30岁", 0);
+		map.put("30-40岁", 0);
+		map.put("40-50岁", 0);
+		map.put("50-60岁", 0);
+		map.put("60岁以上" , 0);
+		List<String> list = pioneerUserService.getPioneerUserAgeList();
+		for(String item: list) {
+			if (item == null) {
+				continue;
+			}
+			Integer year = Integer.valueOf(item);
+			if (year >= 18 && year <= 30) {
+				Integer integer = map.get("18-30岁");
+				integer ++;
+				map.put("18-30岁", integer);
+			} else if (year > 30 && year <= 40) {
+				Integer integer = map.get("30-40岁");
+				integer ++;
+				map.put("30-40岁", integer);
+			} else if (year >40 && year <= 50) {
+				Integer integer = map.get("40-50岁");
+				integer ++;
+				map.put("40-50岁", integer);
+			} else if (year >50 && year <= 60) {
+				Integer integer = map.get("50-60岁");
+				integer ++;
+				map.put("50-60岁", integer);
+			}else if (year >60) {
+				Integer integer = map.get("60岁以上");
+				integer ++;
+				map.put("60岁以上", integer);
+			}
+		}
+
+
+
+		for (Map.Entry<String,Integer> entry:map.entrySet()){
+			System.out.println("key:"+entry.getKey()+','+entry.getValue());
+		}
+		return map;
+	}
+
 
 
 

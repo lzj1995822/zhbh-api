@@ -143,4 +143,9 @@ public class PioneerUserServiceImpl implements PioneerUserService {
 		return new ResultObject();
 	}
 
+	@Override
+	public List<String> getPioneerUserAgeList() {
+		return pioneeruserMapper.getPioneerUserAgeList() ;
+	}
+
 }
