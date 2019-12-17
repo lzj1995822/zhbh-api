@@ -288,4 +288,8 @@ public class HwshangbaoService {
         list.sort(Comparator.comparing(o -> o.get("value").toString()));
         return list;
     }
+
+    public List gethwCountSmallcategories(String calDay) {
+        return hwshangbaoMapper.gethwCountSmallcategories(calDay);
+    }
 }

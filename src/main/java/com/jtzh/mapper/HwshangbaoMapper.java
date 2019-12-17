@@ -113,4 +113,6 @@ public interface HwshangbaoMapper {
 
 
     List<Map> calByPeople(String date);
+
+    List gethwCountSmallcategories( @Param(value = "calDay") String calDay);
 }
