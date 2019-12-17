@@ -1200,4 +1200,58 @@
         GROUP BY t1.smallcategories
     </select>
 
+
+    <select id="calBySource" resultType="java.util.Map">
+
+SELECT DISTINCT a.source as 'name', IFNULL(temp.amount,0) as 'value' from cgshangbao a LEFT JOIN  (
+    select count(1) amount, source from hwshangbao
+
+      <if test="calDay != null">
+        where DATE_FORMAT(createTime,'%Y-%m-%d') = #{calDay}
+      </if>
+    group by source order by amount) temp on temp.source = a.source
+    </select>
+
+
+  <select id="todayAdd" resultType="java.lang.Integer">
+        select count(1) from hwshangbao where DATE_FORMAT(createTime,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d')
+
+
+  </select>
+
+
+  <select id="todayPassed" resultType="java.lang.Integer">
+
+        select count(1) from hwchuli where shehetime = DATE_FORMAT(now(),'%Y-%m-%d') and shenheState = '1'
+
+  </select>
+
+
+  <select id="todayResolved" resultType="java.lang.Integer">
+
+        select count(1) from hwchuli where chulitime = DATE_FORMAT(now(),'%Y-%m-%d')
+
+  </select>
+  <select id="getHwIncreare" resultType="java.lang.Integer">
+        SELECT
+	count( 1 )
+    FROM
+	hwshangbao
+	LEFT JOIN hwchuli ON hwchuli.shangbaoid = hwshangbao.id
+    WHERE
+	DATE_FORMAT( hwchuli.shehetime, '%Y-%m-%d' ) = DATE_FORMAT( now( ), '%Y-%m-%d' )
+
+  </select>
+  <select id="getHwIncreare2" resultType="java.lang.Integer">
+            SELECT
+	count( 1 )
+    FROM
+	hwshangbao
+	LEFT JOIN hwchuli ON hwchuli.shangbaoid = hwshangbao.id
+    WHERE
+	DATE_FORMAT( hwchuli.shehetime, '%Y-%m-%d' ) = DATE_FORMAT( DATE_SUB( NOW( ), INTERVAL 1 DAY ), '%Y-%m-%d' )
+
+  </select>
+
+
 </mapper>

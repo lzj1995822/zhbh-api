@@ -161,4 +161,9 @@ public class HwuserServiceImpl implements HwuserService {
 			return hwuserMapper.find();
 	}
 
+	@Override
+	public List<String> hwAgeRange() {
+		return hwuserMapper.hwAgeRange();
+	}
+
 }

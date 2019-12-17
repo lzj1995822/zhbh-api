@@ -13,7 +13,7 @@ import org.springframework.util.ResourceUtils;
 import com.jtzh.entity.YnwUser;
 
 public class InitUser {
-	@Test
+	// @Test
 	public void testReadList() throws Exception {
 	    List<YnwUser> list = new ArrayList<YnwUser>();
 

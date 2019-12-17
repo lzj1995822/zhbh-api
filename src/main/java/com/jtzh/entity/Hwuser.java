@@ -2,8 +2,33 @@ package com.jtzh.entity;
 
 import java.util.Date;
 
+
 public class Hwuser {
-	
+	@Override
+	public String toString() {
+		return "Hwuser{" +
+				"id=" + id +
+				", number='" + number + '\'' +
+				", name='" + name + '\'' +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", phone='" + phone + '\'' +
+				", department='" + department + '\'' +
+				", position='" + position + '\'' +
+				", address='" + address + '\'' +
+				", yhzh='" + yhzh + '\'' +
+				", createId='" + createId + '\'' +
+				", createTime=" + createTime +
+				", delflag='" + delflag + '\'' +
+				", borndate='" + borndate + '\'' +
+				", sex='" + sex + '\'' +
+				", idcard='" + idcard + '\'' +
+				", dizhi='" + dizhi + '\'' +
+				", nation='" + nation + '\'' +
+				", groupId='" + groupId + '\'' +
+				'}';
+	}
+
 	private Integer id;
 	private String number;
 	private String name; // 姓名

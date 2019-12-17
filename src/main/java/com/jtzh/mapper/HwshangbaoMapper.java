@@ -1,6 +1,7 @@
 package com.jtzh.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jtzh.pojo.*;
 import org.apache.ibatis.annotations.Param;
@@ -87,4 +88,26 @@ public interface HwshangbaoMapper {
     List<CountQuarter> countProblemByYear(@Param("year")String year);
 
     List <CountSmallcategories> getHwCountSmallcategories();
+
+
+
+
+    /**
+     * 根据案件来源分类统计
+     * @param calDay 统计日期
+     * @return {案件来源：数量}
+     */
+    List<Map> calBySource(@Param(value = "calDay") String calDay);
+
+    Integer todayAdd();
+
+    Integer todayPassed();
+
+
+    Integer todayResolved();
+
+    Integer getHwIncreare();
+
+    //查询昨天审核通过比率
+    Integer getHwIncreare2();
 }

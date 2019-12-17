@@ -52,7 +52,7 @@ public class JpushUtils {
 				.setNotification(Notification.android(content, "派发通知", null)).build();
 	}
 
-	@Test
+//	@Test
 	public void testSendWithSMS() {
 		JPushClient jpushClient = new JPushClient(MASTER_SECRET, APP_KEY);
 		try {

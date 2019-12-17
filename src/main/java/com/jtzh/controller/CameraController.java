@@ -9,6 +9,7 @@ import com.jtzh.util.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,7 +20,7 @@ import java.util.List;
 @RequestMapping("/camera")
 public class CameraController {
 
-    @Resource
+    @Autowired
     private CameraServiceImpl cameraServiceImpl;
 
     @ApiOperation(value="获取视频资源")

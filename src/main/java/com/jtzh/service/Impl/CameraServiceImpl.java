@@ -189,10 +189,10 @@ public class CameraServiceImpl implements CameraService {
 
         System.out.printf(post.toJSONString());
     }
-    @Test
-    public void test() {
-       getPreivewList("1b8412465b434e1ea2008145367b2273");
-    }
+//    @Test
+//    public void test() {
+//       getPreivewList("1b8412465b434e1ea2008145367b2273");
+//    }
 ///openapi/service/vss/preview/getPreviewParamByCameraUuid{"appkey":"a592d676","time":1547621030451,"pageNo":1,"pageSize":10,"opUserUuid":"c26a811c141a11e79aeeb32ef95273f2","netZoneUuid":"5b994421aced4e2d9a76179e8cc70734"}69681c3587194a50a2b11f1335ad6f41
     public JSONObject getPreivewList(String cameraUuid){
 //        {"appkey":"a592d676","time":1547619590896,"pageNo":1,"pageSize":10,"opUserUuid":"c26a811c141a11e79aeeb32ef95273f2","cameraUuid":"05cb445d93eb4a6bb21c69e9169a43c4","netZoneUuid":"5b994421aced4e2d9a76179e8cc70734"}
@@ -274,7 +274,6 @@ public class CameraServiceImpl implements CameraService {
         return null;
     }
 
-    @Test
     public void getXY() {
         JSONObject param = new JSONObject();
         param.put("appkey", APP_KEY);

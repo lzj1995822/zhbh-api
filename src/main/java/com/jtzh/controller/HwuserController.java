@@ -20,8 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Api(tags = "环卫人员管理")
 @RestController
@@ -185,4 +184,60 @@ public class HwuserController {
 		}
 		return null;
 	}
+
+
+
+	/**
+	 * 获取人员年龄信息
+	 * @author zdw
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "/getHwuserAgeList", method = RequestMethod.GET)
+	public Object getHwuserAgeList() {
+
+		TreeMap<String,Integer> map =new TreeMap<>();
+		map.put("18-30岁", 0);
+		map.put("30-40岁", 0);
+		map.put("40-50岁", 0);
+		map.put("50-60岁", 0);
+		map.put("60-70岁" , 0);
+		List<String> list = hwuserService.hwAgeRange();
+		for(String item: list) {
+			if (item == null) {
+				continue;
+			}
+			Integer year = Integer.valueOf(item);
+			if (year >= 18 && year <= 30) {
+				Integer integer = map.get("18-30岁");
+				integer ++;
+				map.put("18-30岁", integer);
+			} else if (year > 30 && year <= 40) {
+				Integer integer = map.get("30-40岁");
+				integer ++;
+				map.put("30-40岁", integer);
+			} else if (year >40 && year <= 50) {
+				Integer integer = map.get("40-50岁");
+				integer ++;
+				map.put("40-50岁", integer);
+			} else if (year >50 && year <= 60) {
+				Integer integer = map.get("50-60岁");
+				integer ++;
+				map.put("50-60岁", integer);
+			}
+		}
+
+
+
+		for (Map.Entry<String,Integer> entry:map.entrySet()){
+			System.out.println("key:"+entry.getKey()+','+entry.getValue());
+		}
+		return map;
+	}
+
+
+
+
+
+
 }

@@ -25,7 +25,7 @@
 	  <result column="idcard" jdbcType="VARCHAR" property="idcard" />
 	  <result column="dizhi" jdbcType="VARCHAR" property="dizhi" />
 	  <result column="nation" jdbcType="VARCHAR" property="nation" />
-	  <result column="groupId" jdbcType="VARCHAR" property="groupIdd" />
+	  <result column="groupId" jdbcType="VARCHAR" property="groupId" />
   </resultMap>
   <sql id="Base_Column_List">
 		id, number, name, username, password, phone, department, position, address, yhzh, createId, createTime, delflag,borndate,sex,idcard,dizhi,nation,groupId
@@ -162,5 +162,10 @@
 	</select>
 	<select id="find" resultType="com.jtzh.entity.Hwuser">
 		select * from hwuser where delflag!='D'
+	</select>
+
+	<select id="hwAgeRange" resultType="java.lang.String">
+		select (YEAR(CURDATE())-YEAR(borndate))as 年龄 from hwuser
+
 	</select>
 </mapper>

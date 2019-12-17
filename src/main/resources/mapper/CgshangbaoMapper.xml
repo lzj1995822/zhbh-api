@@ -1215,13 +1215,21 @@
     </select>
 
   <select id="calBySource" resultType="java.util.Map" parameterType="String">
+
+
+
     SELECT DISTINCT a.source as 'name', IF(temp.amount is NULL,0, temp.amount) as 'value' from cgshangbao a LEFT JOIN  (
     select count(1) amount, source from cgshangbao
     <if test="calDay != null">
       where DATE_FORMAT(createTime,'%Y-%m-%d') = #{calDay}
     </if>
     group by source order by amount) temp on temp.source = a.source
+
+
   </select>
+
+
+
 
   <select id="calByPeople" resultType="java.util.Map" parameterType="String">
     SELECT DISTINCT a.people as 'name', IF(temp.amount is NULL,0, temp.amount) as 'value' from cgshangbao a LEFT JOIN  (

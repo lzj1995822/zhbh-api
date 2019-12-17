@@ -253,4 +253,35 @@ public class HwshangbaoService {
         return hwshangbaoMapper.getHwCountSmallcategories();
     }
 
+    /**
+     * 根据案件来源分类统计
+     * @return {案件来源：数量}
+     */
+    public List<Map> calBySource(String calDay) {
+        return hwshangbaoMapper.calBySource(calDay);
+    }
+
+    public Map<String, Integer> todaySituation() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("todayAdd",  hwshangbaoMapper.todayAdd());
+        map.put("todayPassed",  hwshangbaoMapper.todayPassed());
+        map.put("todayResolved",  hwshangbaoMapper.todayResolved());
+        return map;
+
+
+    }
+
+    public int getHwIncreare() {
+      int  todayRes=  hwshangbaoMapper.getHwIncreare();
+      int  yesRes=  hwshangbaoMapper.getHwIncreare2();
+
+      int res=0;
+      if(yesRes==0){
+          res=1;
+      }else {
+          res = (todayRes - yesRes) / yesRes;
+      }
+
+      return res;
+    }
 }

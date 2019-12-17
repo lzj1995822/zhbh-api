@@ -21,4 +21,5 @@ public interface HwuserService {
 	public boolean batchImport(String fileName, MultipartFile file) throws Exception;
 	public List<Hwuser> find();
 
+	List<String>hwAgeRange();  //统计年龄信息
 }

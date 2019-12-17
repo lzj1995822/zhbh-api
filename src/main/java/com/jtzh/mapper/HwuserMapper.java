@@ -25,4 +25,6 @@ public interface HwuserMapper {
 	int deleteHwuser(@Param("id") String id);
 	Hwuser findbyidcard(String idcard);
 	List<Hwuser> find();
+
+	List<String>hwAgeRange();
 }

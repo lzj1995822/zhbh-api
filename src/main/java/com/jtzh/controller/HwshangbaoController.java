@@ -1,17 +1,14 @@
 package com.jtzh.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.Nullable;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.jtzh.common.Constants;
 import com.jtzh.entity.AA;
@@ -491,5 +488,24 @@ public class HwshangbaoController {
     public Object getHwCountSmallcategories() {
         Object obj =hwshangbaoService.getHwCountSmallcategories();
         return obj;
+    }
+
+    //环卫问题来源
+    @GetMapping(value = "/calByHwSource")
+    public List<Map> calBySource(@RequestParam @Nullable String calDay) {
+        return hwshangbaoService.calBySource(calDay);
+    }
+    //今日环卫上报统计
+    @GetMapping(value = "/todayHwSituation")
+    public Map<String, Integer> todaySituation() {
+        return hwshangbaoService.todaySituation();
+    }
+
+    //环卫上报涨幅
+
+    @RequestMapping(value = "/getHwIncreare", method = RequestMethod.GET)
+    public   int getHwIncreare() {
+       int   res= (int) hwshangbaoService.getHwIncreare();
+        return res;
     }
 }
