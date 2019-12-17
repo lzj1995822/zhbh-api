@@ -34,7 +34,7 @@ public class CameraServiceImpl implements CameraService {
     /**
      * 接口访问ip和端口
      */
-    private static final String IP_PORT = "http://122.97.218.162:18080";
+    private static final String IP_PORT = "http://172.16.1.133:8080";
 
     /**
      * app_key
