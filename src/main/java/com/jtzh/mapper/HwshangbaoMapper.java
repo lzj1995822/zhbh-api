@@ -110,4 +110,7 @@ public interface HwshangbaoMapper {
 
     //查询昨天审核通过比率
     Integer getHwIncreare2();
+
+
+    List<Map> calByPeople(String date);
 }

@@ -1,10 +1,6 @@
 package com.jtzh.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Resource;
 
@@ -283,5 +279,13 @@ public class HwshangbaoService {
       }
 
       return res;
+    }
+
+
+
+    public List<Map> calByPeople(String date) {
+        List<Map> list = hwshangbaoMapper.calByPeople(date);
+        list.sort(Comparator.comparing(o -> o.get("value").toString()));
+        return list;
     }
 }

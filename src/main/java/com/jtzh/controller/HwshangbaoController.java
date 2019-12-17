@@ -508,4 +508,11 @@ public class HwshangbaoController {
        int   res= (int) hwshangbaoService.getHwIncreare();
         return res;
     }
+
+
+
+    @GetMapping(value = "/calByHwPeople")
+    public List<Map> calByPeople(@RequestParam @Nullable String calDay) {
+        return hwshangbaoService.calByPeople(calDay);
+    }
 }
