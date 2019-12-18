@@ -5,11 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jtzh.mapper.PioneerOrgMapper;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.jtzh.entity.LoginUserTest;
 import com.jtzh.entity.PioneerUser;
@@ -39,6 +35,7 @@ public class PioneerUserController {
 	 *
 	 * @return
 	 */
+	@CrossOrigin
 	@RequestMapping(value = "/getPioneerUserAgeList", method = RequestMethod.GET)
 	public Object getPioneerUserAgeList() {
 
