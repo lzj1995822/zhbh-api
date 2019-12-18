@@ -362,4 +362,10 @@
 		where delflag != 'D'
 		order by create_time asc
 	</select>
+
+
+    <select id="getPioneerUserAgeList" resultType="java.lang.String">
+			select (YEAR(CURDATE())-YEAR(birth_date))as 年龄 from  pioneer_user
+
+	</select>
 </mapper>
