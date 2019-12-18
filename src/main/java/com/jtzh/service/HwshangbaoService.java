@@ -254,7 +254,7 @@ public class HwshangbaoService {
      * @return {案件来源：数量}
      */
     public List<Map> calBySource(String calDay) {
-        return hwshangbaoMapper.calBySource(calDay);
+        return hwshangbaoMapper.calhwBySource(calDay);
     }
 
     public Map<String, Integer> todaySituation() {
