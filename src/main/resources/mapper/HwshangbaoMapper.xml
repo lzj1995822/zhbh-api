@@ -1254,7 +1254,7 @@
 	DATE_FORMAT( hwchuli.shehetime, '%Y-%m-%d' ) = DATE_FORMAT( DATE_SUB( NOW( ), INTERVAL 1 DAY ), '%Y-%m-%d' )
 
   </select>
-    <select id="calByPeople" resultType="java.util.Map">
+    <select id="calByPeople" resultType="java.util.Map" parameterType="String">
 
       SELECT DISTINCT a.people as 'name', IF(temp.amount is NULL,0, temp.amount) as 'value' from hwshangbao a LEFT JOIN  (
       select count(1) amount, people from hwshangbao

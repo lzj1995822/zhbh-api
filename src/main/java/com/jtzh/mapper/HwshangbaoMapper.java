@@ -111,7 +111,7 @@ public interface HwshangbaoMapper {
     Integer getHwIncreare2();
 
 
-    List<Map> calByPeople(String date);
+    List<Map> calByPeople(@Param(value = "calDay")String calDay);
 
     List <CountSmallcategories> gethwCountSmallcategories(@Param(value = "calDay") String calDay);
 }

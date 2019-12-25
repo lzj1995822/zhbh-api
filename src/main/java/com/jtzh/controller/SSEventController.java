@@ -1,8 +1,11 @@
 /*     */ package com.jtzh.controller;
 /*     */ import com.jtzh.jpush.Push;
-/*     */ import com.jtzh.util.ResponseUtil;
-/*     */ import com.jtzh.vo.ss.DistributeVO;
-/*     */ import com.jtzh.websocket.WebSocketHandler;
+/*     */ import com.jtzh.mapper.SocietySecurityEventMapper;
+import com.jtzh.util.ResponseUtil;
+/*     */ import com.jtzh.vo.gis.SocietySecurityEventVO;
+import com.jtzh.vo.ss.DistributeVO;
+/*     */ import com.jtzh.vo.ss.SSCountVO;
+import com.jtzh.websocket.WebSocketHandler;
 import com.jtzh.common.ExtResponse;
 import com.jtzh.entity.SSEventChecked;
 import com.jtzh.entity.SSEventDealing;
@@ -15,7 +18,12 @@ import com.jtzh.service.SSEventService;
 /*     */ import org.springframework.web.bind.annotation.RequestMapping;
 /*     */ import org.springframework.web.bind.annotation.ResponseBody;
 /*     */ import org.springframework.web.multipart.MultipartFile;
-/*     */ 
+
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+/*     */
 /*     */ @org.springframework.stereotype.Controller
 /*     */ @RequestMapping({"/api/SSEvent"})
 /*     */ public class SSEventController
@@ -27,7 +35,11 @@ import com.jtzh.service.SSEventService;
 /*     */   private WebSocketHandler webSocketHandler;
 /*     */   @Autowired
 /*     */   private Push push;
-/*     */   
+/*     */
+
+            @Autowired
+            private SocietySecurityEventMapper mapper;
+
 /*     */   @RequestMapping({"/addSSEventBasic"})
 /*     */   @ResponseBody
 /*     */   public ExtResponse addSSEventBasic(@RequestBody SocietySecurityEvent event)
@@ -92,7 +104,25 @@ import com.jtzh.service.SSEventService;
 /*     */   {
 /*  94 */     return ResponseUtil.success(this.eventService.getSSEventDespatcherQuery(id, kind, name, netGridID, status, page, pageSize));
 /*     */   }
-/*     */   
+/*     */
+
+            @RequestMapping({"/SSEventQuery"})
+            @ResponseBody
+            public ExtResponse SSEvenQuery()
+     {
+
+         List<SocietySecurityEventVO> societySecurityEventVOS = mapper.SSEventQuery();
+         TreeMap<Object,Object>  map=new TreeMap<>();
+         for (SocietySecurityEventVO val:societySecurityEventVOS
+         ) {
+             map.put("ssEventTypeName",val.getSsEventTypeName());
+             map.put("ssEventStatusTypeName",val.getSsEventStatusTypeName());
+             map.put("netGridName",val.getNetGridName());
+         }
+         return ResponseUtil.success(map);
+     }
+
+
 /*     */ 
 /*     */ 
 /*     */ 
@@ -307,9 +337,35 @@ import com.jtzh.service.SSEventService;
 /*     */   
 /*     */   @RequestMapping({"/getSSCountVO"})
 /*     */   @ResponseBody
-/*     */   public ExtResponse getSSCountVO() {
+/*     */   public ExtResponse getSSCountVO()
+                  {
+
 /* 312 */     return ResponseUtil.success(this.eventService.getSSCountVO());
 /*     */   }
+
+    /**
+     * 返回所有的社会治安信息 、今天的社会治安信息
+     * @return
+     */
+            @ResponseBody
+            @RequestMapping("/getSSCountVOToday")
+            public ExtResponse getSSCountVOToday(){
+
+                TreeMap<Object,Object> map =new TreeMap();
+                int common = 0,great=0;
+
+                int todayRes= eventService.tesocietysecurityeventToday();
+                List<SSCountVO> ssCountVO = eventService.getSSCountVO();
+                for (int i = 0; i < ssCountVO.size(); i++) {
+                    common+=  ssCountVO.get(i).getCommon();
+                    great+=  ssCountVO.get(i).getGreat();
+                }
+                map.put("todayRes",todayRes);
+                map.put("common",common);
+                map.put("great",great);
+                return  ResponseUtil.success(map);
+            }
+
 /*     */   
 /*     */   @RequestMapping({"/isDistribute"})
 /*     */   @ResponseBody

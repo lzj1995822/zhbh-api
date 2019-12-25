@@ -1,6 +1,7 @@
 /*     */ package com.jtzh.controller;
 /*     */ import com.jtzh.jpush.Push;
-/*     */ import com.jtzh.util.ResponseUtil;
+/*     */ import com.jtzh.mapper.DisputeEventMapper;
+import com.jtzh.util.ResponseUtil;
 /*     */ import com.jtzh.vo.dispute.DisputeEventQueryResponseVO;
 /*     */ import com.jtzh.vo.dispute.DistributeVO;
 /*     */ import com.jtzh.websocket.WebSocketHandler;
@@ -30,6 +31,11 @@ import com.jtzh.service.UserService;
 /*     */ @RequestMapping({"/api/dispute"})
 /*     */ public class DisputeEventController
 /*     */ {
+
+            @Autowired
+            private DisputeEventMapper disputeEventMapper;
+
+
 /*     */   @Autowired
 /*     */   private DisputeEventService disputeEventService;
 /*     */   @Autowired
@@ -77,7 +83,7 @@ import com.jtzh.service.UserService;
 /*     */   public ExtResponse<DisputeEventQueryResponseVO> getDisputeEventDeptDespatcherQuery(Long id, String eventName, String eventTypeValue, Integer netGridID, int page, int pageSize)
 /*     */   {
 /*  80 */     DisputeEventQueryResponseVO vo = this.disputeEventService.getDisputeEventDeptDespatcherQuery(id, eventName, eventTypeValue, netGridID, page, pageSize);
-/*     */     
+/*     */
 /*  82 */     return ResponseUtil.success(vo);
 /*     */   }
 /*     */   
@@ -325,6 +331,23 @@ import com.jtzh.service.UserService;
 /*     */   {
 /* 327 */     return ResponseUtil.success(Boolean.valueOf(this.disputeEventService.uploadDisputeEventDealingMedia(pictures, video, id)));
 /*     */   }
+                 @RequestMapping({"/getConditionNo"})
+    /*     */   @ResponseBody
+    /*     */   public ExtResponse getConditionNo()
+        /*     */   {
+        /* 327 */     return ResponseUtil.success(this.disputeEventMapper.getDespatcherQuery2());
+        /*     */   }
+
+
+
+                     @RequestMapping({"/conditionVillageTop"})
+    /*     */       @ResponseBody
+    /*     */       public ExtResponse  ConditionVillageTop()
+    /*     */   {
+        /* 327 */     return ResponseUtil.success(this.disputeEventMapper.ConditionVillageTop());
+        /*     */   }
+
+
 /*     */ }
 
 

@@ -4,7 +4,17 @@ import com.jtzh.entity.SocietySecurityEvent;
 /*    */ public class SocietySecurityEventVO extends SocietySecurityEvent
 /*    */ {
 /*    */   private String ssEventTypeName;
-/*    */   private String ssEventStatusTypeName;
+
+    @Override
+    public String toString() {
+        return "SocietySecurityEventVO{" +
+                "ssEventTypeName='" + ssEventTypeName + '\'' +
+                ", ssEventStatusTypeName='" + ssEventStatusTypeName + '\'' +
+                ", netGridName='" + netGridName + '\'' +
+                '}';
+    }
+
+    /*    */   private String ssEventStatusTypeName;
 /*    */   private String netGridName;
 /*    */   
 /*    */   public String getSsEventTypeName() {

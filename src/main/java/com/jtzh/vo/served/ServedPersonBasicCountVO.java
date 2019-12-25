@@ -6,7 +6,19 @@
 /*    */   private int floating;
 /*    */   private int stay;
 /*    */   private int foreigner;
-/*    */   
+
+    @Override
+    public String toString() {
+        return "ServedPersonBasicCountVO{" +
+                "name='" + name + '\'' +
+                ", resident=" + resident +
+                ", floating=" + floating +
+                ", stay=" + stay +
+                ", foreigner=" + foreigner +
+                '}';
+    }
+
+    /*    */
 /*    */   public String getName() {
 /* 11 */     return this.name;
 /*    */   }

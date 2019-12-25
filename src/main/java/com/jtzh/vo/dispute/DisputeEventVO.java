@@ -110,7 +110,28 @@
 /*     */   {
 /* 111 */     return this.netGridName;
 /*     */   }
-/*     */   
+
+    @Override
+    public String toString() {
+        return "DisputeEventVO{" +
+                "disputeEventID=" + disputeEventID +
+                ", eventName='" + eventName + '\'' +
+                ", eventDate='" + eventDate + '\'' +
+                ", eventPlace='" + eventPlace + '\'' +
+                ", evenScaleTypeName='" + evenScaleTypeName + '\'' +
+                ", eventTypeName='" + eventTypeName + '\'' +
+                ", numberofJoinning=" + numberofJoinning +
+                ", eventIntroduction='" + eventIntroduction + '\'' +
+                ", relatedOrg='" + relatedOrg + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", eventStatus='" + eventStatus + '\'' +
+                ", eventStatusName='" + eventStatusName + '\'' +
+                ", netGridName='" + netGridName + '\'' +
+                '}';
+    }
+
+    /*     */
 /*     */   public void setNetGridName(String netGridName) {
 /* 115 */     this.netGridName = netGridName;
 /*     */   }

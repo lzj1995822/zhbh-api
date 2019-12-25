@@ -359,6 +359,11 @@
         order by SSEventStartDateTime desc
         limit #{start}, #{pageSize}
     </select>
+
+
+
+
+
     <select id="getSSEventDespatcherQueryCount" resultType="java.lang.Integer">
 
         SELECT count(DISTINCT t1.SSEventID)
@@ -764,6 +769,36 @@
         <if test="status!=null and status!=''">
             and t1.SSEventStatusTypeValue =#{status}
         </if>
+    </select>
+
+    <select id="tesocietysecurityeventToday" resultType="java.lang.Integer">
+        	select count(1) from tesocietysecurityevent where to_days( tesocietysecurityevent.SSEventStartDateTime ) = to_days( now());
+    </select>
+
+
+    <select id="SSEventQuery" resultType="com.jtzh.vo.gis.SocietySecurityEventVO">
+
+                         SELECT
+                    t1.*,
+                    SSEventTypeName,
+                    SSEventStatusTypeName,
+                    NetGridName
+                      FROM
+                    TESocietySecurityEvent t1
+                    LEFT JOIN TECODESSEventType t2 ON t1.SSEventTypeValue = t2.SSEventTypeValue
+                    LEFT JOIN TECODESSEventStatusType t3 ON t1.SSEventStatusTypeValue = t3.SSEventStatusTypeValue
+                    LEFT JOIN TENetGrid t4 ON t1.NetGridID = t4.NetGridID
+                    LEFT JOIN TRSSEventDistribute t5 ON t1.SSEventID = t5.EventID
+                       WHERE
+                    1 = 1
+                    AND t1.SSEventStatusTypeValue = '01'
+                    OR t1.SSEventStatusTypeValue = '03'
+                    OR t1.SSEventStatusTypeValue = '04'
+                      GROUP BY
+                    t1.SSEventID
+                      ORDER BY
+                    SSEventStartDateTime DESC
+
     </select>
 
 </mapper>

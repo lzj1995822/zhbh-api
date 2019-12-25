@@ -31,7 +31,18 @@ public abstract interface DisputeEventMapper
   public abstract int getDisputeEventDespatcherQueryCount(@Param("id") Long paramLong, @Param("eventName") String paramString1, @Param("eventTypeValue") String paramString2, @Param("netGridID") Integer paramInteger);
   
   public abstract List<DisputeEventVO> getDisputeEventDeptDespatcherQuery(@Param("id") Long paramLong, @Param("eventName") String paramString1, @Param("eventTypeValue") String paramString2, @Param("netGridID") Integer paramInteger, @Param("start") int paramInt1, @Param("pageSize") int paramInt2);
-  
+
+
+  //查詢矛盾糾紛數量
+  public abstract List<DisputeEventVO> getDespatcherQuery();
+
+  //矛盾纠纷查询
+  public abstract List<DisputeEventVO> getDespatcherQuery2();
+
+  //矛盾纠纷社区排行
+  public abstract List<DisputeEventVO> ConditionVillageTop();
+
+
   public abstract int getDisputeEventDeptDespatcherQueryCount(@Param("id") Long paramLong, @Param("eventName") String paramString1, @Param("eventTypeValue") String paramString2, @Param("netGridID") Integer paramInteger);
   
   public abstract List<DisputeEventVO> getDisputeEventHandlerQuery(@Param("id") Long paramLong, @Param("eventName") String paramString1, @Param("eventTypeValue") String paramString2, @Param("netGridID") Integer paramInteger, @Param("start") int paramInt1, @Param("pageSize") int paramInt2);
