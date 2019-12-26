@@ -32,6 +32,15 @@ public abstract interface NetGridMemberMapper
   
   public abstract long getNetGridMemberIDByNameAndCertID(@Param("name") String paramString1, @Param("certID") String paramString2);
   public abstract NetGridMemberVO getNetGridMemberByNetGridID(@Param("id") Long paramLong);
+
+
+  public abstract Map reporter();
+
+  /**
+   * 网格员巡查数量排名
+   * @return
+   */
+  public  abstract  List<NetGridMemberVO> reporterRank();
 }
 
 

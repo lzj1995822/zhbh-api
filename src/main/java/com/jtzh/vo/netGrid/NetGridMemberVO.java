@@ -17,7 +17,37 @@
 /*     */   private String mobileTel;
 /*     */   private String fixedTel;
 /*     */   private String position;
-/*     */   
+            private  int no;
+
+    @Override
+    public String toString() {
+        return "NetGridMemberVO{" +
+                "netGridMemberID=" + netGridMemberID +
+                ", fatherNetGridName='" + fatherNetGridName + '\'' +
+                ", netGridName='" + netGridName + '\'' +
+                ", name='" + name + '\'' +
+                ", sex=" + sex +
+                ", ethnicityName='" + ethnicityName + '\'' +
+                ", politicsTypeName='" + politicsTypeName + '\'' +
+                ", certID='" + certID + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", educationTypeName='" + educationTypeName + '\'' +
+                ", mobileTel='" + mobileTel + '\'' +
+                ", fixedTel='" + fixedTel + '\'' +
+                ", position='" + position + '\'' +
+                ", no=" + no +
+                '}';
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
+    /*     */
 /*     */   public Long getNetGridMemberID()
 /*     */   {
 /*  23 */     return this.netGridMemberID;

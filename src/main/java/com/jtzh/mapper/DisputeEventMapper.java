@@ -8,6 +8,9 @@ import com.jtzh.entity.DisputeEvent;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import com.jtzh.vo.dispute.DisputePeopleVO;
+import com.jtzh.vo.netGrid.NetGridMemberVO;
 import org.apache.ibatis.annotations.Param;
 
 public abstract interface DisputeEventMapper
@@ -41,6 +44,14 @@ public abstract interface DisputeEventMapper
 
   //矛盾纠纷社区排行
   public abstract List<DisputeEventVO> ConditionVillageTop();
+
+
+  //矛盾纠纷占比
+  public abstract List<DisputeEventVO> contraditionProportion();
+
+  //巡查员上报量
+
+  public abstract Map reporter();
 
 
   public abstract int getDisputeEventDeptDespatcherQueryCount(@Param("id") Long paramLong, @Param("eventName") String paramString1, @Param("eventTypeValue") String paramString2, @Param("netGridID") Integer paramInteger);

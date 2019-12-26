@@ -122,7 +122,26 @@
 /*     */   {
 /* 123 */     return this.netGridMemberID;
 /*     */   }
-/*     */   
+
+    @Override
+    public String toString() {
+        return "NetGridMember{" +
+                "netGridMemberID=" + netGridMemberID +
+                ", netGridID=" + netGridID +
+                ", name='" + name + '\'' +
+                ", sex=" + sex +
+                ", ethnicity='" + ethnicity + '\'' +
+                ", politics='" + politics + '\'' +
+                ", certID='" + certID + '\'' +
+                ", birthDate=" + birthDate +
+                ", education='" + education + '\'' +
+                ", mobileTel='" + mobileTel + '\'' +
+                ", fixedTel='" + fixedTel + '\'' +
+                ", position='" + position + '\'' +
+                '}';
+    }
+
+    /*     */
 /*     */ 
 /*     */ 
 /*     */ 

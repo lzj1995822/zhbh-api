@@ -1,16 +1,23 @@
 /*    */ package com.jtzh.controller;
-/*    */ import com.jtzh.util.ResponseUtil;
+/*    */ import com.jtzh.mapper.NetGridMemberMapper;
+import com.jtzh.util.ResponseUtil;
 import com.jtzh.common.ExtResponse;
 import com.jtzh.service.NetGridMemberService;
 
-/*    */ import org.springframework.beans.factory.annotation.Autowired;
+/*    */ import com.jtzh.vo.netGrid.NetGridMemberVO;
+import org.springframework.beans.factory.annotation.Autowired;
 /*    */ import org.springframework.stereotype.Controller;
 /*    */ import org.springframework.web.bind.annotation.CrossOrigin;
 /*    */ import org.springframework.web.bind.annotation.RequestMapping;
 /*    */ import org.springframework.web.bind.annotation.RequestParam;
 /*    */ import org.springframework.web.bind.annotation.ResponseBody;
 /*    */ import org.springframework.web.multipart.MultipartFile;
-/*    */ 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
+
+/*    */
 /*    */ @CrossOrigin
 /*    */ @Controller
 /*    */ @RequestMapping({"/api/netGridMember"})
@@ -18,6 +25,9 @@ import com.jtzh.service.NetGridMemberService;
 /*    */ {
 /*    */   @Autowired
 /*    */   private NetGridMemberService netGridMemberService;
+
+            @Autowired
+            private NetGridMemberMapper memberMapper;
 /*    */   
 /*    */   @RequestMapping({"/addNetGridMember"})
 /*    */   @ResponseBody
@@ -50,7 +60,26 @@ import com.jtzh.service.NetGridMemberService;
     {
         return ResponseUtil.success(this.netGridMemberService.getNetGridMemberByNetGridID(id));
     }
-/*    */ }
+/*    */
+
+
+    @RequestMapping({"/reporterRankName"})
+    @ResponseBody
+    public Object reporterRankName()    {
+        List<NetGridMemberVO> netGridMembers = memberMapper.reporterRank();
+        System.out.println(netGridMembers);
+        List<String> arrayList=new ArrayList<String>();
+        TreeMap<Object,Object> map=new TreeMap<>();
+        for (NetGridMemberVO list: netGridMembers
+        ) {
+            arrayList.add(list.getName());
+        }
+        for (int i = 0; i < arrayList.size(); i++) {
+            map.put(arrayList.get(i), arrayList.size()-i);
+        }
+        return map;
+    }
+    /*    */ }
 
 
 /* Location:              C:\Users\rainb\Desktop\msmis.war!\WEB-INF\classes\com\gbt\controller\NetGridMemberController.class
