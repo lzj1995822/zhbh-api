@@ -10,9 +10,8 @@ import com.jtzh.service.NetGridMemberService;
 
 /*     */ import java.io.File;
 /*     */ import java.io.IOException;
-/*     */ import java.util.HashMap;
-import java.util.List;
-/*     */ import java.util.Map;
+/*     */ import java.util.*;
+/*     */
 /*     */ import com.jtzh.vo.netGrid.NetGridMemberVO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -138,4 +137,9 @@ import org.springframework.beans.factory.annotation.Autowired;
         map.put("memberDetail", vo);
         return map;
     }
-/*     */ }
+
+    @Override
+    public List<NetGridMemberVO> Achievements() {
+        return netGridMemberMapper.Achievements();
+    }
+    /*     */ }

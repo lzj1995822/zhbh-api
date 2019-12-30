@@ -17,7 +17,119 @@
 /*     */   private String mobileTel;
 /*     */   private String fixedTel;
 /*     */   private String position;
-            private  int no;
+            private  Integer no;
+
+    public Long getNetGridMemberID() {
+        return netGridMemberID;
+    }
+
+    public void setNetGridMemberID(Long netGridMemberID) {
+        this.netGridMemberID = netGridMemberID;
+    }
+
+    public String getFatherNetGridName() {
+        return fatherNetGridName;
+    }
+
+    public void setFatherNetGridName(String fatherNetGridName) {
+        this.fatherNetGridName = fatherNetGridName;
+    }
+
+    public String getNetGridName() {
+        return netGridName;
+    }
+
+    public void setNetGridName(String netGridName) {
+        this.netGridName = netGridName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public String getEthnicityName() {
+        return ethnicityName;
+    }
+
+    public void setEthnicityName(String ethnicityName) {
+        this.ethnicityName = ethnicityName;
+    }
+
+    public String getPoliticsTypeName() {
+        return politicsTypeName;
+    }
+
+    public void setPoliticsTypeName(String politicsTypeName) {
+        this.politicsTypeName = politicsTypeName;
+    }
+
+    public String getCertID() {
+        return certID;
+    }
+
+    public void setCertID(String certID) {
+        this.certID = certID;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getEducationTypeName() {
+        return educationTypeName;
+    }
+
+    public void setEducationTypeName(String educationTypeName) {
+        this.educationTypeName = educationTypeName;
+    }
+
+    public String getMobileTel() {
+        return mobileTel;
+    }
+
+    public void setMobileTel(String mobileTel) {
+        this.mobileTel = mobileTel;
+    }
+
+    public String getFixedTel() {
+        return fixedTel;
+    }
+
+    public void setFixedTel(String fixedTel) {
+        this.fixedTel = fixedTel;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public Integer getNo() {
+        return no;
+    }
+
+    public void setNo(Integer no) {
+        this.no = no;
+    }
 
     @Override
     public String toString() {
@@ -39,119 +151,7 @@
                 '}';
     }
 
-    public int getNo() {
-        return no;
-    }
 
-    public void setNo(int no) {
-        this.no = no;
-    }
-
-    /*     */
-/*     */   public Long getNetGridMemberID()
-/*     */   {
-/*  23 */     return this.netGridMemberID;
-/*     */   }
-/*     */   
-/*     */   public void setNetGridMemberID(Long netGridMemberID) {
-/*  27 */     this.netGridMemberID = netGridMemberID;
-/*     */   }
-/*     */   
-/*     */   public String getNetGridName() {
-/*  31 */     return this.netGridName;
-/*     */   }
-/*     */   
-/*     */   public void setNetGridName(String netGridName) {
-/*  35 */     this.netGridName = netGridName;
-/*     */   }
-/*     */   
-/*     */   public String getName() {
-/*  39 */     return this.name;
-/*     */   }
-/*     */   
-/*     */   public void setName(String name) {
-/*  43 */     this.name = name;
-/*     */   }
-/*     */   
-/*     */   public Integer getSex() {
-/*  47 */     return this.sex;
-/*     */   }
-/*     */   
-/*     */   public void setSex(Integer sex) {
-/*  51 */     this.sex = sex;
-/*     */   }
-/*     */   
-/*     */   public String getEthnicityName() {
-/*  55 */     return this.ethnicityName;
-/*     */   }
-/*     */   
-/*     */   public void setEthnicityName(String ethnicityName) {
-/*  59 */     this.ethnicityName = ethnicityName;
-/*     */   }
-/*     */   
-/*     */   public String getPoliticsTypeName() {
-/*  63 */     return this.politicsTypeName;
-/*     */   }
-/*     */   
-/*     */   public void setPoliticsTypeName(String politicsTypeName) {
-/*  67 */     this.politicsTypeName = politicsTypeName;
-/*     */   }
-/*     */   
-/*     */   public String getCertID() {
-/*  71 */     return this.certID;
-/*     */   }
-/*     */   
-/*     */   public void setCertID(String certID) {
-/*  75 */     this.certID = certID;
-/*     */   }
-/*     */   
-/*     */   public String getBirthDate() {
-/*  79 */     return this.birthDate;
-/*     */   }
-/*     */   
-/*     */   public void setBirthDate(String birthDate) {
-/*  83 */     this.birthDate = birthDate;
-/*     */   }
-/*     */   
-/*     */   public String getEducationTypeName() {
-/*  87 */     return this.educationTypeName;
-/*     */   }
-/*     */   
-/*     */   public void setEducationTypeName(String educationTypeName) {
-/*  91 */     this.educationTypeName = educationTypeName;
-/*     */   }
-/*     */   
-/*     */   public String getMobileTel() {
-/*  95 */     return this.mobileTel;
-/*     */   }
-/*     */   
-/*     */   public void setMobileTel(String mobileTel) {
-/*  99 */     this.mobileTel = mobileTel;
-/*     */   }
-/*     */   
-/*     */   public String getFixedTel() {
-/* 103 */     return this.fixedTel;
-/*     */   }
-/*     */   
-/*     */   public void setFixedTel(String fixedTel) {
-/* 107 */     this.fixedTel = fixedTel;
-/*     */   }
-/*     */   
-/*     */   public String getPosition() {
-/* 111 */     return this.position;
-/*     */   }
-/*     */   
-/*     */   public void setPosition(String position) {
-/* 115 */     this.position = position;
-/*     */   }
-/*     */   
-/*     */   public String getFatherNetGridName() {
-/* 119 */     return this.fatherNetGridName;
-/*     */   }
-/*     */   
-/*     */   public void setFatherNetGridName(String fatherNetGridName) {
-/* 123 */     this.fatherNetGridName = fatherNetGridName;
-/*     */   }
 /*     */ }
 
 

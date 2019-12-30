@@ -8,7 +8,8 @@ import com.jtzh.util.CommonUtils;
 /*     */ import com.jtzh.vo.netGrid.NetGridEventQueryVO;
 /*     */ import com.jtzh.vo.netGrid.NetGridEventVO;
 /*     */ import com.jtzh.vo.netGrid.NetGridMemberQueryVO;
-/*     */ import com.jtzh.vo.ss.FileUpdateVO;
+/*     */ import com.jtzh.vo.netGrid.NetGridMemberVO;
+import com.jtzh.vo.ss.FileUpdateVO;
 
 /*     */ import java.io.File;
 /*     */ import java.io.IOException;
@@ -627,7 +628,10 @@ Picture p;
 /*     */   {
 /* 591 */     return this.netGridMapper.getAllNetGrid();
 /*     */   }
-/*     */   
+
+
+
+    /*     */
 /*     */ 
 /*     */   @org.springframework.transaction.annotation.Transactional
 /*     */   public boolean addNetGridEventDealingFromAPP(String eventID, String dealingUserID, String dealingTime, String dealingInf, String remark, MultipartFile[] pictures, MultipartFile video)

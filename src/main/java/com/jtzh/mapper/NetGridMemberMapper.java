@@ -41,6 +41,9 @@ public abstract interface NetGridMemberMapper
    * @return
    */
   public  abstract  List<NetGridMemberVO> reporterRank();
+
+  public  abstract  List<NetGridMemberVO> Achievements();
+
 }
 
 

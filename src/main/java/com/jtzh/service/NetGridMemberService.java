@@ -2,6 +2,8 @@ package com.jtzh.service;
 
 import java.util.List;
 import java.util.Map;
+
+import com.jtzh.vo.netGrid.NetGridMemberVO;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +20,10 @@ public abstract interface NetGridMemberService
   public abstract List<Map<String, String>> getNetGridMemberForOrg(Long paramLong);
 
   public abstract Map getNetGridMemberByNetGridID(Long paramLong);
+
+
+  public  abstract  List<NetGridMemberVO> Achievements();
+
 }
 
 

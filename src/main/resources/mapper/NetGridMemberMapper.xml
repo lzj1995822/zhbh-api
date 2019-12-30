@@ -253,5 +253,15 @@ group by NetGridName) tt on tn.NetGridName=tt.name where tn.FatherNetGridID=-1
 
 
     </select>
+    <select id="Achievements" resultType="com.jtzh.vo.netGrid.NetGridMemberVO">
+
+
+          SELECT t1.name  ,count(1) no FROM tenetgridmember t1 LEFT JOIN
+
+					tenetgridevent t2 on t1.NetGridID=t2.NetGridID and t1.Position='网格长'
+					LEFT JOIN  tenetgrid t3 on t3.NetGridID=t1.NetGridID GROUP BY t1.`Name`
+					order by  no  desc
+					LIMIT 0,6
+    </select>
 
 </mapper>
