@@ -508,4 +508,19 @@ public class HwshangbaoController {
        int   res= (int) hwshangbaoService.getHwIncreare();
         return res;
     }
+
+
+
+    @GetMapping(value = "/calByHwPeople")
+    public List<Map> calByPeople(@RequestParam @Nullable String calDay) {
+        return hwshangbaoService.calByPeople(calDay);
+    }
+
+    // 根据小类进行统计
+    @RequestMapping(value = "/gethwCountSmallcategories", method = RequestMethod.GET)
+    public Object gethwCountSmallcategories(@RequestParam @Nullable String calDay) {
+        Object obj =hwshangbaoService.gethwCountSmallcategories(calDay);
+        return obj;
+    }
+
 }

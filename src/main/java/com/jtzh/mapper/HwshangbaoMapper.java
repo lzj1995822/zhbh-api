@@ -98,8 +98,7 @@ public interface HwshangbaoMapper {
      * @param calDay 统计日期
      * @return {案件来源：数量}
      */
-    List<Map> calBySource(@Param(value = "calDay") String calDay);
-
+    List<Map> calhwBySource(@Param(value = "calDay") String calDay);
     Integer todayAdd();
 
     Integer todayPassed();
@@ -111,4 +110,9 @@ public interface HwshangbaoMapper {
 
     //查询昨天审核通过比率
     Integer getHwIncreare2();
+
+
+    List<Map> calByPeople(@Param(value = "calDay")String calDay);
+
+    List <CountSmallcategories> gethwCountSmallcategories(@Param(value = "calDay") String calDay);
 }

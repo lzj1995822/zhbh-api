@@ -16,6 +16,29 @@
 /*     */   private String eventStatus;
 /*     */   private String eventStatusName;
 /*     */   private String netGridName;
+            //巡查员上报数字
+            private  int no;
+             //巡查员姓名
+            private  String name;
+
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
 /*     */   
 /*     */   public Long getDisputeEventID()
 /*     */   {
@@ -110,7 +133,8 @@
 /*     */   {
 /* 111 */     return this.netGridName;
 /*     */   }
-/*     */   
+
+    /*     */
 /*     */   public void setNetGridName(String netGridName) {
 /* 115 */     this.netGridName = netGridName;
 /*     */   }
@@ -130,7 +154,29 @@
 /*     */   public void setEventStatusName(String eventStatusName) {
 /* 131 */     this.eventStatusName = eventStatusName;
 /*     */   }
-/*     */ }
+
+    @Override
+    public String toString() {
+        return "DisputeEventVO{" +
+                "disputeEventID=" + disputeEventID +
+                ", eventName='" + eventName + '\'' +
+                ", eventDate='" + eventDate + '\'' +
+                ", eventPlace='" + eventPlace + '\'' +
+                ", evenScaleTypeName='" + evenScaleTypeName + '\'' +
+                ", eventTypeName='" + eventTypeName + '\'' +
+                ", numberofJoinning=" + numberofJoinning +
+                ", eventIntroduction='" + eventIntroduction + '\'' +
+                ", relatedOrg='" + relatedOrg + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", eventStatus='" + eventStatus + '\'' +
+                ", eventStatusName='" + eventStatusName + '\'' +
+                ", netGridName='" + netGridName + '\'' +
+                ", no=" + no +
+                ", name='" + name + '\'' +
+                '}';
+    }
+    /*     */ }
 
 
 /* Location:              C:\Users\rainb\Desktop\msmis.war!\WEB-INF\classes\com\gbt\vo\dispute\DisputeEventVO.class

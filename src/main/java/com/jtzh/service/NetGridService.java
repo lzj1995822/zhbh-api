@@ -3,6 +3,7 @@ package com.jtzh.service;
 import com.jtzh.entity.*;
 import com.jtzh.vo.netGrid.NetGridEventQueryVO;
 import com.jtzh.vo.netGrid.NetGridMemberQueryVO;
+import com.jtzh.vo.netGrid.NetGridMemberVO;
 import com.jtzh.vo.netGrid.NetGridQueryVO;
 import com.jtzh.vo.ss.SSCountVO;
 
@@ -83,7 +84,11 @@ public abstract interface NetGridService
   public abstract List<Map<String, String>> getNetGridByFaterID(Long paramLong);
   
   public abstract List<Map<String, String>> getAllNetGrid();
-  
+
+
+
+
+
   public abstract boolean addNetGridEventDealingFromAPP(String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, MultipartFile[] paramArrayOfMultipartFile, MultipartFile paramMultipartFile);
 }
 

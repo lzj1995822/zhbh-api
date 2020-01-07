@@ -159,6 +159,8 @@ public interface CgshangbaoMapper {
     List<CountCountryside> getCountrysideList();
     List<CountSource> getCountSource();
     List<CountQuarter> countProblemByYear(@Param("year")String year);
+
+
     List <CountSmallcategories> getCgCountSmallcategories(@Param(value = "calDay") String calDay);
 
     /**

@@ -739,6 +739,91 @@
             and t1.NetGridID = #{netGridID}
         </if>
     </select>
+    <select id="getDespatcherQuery" resultType="com.jtzh.vo.dispute.DisputeEventVO">
+                 select DisputeEventID, EventName, EventDate, EventPlace,
+        EventScaleTypeName, EventTypeName,
+        NumberofJoinning,
+        EventIntroduction, RelatedOrg, Longitude, Latitude,
+        NetGridName,EventStatus,EventStatusName
+        from TEDisputeEvent t1
+        left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+        left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+        left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+        left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+        left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+        where 1=1 and t1.EventStatus='01' or t1.EventStatus='03' or t1.EventStatus='04'
+
+        group by DisputeEventID
+        order by EventTypeName desc
+
+
+    </select>
+    <select id="getDespatcherQuery2" resultType="com.jtzh.vo.dispute.DisputeEventVO">
+
+         select EventTypeName,COUNT(*) count1
+         from TEDisputeEvent t1
+            left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+            left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+            left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+            left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+            left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+            where 1=1 and t1.EventStatus='01' or t1.EventStatus='03' or t1.EventStatus='04'
+
+        group by EventTypeName
+        ORDER BY
+       count1  desc
+    </select>
+    <select id="ConditionVillageTop" resultType="com.jtzh.vo.dispute.DisputeEventVO">
+        select
+                NetGridName,count(1) count
+                from TEDisputeEvent t1
+                left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+                left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+                left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+                left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+                left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+                where 1=1 and t1.EventStatus='01' or t1.EventStatus='03' or t1.EventStatus='04'
+
+                group by   NetGridName
+                order by count  desc
+
+
+    </select>
+    <select id="contraditionProportion" resultType="com.jtzh.vo.dispute.DisputeEventVO">
+                         select DisputeEventID,
+                    NetGridName,EventStatus,EventStatusName
+                    from TEDisputeEvent t1
+                    left join TECODEEventScaleType t2 on t1.EventScaleTypeValue=t2.EventScaleTypeValue
+                    left join TECODEEventType t3 on t1.EventTypeValue =t3.EventTypeValue
+                    left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+                    left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+                    left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+                    where 1=1 and t1.EventStatus='01' or t1.EventStatus='03' or t1.EventStatus='04'
+
+                    group by DisputeEventID
+
+
+
+
+
+    </select>
+    <select id="reporter" resultType="java.util.Map">
+
+                 SELECT  COUNT(1) as no , NetGridMemberVO.name as name from  (  select DisputeEventID, EventName, EventDate, EventPlace,
+                 t4.NetGridID,
+                    NetGridName,EventStatus,EventStatusName,t7.name
+                    from TEDisputeEvent t1
+
+                    left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+                 left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+                    left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+                            left join  TENetGridMember t7  ON t7.NetGridID=t4.NetGridID 	and t7.Position="网格员"
+                    where 1=1 and t1.EventStatus='01' or t1.EventStatus='03' or t1.EventStatus='04'
+                group by DisputeEventID
+                order by EventDate desc ) NetGridMemberVO
+               GROUP BY name
+                     ORDER BY no desc
+    </select>
 
 
 </mapper>

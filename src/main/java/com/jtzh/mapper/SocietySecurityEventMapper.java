@@ -72,6 +72,15 @@ public abstract interface SocietySecurityEventMapper
   
   public abstract Map getSSEventCountByNetGrid();
 
+  //今日治安上报统计
+  public  abstract  int  tesocietysecurityeventToday();
+
+
+
+  public abstract List<SocietySecurityEventVO> SSEventQuery();
+
+
+
   List<SocietySecurityEventVO> getDcl();
 }
 

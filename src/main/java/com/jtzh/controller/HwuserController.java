@@ -227,11 +227,6 @@ public class HwuserController {
 			}
 		}
 
-
-
-		for (Map.Entry<String,Integer> entry:map.entrySet()){
-			System.out.println("key:"+entry.getKey()+','+entry.getValue());
-		}
 		return map;
 	}
 

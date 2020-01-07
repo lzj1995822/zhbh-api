@@ -1,8 +1,10 @@
 /*     */ package com.jtzh.controller;
 /*     */ import com.jtzh.jpush.Push;
-/*     */ import com.jtzh.util.ResponseUtil;
+/*     */ import com.jtzh.mapper.DisputeEventMapper;
+import com.jtzh.util.ResponseUtil;
 /*     */ import com.jtzh.vo.dispute.DisputeEventQueryResponseVO;
-/*     */ import com.jtzh.vo.dispute.DistributeVO;
+/*     */ import com.jtzh.vo.dispute.DisputeEventVO;
+import com.jtzh.vo.dispute.DistributeVO;
 /*     */ import com.jtzh.websocket.WebSocketHandler;
 import com.jtzh.common.ExtResponse;
 import com.jtzh.entity.DisputeEvent;
@@ -21,7 +23,11 @@ import com.jtzh.service.UserService;
 /*     */ import org.springframework.web.bind.annotation.ResponseBody;
 /*     */ import org.springframework.web.multipart.MultipartFile;
 /*     */ import org.springframework.web.socket.TextMessage;
-/*     */ 
+
+import java.util.List;
+import java.util.TreeMap;
+
+/*     */
 /*     */ 
 /*     */ 
 /*     */ 
@@ -30,6 +36,11 @@ import com.jtzh.service.UserService;
 /*     */ @RequestMapping({"/api/dispute"})
 /*     */ public class DisputeEventController
 /*     */ {
+
+            @Autowired
+            private DisputeEventMapper disputeEventMapper;
+
+
 /*     */   @Autowired
 /*     */   private DisputeEventService disputeEventService;
 /*     */   @Autowired
@@ -77,7 +88,7 @@ import com.jtzh.service.UserService;
 /*     */   public ExtResponse<DisputeEventQueryResponseVO> getDisputeEventDeptDespatcherQuery(Long id, String eventName, String eventTypeValue, Integer netGridID, int page, int pageSize)
 /*     */   {
 /*  80 */     DisputeEventQueryResponseVO vo = this.disputeEventService.getDisputeEventDeptDespatcherQuery(id, eventName, eventTypeValue, netGridID, page, pageSize);
-/*     */     
+/*     */
 /*  82 */     return ResponseUtil.success(vo);
 /*     */   }
 /*     */   
@@ -325,6 +336,54 @@ import com.jtzh.service.UserService;
 /*     */   {
 /* 327 */     return ResponseUtil.success(Boolean.valueOf(this.disputeEventService.uploadDisputeEventDealingMedia(pictures, video, id)));
 /*     */   }
+                 @RequestMapping({"/getConditionNo"})
+    /*     */   @ResponseBody
+    /*     */   public ExtResponse getConditionNo()
+        /*     */   {
+        /* 327 */     return ResponseUtil.success(this.disputeEventMapper.getDespatcherQuery2());
+        /*     */   }
+
+
+
+                     @RequestMapping({"/conditionVillageTop"})
+    /*     */       @ResponseBody
+    /*     */       public ExtResponse  ConditionVillageTop()
+    /*     */   {
+        /* 327 */     return ResponseUtil.success(this.disputeEventMapper.ConditionVillageTop());
+        /*     */   }
+
+
+
+                    @RequestMapping({"/contraditionProportion"})
+    /*     */       @ResponseBody
+    /*     */       public ExtResponse  contraditionProportion()
+        /*     */   {
+                        List<DisputeEventVO> disputeEventVOS = disputeEventMapper.contraditionProportion();
+                        int  a1=0;
+                        int a2=0;
+                        int a3=0;
+                        int a4=0;
+                        for (DisputeEventVO list: disputeEventVOS
+                        ) {
+                            System.out.println(list.getEventStatusName());
+                            if(list.getEventStatusName().equals("已立案，待派发")){
+                                a3+=1;
+                            }
+                            else if(list.getEventStatusName().equals("已上报，待立案")){
+                                a1+=1;
+                            }else if(list.getEventStatusName().equals("已派发，待处理")){
+                                a4+=1;
+                            }
+                        }
+                        System.out.println(a1);
+                        System.out.println(a3);
+                        System.out.println(a4);
+                        TreeMap<Object,Object> map =new TreeMap<>();
+                        map.put("a3",a3);
+                        map.put("a1",a1);
+                        map.put("a4",a4);
+        /* 327 */     return ResponseUtil.success(map);
+        /*     */   }
 /*     */ }
 
 

@@ -8,6 +8,9 @@ import com.jtzh.entity.DisputeEvent;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import com.jtzh.vo.dispute.DisputePeopleVO;
+import com.jtzh.vo.netGrid.NetGridMemberVO;
 import org.apache.ibatis.annotations.Param;
 
 public abstract interface DisputeEventMapper
@@ -31,7 +34,26 @@ public abstract interface DisputeEventMapper
   public abstract int getDisputeEventDespatcherQueryCount(@Param("id") Long paramLong, @Param("eventName") String paramString1, @Param("eventTypeValue") String paramString2, @Param("netGridID") Integer paramInteger);
   
   public abstract List<DisputeEventVO> getDisputeEventDeptDespatcherQuery(@Param("id") Long paramLong, @Param("eventName") String paramString1, @Param("eventTypeValue") String paramString2, @Param("netGridID") Integer paramInteger, @Param("start") int paramInt1, @Param("pageSize") int paramInt2);
-  
+
+
+  //查詢矛盾糾紛數量
+  public abstract List<DisputeEventVO> getDespatcherQuery();
+
+  //矛盾纠纷查询
+  public abstract List<DisputeEventVO> getDespatcherQuery2();
+
+  //矛盾纠纷社区排行
+  public abstract List<DisputeEventVO> ConditionVillageTop();
+
+
+  //矛盾纠纷占比
+  public abstract List<DisputeEventVO> contraditionProportion();
+
+  //巡查员上报量
+
+  public abstract Map reporter();
+
+
   public abstract int getDisputeEventDeptDespatcherQueryCount(@Param("id") Long paramLong, @Param("eventName") String paramString1, @Param("eventTypeValue") String paramString2, @Param("netGridID") Integer paramInteger);
   
   public abstract List<DisputeEventVO> getDisputeEventHandlerQuery(@Param("id") Long paramLong, @Param("eventName") String paramString1, @Param("eventTypeValue") String paramString2, @Param("netGridID") Integer paramInteger, @Param("start") int paramInt1, @Param("pageSize") int paramInt2);

@@ -1206,15 +1206,17 @@
     </select>
 
 
-    <select id="calBySource" resultType="java.util.Map">
+    <select id="calhwBySource" resultType="java.util.Map" parameterType="String">
 
-SELECT DISTINCT a.source as 'name', IFNULL(temp.amount,0) as 'value' from cgshangbao a LEFT JOIN  (
-    select count(1) amount, source from hwshangbao
-
+      SELECT DISTINCT a.source as 'name', IF(temp.amount is NULL,0, temp.amount) as 'value' from hwshangbao a LEFT JOIN  (
+      select count(1) amount, source from hwshangbao
       <if test="calDay != null">
         where DATE_FORMAT(createTime,'%Y-%m-%d') = #{calDay}
       </if>
-    group by source order by amount) temp on temp.source = a.source
+      group by source order by amount) temp on temp.source = a.source
+
+
+
     </select>
 
 
@@ -1255,6 +1257,34 @@ SELECT DISTINCT a.source as 'name', IFNULL(temp.amount,0) as 'value' from cgshan
 	LEFT JOIN hwchuli ON hwchuli.shangbaoid = hwshangbao.id
     WHERE
 	DATE_FORMAT( hwchuli.shehetime, '%Y-%m-%d' ) = DATE_FORMAT( DATE_SUB( NOW( ), INTERVAL 1 DAY ), '%Y-%m-%d' )
+
+  </select>
+    <select id="calByPeople" resultType="java.util.Map" parameterType="String">
+
+      SELECT DISTINCT a.people as 'name', IF(temp.amount is NULL,0, temp.amount) as 'value' from hwshangbao a LEFT JOIN  (
+      select count(1) amount, people from hwshangbao
+      <if test="calDay != null">
+        where DATE_FORMAT(createTime,'%Y-%m-%d') = #{calDay}
+      </if>
+      group by people) temp on temp.people = a.people WHERE source != '综治网格联动问题' order by 'value'
+
+    </select>
+
+
+  <select id="gethwCountSmallcategories"  parameterType="String" resultType="com.jtzh.pojo.CountSmallcategories">
+    SELECT DISTINCT cg.smallcategories, IF(temp.count is null, 0 ,temp.count) as count from hwshangbao cg LEFT JOIN (
+    SELECT
+    smallcategories,
+    count(1) AS count
+    FROM
+    hwshangbao
+    <if test="calDay != null">
+      WHERE
+      DATE_FORMAT(createTime, '%Y-%m-%d') = #{calDay}
+    </if>
+    GROUP BY
+    smallcategories
+    ) temp on cg.smallcategories = temp.smallcategories order by count
 
   </select>
 

@@ -6,6 +6,8 @@ import com.jtzh.entity.LoginUserTest;
 import com.jtzh.entity.PioneerUser;
 import com.jtzh.pojo.PioneerUserPagination;
 
+import java.util.List;
+
 public interface PioneerUserService {
 	public Object getPioneerUserList(PioneerUserPagination param);
 
@@ -20,4 +22,6 @@ public interface PioneerUserService {
 	public Object countNumber();
 
 	public Object exportExcel(HttpServletResponse response);
+
+    List<String> getPioneerUserAgeList();
 }

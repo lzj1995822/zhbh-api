@@ -651,7 +651,12 @@ Picture p;
 /* 649 */     List<com.jtzh.vo.ss.SSDistributeVO> vos = this.ssEventDistributeMapper.selectByEventID(id);
 /* 650 */     return vos.size() > 0;
 /*     */   }
-/*     */ }
+
+    @Override
+    public int tesocietysecurityeventToday() {
+        return  societySecurityEventMapper.tesocietysecurityeventToday();
+    }
+    /*     */ }
 
 
 /* Location:              C:\Users\rainb\Desktop\msmis.war!\WEB-INF\classes\com\gbt\service\impl\SSEventServiceImpl.class

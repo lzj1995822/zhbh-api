@@ -220,4 +220,48 @@ group by NetGridName) tt on tn.NetGridName=tt.name where tn.FatherNetGridID=-1
         WHERE t2.NetGridID=#{id} and t1.Position='网格员'
     </select>
 
+
+    <select id="reporter"  resultType="java.util.Map">
+                 SELECT  COUNT(1) as no , NetGridMemberVO.name as name from  (  select DisputeEventID, EventName, EventDate, EventPlace,
+                                 t4.NetGridID,
+                                    NetGridName,EventStatus,EventStatusName,t7.name
+                                    from TEDisputeEvent t1
+
+                                    left join TENetGrid t4 on t1.NetGridID=t4.NetGridID
+                                 left join TECODEEventStatusType t5 on t1.EventStatus=t5.EventStatusType
+                                    left join TRDisputeEventDistribute t6 on t1.DisputeEventID=t6.EventID
+                                            left join  TENetGridMember t7  ON t7.NetGridID=t4.NetGridID 	and t7.Position="网格员"
+                                    where 1=1 and t1.EventStatus='01' or t1.EventStatus='03' or t1.EventStatus='04'
+                                group by DisputeEventID
+                                order by EventDate desc ) NetGridMemberVO
+                               GROUP BY name
+                                     ORDER BY no desc
+
+    </select>
+    <select id="reporterRank" resultType="com.jtzh.vo.netGrid.NetGridMemberVO">
+     SELECT t7.`Name`,t7.NetGridMemberID
+                   FROM
+                    TENetGrid t4
+                    LEFT JOIN TENetGridMember t7 ON t7.NetGridID = t4.NetGridID
+                    AND t7.Position = "网格员"
+                WHERE
+                    1 = 1
+
+                GROUP BY
+               t7.NetGridMemberID desc
+								limit 0,5
+
+
+    </select>
+    <select id="Achievements" resultType="com.jtzh.vo.netGrid.NetGridMemberVO">
+
+
+          SELECT t1.name  ,count(1) no FROM tenetgridmember t1 LEFT JOIN
+
+					tenetgridevent t2 on t1.NetGridID=t2.NetGridID and t1.Position='网格长'
+					LEFT JOIN  tenetgrid t3 on t3.NetGridID=t1.NetGridID GROUP BY t1.`Name`
+					order by  no  desc
+					LIMIT 0,6
+    </select>
+
 </mapper>

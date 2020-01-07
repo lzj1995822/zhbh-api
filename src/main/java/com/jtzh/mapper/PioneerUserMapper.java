@@ -39,4 +39,5 @@ public interface PioneerUserMapper {
 	// 为了导出进行的查询
 	List<PioneerUser> getUserList();
 
+    List<String> getPioneerUserAgeList();
 }

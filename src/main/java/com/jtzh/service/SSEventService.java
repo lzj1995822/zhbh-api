@@ -69,6 +69,9 @@ public abstract interface SSEventService
   public abstract boolean addSSEventDealingFromAPP(String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, MultipartFile[] paramArrayOfMultipartFile, MultipartFile paramMultipartFile);
   
   public abstract boolean isDistribute(Long paramLong);
+
+  //今日治安上报统计
+  public  abstract  int  tesocietysecurityeventToday();
 }
 
 
