@@ -13,10 +13,12 @@
 		<result column="createTime" jdbcType="DATE" property="createTime" />
 		<result column="isdeleted" jdbcType="VARCHAR" property="isdeleted" />
 		<result column="enclosure" jdbcType="VARCHAR" property="enclosure" />
+		<result column="read_num" property="readNum" jdbcType="INTEGER" />
+		<result column="dz_num" property="dzNum" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, title, content, yhzh, createId, createTime,
-		isdeleted,enclosure
+		isdeleted,enclosure,read_num,dz_num
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">

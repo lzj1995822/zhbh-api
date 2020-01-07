@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jtzh.mapper.NewsDzMapper">
+  <resultMap id="BaseResultMap" type="com.jtzh.pojo.NewsDz">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="news_id" jdbcType="VARCHAR" property="newsId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type_name, user_id, news_id
+  </sql>
+  <select id="getNewsInfo"  statementType="STATEMENT" resultType="com.jtzh.pojo.NewsFx">
+    select title as bt,content as nr,enclosure as fj from ${tableName}
+    where id = ${id}
+  </select>
+  <select id="getNewsInfo1"  statementType="STATEMENT" resultType="com.jtzh.pojo.NewsFx">
+    select work_title as bt,work_content as nr,work_enclosure as fj from ${tableName}
+    where id = ${id}
+  </select>
+  <select id="getNewsInfo2"  statementType="STATEMENT" resultType="com.jtzh.pojo.NewsFx">
+    select info_title as bt,info_des as nr from ${tableName}
+    where id = ${id}
+  </select>
+  <update id="updateDzNum" statementType="STATEMENT">
+		update ${tableName}
+		set
+		dz_num = dz_num + 1
+		where id = ${id}
+	</update>
+  <update id="updateDzNumJ" statementType="STATEMENT">
+		update ${tableName}
+		set
+		dz_num = dz_num - 1
+		where id = ${id}
+	</update>
+  <update id="updateReadNum" statementType="STATEMENT">
+		update ${tableName}
+		set
+		read_num = read_num + 1
+		where id = ${id}
+	</update>
+  <delete id="deleteByUserId">
+    delete from news_dz
+    where user_id = #{userId} and type_name = #{type} and news_id = #{id}
+  </delete>
+  <select id="selectByUserId" resultType="java.lang.Integer">
+    select count(1)
+    from news_dz where user_id = #{userId} and type_name = #{type} and news_id = #{id}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from news_dz
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from news_dz
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jtzh.pojo.NewsDz">
+    insert into news_dz (type_name, user_id,
+      news_id)
+    values (#{typeName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+      #{newsId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jtzh.pojo.NewsDz">
+    insert into news_dz
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="newsId != null">
+        news_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="newsId != null">
+        #{newsId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jtzh.pojo.NewsDz">
+    update news_dz
+    <set>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="newsId != null">
+        news_id = #{newsId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jtzh.pojo.NewsDz">
+    update news_dz
+    set type_name = #{typeName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      news_id = #{newsId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

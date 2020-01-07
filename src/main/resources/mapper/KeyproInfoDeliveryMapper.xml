@@ -14,12 +14,14 @@
 		<result column="create_name" property="createName" jdbcType="CHAR" />
 		<result column="create_id" property="createId" jdbcType="CHAR" />
 		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
+		<result column="read_num" property="readNum" jdbcType="INTEGER" />
+		<result column="dz_num" property="dzNum" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, info_title, info_des, info_pic_type, attachment_source,
 		create_time,
 		update_time,
-		delflag, create_name, create_id, yhzh
+		delflag, create_name, create_id, yhzh,read_num,dz_num
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Long">

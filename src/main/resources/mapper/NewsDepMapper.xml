@@ -143,11 +143,10 @@
 		yhzh = #{yhzh,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	<select id="getNewsIds" resultType="java.lang.Integer"
-		parameterType="java.lang.String">
+	<select id="getNewsIds" resultType="java.lang.Integer">
 		select news_id
 		from news_dep
-		where dep_name = #{depName}
+		where dep_name = #{depName} or dep_name = '-1' or dep_name = #{loginId}
 	</select>
 	<select id="selectIdByNewsDep" parameterType="com.jtzh.entity.NewsDep"
 		resultType="java.lang.Integer">

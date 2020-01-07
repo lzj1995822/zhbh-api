@@ -32,7 +32,8 @@ public class GovmgtWork {
 	private String yhzh;
 
 	private String createId;
-	
+	private int dzNum;
+	private int readNum;
 	
 
 	public String getWorkEnclosure() {
@@ -155,4 +156,19 @@ public class GovmgtWork {
 		this.createId = createId;
 	}
 
+    public int getDzNum() {
+        return dzNum;
+    }
+
+    public void setDzNum(int dzNum) {
+        this.dzNum = dzNum;
+    }
+
+    public int getReadNum() {
+        return readNum;
+    }
+
+    public void setReadNum(int readNum) {
+        this.readNum = readNum;
+    }
 }

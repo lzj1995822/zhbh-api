@@ -833,9 +833,9 @@ public int insertData() {
 	return 0;
 }
 
-	@Transactional
 	public boolean addRealTimeLocation(RealTimeLocation location)
 	{
+        UserDistance distance = new UserDistance();
 
         User user = userMapper.selectByPrimaryKey(location.getUserID());
         if (user != null){
@@ -857,7 +857,6 @@ public int insertData() {
             location.setUserID(Long.valueOf(userinformation.getId()));
             location.setType("1");
             location.setMoment(new Date());
-            location.setType("1");
             RealTimeLocation realTimeLocation = realTimeLocationMapper.selectByPrimaryKey(location.getUserID(),"1");
             if (realTimeLocation != null){
                 location.setID(realTimeLocation.getID());

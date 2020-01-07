@@ -40,6 +40,7 @@ public interface HwshangbaoMapper {
     int huitui(Hwshangbao hwshangbao);
     int yishenghe(Hwshangbao hwshangbao);
     int yuqi(Hwshangbao hwshangbao);
+    List <Hwshangbao> getDcl();
     List <Hwshangbao> mohusousuo(String arg0,String arg1);
     List <Hwshangbao> gaojisousuo(@Param("Categories")String Categories,@Param("smallcategories")String smallcategories,
                                   @Param("isdeleted")String isdeleted,@Param("submittime")String submittime,@Param("endtime")String endtime);

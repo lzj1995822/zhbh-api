@@ -12,13 +12,15 @@
 		<result column="createId" property="createId" jdbcType="VARCHAR" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
     	<result column="delflag" jdbcType="VARCHAR" property="delflag" />
+		<result column="read_num" property="readNum" jdbcType="INTEGER" />
+		<result column="dz_num" property="dzNum" jdbcType="INTEGER" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
 		id, type, title,
 		content, enclosure, 
 		attachment_source, yhzh, 
-		createId, createTime, delflag
+		createId, createTime, delflag,read_num,dz_num
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">

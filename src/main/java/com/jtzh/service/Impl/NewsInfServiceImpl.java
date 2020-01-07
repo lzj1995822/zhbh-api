@@ -56,7 +56,7 @@ public class NewsInfServiceImpl implements NewsInfService {
 			}
 			// 2.不是的话根据depName去拉取对应的 newsId数组 然后拉出对应的通知公告数组。
 			else {
-				int newsIds[] = newsDepMapper.getNewsIds(param.getDepName());
+				int newsIds[] = newsDepMapper.getNewsIds(param.getDepName(),param.getLoginId());
 				if (newsIds.length > 0) {
 					NewsInf2Pagination page = new NewsInf2Pagination();
 					BeanUtils.copyProperties(param, page);
@@ -102,6 +102,7 @@ public class NewsInfServiceImpl implements NewsInfService {
 	public BaseResponse<String> addNewsInf(NewsInfDto param) {
 		NewsInf newsInf = param.getNewsInf();
 		String depNames[] = param.getDepNames();
+		String pepoples[] = param.getPeople();
 		int needReceiveNum = 0;
 		newsInf.setCreateTime(new Date());
 		newsInf.setDelflag(Constants.String_DEL_FLG);
@@ -114,6 +115,7 @@ public class NewsInfServiceImpl implements NewsInfService {
 		}
 		newsInf.setNeedReceiveNum(needReceiveNum);
 		newsInfMapper.insertNewsInf(newsInf);
+
 		for (String depName : depNames) {
 			NewsDep newsDep = new NewsDep();
 			newsDep.setDepName(depName);
@@ -122,6 +124,17 @@ public class NewsInfServiceImpl implements NewsInfService {
 			newsDep.setYhzh(Constants.YHZH_BAOHUA);
 			newsDep.setNewsId(newsInf.getId());
 			newsDep.setDepNeedReceiveNum(userinformationMapper.countPersonNumByDep(depName));
+			newsDep.setDepHasReceiveNum(Constants.DEFAULT_READ_NUM);
+			newsDepMapper.insertSelective(newsDep);
+		}
+		for (String people : pepoples) {
+			NewsDep newsDep = new NewsDep();
+			newsDep.setDepName(people);
+			newsDep.setCreateTime(new Date());
+			newsDep.setDelflag(Constants.String_DEL_FLG);
+			newsDep.setYhzh(Constants.YHZH_BAOHUA);
+			newsDep.setNewsId(newsInf.getId());
+			newsDep.setDepNeedReceiveNum(1);
 			newsDep.setDepHasReceiveNum(Constants.DEFAULT_READ_NUM);
 			newsDepMapper.insertSelective(newsDep);
 		}

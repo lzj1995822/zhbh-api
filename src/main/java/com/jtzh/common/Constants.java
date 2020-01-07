@@ -486,7 +486,7 @@ public class Constants {
 	public static final Integer DEFAULT_QUARTER = 1;
 	
 	// 重点工程角色常量
-	public static final Integer KEY_PRO_ROLE = 11;
+	public static final Integer KEY_PRO_ROLE = 58;
 	
 	//推送常量
 	public static final String JPUSH_HW_DEPNAME = "环卫部门";

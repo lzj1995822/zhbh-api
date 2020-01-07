@@ -31,6 +31,4 @@ public class BrowsingPage {
     public void setName(String name) {
         this.name = name;
     }
-
-
 }

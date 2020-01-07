@@ -5,7 +5,7 @@ import com.jtzh.entity.NewsInf;
 public class NewsInfDto {
 	private NewsInf newsInf;
 	private String depNames[];
-
+	private String people[];
 	public NewsInf getNewsInf() {
 		return newsInf;
 	}
@@ -21,5 +21,12 @@ public class NewsInfDto {
 	public void setDepName(String[] depNames) {
 		this.depNames = depNames;
 	}
-	
+
+	public String[] getPeople() {
+		return people;
+	}
+
+	public void setPeople(String[] people) {
+		this.people = people;
+	}
 }

@@ -14,6 +14,8 @@ public class CgInformation {
 	private String createId; // 创建id
 	private Date createTime; // 创建时间
 	private String delflag; // 删除标识
+	private int readNum;
+	private int dzNum;
 	
 	public Integer getId() {
 		return id;
@@ -76,4 +78,19 @@ public class CgInformation {
 		this.delflag = delflag;
 	}
 
+	public int getReadNum() {
+		return readNum;
+	}
+
+	public void setReadNum(int readNum) {
+		this.readNum = readNum;
+	}
+
+	public int getDzNum() {
+		return dzNum;
+	}
+
+	public void setDzNum(int dzNum) {
+		this.dzNum = dzNum;
+	}
 }

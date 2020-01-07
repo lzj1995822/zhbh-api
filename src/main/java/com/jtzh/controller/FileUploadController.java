@@ -21,6 +21,36 @@ import com.jtzh.common.ResultObject;
 @RestController
 @RequestMapping("file")
 public class FileUploadController {
+
+    /**
+     * 实现文件上传
+     */
+    @RequestMapping("wxfileUpload")
+    public Object wxfileUpload(@RequestParam("fileName") MultipartFile file, HttpServletRequest request) {
+        String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
+        String fileName = String.valueOf(new Date().getTime())+"."+suffix;;
+        String path = "D:/ynw";
+        File dest = new File(path + "/" + fileName);
+        if (!dest.getParentFile().exists()) { // 判断文件父目录是否存在
+            dest.getParentFile().mkdir();
+        }
+        ResultObject obj = new ResultObject();
+        try {
+            file.transferTo(dest); // 保存文件
+            obj.setResult(true);
+            obj.setObj(fileName);
+            return obj;
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            obj.setResult(false);
+            return obj;
+        } catch (IOException e) {
+            e.printStackTrace();
+            obj.setResult(false);
+            return obj;
+        }
+    }
+
     /**
 	 * 实现文件上传
 	 */

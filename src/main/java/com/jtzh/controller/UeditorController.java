@@ -44,7 +44,7 @@ public class UeditorController {
         	upfile.transferTo(dest); //保存文件
             ueditor.setState("SUCCESS");
             ueditor.setTitle(fileName);
-            ueditor.setUrl("http://47.98.236.132:8887/file/"+fileName);
+            ueditor.setUrl("http://172.16.1.92:8890/file/"+fileName);
             return ueditor;
         } catch (IllegalStateException e) {
             e.printStackTrace();

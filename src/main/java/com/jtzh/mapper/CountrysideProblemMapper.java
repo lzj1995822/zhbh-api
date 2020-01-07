@@ -43,6 +43,8 @@ public interface CountrysideProblemMapper {
 	void Problempaifa(CountrysideProblem param);
 	
 	List<CountrysideProblem> findbystate(@Param("page") CountrysideProblemParam param);
+
+	List<CountrysideProblem> getDcl();
 	
 	List <CountrysideFind> findbyId(String id);
 	

@@ -50,6 +50,7 @@
 		from keypro_problem
 		where id = #{id,jdbcType=INTEGER}
 	</select>
+
 	<delete id="deleteBySourceId">
 		delete from
 		keypro_problem
@@ -230,6 +231,13 @@
 		#{sourceId,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
+
+	<select id="getDcl" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from keypro_problem
+		where delflag != 'D' and (process_state = '1' or process_state = '3')
+	</select>
 	<select id="selectInfoWeb" parameterType="com.jtzh.pojo.ProblemPagination"
 		resultMap="BaseResultMap">
 		select

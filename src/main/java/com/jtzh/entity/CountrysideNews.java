@@ -13,6 +13,9 @@ public class CountrysideNews {
 	private String createId;
 	private Date createTime;
 	private String delflag;
+
+	private int dzNum;
+	private int readNum;
 	
 	public Integer getId() {
 		return id;
@@ -69,4 +72,19 @@ public class CountrysideNews {
 		this.delflag = delflag;
 	}
 
+	public int getDzNum() {
+		return dzNum;
+	}
+
+	public void setDzNum(int dzNum) {
+		this.dzNum = dzNum;
+	}
+
+	public int getReadNum() {
+		return readNum;
+	}
+
+	public void setReadNum(int readNum) {
+		this.readNum = readNum;
+	}
 }

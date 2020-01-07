@@ -71,6 +71,8 @@ public abstract interface SocietySecurityEventMapper
   public abstract Map getSSEventByStatus(@Param("start") Date paramDate1, @Param("end") Date paramDate2);
   
   public abstract Map getSSEventCountByNetGrid();
+
+  List<SocietySecurityEventVO> getDcl();
 }
 
 

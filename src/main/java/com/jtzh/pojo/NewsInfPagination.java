@@ -4,6 +4,7 @@ package com.jtzh.pojo;
 public class NewsInfPagination extends BasePagination{
 	private String depName;
 	private String state;
+	private String loginId;
 	public String getDepName() {
 		return depName;
 	}
@@ -18,5 +19,12 @@ public class NewsInfPagination extends BasePagination{
 	public void setState(String state) {
 		this.state = state;
 	}
-	
+
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
 }

@@ -359,6 +359,21 @@
         order by SSEventStartDateTime desc
         limit #{start}, #{pageSize}
     </select>
+
+    <select id="getDcl" resultMap="SocietySecurityEventVO">
+        SELECT t1.*,SSEventTypeName,SSEventStatusTypeName,NetGridName
+        FROM TESocietySecurityEvent t1
+        left join TECODESSEventType t2 on
+        t1.SSEventTypeValue=t2.SSEventTypeValue
+        left join TECODESSEventStatusType t3 on
+        t1.SSEventStatusTypeValue=t3.SSEventStatusTypeValue
+        left join TENetGrid t4 on
+        t1.NetGridID=t4.NetGridID
+        left join TRSSEventDistribute t5 on t1.SSEventID=t5.EventID
+        where 1=1 and (t1.SSEventStatusTypeValue='01' or t1.SSEventStatusTypeValue='03' or
+        t1.SSEventStatusTypeValue='04'
+       )
+    </select>
     <select id="getSSEventDespatcherQueryCount" resultType="java.lang.Integer">
 
         SELECT count(DISTINCT t1.SSEventID)

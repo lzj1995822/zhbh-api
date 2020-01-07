@@ -14,6 +14,10 @@ public class HwInformation {
 	private String createId; // 创建id
 	private Date createTime; // 创建时间
 	private String delflag; // 删除标识
+
+	private int dzNum;
+
+	private int readNum;
 	
 	public Integer getId() {
 		return id;
@@ -76,4 +80,19 @@ public class HwInformation {
 		this.delflag = delflag;
 	}
 
+	public int getDzNum() {
+		return dzNum;
+	}
+
+	public void setDzNum(int dzNum) {
+		this.dzNum = dzNum;
+	}
+
+	public int getReadNum() {
+		return readNum;
+	}
+
+	public void setReadNum(int readNum) {
+		this.readNum = readNum;
+	}
 }

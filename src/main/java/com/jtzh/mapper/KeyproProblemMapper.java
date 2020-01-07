@@ -90,5 +90,7 @@ public interface KeyproProblemMapper {
 	List<CountType> countProblemType();
 	int updateZt(@Param("id") int id,@Param("processState") String processState);
 
+	List<KeyproProblem> getDcl();
+
 
 }

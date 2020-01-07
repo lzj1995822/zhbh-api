@@ -25,6 +25,10 @@ public class KeyproInfoDelivery {
 
     private String yhzh;
 
+    private int dzNum;
+
+    private int readNum;
+
 	public String getId() {
         return id;
     }
@@ -111,5 +115,21 @@ public class KeyproInfoDelivery {
 
     public void setYhzh(String yhzh) {
         this.yhzh = yhzh;
+    }
+
+    public int getDzNum() {
+        return dzNum;
+    }
+
+    public void setDzNum(int dzNum) {
+        this.dzNum = dzNum;
+    }
+
+    public int getReadNum() {
+        return readNum;
+    }
+
+    public void setReadNum(int readNum) {
+        this.readNum = readNum;
     }
 }

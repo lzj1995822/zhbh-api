@@ -183,4 +183,5 @@ public interface CgshangbaoMapper {
     Integer todayResolved();
 
     Integer todayAdd();
+    List<Cgshangbao> getDcl();
 }

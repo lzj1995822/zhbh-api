@@ -735,6 +735,12 @@
     </where>
 
   </select>
+  <select id="getDcl" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cgshangbao
+    where (isdeleted = '1' or isdeleted = '3') and delflag = 'A'
+  </select>
   <select id="findzhuangtai"
 		parameterType="com.jtzh.entity.Cgshangbao"
 		resultMap="BaseResultMap">

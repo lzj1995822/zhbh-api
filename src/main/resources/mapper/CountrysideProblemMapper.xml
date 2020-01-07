@@ -193,6 +193,12 @@
 			</if>
 		</trim>
 	</insert>
+	<select id="getDcl" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from countryside_problem
+		where delflag = 'A' and (isdeleted = '1' or isdeleted = '3')
+	</select>
 	<select id="selectCoPTotal" parameterType="com.jtzh.pojo.CountrysideProblemParam"
 		resultType="java.lang.Integer">
 		select count(1)

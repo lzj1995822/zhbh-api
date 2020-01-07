@@ -16,14 +16,15 @@
 		<result column="need_receive_num" property="needReceiveNum" jdbcType="INTEGER" />
 		<result column="has_receive_num" property="hasReceiveNum" jdbcType="INTEGER" />
 		<result column="dep_num" property="depNum" jdbcType="INTEGER" />
-
+		<result column="dz_num" property="dzNum" jdbcType="INTEGER" />
+		<result column="fj" property="fj" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, title, create_time, create_id, release_dep, content,
 		enclosure,
 		read_num, delflag,
 		yhzh,
-		state,need_receive_num, has_receive_num, dep_num
+		state,need_receive_num, has_receive_num, dep_num,dz_num,fj
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -44,7 +45,7 @@
 		enclosure,
 		read_num, delflag,
 		yhzh, need_receive_num, has_receive_num,dep_num,
-		state)
+		state,fj)
 		values (#{id,jdbcType=INTEGER},
 		#{title,jdbcType=VARCHAR},
 		#{createTime,jdbcType=DATE},
@@ -55,7 +56,8 @@
 		#{delflag,jdbcType=CHAR},
 		#{yhzh,jdbcType=VARCHAR},#{needReceiveNum,jdbcType=INTEGER},
 		#{hasReceiveNum,jdbcType=INTEGER},#{depNum,jdbcType=INTEGER},
-		#{state,jdbcType=CHAR})
+		#{state,jdbcType=CHAR},
+		#{fj,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.jtzh.entity.NewsInf">
 		insert into news_inf
@@ -200,7 +202,8 @@
 		yhzh = #{yhzh,jdbcType=VARCHAR},
 		need_receive_num = #{needReceiveNum,jdbcType=INTEGER},
 		has_receive_num = #{hasReceiveNum,jdbcType=INTEGER},
-		dep_num = #{depNum,jdbcType=INTEGER}
+		dep_num = #{depNum,jdbcType=INTEGER},
+		fj = #{fj,jdbcType=VARCHAR},
 		where id =
 		#{id,jdbcType=INTEGER}
 	</update>
@@ -246,7 +249,7 @@
 		enclosure,
 		d.count as read_num, delflag,
 		yhzh,
-		state,need_receive_num, has_receive_num, dep_num
+		state,need_receive_num, has_receive_num, dep_num,read_num,dz_num,fj
 		from news_inf c
 		LEFT JOIN
 		(	SELECT a.id as newsId,COUNT(b.newsId) as count
@@ -336,7 +339,7 @@
 		ni.release_dep as releaseDep,ni.content as content,ni.enclosure as enclosure,
 		nc.count as readNum,ni.delflag as delflag,ni.yhzh as yhzh,
 		nd.dep_need_receive_num as needReceiveNum,nd.dep_has_receive_num as hasReceiveNum,
-		ni.dep_num as depNum
+		ni.dep_num as depNum,ni.read_num as readNum,ni.dz_num as dzNum,ni.fj as fj
 		from news_inf ni left join news_dep nd on ni.id = nd.news_id
 		LEFT JOIN (	SELECT a.id as newsId,COUNT(b.newsId) as count
 		FROM news_inf a LEFT JOIN news_browsingHistory b
@@ -344,7 +347,7 @@
 		GROUP BY a.id)  nc ON ni.id=nc.newsId
 		where ni.delflag != '1'
 		<if test="page.depName != null and page.depName != ''">
-			and nd.dep_name = #{page.depName}
+			and (nd.dep_name = #{page.depName} or nd.dep_name = '-1')
 		</if>
 		<if test="page.newsIds != null">
 			and ni.id in
@@ -399,7 +402,7 @@
 		ni.delflag,ni.yhzh,
 		ni.state,
 		nd.dep_need_receive_num as needReceiveNum,
-		nd.dep_has_receive_num as hasReceiveNum,ni.dep_num as depNum
+		nd.dep_has_receive_num as hasReceiveNum,ni.dep_num as depNum,ni.read_num as readNum,ni.dz_num as dzNum,ni.fj as fj
 		from news_inf ni left join news_dep nd on ni.id = nd.news_id
 		where ni.id = #{newsId,jdbcType=INTEGER}
 		<if test="depName != null and depName != ''">
@@ -435,7 +438,7 @@
 		enclosure,
 		read_num, delflag,
 		yhzh,need_receive_num,has_receive_num,dep_num,
-		state
+		state,fj
 		)
 		values
 		(#{id,jdbcType=INTEGER},
@@ -450,7 +453,7 @@
 		#{yhzh,jdbcType=VARCHAR},
 		#{needReceiveNum,jdbcType=INTEGER},
 		#{hasReceiveNum,jdbcType=INTEGER},#{depNum,jdbcType=INTEGER},
-		#{state})
+		#{state},#{fj,jdbcType=VARCHAR})
 	</insert>
 	<select id="selectTotal3" resultType="java.lang.Integer">
 		select count(1)

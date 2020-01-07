@@ -14,6 +14,9 @@ public class NoticeInf {
 		private String isdeleted; // 删除标识
 		
 		private String enclosure;
+
+		private int readNum;
+		private int dzNum;
 		
 		public Integer getId() {
 			return id;
@@ -63,6 +66,21 @@ public class NoticeInf {
 		public void setEnclosure(String enclosure) {
 			this.enclosure = enclosure;
 		}
-		
-		
+
+
+	public int getReadNum() {
+		return readNum;
+	}
+
+	public void setReadNum(int readNum) {
+		this.readNum = readNum;
+	}
+
+	public int getDzNum() {
+		return dzNum;
+	}
+
+	public void setDzNum(int dzNum) {
+		this.dzNum = dzNum;
+	}
 }

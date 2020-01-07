@@ -19,12 +19,14 @@
 		<result column="work_policy_type" property="workPolicyType" jdbcType="CHAR" />
 		<result column="yhzh" property="yhzh" jdbcType="VARCHAR" />
 		<result column="create_id" property="createId" jdbcType="VARCHAR" />
+		<result column="read_num" property="readNum" jdbcType="INTEGER" />
+		<result column="dz_num" property="dzNum" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, work_type, work_content, work_enclosure, attachment_source, work_title,
 		create_time, create_name,
 		delflag, work_number, work_state, dep_name, 
-		work_policy_type, yhzh, create_id
+		work_policy_type, yhzh, create_id,read_num,dz_num
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Long">

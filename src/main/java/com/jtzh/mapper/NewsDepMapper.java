@@ -1,6 +1,7 @@
 package com.jtzh.mapper;
 
 import com.jtzh.entity.NewsDep;
+import org.apache.ibatis.annotations.Param;
 
 public interface NewsDepMapper {
     int deleteByPrimaryKey(Integer id);
@@ -15,7 +16,7 @@ public interface NewsDepMapper {
 
     int updateByPrimaryKey(NewsDep record);
     
-    int [] getNewsIds(String depName);
+    int [] getNewsIds(@Param("depName") String depName,@Param("loginId") String loginId);
     
     int selectIdByNewsDep(NewsDep record);
     

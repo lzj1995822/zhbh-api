@@ -29,6 +29,10 @@ public class NewsInf {
     private Integer depNum;
     private String userName;
 
+    private Integer dzNum;
+
+    private String fj;
+
     public Integer getId() {
         return id;
     }
@@ -150,4 +154,19 @@ public class NewsInf {
         this.userName = userName;
     }
 
+    public Integer getDzNum() {
+        return dzNum;
+    }
+
+    public void setDzNum(Integer dzNum) {
+        this.dzNum = dzNum;
+    }
+
+    public String getFj() {
+        return fj;
+    }
+
+    public void setFj(String fj) {
+        this.fj = fj;
+    }
 }
