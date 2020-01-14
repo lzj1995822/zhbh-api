@@ -368,4 +368,8 @@
 			select (YEAR(CURDATE())-YEAR(birth_date))as 年龄 from  pioneer_user
 
 	</select>
+
+	<select id="getPioneerSex" resultType="com.jtzh.entity.MapParm">
+		select user_sex as name,count(1) as num from pioneer_user GROUP BY user_sex
+	</select>
 </mapper>

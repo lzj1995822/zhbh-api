@@ -2,6 +2,7 @@ package com.jtzh.mapper;
 
 import java.util.List;
 
+import com.jtzh.entity.MapParm;
 import org.apache.ibatis.annotations.Param;
 
 import com.jtzh.entity.PioneerUser;
@@ -40,4 +41,6 @@ public interface PioneerUserMapper {
 	List<PioneerUser> getUserList();
 
     List<String> getPioneerUserAgeList();
+
+    List<MapParm> getPioneerSex();
 }

@@ -24,6 +24,7 @@ import com.jtzh.service.UserService;
 /*     */ import org.springframework.web.multipart.MultipartFile;
 /*     */ import org.springframework.web.socket.TextMessage;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -37,7 +38,7 @@ import java.util.TreeMap;
 /*     */ public class DisputeEventController
 /*     */ {
 
-            @Autowired
+            @Resource
             private DisputeEventMapper disputeEventMapper;
 
 

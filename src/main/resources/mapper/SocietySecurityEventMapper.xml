@@ -361,7 +361,7 @@
     </select>
 
     <select id="getDcl" resultMap="SocietySecurityEventVO">
-        SELECT t1.*,SSEventTypeName,SSEventStatusTypeName,NetGridName
+         SELECT t1.*,SSEventTypeName,SSEventStatusTypeName,NetGridName
         FROM TESocietySecurityEvent t1
         left join TECODESSEventType t2 on
         t1.SSEventTypeValue=t2.SSEventTypeValue
@@ -372,7 +372,9 @@
         left join TRSSEventDistribute t5 on t1.SSEventID=t5.EventID
         where 1=1 and (t1.SSEventStatusTypeValue='01' or t1.SSEventStatusTypeValue='03' or
         t1.SSEventStatusTypeValue='04'
-       )
+        or t5.UserID != 649)
+				group by t1.SSEventID
+        order by SSEventStartDateTime desc
     </select>
     <select id="getSSEventDespatcherQueryCount" resultType="java.lang.Integer">
 

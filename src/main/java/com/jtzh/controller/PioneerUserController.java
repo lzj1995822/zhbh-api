@@ -4,7 +4,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jtzh.mapper.PioneerOrgMapper;
+import com.jtzh.entity.MapParm;
+import com.jtzh.mapper.PioneerUserMapper;
 import org.springframework.web.bind.annotation.*;
 
 import com.jtzh.entity.LoginUserTest;
@@ -15,6 +16,7 @@ import com.jtzh.service.PioneerUserService;
 
 import io.swagger.annotations.Api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -27,7 +29,8 @@ public class PioneerUserController {
 	private PioneerUserService pioneerUserService;
 	@Resource
 	private LoginUserTestService loginUserTestService;
-
+	@Resource
+	private PioneerUserMapper pioneerUserMapper;
 
 	/**
 	 * 获取人员年龄信息
@@ -36,7 +39,7 @@ public class PioneerUserController {
 	 * @return
 	 */
 	@CrossOrigin
-	@RequestMapping(value = "/getPioneerUserAgeList", method = RequestMethod.GET)
+	@RequestMapping(value = "getPioneerUserAgeList", method = RequestMethod.GET)
 	public Object getPioneerUserAgeList() {
 
 		TreeMap<String,Integer> map =new TreeMap<>();
@@ -91,7 +94,7 @@ public class PioneerUserController {
 	 * @param param
 	 * @return
 	 */
-	@RequestMapping(value = "/getPioneerUserList", method = RequestMethod.POST)
+	@RequestMapping(value = "getPioneerUserList", method = RequestMethod.POST)
 	public Object getPioneerUserList(@RequestBody PioneerUserPagination param) {
 		return pioneerUserService.getPioneerUserList(param);
 	}
@@ -102,7 +105,7 @@ public class PioneerUserController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/getPioneerUser/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "getPioneerUser/{id}", method = RequestMethod.GET)
 	public Object getPioneerUser(@PathVariable("id") String id) {
 		return pioneerUserService.getPioneerUser(id);
 	}
@@ -113,7 +116,7 @@ public class PioneerUserController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/removePioneerUser/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "removePioneerUser/{id}", method = RequestMethod.GET)
 	public Object removePioneerUser(@PathVariable("id") String id) {
 		return pioneerUserService.removePioneerUser(id);
 	}
@@ -124,7 +127,7 @@ public class PioneerUserController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value = "/addPioneerUser", method = RequestMethod.POST)
+	@RequestMapping(value = "addPioneerUser", method = RequestMethod.POST)
 	public Object insertPioneerUser(@RequestBody PioneerUser user, HttpServletRequest request) {
 		LoginUserTest loginUser = (LoginUserTest) loginUserTestService.getTestUserInfo(request);
 		return pioneerUserService.insertPioneerUser(user, loginUser);
@@ -136,7 +139,7 @@ public class PioneerUserController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	@RequestMapping(value = "updateUser", method = RequestMethod.POST)
 	public Object updatePioneerUser(@RequestBody PioneerUser user) {
 		return pioneerUserService.updatePioneerUser(user);
 	}
@@ -146,7 +149,7 @@ public class PioneerUserController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/countNumber", method = RequestMethod.POST)
+	@RequestMapping(value = "countNumber", method = RequestMethod.POST)
 	public Object countNumber() {
 		return pioneerUserService.countNumber();
 	}
@@ -158,9 +161,63 @@ public class PioneerUserController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/export", method = RequestMethod.GET)
+	@RequestMapping(value = "export", method = RequestMethod.GET)
 	public Object export(HttpServletRequest request, HttpServletResponse response) {
 		pioneerUserService.exportExcel(response);
 		return null;
 	}
+
+	/**
+	 * 获取性别统计
+	 * @return
+	 */
+	@RequestMapping(value = "getPioneerSex", method = RequestMethod.GET)
+	public Object getPioneerSex() {
+		List<MapParm> list = pioneerUserMapper.getPioneerSex();
+		return list;
+	}
+    @RequestMapping(value = "getPioneerAge", method = RequestMethod.GET)
+	public Object getPioneerAge(){
+       int a = 0,b = 0,c = 0, d = 0,e = 0,f = 0;
+        List<MapParm> res = new ArrayList<>();
+        List<String> list = pioneerUserService.getPioneerUserAgeList();
+        for(String item: list) {
+            if (item == null) {
+                continue;
+            }
+            Integer year = Integer.valueOf(item);
+            if (year >= 18 && year <= 30) {
+               a++;
+            } else if (year > 30 && year <= 40) {
+               b++;
+            } else if (year >40 && year <= 50) {
+               c++;
+            } else if (year >50 && year <= 60) {
+               d++;
+            }else if (year >60) {
+               e++;
+            }
+        }
+        MapParm m1 = new MapParm();
+        m1.setName("18-30岁");
+        m1.setNum(a);
+        MapParm m2 = new MapParm();
+        m2.setName("30-40岁");
+        m2.setNum(b);
+        MapParm m3 = new MapParm();
+        m3.setName("40-50岁");
+        m3.setNum(c);
+        MapParm m4 = new MapParm();
+        m4.setName("50-60岁");
+        m4.setNum(d);
+        MapParm m5 = new MapParm();
+        m5.setName("60岁以上");
+        m5.setNum(e);
+        res.add(m1);
+        res.add(m2);
+        res.add(m3);
+        res.add(m4);
+        res.add(m5);
+        return res;
+    }
 }
